@@ -1,33 +1,52 @@
-.App {
-  text-align: center;
+body{
+  margin:0;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+header{
+  margin:0;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#page{
+  background-color:#f2f2f2;
+  height:450px;
 }
-
-.App-link {
-  color: #61dafb;
+#stage{
+  width:1500px;
+  height:80px;
+  background-color:red;
+  margin:auto;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#seats-parent{
+  width:1000px;
+  height:400px;
+  background-color:blue;
+  margin:50px auto;
+ display:grid;
+  grid-template-rows: repeat(16, 35px [row-start]);
+  grid-template-columns: repeat(20, auto [col-start]);
+  grid-column-gap:10px;
+  grid-row-gap:10px;
+}
+.seat-label{
+  /*background-color:green;*/
+  
+  margin-left:15px;
+  width:25px;
+  height:24px;
+}
+.check-box{
+  position:relative;
+  left:-13px;
+  top:34px;
+  background-color:transparent;
+  width:35px;
+  height:35px;
+  border:1px solid black;
+  -webkit-appearance: none;
+}
+.check-box:checked{
+  background-color:red;
+  
+}
+.check-box:disabled{
+  background-color:yellow;
+  
 }
