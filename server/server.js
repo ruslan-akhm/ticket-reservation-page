@@ -1,10 +1,10 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require('mongoose');
-const Seat = require("./src/database")
-//var data = "mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
-//mongoose.connect(data, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
-//var db = mongoose.connection;
+const Seat = require("../src/database")
+var data = "mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
+mongoose.connect(data, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
+var db = mongoose.connection;
 
 const app = express();
 
