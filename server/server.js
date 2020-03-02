@@ -1,10 +1,10 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require('mongoose');
-const Seat = require("./server/database")
-var data = "mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
-mongoose.connect(data, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
-var db = mongoose.connection;
+const Seat = require("./src/database")
+//var data = "mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
+//mongoose.connect(data, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
+//var db = mongoose.connection;
 
 const app = express();
 
@@ -17,14 +17,12 @@ function checkHttps(request, response, next) {
     response.redirect("https://" + request.hostname + request.url);
   }
 }
-
 app.all("*", checkHttps);
 
-// A test route to make sure the server is up.
-app.get("/api/ping", (request, response) => {
-  console.log("❇️ Received GET request to /api/ping");
-  response.send("pong!");
-});
+
+
+
+
 
 // Express port-switching logic
 let port;
