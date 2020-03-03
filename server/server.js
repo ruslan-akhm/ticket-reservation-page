@@ -32,13 +32,15 @@ app.post("/api/reserve",(req,res)=>{
   const seat = req.body.seat//JSON.stringify(req.body);
   //console.log(typeof seat, seat)
   const checked = array.concat(seat)
-  //console.log(typeof checked, checked)
+  console.log(checked)
   var ticket = shortid.generate();
   for(let i=0; i<checked.length;i++){
-    va
     var newSeat = new Seat({
-      
+      seatId:checked[i],
+      isTaken:true,
+      ticketId:ticket
     })
+    newSeat.save();
   }
   res.send("Check console")
 })
