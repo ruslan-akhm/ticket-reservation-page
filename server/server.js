@@ -30,7 +30,7 @@ app.post("/api/reserve",(req,res)=>{
   const seat = JSON.stringify(req.body);
   //const tester = req.body.name;
   //console.log(req.body)
-  console.log(seat)
+  console.log(seat[name])
   //console.log(tester)
   res.send("Check console")
 })
