@@ -16,7 +16,7 @@ app.get("/", (request, response) => {
 });
 
 // PWAs want HTTPS!
- function checkHttps(request, response, next) {
+/* function checkHttps(request, response, next) {
   // Check the protocol — if http, redirect to https.
   if (request.get("X-Forwarded-Proto").indexOf("https") != -1) {
     return next();
@@ -24,14 +24,11 @@ app.get("/", (request, response) => {
     response.redirect("https://" + request.hostname + request.url);
   }
 }
-app.all("*", checkHttps);  
+app.all("*", checkHttps);   */
 
 app.post("/api/reserve",(req,res)=>{
-  const seat = JSON.stringify(req.body);
-  //const tester = req.body.name;
-  //console.log(req.body)
-  console.log(seat[name])
-  //console.log(tester)
+  const seat = req.body.seat//JSON.stringify(req.body);
+  console.log(typeof seat)
   res.send("Check console")
 })
 
