@@ -7,7 +7,7 @@ module.exports = function(app) {
   app.use(
     "/api",
     createProxyMiddleware({
-      target: "http://172.17.0.76" //"http://localhost:3001"  CHANGED THIS
+      target: "http://localhost:3001" //"http://172.17.0.76" 
     })
   );
 };
