@@ -8,6 +8,13 @@ var db = mongoose.connection;
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }))
+app.use(express.static("public"));
+app.get("/", (request, response) => {
+  response.sendFile(__dirname + "/public/index.html");
+});
+
 // PWAs want HTTPS!
  function checkHttps(request, response, next) {
   // Check the protocol — if http, redirect to https.
