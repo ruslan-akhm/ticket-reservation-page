@@ -19,7 +19,7 @@ class App extends React.Component{
    
     //const seats = seatsArray.map(seat=><label for={seat} className="seat-label"><input className="check-box" type="checkbox" id={seat}/>{seat}</label>);
     const keys = Object.keys(seatsLayout);
-    const seats = keys.map(row=>seatsLayout[row].map(seat=><label for={seat} className="seat-label"><input className="check-box" type="checkbox" id={row[seat]}/>{seat}</label>));
+    const seats = keys.map(row=>seatsLayout[row].map(seat=><label for={seat} className="seat-label"><input className="check-box" id="16"/*{row[seat]}*/ type="checkbox" name="seat" value="16"/>{seat}</label>));
   
     
     return(

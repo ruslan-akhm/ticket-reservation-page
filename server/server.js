@@ -20,8 +20,9 @@ const app = express();
 app.all("*", checkHttps);  
 
 app.post("/api/reserve",(req,res)=>{
-  var checked = req.body;
-  console.log("req body is "+req.body.checkbox)
+  const seat = req.body;
+  console.log("req body is "+req.body)
+  console.log(seat)
   res.send("Check console")
 })
 
