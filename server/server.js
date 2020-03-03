@@ -1,9 +1,10 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require('mongoose');
-const Seat = require("../src/database")
-var data = "mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
-mongoose.connect(data, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
+const shortid = require('shortid');
+const Seat = require("../src/database");
+var dataMongo = "mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
+mongoose.connect(dataMongo, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 var db = mongoose.connection;
 
 const app = express();
@@ -27,8 +28,18 @@ app.get("/", (request, response) => {
 app.all("*", checkHttps);   */
 
 app.post("/api/reserve",(req,res)=>{
+  const array = [];
   const seat = req.body.seat//JSON.stringify(req.body);
-  console.log(typeof seat)
+  //console.log(typeof seat, seat)
+  const checked = array.concat(seat)
+  //console.log(typeof checked, checked)
+  var ticket = shortid.generate();
+  for(let i=0; i<checked.length;i++){
+    va
+    var newSeat = new Seat({
+      
+    })
+  }
   res.send("Check console")
 })
 
