@@ -27,9 +27,11 @@ app.get("/", (request, response) => {
 app.all("*", checkHttps);  
 
 app.post("/api/reserve",(req,res)=>{
-  const seat = req.body;
-  console.log(req.body)
-  console.log(JSON.stringify(seat))
+  const seat = JSON.stringify(req.body);
+  //const tester = req.body.name;
+  //console.log(req.body)
+  console.log(seat)
+  //console.log(tester)
   res.send("Check console")
 })
 
