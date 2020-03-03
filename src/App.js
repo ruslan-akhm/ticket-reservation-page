@@ -23,7 +23,7 @@ class App extends React.Component{
       return seatsLayout[row].map(seat=>{
       //let tester = seat;
       //console.log("TESTER IS "+tester);
-      return <label for={seat} className="seat-label"><input /*className="check-box"*/ id="iddd" type="checkbox" name="seat" value={row+""+seat}/>{seat}</label>
+      return <label for={seat} className="seat-label"><input className="check-box" id="iddd" type="checkbox" name="seat" value={row+""+seat}/>{seat}</label>
     })});
   
     
