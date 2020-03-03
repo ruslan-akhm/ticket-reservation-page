@@ -28,8 +28,8 @@ app.all("*", checkHttps);
 
 app.post("/api/reserve",(req,res)=>{
   const seat = req.body;
-  console.log("req body is "+req.body)
-  console.log(seat)
+  console.log(req.body)
+  console.log(JSON.stringify(seat))
   res.send("Check console")
 })
 
