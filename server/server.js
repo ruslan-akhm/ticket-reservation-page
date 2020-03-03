@@ -9,7 +9,7 @@ var db = mongoose.connection;
 const app = express();
 
 // PWAs want HTTPS!
-function checkHttps(request, response, next) {
+/* function checkHttps(request, response, next) {
   // Check the protocol — if http, redirect to https.
   if (request.get("X-Forwarded-Proto").indexOf("https") != -1) {
     return next();
@@ -17,9 +17,9 @@ function checkHttps(request, response, next) {
     response.redirect("https://" + request.hostname + request.url);
   }
 }
-app.all("*", checkHttps);
+app.all("*", checkHttps);  */
 
-app.post("/",(req,res)=>{
+app.post("/reserve",(req,res)=>{
   var checked = req.body;
   console.log(checked)
 })
