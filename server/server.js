@@ -19,7 +19,10 @@ function checkHttps(request, response, next) {
 }
 app.all("*", checkHttps);
 
-
+app.post("/",(req,res)=>{
+  var checked = req.body;
+  console.log(checked)
+})
 
 
 

@@ -24,7 +24,10 @@ class App extends React.Component{
     
     return(
       <div id="page">
-        <form><div id="seats-parent">{seats}</div></form>
+        <form action="/" method="POST">
+          <div id="seats-parent">{seats}</div>
+          <input type="submit" value="Reserve"></input>
+        </form>
       </div>
     )
   }
