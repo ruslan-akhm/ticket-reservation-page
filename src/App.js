@@ -15,7 +15,7 @@ class App extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      taken:''
+      taken:[]
     }
     
     this.handleSubmit=this.handleSubmit.bind(this);
@@ -32,9 +32,9 @@ class App extends React.Component{
       var taken = [];
       taken=taken.concat(response);
       //console.log(taken);
-      this.setState({
-        taken: taken
-      })
+     // this.setState({
+     //   taken: taken
+     // })
     };
     xmlhttp.send();
   }
@@ -54,7 +54,8 @@ class App extends React.Component{
       return seatsLayout[row].map(seat=>{
       //let tester = seat;
       //console.log("TESTER IS "+tester);
-      return <label for={seat} className="seat-label"><input className="check-box" id="iddd" type="checkbox" name="seat" value={row+""+seat} disabled={this.value=="B3"?true:false}/>{seat}</label>
+        
+      return <label for={seat} className="seat-label"><input className="check-box" id="iddd" type="checkbox" name="seat" value={row+""+seat} disabled={row+""+seat=="B3"?true:false}/>{seat}</label>
     })});
   
     
