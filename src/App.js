@@ -20,7 +20,7 @@ class App extends React.Component{
     
     this.handleSubmit=this.handleSubmit.bind(this);
   }
-  //Make 
+  //Make initial request to GET all the taken seats and disable them for reservation
   componentDidMount(){
     var xmlhttp = new XMLHttpRequest(),
     method = 'GET',
@@ -28,9 +28,13 @@ class App extends React.Component{
 
     xmlhttp.open(method, url, true);
     xmlhttp.onload = function () {
-      var resp = xmlhttp.response //Here we receive 
-      console.log("RECEIVEDDDDD  RESSSS" + resp)
-      
+      var response = xmlhttp.response //Here we receive an Array of seat IDs
+      var taken = [];
+      taken=taken.concat(response);
+      //console.log(taken);
+      this.setState({
+        taken: taken
+      })
     };
     xmlhttp.send();
   }
@@ -42,14 +46,15 @@ class App extends React.Component{
   
   
   render(){
-   
+    const takenSeats = this.state.taken;
+    //let disabled = takenSeats.map
     //const seats = seatsArray.map(seat=><label for={seat} className="seat-label"><input className="check-box" type="checkbox" id={seat}/>{seat}</label>);
     const keys = Object.keys(seatsLayout);
     const seats = keys.map(row=>{
       return seatsLayout[row].map(seat=>{
       //let tester = seat;
       //console.log("TESTER IS "+tester);
-      return <label for={seat} className="seat-label"><input className="check-box" id="iddd" type="checkbox" name="seat" value={row+""+seat}/>{seat}</label>
+      return <label for={seat} className="seat-label"><input className="check-box" id="iddd" type="checkbox" name="seat" value={row+""+seat} disabled={this.value=="B3"?true:false}/>{seat}</label>
     })});
   
     

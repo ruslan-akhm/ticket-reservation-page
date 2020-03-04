@@ -42,7 +42,8 @@ app.get('/api',(req,res)=>{
   //res.send("B3");
 })
 
-app.post("/api/reserve",(req,res)=>{  //ADD CHECKER IF TAKEN SEAT WILL BE REQUESTED ANYWAY - GIVE THEM ERROR!!!
+app.post("/api/reserve",(req,res)=>{  //ADD CHECKER IF TAKEN SEAT WILL BE REQUESTED ANYWAY - GIVE THEM ERROR!!!  
+  //CHECK IF RESERVATION BUTTON WAS CLICKED WITHOUT CHOOSING SEAT AND GIVE ERROR
   const array = []; 
   const seat = req.body.seat//JSON.stringify(req.body);
   //console.log(typeof seat, seat)
