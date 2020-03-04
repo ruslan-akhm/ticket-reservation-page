@@ -14,9 +14,15 @@ const seatsLayout = {
 class App extends React.Component{
   constructor(props){
     super(props);
-    this.state={}
+    this.state={
+      
+    }
     
     this.handleSubmit=this.handleSubmit.bind(this);
+  }
+  
+  componentDidMount(){
+    
   }
   
   handleSubmit(seats){
