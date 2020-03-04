@@ -56,23 +56,23 @@ app.post("/api/reserve",(req,res)=>{  //ADD CHECKER IF TAKEN SEAT WILL BE REQUES
     Seat.find({seatId:checked[i]},(err,data)=>{
       if(err)  return console.log(err)
       if(data==null){
-        //IF THIS SEAT WASN'T TA
+        //IF THIS SEAT WASN'T TAKEN
         var newSeat = new Seat({
           seatId:checked[i],
           isTaken:true,
           ticketId:ticket
         })
-    newSeat.save();
+        newSeat.save();
+      }
+      else{
+        //THIS CASE SHOULD NEVER HAPPEN SINCE CHECKBOXES OF TAKEN SEATS ARE RENDERED DISABLED IN APP.JS
+        res.send("Seat(s) you have chosen have been reserved already")
       }
     })
- /*   var newSeat = new Seat({
-      seatId:checked[i],
-      isTaken:true,
-      ticketId:ticket
-    })
-    newSeat.save(); */
   }
-  //res.send("Check console")
+  console.log("ITS GOT TO BE HERE");
+  res.send(`You have reserved seats $checked`)
+  
 })
 
 
