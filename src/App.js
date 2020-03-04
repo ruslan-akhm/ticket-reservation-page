@@ -20,9 +20,19 @@ class App extends React.Component{
     
     this.handleSubmit=this.handleSubmit.bind(this);
   }
-  
+  //Make 
   componentDidMount(){
-    
+    var xmlhttp = new XMLHttpRequest(),
+    method = 'GET',
+    url = '/api/';
+
+    xmlhttp.open(method, url, true);
+    xmlhttp.onload = function () {
+      var resp = xmlhttp.response //Here we receive 
+      console.log("RECEIVEDDDDD  RESSSS" + resp)
+      
+    };
+    xmlhttp.send();
   }
   
   handleSubmit(seats){

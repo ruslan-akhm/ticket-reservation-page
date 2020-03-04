@@ -28,11 +28,22 @@ app.get("/", (request, response) => {
 app.all("*", checkHttps);   */
 
 app.get('/api',(req,res)=>{
-  res.send("B3");
+  console.log("RECEIVED REQ");
+  var seatsArray = []
+  Seat.find({isTaken:true},(err,data)=>{
+    if(err) return console.log(err)
+    for(let i = 0;i<data.length;i++){
+      seatsArray.push(data[i].seatId)
+    }
+    //console.log(data.length)
+    res.send(seatsArray);
+  });
+  
+  //res.send("B3");
 })
 
-app.post("/api/reserve",(req,res)=>{
-  const array = [];
+app.post("/api/reserve",(req,res)=>{  //ADD CHECKER IF TAKEN SEAT WILL BE REQUESTED ANYWAY - GIVE THEM ERROR!!!
+  const array = []; 
   const seat = req.body.seat//JSON.stringify(req.body);
   //console.log(typeof seat, seat)
   const checked = array.concat(seat)
