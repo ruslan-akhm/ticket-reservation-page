@@ -42,7 +42,7 @@ app.post("/api/reserve",(req,res)=>{
     })
     newSeat.save();
   }
-  res.send("Check console")
+  //res.send("Check console")
 })
 
 

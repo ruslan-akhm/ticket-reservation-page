@@ -14,7 +14,16 @@ const seatsLayout = {
 class App extends React.Component{
   constructor(props){
     super(props);
+    this.state={}
+    
+    this.handleSubmit=this.handleSubmit.bind(this);
   }
+  
+  handleSubmit(seats){
+    console.log(seats);
+  }
+  
+  
   render(){
    
     //const seats = seatsArray.map(seat=><label for={seat} className="seat-label"><input className="check-box" type="checkbox" id={seat}/>{seat}</label>);
@@ -29,7 +38,7 @@ class App extends React.Component{
     
     return(
       <div id="page">
-        <form action="/api/reserve" method="POST">
+        <form action="/api/reserve" method="POST" onSubmit={(seats)=>this.handleSubmit(seats)}>
           <div id="seats-parent">{seats}</div>
           <input type="submit" value="Reserve"></input>
         </form>
