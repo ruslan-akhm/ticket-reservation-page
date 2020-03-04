@@ -15,7 +15,7 @@ class App extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      
+      taken:''
     }
     
     this.handleSubmit=this.handleSubmit.bind(this);
@@ -26,7 +26,7 @@ class App extends React.Component{
   }
   
   handleSubmit(seats){
-    event.preventDefault();
+    //event.preventDefault();
     console.log(seats);
   }
   

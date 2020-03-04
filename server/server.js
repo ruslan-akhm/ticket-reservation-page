@@ -27,6 +27,10 @@ app.get("/", (request, response) => {
 }
 app.all("*", checkHttps);   */
 
+app.get('/api',(req,res)=>{
+  res.send("B3");
+})
+
 app.post("/api/reserve",(req,res)=>{
   const array = [];
   const seat = req.body.seat//JSON.stringify(req.body);
