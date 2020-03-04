@@ -20,6 +20,7 @@ class App extends React.Component{
   }
   
   handleSubmit(seats){
+    event.preventDefault();
     console.log(seats);
   }
   
