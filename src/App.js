@@ -50,7 +50,7 @@ class App extends React.Component{
     //let disabled = takenSeats.map
     //const seats = seatsArray.map(seat=><label for={seat} className="seat-label"><input className="check-box" type="checkbox" id={seat}/>{seat}</label>);
     const keys = Object.keys(seatsLayout);
-    const rows = keys.map(key=>{return <ul className="list"><li>row+{key}</li></ul>})
+    const rows = keys.map(key=>{return <ul className="list"><li>row {key}</li></ul>})
     this.seats = keys.map(row=>{
       return seatsLayout[row].map(seat=>{
       //let tester = seat;
