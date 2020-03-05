@@ -30,7 +30,6 @@ class App extends React.Component{
       var response = xmlhttp.response //Here we receive String of seat IDs
       var taken = JSON.parse(response) //And parse it to make it an Array
       var disableTaken = document.getElementsByClassName('check-box'); 
-      //console.log(disableTaken)
       for(let j=0;j<disableTaken.length;j++){
       taken.map(t=>{
         return t==disableTaken[j].value?disableTaken[j].disabled=true:null;
@@ -62,6 +61,8 @@ class App extends React.Component{
     
     return(
       <div id="page">
+        <div id="stage"></div>
+        <div id="seats-rows"></div>
         <form action="/api/reserve" method="POST" onSubmit={(seats)=>this.handleSubmit(seats)}>
           <div id="seats-parent">{this.seats}</div>
           <input type="submit" value="Reserve"></input>

@@ -42,10 +42,9 @@ app.get('/api',(req,res)=>{
   //res.send("B3");
 })
 
-app.post("/api/reserve",(req,res)=>{  //ADD CHECKER IF TAKEN SEAT WILL BE REQUESTED ANYWAY - GIVE THEM ERROR!!!  
-  //CHECK IF RESERVATION BUTTON WAS CLICKED WITHOUT CHOOSING SEAT AND GIVE ERROR - DONE
+app.post("/api/reserve",(req,res)=>{  
   const array = []; 
-  const seat = req.body.seat//JSON.stringify(req.body);
+  const seat = req.body.seat
   console.log("POSTING TICKETS")
   if(seat==null){
     res.send("Please, choose seats to reserve")
@@ -55,10 +54,10 @@ app.post("/api/reserve",(req,res)=>{  //ADD CHECKER IF TAKEN SEAT WILL BE REQUES
   var ticket = shortid.generate();
   console.log(checked, typeof checked)
   for(let i=0; i<checked.length;i++){
-   Seat.find({seatId:checked[i]},(err,data)=>{
-     if(err)  return console.log(err)
-      if(data==null){
-        console.log("CREATE NEW TICKET")
+   //Seat.find({seatId:checked[i]},(err,data)=>{
+   //  if(err)  return console.log(err)
+   //   if(data==null){
+   //     console.log("CREATE NEW TICKET")
         //IF THIS SEAT WASN'T TAKEN
         var newSeat = new Seat({
           seatId:checked[i],
@@ -66,12 +65,11 @@ app.post("/api/reserve",(req,res)=>{  //ADD CHECKER IF TAKEN SEAT WILL BE REQUES
           ticketId:ticket
         })
         newSeat.save();
-      }
-      else{
-        //THIS CASE SHOULD NEVER HAPPEN SINCE CHECKBOXES OF TAKEN SEATS ARE RENDERED DISABLED IN APP.JS
-        res.send("Seat(s) you have chosen have been reserved already")
-      }
-    })
+    //  }
+    //  else{
+        //res.send("Seat(s) you have chosen have been reserved already")
+   //   }
+  //  })
   }
   res.send(`You have reserved seats `+checked)
 })
