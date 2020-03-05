@@ -16,17 +16,33 @@ header{
   margin:auto;
 }
 #seats-parent{
+  position:absolute;
   width:1000px;
   height:400px;
+  left:50%;
   background-color:blue;
   margin:50px auto;
+  margin-left:-500px;
  display:grid;
   grid-template-rows: repeat(16, 35px [row-start]);
   grid-template-columns: repeat(20, auto [col-start]);
   grid-column-gap:10px;
   grid-row-gap:10px;
 }
-#{}
+#seats-rows{
+  position:absolute;
+  left:50%;
+  top:50px;
+  height:400px;
+  width:50px;
+  margin-left:-550px;
+  background-color:green;
+}
+#parent{
+  position:relative;
+  width:100%;
+  text-align:center;
+}
 .seat-label{
   /*background-color:green;*/
   

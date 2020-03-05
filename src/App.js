@@ -62,10 +62,12 @@ class App extends React.Component{
     return(
       <div id="page">
         <div id="stage"></div>
-        <div id="seats-rows"></div>
+        
         <form action="/api/reserve" method="POST" onSubmit={(seats)=>this.handleSubmit(seats)}>
-          <div id="seats-parent">{this.seats}</div>
+          <div id="parent"><div id="seats-rows"></div><div id="seats-parent">{this.seats}</div>
           <input type="submit" value="Reserve"></input>
+          </div>
+          
         </form>
       </div>
     )
