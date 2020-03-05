@@ -46,17 +46,19 @@ app.post("/api/reserve",(req,res)=>{  //ADD CHECKER IF TAKEN SEAT WILL BE REQUES
   //CHECK IF RESERVATION BUTTON WAS CLICKED WITHOUT CHOOSING SEAT AND GIVE ERROR - DONE
   const array = []; 
   const seat = req.body.seat//JSON.stringify(req.body);
-  //console.log(typeof seat, seat, req.body, seat==null)
+  console.log("POSTING TICKETS")
   if(seat==null){
     res.send("Please, choose seats to reserve")
     return
   }
   const checked = array.concat(seat)
   var ticket = shortid.generate();
+  console.log(checked, typeof checked)
   for(let i=0; i<checked.length;i++){
    Seat.find({seatId:checked[i]},(err,data)=>{
      if(err)  return console.log(err)
       if(data==null){
+        console.log("CREATE NEW TICKET")
         //IF THIS SEAT WASN'T TAKEN
         var newSeat = new Seat({
           seatId:checked[i],

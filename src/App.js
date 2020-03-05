@@ -25,13 +25,12 @@ class App extends React.Component{
     var xmlhttp = new XMLHttpRequest(),
     method = 'GET',
     url = '/api/';
-
     xmlhttp.open(method, url, true);
     xmlhttp.onload = function () {
       var response = xmlhttp.response //Here we receive String of seat IDs
       var taken = JSON.parse(response) //And parse it to make it an Array
       var disableTaken = document.getElementsByClassName('check-box'); 
-      console.log(disableTaken)
+      //console.log(disableTaken)
       for(let j=0;j<disableTaken.length;j++){
       taken.map(t=>{
         return t==disableTaken[j].value?disableTaken[j].disabled=true:null;
