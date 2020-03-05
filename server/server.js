@@ -49,13 +49,14 @@ app.post("/api/reserve",(req,res)=>{  //ADD CHECKER IF TAKEN SEAT WILL BE REQUES
   //console.log(typeof seat, seat, req.body, seat==null)
   if(seat==null){
     res.send("Please, choose seats to reserve")
+    return
   }
   const checked = array.concat(seat)
   var ticket = shortid.generate();
   for(let i=0; i<checked.length;i++){
-  //  Seat.find({seatId:checked[i]},(err,data)=>{
-  //    if(err)  return console.log(err)
-   //   if(data==null){
+   Seat.find({seatId:checked[i]},(err,data)=>{
+     if(err)  return console.log(err)
+      if(data==null){
         //IF THIS SEAT WASN'T TAKEN
         var newSeat = new Seat({
           seatId:checked[i],
@@ -63,16 +64,14 @@ app.post("/api/reserve",(req,res)=>{  //ADD CHECKER IF TAKEN SEAT WILL BE REQUES
           ticketId:ticket
         })
         newSeat.save();
-   //   }
-   //   else{
+      }
+      else{
         //THIS CASE SHOULD NEVER HAPPEN SINCE CHECKBOXES OF TAKEN SEATS ARE RENDERED DISABLED IN APP.JS
-  //      res.send("Seat(s) you have chosen have been reserved already")
-  //    }
-   // })
+        res.send("Seat(s) you have chosen have been reserved already")
+      }
+    })
   }
-  console.log("ITS GOT TO BE HERE");
-  res.send(`You have reserved seats $checked`)
-  
+  res.send(`You have reserved seats `+checked)
 })
 
 

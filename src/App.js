@@ -32,6 +32,7 @@ class App extends React.Component{
       var taken = [];
       taken=taken.concat(response);
       //console.log(taken);
+      console.log("this seats "+this.seats)
      // this.setState({
      //   taken: taken
      // })
@@ -50,19 +51,19 @@ class App extends React.Component{
     //let disabled = takenSeats.map
     //const seats = seatsArray.map(seat=><label for={seat} className="seat-label"><input className="check-box" type="checkbox" id={seat}/>{seat}</label>);
     const keys = Object.keys(seatsLayout);
-    const seats = keys.map(row=>{
+    this.seats = keys.map(row=>{
       return seatsLayout[row].map(seat=>{
       //let tester = seat;
       //console.log("TESTER IS "+tester);
         
-      return <label for={seat} className="seat-label"><input className="check-box" id="iddd" type="checkbox" name="seat" value={row+""+seat} disabled={row+""+seat=="B3"?true:false}/>{seat}</label>
+      return <label for={seat} className="seat-label"><input className="check-box" id="iddd" type="checkbox" name="seat" value={row+""+seat} /*disabled={row+""+seat=="B3"?true:false}*/ />{seat}</label>
     })});
   
     
     return(
       <div id="page">
         <form action="/api/reserve" method="POST" onSubmit={(seats)=>this.handleSubmit(seats)}>
-          <div id="seats-parent">{seats}</div>
+          <div id="seats-parent">{this.seats}</div>
           <input type="submit" value="Reserve"></input>
         </form>
       </div>
