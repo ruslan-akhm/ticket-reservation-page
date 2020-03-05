@@ -50,6 +50,7 @@ class App extends React.Component{
     //let disabled = takenSeats.map
     //const seats = seatsArray.map(seat=><label for={seat} className="seat-label"><input className="check-box" type="checkbox" id={seat}/>{seat}</label>);
     const keys = Object.keys(seatsLayout);
+    const rows = keys.map(key=>{return <ul className="list"><li>row+{key}</li></ul>})
     this.seats = keys.map(row=>{
       return seatsLayout[row].map(seat=>{
       //let tester = seat;
@@ -64,8 +65,8 @@ class App extends React.Component{
         <div id="stage"></div>
         
         <form action="/api/reserve" method="POST" onSubmit={(seats)=>this.handleSubmit(seats)}>
-          <div id="parent"><div id="seats-rows"></div><div id="seats-parent">{this.seats}</div>
-          <input type="submit" value="Reserve"></input>
+          <div id="parent"><div id="seats-rows">{rows}</div><div id="seats-parent">{this.seats}</div>
+          <input className="reserve" type="submit" value="Reserve"></input>
           </div>
           
         </form>

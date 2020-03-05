@@ -6,13 +6,13 @@ header{
   margin:0;
 }
 #page{
-  background-color:#f2f2f2;
-  height:450px;
+  background-color:#382f60;
+  height:100vh;
 }
 #stage{
   width:1280px;
   height:80px;
-  background-color:red;
+  background-color:#485188;
   margin:auto;
 }
 #seats-parent{
@@ -20,7 +20,7 @@ header{
   width:1000px;
   height:400px;
   left:50%;
-  background-color:blue;
+  background-color:#382f60;
   margin:50px auto;
   margin-left:-500px;
  display:grid;
@@ -36,12 +36,19 @@ header{
   height:400px;
   width:50px;
   margin-left:-550px;
-  background-color:green;
+  padding-top:20px;
+  background-color:#382f60;
 }
 #parent{
   position:relative;
   width:100%;
   text-align:center;
+}
+.reserve{
+  position:absolute;
+  top:500px;
+  
+  width:100px;
 }
 .seat-label{
   /*background-color:green;*/
@@ -67,4 +74,10 @@ header{
 .check-box:disabled{
   background-color:yellow;
   
+}
+ul.list li{
+  list-style-type:none;
+  margin-left:-40px;
+  margin-top:24px;
+  color:white;
 }
