@@ -28,17 +28,15 @@ class App extends React.Component{
 
     xmlhttp.open(method, url, true);
     xmlhttp.onload = function () {
-      var response = xmlhttp.response //Here we receive an Array of seat IDs
-      var taken = [];
-      taken=taken.concat(response);
-      var disableTaken = document.getElementsByClassName('check-box');
+      var response = xmlhttp.response //Here we receive String of seat IDs
+      var taken = JSON.parse(response) //And parse it to make it an Array
+      var disableTaken = document.getElementsByClassName('check-box'); 
+      console.log(disableTaken)
       for(let j=0;j<disableTaken.length;j++){
-      taken.map(t=>{t==disableTaken[j]?disableTaken[j].disabled=true:null})
+      taken.map(t=>{
+        return t==disableTaken[j].value?disableTaken[j].disabled=true:null;
+      })
       }
-      //console.log("this seats "+disableTaken.length)
-     // this.setState({
-     //   taken: taken
-     // })
     };
     xmlhttp.send();
   }
