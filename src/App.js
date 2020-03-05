@@ -31,8 +31,11 @@ class App extends React.Component{
       var response = xmlhttp.response //Here we receive an Array of seat IDs
       var taken = [];
       taken=taken.concat(response);
-      //console.log(taken);
-      console.log("this seats "+this.seats)
+      var disableTaken = document.getElementsByClassName('check-box');
+      for(let j=0;j<disableTaken.length;j++){
+      taken.map(t=>{t==disableTaken[j]?disableTaken[j].disabled=true:null})
+      }
+      //console.log("this seats "+disableTaken.length)
      // this.setState({
      //   taken: taken
      // })
