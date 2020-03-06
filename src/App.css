@@ -1,27 +1,28 @@
 body{
   margin:0;
-  background-color:#171332;
+  background-color:#222831;
 }
 header{
   margin:0;
 }
 #page{
-  background-color:#171332;
-  height:100vh;
+  background-color:#222831;
+  height:90vh;
 }
 #stage{
-  width:1280px;
-  height:80px;
-  background-color:#2a5d67;
-  margin:auto;
+  width:1200px;
+  height:50px;
+  background-color:#f2f2f2;
+  margin:30px auto;
+  
 }
 #seats-parent{
   position:absolute;
   width:1000px;
   height:400px;
   left:50%;
-  background-color:#171332;
-  margin:50px auto;
+  background-color:#222831;
+  margin:40px auto;
   margin-left:-500px;
   display:grid;
   grid-template-rows: repeat(16, 35px [row-start]);
@@ -37,7 +38,7 @@ header{
   width:50px;
   margin-left:-550px;
   padding-top:20px;
-  background-color:#171332;
+  background-color:#222831;
 }
 #parent{
   position:relative;
@@ -46,9 +47,9 @@ header{
 }
 .reserve{
   position:absolute;
-  top:500px;
-  
+  top:460px;
   width:100px;
+  
 }
 .seat-label{
   /*background-color:green;*/
@@ -56,6 +57,7 @@ header{
   margin-left:15px;
   width:25px;
   height:24px;
+  font-weight:bold;
 }
 .check-box{
   position:relative;
@@ -71,17 +73,18 @@ header{
   -webkit-appearance: none;
 }
 .check-box:checked{
-  background-color:white;
+  background-color:#f96d00;
   opacity:0.5;
+  border:none;
 }
 .check-box:disabled{
-  background-color:#485188;
-  opacity:0.7;
+  background-color:gray;
+  opacity:0.8;
   pointer-events:none;
 }
 .check-box:hover{
-  border:1px solid red;
-  transition: 0.2s;
+  border:2px solid #f96d00;
+  transition: 0.1s;
 }
 ul.list li{
   list-style-type:none;
