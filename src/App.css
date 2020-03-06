@@ -65,14 +65,15 @@ header{
   width:35px;
   height:35px;
   border:1px solid black;
+  outline:none;
   -webkit-appearance: none;
 }
 .check-box:checked{
-  background-color:red;
+  background-color:white;
   
 }
 .check-box:disabled{
-  background-color:yellow;
+  background-color:#485188;
   
 }
 ul.list li{
