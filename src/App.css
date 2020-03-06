@@ -1,18 +1,18 @@
 body{
   margin:0;
-  background-color:#382f60;
+  background-color:#171332;
 }
 header{
   margin:0;
 }
 #page{
-  background-color:#382f60;
+  background-color:#171332;
   height:100vh;
 }
 #stage{
   width:1280px;
   height:80px;
-  background-color:#485188;
+  background-color:#2a5d67;
   margin:auto;
 }
 #seats-parent{
@@ -20,10 +20,10 @@ header{
   width:1000px;
   height:400px;
   left:50%;
-  background-color:#382f60;
+  background-color:#171332;
   margin:50px auto;
   margin-left:-500px;
- display:grid;
+  display:grid;
   grid-template-rows: repeat(16, 35px [row-start]);
   grid-template-columns: repeat(20, auto [col-start]);
   grid-column-gap:10px;
@@ -37,7 +37,7 @@ header{
   width:50px;
   margin-left:-550px;
   padding-top:20px;
-  background-color:#382f60;
+  background-color:#171332;
 }
 #parent{
   position:relative;
@@ -52,7 +52,7 @@ header{
 }
 .seat-label{
   /*background-color:green;*/
-  
+  color:white;
   margin-left:15px;
   width:25px;
   height:24px;
@@ -64,17 +64,24 @@ header{
   background-color:transparent;
   width:35px;
   height:35px;
-  border:1px solid black;
+  border:1px ridge white;
+  border-radius:5px;
+  cursor:pointer;
   outline:none;
   -webkit-appearance: none;
 }
 .check-box:checked{
   background-color:white;
-  
+  opacity:0.5;
 }
 .check-box:disabled{
   background-color:#485188;
-  
+  opacity:0.7;
+  pointer-events:none;
+}
+.check-box:hover{
+  border:1px solid red;
+  transition: 0.2s;
 }
 ul.list li{
   list-style-type:none;
