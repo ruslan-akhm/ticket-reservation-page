@@ -8,14 +8,25 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
    <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
+    <script>
+      function parseHttpHeaders(httpHeaders) {
+    return httpHeaders.split("\n")
+     .map(x=>x.split(/: */,2))
+     .filter(x=>x[0])
+     .reduce((ac, x)=>{ac[x[0]] = x[1];return ac;}, {});
+}
+
+var req = new XMLHttpRequest();
+req.open('GET', document.location, false);
+req.send(null);
+var headers = parseHttpHeaders(req.getAllResponseHeaders());
+      console.loh(headers)
+    </script>
     <title>Reservation App</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <script>
-      var test = req.getAllResponseHeaders().toLowerCase();
-      alert(test);
-    </script>
+    
     <h1>INDEX  1   HTML </h1>
     
   </body>
