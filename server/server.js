@@ -71,11 +71,7 @@ app.post("/api/reserve",(req,res)=>{
    //   }
   //  })
   }
-  var options = {
-    headers: {
-    'checked':checked
-  }
-  }
+  var options = checked;
   res.sendFile(path.join(__dirname, '../public', 'index1.html'),options)
   //res.send(`You have reserved seats `+checked)
 })
