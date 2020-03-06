@@ -11,10 +11,14 @@ header{
 }
 #stage{
   width:1200px;
-  height:50px;
+  height:15px;
   background-color:#f2f2f2;
   margin:30px auto;
   border-radius:10px;
+  font-family: 'Spartan', sans-serif;
+  color:#222831;
+  text-align:center;
+  padding:15px 0;
 }
 #seats-parent{
   position:absolute;
@@ -60,6 +64,7 @@ header{
   border-radius:5px;
   cursor:pointer;
   background-color:transparent;
+  outline:none;
 }
 .seat-label{
   /*background-color:green;*/
