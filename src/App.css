@@ -14,7 +14,7 @@ header{
   height:50px;
   background-color:#f2f2f2;
   margin:30px auto;
-  
+  border-radius:10px;
 }
 #seats-parent{
   position:absolute;
@@ -50,8 +50,16 @@ header{
 .reserve{
   position:absolute;
   top:460px;
+  left:600px;
   width:100px;
-  
+  height:30px;
+  color:white;
+  font-family: 'Spartan', sans-serif;
+  font-size:14px;
+  border: 1px solid white;
+  border-radius:5px;
+  cursor:pointer;
+  background-color:transparent;
 }
 .seat-label{
   /*background-color:green;*/
@@ -85,6 +93,7 @@ header{
   background-color:gray;
   opacity:0.8;
   pointer-events:none;
+  border:none;
 }
 .check-box:hover{
   border:2px solid #f96d00;

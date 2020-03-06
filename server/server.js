@@ -73,7 +73,7 @@ app.post("/api/reserve",(req,res)=>{
   }
   //req.body.testertest = checked;
   //res.redirect('/api/complete')
-  res.send(`You have reserved seats `+checked)
+  res.send(`You have reserved seats `+checked +`\n Your ticket id is `+ticket)
 })
 
 
