@@ -17,8 +17,6 @@ class App extends React.Component{
     this.state={
       taken:[]
     }
-    
-    this.handleSubmit=this.handleSubmit.bind(this);
   }
   //Make initial request to GET all the taken seats and disable them for reservation
   componentDidMount(){
@@ -39,10 +37,7 @@ class App extends React.Component{
     xmlhttp.send();
   }
   
-  handleSubmit(seats){
-    //event.preventDefault();
-    console.log(seats);
-  }
+ 
   
   
   render(){
@@ -64,7 +59,7 @@ class App extends React.Component{
       <div id="page">
         <div id="stage">STAGE/SCREEN</div>
         
-        <form action="/api/reserve" method="POST" onSubmit={(seats)=>this.handleSubmit(seats)}>
+        <form action="/api/reserve" method="POST">
           <div id="parent"><div id="seats-rows">{rows}</div><div id="seats-parent">{this.seats}</div>
           <input className="reserve" type="submit" value="Reserve"></input>
           </div>
