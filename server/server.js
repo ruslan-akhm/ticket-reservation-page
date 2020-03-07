@@ -8,7 +8,7 @@ mongoose.connect(dataMongo, { useNewUrlParser: true, useUnifiedTopology: true, u
 var db = mongoose.connection;
 
 const app = express();
-var lastTaken; 
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
@@ -48,7 +48,7 @@ app.post("/api/reserve",(req,res)=>{
   const seat = req.body.seat
   console.log("POSTING TICKETS")
   if(seat==null){
-    lastTaken = 'Please, choose seats to reserve';
+    
     res.send("Please, choose seats to reserve") //REMOVE THIS L8R
     return
   }
@@ -68,13 +68,11 @@ app.post("/api/reserve",(req,res)=>{
         })
         newSeat.save();
   }
-  lastTaken = `You have reserved seats `+checked +`, Your ticket id is `+ticket;
-  //res.send(`You have reserved seats `+checked +`, Your ticket id is `+ticket)
+  
+  res.send(`You have reserved seats `+checked +`, Your ticket id is `+ticket)
 })
 
-app.get('/api/return',(req,res)=>{
-  res.send(lastTaken)
-})
+
 
 
 // Express port-switching logic
