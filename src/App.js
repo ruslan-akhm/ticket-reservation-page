@@ -51,7 +51,7 @@ class App extends React.Component{
       //let tester = seat;
       //console.log("TESTER IS "+tester);
         
-      return <label for={seat} className="seat-label"><input className="check-box" id="iddd" type="checkbox" name="seat" value={row+""+seat} /*disabled={row+""+seat=="B3"?true:false}*/ />{seat}</label>
+      return <label for={seat} className="seat-label"><input className="check-box" id={row+""+seat} key={row+""+seat} type="checkbox" name="seat" value={row+""+seat} /*disabled={row+""+seat=="B3"?true:false}*/ />{seat}</label>
     })});
   
     

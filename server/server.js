@@ -49,7 +49,7 @@ app.post("/api/reserve",(req,res)=>{
   console.log("POSTING TICKETS")
   if(seat==null){
     var ttt = "NOTHING"
-    res.redirect('/return.html')
+    //res.redirect('/return.html')
     //res.send("Please, choose seats to reserve") //
     return
   }

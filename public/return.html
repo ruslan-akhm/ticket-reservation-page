@@ -13,21 +13,8 @@
     <title>Return</title>
   </head>
   <body>
-   <script>
-      document.getElementById('main-page').addEventListener("click", getSeats);
-      function getSeats(){
-        
-        fetch("/src/database.js")
-        .then((res)=>res.text())
-        .then((data)=>{
-          console.log(data);
-          
-        })
-      }
-    </script>
-    <button id="main-page"></button>
-    
-    
+   
+    <button id="main-page">Get Data</button>
     
  <h1 id="kek">
    Hello world
@@ -35,6 +22,17 @@
     <div id="reply">
       
     </div>
-    
+   <script>
+      document.getElementById('main-page').addEventListener("click", getSeats);
+      function getSeats(){
+        
+        fetch("../src/database.js")
+        .then((res)=>res.text())
+        .then((data)=>{
+          console.log(data);
+          
+        })
+      }
+    </script> 
   </body>
 </html>
