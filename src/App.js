@@ -58,12 +58,15 @@ class App extends React.Component{
     return(
       <div id="page">
         <div id="stage">STAGE/SCREEN</div>
-        
+        <div>
         <form action="/api/reserve" method="POST">
-          <div id="parent"><div id="seats-rows">{rows}</div><div id="seats-parent">{this.seats}</div>
-          <input className="reserve" type="submit" value="Reserve"></input>
+          <div id="parent">
+            <div id="seats-rows">{rows}</div>
+            <div id="seats-parent">{this.seats}</div>
+            <input className="reserve" type="submit" value="Reserve"></input>
           </div>
         </form>
+        </div>
         <div id="have-id">
           <form action="api/id" method="post">
             <input type="text" name="id"></input>
