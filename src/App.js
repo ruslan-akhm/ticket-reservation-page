@@ -17,20 +17,23 @@ class App extends React.Component{
     this.state={
       //taken:[]
     }
-    this.reserveSeats=this.reserveSeats.bind(this)
+    this.updateSeats=this.updateSeats.bind(this)
   }
   //Make initial request to GET all the taken seats and disable them for reservation
   componentDidMount(){
-    document.getElementById('reserve-button').addEventListener('click',this.reserveSeats)
-    
+    window.addEventListener('pageshow',this.updateSeats)
+  }
+  updateSeats(){
+    console.log("Triggering seats update")
     var xmlhttp = new XMLHttpRequest(),
     method = 'GET',
     url = '/api/';
+    var disableTaken = document.getElementsByClassName('check-box'); //for each value = unchecked
     xmlhttp.open(method, url, true);
     xmlhttp.onload = function () {
       var response = xmlhttp.response //Here we receive String of seat IDs
       var taken = JSON.parse(response) //And parse it to make it an Array
-      var disableTaken = document.getElementsByClassName('check-box'); 
+      
       for(let j=0;j<disableTaken.length;j++){
       taken.map(t=>{
         return t==disableTaken[j].value?disableTaken[j].disabled=true:null;
@@ -39,16 +42,7 @@ class App extends React.Component{
     };
     xmlhttp.send();
   }
-  
- reserveSeats(){
-   console.log("HEREERE");
-   this.seats.map(seat=>{
-     return seat.checked==true?seat.disabled=true:null;
-   })
-   
- }
-  
-  
+ 
   render(){
     const takenSeats = this.state.taken;
     //let disabled = takenSeats.map
