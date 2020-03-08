@@ -6,7 +6,7 @@ header{
   margin:0;
 }
 #page{
-  background-color:red;
+  background-color:#222831;
   height:90vh;
 }
 #stage{
@@ -67,6 +67,10 @@ header{
   background-color:transparent;
   outline:none;
 }
+.reserve:hover{
+  border:2px solid orange;
+}
+
 .seat-label{
   /*background-color:green;*/
   font-family: 'Spartan', sans-serif;
@@ -135,6 +139,7 @@ header{
   outline:none;
   margin-top:20px;
   border-left:none;
+  margin-bottom:20px;
 }
 ul.list li{
   list-style-type:none;

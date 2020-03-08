@@ -67,7 +67,7 @@ class App extends React.Component{
           </div>
         </form>
         </div>
-        <div id="have-id">Already made reservation? To check your seats enter your ticket 
+        <div id="have-id">Already made reservation? To check your seats enter your ticket ID
           <form action="api/id" method="post">
             <input className="text-field" type="text" name="id"></input>
             <input className="show-id" type="submit" value="Show"></input>
