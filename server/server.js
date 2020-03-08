@@ -8,7 +8,7 @@ mongoose.connect(dataMongo, { useNewUrlParser: true, useUnifiedTopology: true, u
 var db = mongoose.connection;
 
 const app = express();
-
+var ttt;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
@@ -27,8 +27,14 @@ app.get("/", (request, response) => {
   }
 }
 app.all("*", checkHttps);   */
+app.get('/api/return/tickets',(req,res)=>{
+  console.log("RETURN TICKETS");
+  res.send(ttt)
+})
+
 
 app.get('/api',(req,res)=>{
+  ttt=null;
   console.log("RECEIVED REQ");
   var seatsArray = []
   Seat.find({isTaken:true},(err,data)=>{
@@ -44,12 +50,13 @@ app.get('/api',(req,res)=>{
 })
 
 app.post("/api/reserve",(req,res)=>{  
+  ttt=null;
   const array = []; 
   const seat = req.body.seat
   console.log("POSTING TICKETS")
   if(seat==null){
     var ttt = "NOTHING"
-    //res.redirect('/return.html')
+    res.redirect('/return.html')
     //res.send("Please, choose seats to reserve") //
     return
   }
@@ -69,6 +76,7 @@ app.post("/api/reserve",(req,res)=>{
         })
         newSeat.save();
   }
+  ttt=checked;
   res.redirect('/return.html')
   //res.send(`You have reserved seats `+checked +`, Your ticket id is `+ticket)
 })
