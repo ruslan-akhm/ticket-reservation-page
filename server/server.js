@@ -49,8 +49,8 @@ app.post("/api/reserve",(req,res)=>{
   console.log("POSTING TICKETS")
   if(seat==null){
     var ttt = "NOTHING"
-    res.status(204).send(ttt)
-    //res.send("Please, choose seats to reserve") //REMOVE THIS L8R
+    res.redirect('/return.html')
+    //res.send("Please, choose seats to reserve") //
     return
   }
   const checked = array.concat(seat)
@@ -69,8 +69,8 @@ app.post("/api/reserve",(req,res)=>{
         })
         newSeat.save();
   }
-  
-  res.send(`You have reserved seats `+checked +`, Your ticket id is `+ticket)
+  res.redirect('/return.html')
+  //res.send(`You have reserved seats `+checked +`, Your ticket id is `+ticket)
 })
 
 
