@@ -84,6 +84,7 @@ header{
   width:35px;
   height:35px;
   border-bottom:1px ridge white;
+  border-bottom:1px ridge gray;
   border-radius:5px;
   cursor:pointer;
   outline:none;

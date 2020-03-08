@@ -27,10 +27,7 @@ app.get("/", (request, response) => {
   }
 }
 app.all("*", checkHttps);   */
-app.get('/api/return/tickets',(req,res)=>{
-  console.log("RETURN TICKETS");
-  
-})
+
 
 
 app.get('/api',(req,res)=>{
@@ -42,22 +39,16 @@ app.get('/api',(req,res)=>{
     for(let i = 0;i<data.length;i++){
       seatsArray.push(data[i].seatId)
     }
-    //console.log(data.length)
     res.send(seatsArray);
   });
-  
-  //res.send("B3");
 })
 
 app.post("/api/reserve",(req,res)=>{  
-  
   const array = []; 
   const seat = req.body.seat
   console.log("POSTING TICKETS")
   if(seat==null){
-    var ttt = "NOTHING"
-    res.redirect('/return.html')
-    //res.send("Please, choose seats to reserve") //
+    res.send("Please, choose seats to reserve") 
     return
   }
   const checked = array.concat(seat)
