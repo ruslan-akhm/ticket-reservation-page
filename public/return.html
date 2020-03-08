@@ -9,14 +9,15 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
    <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
-    <link rel="stylesheet" type="text/css" href="./src/return.css" />
+    <link rel="stylesheet" type="text/css" href="./return.css" />
     <title>Return</title>
   </head>
   <body>
-    <script>
-      window.addEventListener("load", getSeats);
+   <script>
+      document.getElementById('main-page').addEventListener("click", getSeats);
       function getSeats(){
-        fetch('./server/server.js')
+        
+        fetch("/src/database.js")
         .then((res)=>res.text())
         .then((data)=>{
           console.log(data);
@@ -24,7 +25,7 @@
         })
       }
     </script>
-    <div id="main-page">
+    <button id="main-page"></button>
     
     
     
@@ -34,6 +35,6 @@
     <div id="reply">
       
     </div>
-    </div>
+    
   </body>
 </html>
