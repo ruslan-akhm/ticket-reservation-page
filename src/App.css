@@ -6,9 +6,8 @@ header{
   margin:0;
 }
 #page{
-  background-color:#222831;
+  background-color:red;
   height:90vh;
-  
 }
 #stage{
   width:1200px;
@@ -55,8 +54,8 @@ header{
 .reserve{
   position:absolute;
   top:460px;
-  /*left:600px;*/
-  margin:auto;
+  left:50%;
+  margin-left:-50px;
   width:100px;
   height:30px;
   color:white;
@@ -107,15 +106,36 @@ header{
   transition: 0.1s;
 }
 #have-id{
-  background-color:red;
+  color:white;
   position:absolute;
   top:630px;
   width:100%;
   height:50px;
   margin:auto;
   text-align:center;
+  font-family: 'Spartan', sans-serif;
 }
-
+.text-field{
+  height:25px;
+  border-top-left-radius:5px;
+  border-bottom-left-radius:5px;
+  border:2px solid white;
+}
+.show-id{
+  width:100px;
+  height:30px;
+  color:white;
+  font-family: 'Spartan', sans-serif;
+  font-size:14px;
+  border: 1px solid white;
+  border-top-right-radius:5px;
+  border-bottom-right-radius:5px;
+  cursor:pointer;
+  background-color:transparent;
+  outline:none;
+  margin-top:20px;
+  border-left:none;
+}
 ul.list li{
   list-style-type:none;
   margin-left:-60px;

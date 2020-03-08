@@ -67,10 +67,10 @@ class App extends React.Component{
           </div>
         </form>
         </div>
-        <div id="have-id">
+        <div id="have-id">Already made reservation? To check your seats enter your ticket 
           <form action="api/id" method="post">
-            <input type="text" name="id"></input>
-            <input type="submit" value="Show"></input>
+            <input className="text-field" type="text" name="id"></input>
+            <input className="show-id" type="submit" value="Show"></input>
           </form>
         </div>
       </div>
