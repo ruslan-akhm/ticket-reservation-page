@@ -28,7 +28,15 @@ app.get("/", (request, response) => {
 }
 app.all("*", checkHttps);   */
 
-app.get
+app.post('/api/id',(req,res)=>{
+  console.log('HERE')
+  const id = req.body.id;
+  Seat.find({ticketId:id},(err,s)=>{
+    if(err) return console.log(err)
+    console.log(s);
+  })
+  res.send("OKK")
+})
 
 app.get('/api',(req,res)=>{
   console.log("RECEIVED REQ");

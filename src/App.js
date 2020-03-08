@@ -65,8 +65,8 @@ class App extends React.Component{
           </div>
         </form>
         <div id="have-id">
-          <form action="api/id" method="GET">
-            <input type="text"></input>
+          <form action="api/id" method="post">
+            <input type="text" name="id"></input>
             <input type="submit" value="Show"></input>
           </form>
         </div>
