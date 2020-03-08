@@ -31,11 +31,15 @@ app.all("*", checkHttps);   */
 app.post('/api/id',(req,res)=>{
   console.log('HERE')
   const id = req.body.id;
+  var array = [];
   Seat.find({ticketId:id},(err,s)=>{
     if(err) return console.log(err)
-    console.log(s);
+    for(let m=0; m<s.length;m++){
+      array.push(s[m].seatId)
+    }
+    res.send(`You have reserved seat(s) `+array);
   })
-  res.send("OKK")
+  return
 })
 
 app.get('/api',(req,res)=>{
