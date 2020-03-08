@@ -32,7 +32,7 @@ app.post('/api/id',(req,res)=>{
   console.log('HERE')
   const id = req.body.id;
   var array = [];
-  Seat.find({ticketId:id},(err,s)=>{
+  Seat.find({ticketId:id}).sort({seatId:'asc'}).exec((err,s)=>{
     if(err) return console.log(err)
     for(let m=0; m<s.length;m++){
       array.push(s[m].seatId)
@@ -66,24 +66,15 @@ app.post("/api/reserve",(req,res)=>{
   var ticket = shortid.generate();
   console.log(checked, typeof checked)
   for(let i=0; i<checked.length;i++){
-    Seat.find({seatId:checked[i]},(err,data)=>{
-      if(err)  return console.log(err);
-      if(data!==null){
-        res.send(`This seat(s) already reserved. Don't see them taken? Try renewing the main page`)
-        return;
-      }
+    var newSeat = new Seat({
+       seatId:checked[i],
+       isTaken:true,
+       ticketId:ticket
     })
+    newSeat.save();
   }
-  for(let n=0; n<checked.length;n++){
-  var newSeat = new Seat({
-          seatId:checked[n],
-          isTaken:true,
-          ticketId:ticket
-        })
-        newSeat.save();
-        res.send(`You have reserved seats `+checked +`, Your ticket id is `+ticket)
-  }
-  return
+  res.send(`You have reserved seats `+checked +`, Your ticket id is `+ticket)
+ 
   //res.redirect('/return.html')
   //res.send(`You have reserved seats `+checked +`, Your ticket id is `+ticket)
 })
