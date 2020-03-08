@@ -17,9 +17,12 @@ class App extends React.Component{
     this.state={
       //taken:[]
     }
+    this.reserveSeats=this.reserveSeats.bind(this)
   }
   //Make initial request to GET all the taken seats and disable them for reservation
   componentDidMount(){
+    document.getElementById('reserve-button').addEventListener('click',this.reserveSeats)
+    
     var xmlhttp = new XMLHttpRequest(),
     method = 'GET',
     url = '/api/';
@@ -37,7 +40,13 @@ class App extends React.Component{
     xmlhttp.send();
   }
   
- 
+ reserveSeats(){
+   console.log("HEREERE");
+   this.seats.map(seat=>{
+     return seat.checked==true?seat.disabled=true:null;
+   })
+   
+ }
   
   
   render(){
@@ -63,7 +72,7 @@ class App extends React.Component{
           <div id="parent">
             <div id="seats-rows">{rows}</div>
             <div id="seats-parent">{this.seats}</div>
-            <input className="reserve" type="submit" value="Reserve"></input>
+            <input className="reserve" id="reserve-button" type="submit" value="Reserve"></input>
           </div>
         </form>
         </div>
