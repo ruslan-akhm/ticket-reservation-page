@@ -54,7 +54,8 @@ header{
 .reserve{
   position:absolute;
   top:460px;
-  left:600px;
+  /*left:600px;*/
+  margin:auto;
   width:100px;
   height:30px;
   color:white;
@@ -84,7 +85,6 @@ header{
   width:35px;
   height:35px;
   border-bottom:1px ridge white;
-  border-bottom:1px ridge gray;
   border-radius:5px;
   cursor:pointer;
   outline:none;
@@ -104,6 +104,12 @@ header{
 .check-box:hover{
   border:2px solid #f96d00;
   transition: 0.1s;
+}
+#have-id{
+  background-color:red;
+  width:600px;
+  position:absolute;
+  top:300px;
 }
 ul.list li{
   list-style-type:none;

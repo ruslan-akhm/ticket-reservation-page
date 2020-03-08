@@ -28,10 +28,9 @@ app.get("/", (request, response) => {
 }
 app.all("*", checkHttps);   */
 
-
+app.get
 
 app.get('/api',(req,res)=>{
-  
   console.log("RECEIVED REQ");
   var seatsArray = []
   Seat.find({isTaken:true},(err,data)=>{
@@ -69,8 +68,8 @@ app.post("/api/reserve",(req,res)=>{
   }
   
   
-  res.redirect('/return.html')
-  //res.send(`You have reserved seats `+checked +`, Your ticket id is `+ticket)
+  //res.redirect('/return.html')
+  res.send(`You have reserved seats `+checked +`, Your ticket id is `+ticket)
 })
 
 

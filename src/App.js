@@ -15,7 +15,7 @@ class App extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      taken:[]
+      //taken:[]
     }
   }
   //Make initial request to GET all the taken seats and disable them for reservation
@@ -63,8 +63,13 @@ class App extends React.Component{
           <div id="parent"><div id="seats-rows">{rows}</div><div id="seats-parent">{this.seats}</div>
           <input className="reserve" type="submit" value="Reserve"></input>
           </div>
-          
         </form>
+        <div id="have-id">
+          <form action="api/id" method="GET">
+            <input type="text"></input>
+            <input type="submit" value="Show"></input>
+          </form>
+        </div>
       </div>
     )
   }

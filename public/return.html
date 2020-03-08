@@ -14,27 +14,19 @@
   </head>
   <body>
    
-    <button id="main-page">Get Data</button>
+    
     
  <h1>
-   Hello world
+   Thank you!
     </h1>
     <div id="output">
       
     </div>
+    <button id="back">
+      Back
+    </button>
    <script>
-      var xml = new XMLHttpRequest(),
-    method = 'GET',
-    url = '/api/return/tickets';
-    xml.open(method, url, true);
-    xml.onload = function () {
-      var resp = xml.response //Here we receive String of seat IDs
-      //var ttt = JSON.parse(resp) //And parse it to make it an Array
-      console.log(resp);
-      //document.getElementsByClassName('output').innerHTML=ttt; 
-      
-    };
-    xml.send();
+     
     </script> 
   </body>
 </html>
