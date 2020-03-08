@@ -14,12 +14,13 @@
   </head>
   <body>
     <script>
-      document.getElementById('main-page').addEventListener("load",getSeats());
+      window.addEventListener("load", getSeats);
       function getSeats(){
-        fetch('server/server.js')
+        fetch('./server/server.js')
         .then((res)=>res.text())
         .then((data)=>{
-          console.log(data)
+          console.log(data);
+          
         })
       }
     </script>
