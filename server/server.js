@@ -40,30 +40,32 @@ app.get('/api',(req,res)=>{
     res.send(seatsArray);
   });
 })
-//Check for existing reservation
+//Check for existing reservation / Or cancel it 
 app.post('/api/id',(req,res)=>{ 
-  console.log('HERE')
+  console.log('HERE');
   const id = req.body.id;
   var array = [];
-  Seat.find({ticketId:id}).sort({seatId:'asc'}).exec((err,s)=>{
-    if(err) return console.log(err)
-    for(let m=0; m<s.length;m++){
-      array.push(s[m].seatId)
-    }
-    res.send(`You have reserved seat(s) `+array);
-  })
-  return
-})
-//Cancel reservation
-app.post('/api/cancel',(req,res)=>{
-  console.log(req.body)
-  const id = req.body.id;
-  Seat.deleteMany({ticketId:id},(err,data)=>{
-    if (err) return console.log(err)
-    console.log("Deleting...")
-    res.send(`Reservation with ticket ID `+id+` has been done successfully`)
-    return;
-  })
+  const show = req.body.show;
+  const cancel = req.body.cancel;
+  if(show==null){
+    Seat.deleteMany({ticketId:id},(err,c)=>{
+      if(err) return console.log(err)
+      console.log("Cancelling reservation")
+      res.send(`Reservation under ticket ID `+id` has been cancelled`)
+      return;
+    })
+  }
+  else if(cancel==null){
+    console.log("Checking reservation")
+    Seat.find({ticketId:id}).sort({seatId:'asc'}).exec((err,s)=>{
+      if(err) return console.log(err)
+      for(let m=0; m<s.length;m++){
+        array.push(s[m].seatId)
+      }
+      res.send(`You have reserved seat(s) `+array);
+    })
+    return
+  }
 })
 
 //Make new reservation
