@@ -18,14 +18,13 @@ class App extends React.Component{
       //taken:[]
     }
     this.updateSeats=this.updateSeats.bind(this);
-    this.saveChosenSeats=this.saveChosenSeats.bind(this)
   }
   //Make initial request to GET all the taken seats and disable them for reservation
   componentDidMount(){
     window.addEventListener('pageshow',this.updateSeats)
   }
   updateSeats(){
-    console.log("Triggering seats update")
+    console.log("Triggering seats update")//If returning from response page via browser 'back' button - re-render seats to reflect ones just reserved
     var xmlhttp = new XMLHttpRequest(),
     method = 'GET',
     url = '/api/';
@@ -43,13 +42,9 @@ class App extends React.Component{
       })
       }
     };
-    xmlhttp.send();},150)
+    xmlhttp.send();},150) //TiemOut to let browser get response from database and then re-render seats 
   }
-  saveChosenSeats(){
-    var chosenSeats=this.seats.map(st=>{return st.checked==true?st.value:null})
-    console.log(chosenSeats);
-    localStorage.setItem('chosen',chosenSeats)
-  }
+  
   render(){
     const takenSeats = this.state.taken;
     const keys = Object.keys(seatsLayout);
@@ -66,7 +61,7 @@ class App extends React.Component{
           <div id="parent">
             <div id="seats-rows">{rows}</div>
             <div id="seats-parent">{this.seats}</div>
-            <input className="reserve" id="reserve-button" type="submit" value="Reserve" onMouseEnter={this.saveChosenSeats}></input>
+            <input className="reserve" id="reserve-button" type="submit" value="Reserve"></input>
           </div>
         </form>
         </div>
@@ -76,6 +71,7 @@ class App extends React.Component{
             <input className="show-id" type="submit" value="Show"></input>
           </form>
         </div>
+          
       </div>
     )
   }
