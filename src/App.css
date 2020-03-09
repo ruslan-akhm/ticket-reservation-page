@@ -68,7 +68,10 @@ header{
   outline:none;
 }
 .reserve:hover{
-  border:2px solid orange;
+  /*border:2px solid orange;*/
+  color:#222831;
+  background-color:white;
+  transition:0.2s;
 }
 
 .seat-label{
@@ -131,7 +134,7 @@ header{
   color:white;
   font-family: 'Spartan', sans-serif;
   font-size:14px;
-  border: 1px solid white;
+  border: 2px solid white;
   border-top-right-radius:5px;
   border-bottom-right-radius:5px;
   cursor:pointer;
@@ -140,6 +143,11 @@ header{
   margin-top:20px;
   border-left:none;
   margin-bottom:20px;
+}
+.show-id:hover{
+  color:#222831;
+  background-color:white;
+  transition:0.2s;
 }
 ul.list li{
   list-style-type:none;

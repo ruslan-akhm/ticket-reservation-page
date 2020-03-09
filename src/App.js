@@ -28,19 +28,21 @@ class App extends React.Component{
     var xmlhttp = new XMLHttpRequest(),
     method = 'GET',
     url = '/api/';
-    var disableTaken = document.getElementsByClassName('check-box'); //for each value = unchecked
-    xmlhttp.open(method, url, true);
+    var disableTaken = document.getElementsByClassName('check-box'); //for each value unchecked
+    for(let m=0;m<disableTaken.length;m++){
+      disableTaken[m].checked=false;
+    }
+    setTimeout(function(){xmlhttp.open(method, url, true);
     xmlhttp.onload = function () {
       var response = xmlhttp.response //Here we receive String of seat IDs
       var taken = JSON.parse(response) //And parse it to make it an Array
-      
       for(let j=0;j<disableTaken.length;j++){
       taken.map(t=>{
         return t==disableTaken[j].value?disableTaken[j].disabled=true:null;
       })
       }
     };
-    xmlhttp.send();
+    xmlhttp.send();},150)
   }
  
   render(){
