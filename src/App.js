@@ -71,7 +71,7 @@ class App extends React.Component{
             <input className="show-id" type="submit" value="Show"></input>
           </form>
           <form action="api/cancel" method="POST">
-            ...or cancel reservation<input className="cancel" type="submit" value="Cancel"></input>
+            ...or cancel reservation<input className="cancel" type="submit" name="cancel" value="Cancel"></input>
           </form>
         </div>
           

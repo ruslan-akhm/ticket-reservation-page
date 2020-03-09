@@ -56,8 +56,9 @@ app.post('/api/id',(req,res)=>{
 })
 //Cancel reservation
 app.post('/api/cancel',(req,res)=>{
+  console.log(req.body)
   const id = req.body.id;
-  Seat.remove({ticketId:id},(err,data)=>{
+  Seat.deleteMany({ticketId:id},(err,data)=>{
     if (err) return console.log(err)
     console.log("Deleting...")
     res.send(`Reservation with ticket ID `+id+` has been done successfully`)
