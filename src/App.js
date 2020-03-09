@@ -66,9 +66,12 @@ class App extends React.Component{
         </form>
         </div>
         <div id="have-id">Already made reservation? To check your seats enter your ticket ID
-          <form action="api/id" method="post">
+          <form action="api/id" method="POST">
             <input className="text-field" type="text" name="id"></input>
             <input className="show-id" type="submit" value="Show"></input>
+          </form>
+          <form action="api/cancel" method="POST">
+            ...or cancel reservation<input className="cancel" type="submit" value="Cancel"></input>
           </form>
         </div>
           

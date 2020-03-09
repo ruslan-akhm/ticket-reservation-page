@@ -28,7 +28,20 @@ app.get("/", (request, response) => {
 }
 app.all("*", checkHttps);   */
 
-app.post('/api/id',(req,res)=>{
+//Render seats page according to database
+app.get('/api',(req,res)=>{
+  console.log("RECEIVED REQ");
+  var seatsArray = []
+  Seat.find({isTaken:true},(err,data)=>{
+    if(err) return console.log(err)
+    for(let i = 0;i<data.length;i++){
+      seatsArray.push(data[i].seatId)
+    }
+    res.send(seatsArray);
+  });
+})
+//Check for existing reservation
+app.post('/api/id',(req,res)=>{ 
   console.log('HERE')
   const id = req.body.id;
   var array = [];
@@ -41,19 +54,18 @@ app.post('/api/id',(req,res)=>{
   })
   return
 })
-
-app.get('/api',(req,res)=>{
-  console.log("RECEIVED REQ");
-  var seatsArray = []
-  Seat.find({isTaken:true},(err,data)=>{
-    if(err) return console.log(err)
-    for(let i = 0;i<data.length;i++){
-      seatsArray.push(data[i].seatId)
-    }
-    res.send(seatsArray);
-  });
+//Cancel reservation
+app.post('/api/cancel',(req,res)=>{
+  const id = req.body.id;
+  Seat.remove({ticketId:id},(err,data)=>{
+    if (err) return console.log(err)
+    console.log("Deleting...")
+    res.send(`Reservation with ticket ID `+id+` has been done successfully`)
+    return;
+  })
 })
 
+//Make new reservation
 app.post("/api/reserve",(req,res)=>{  
   const array = []; 
   const seat = req.body.seat
@@ -74,13 +86,7 @@ app.post("/api/reserve",(req,res)=>{
     newSeat.save();
   }
   res.send(`You have reserved seats `+checked +`, Your ticket id is `+ticket)
- 
-  //res.redirect('/return.html')
-  //res.send(`You have reserved seats `+checked +`, Your ticket id is `+ticket)
-})
-
-
-
+ })
 
 // Express port-switching logic
 let port;
