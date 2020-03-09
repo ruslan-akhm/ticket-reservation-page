@@ -48,10 +48,10 @@ app.post('/api/id',(req,res)=>{
   const show = req.body.show;
   const cancel = req.body.cancel;
   if(show==null){
-    Seat.deleteMany({ticketId:id},(err,c)=>{
+    Seat.remove({ticketId:id},(err,c)=>{
       if(err) return console.log(err)
       console.log("Cancelling reservation")
-      res.send(`Reservation under ticket ID `+id` has been cancelled`)
+      res.send(`Reservation under ticket ID `+id+` has been cancelled`)
       return;
     })
   }
@@ -59,10 +59,17 @@ app.post('/api/id',(req,res)=>{
     console.log("Checking reservation")
     Seat.find({ticketId:id}).sort({seatId:'asc'}).exec((err,s)=>{
       if(err) return console.log(err)
-      for(let m=0; m<s.length;m++){
-        array.push(s[m].seatId)
+      if(s.length>0){
+        for(let m=0; m<s.length;m++){
+          array.push(s[m].seatId)
+        }
+        res.send(`You have reserved seat(s) `+array);
+        return
       }
-      res.send(`You have reserved seat(s) `+array);
+      else{
+        res.send(`There is no reservation under this ID`);
+        return
+      }
     })
     return
   }
