@@ -50,6 +50,10 @@ app.post('/api/id',(req,res)=>{
   if(show==null){
     Seat.remove({ticketId:id},(err,c)=>{
       if(err) return console.log(err)
+      if(c.length==0){
+        res.send(`Please enter ID`)
+        return
+      }
       console.log("Cancelling reservation")
       res.send(`Reservation under ticket ID `+id+` has been cancelled`)
       return;

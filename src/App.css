@@ -149,6 +149,19 @@ header{
   background-color:white;
   transition:0.2s;
 }
+.cancel{
+  width:auto;
+  height:auto;
+  color:red;
+  font-family: 'Spartan', sans-serif;
+  font-size:14px;
+  font-weight:bold;
+  cursor:pointer;
+  border:none;
+  background-color:transparent;
+  outline:none;
+  margin-bottom:20px;
+}
 ul.list li{
   list-style-type:none;
   margin-left:-60px;
