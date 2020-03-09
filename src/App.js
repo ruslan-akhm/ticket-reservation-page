@@ -17,7 +17,8 @@ class App extends React.Component{
     this.state={
       //taken:[]
     }
-    this.updateSeats=this.updateSeats.bind(this)
+    this.updateSeats=this.updateSeats.bind(this);
+    this.saveChosenSeats=this.saveChosenSeats.bind(this)
   }
   //Make initial request to GET all the taken seats and disable them for reservation
   componentDidMount(){
@@ -28,7 +29,7 @@ class App extends React.Component{
     var xmlhttp = new XMLHttpRequest(),
     method = 'GET',
     url = '/api/';
-    var disableTaken = document.getElementsByClassName('check-box'); //for each value unchecked
+    var disableTaken = document.getElementsByClassName('check-box'); //make all checkboxes unchecked to load and see if they are disabled
     for(let m=0;m<disableTaken.length;m++){
       disableTaken[m].checked=false;
     }
@@ -44,21 +45,18 @@ class App extends React.Component{
     };
     xmlhttp.send();},150)
   }
- 
+  saveChosenSeats(){
+    var chosenSeats=this.seats.map(st=>{return st.checked==true?st.value:null})
+    console.log(chosenSeats);
+    localStorage.setItem('chosen',chosenSeats)
+  }
   render(){
     const takenSeats = this.state.taken;
-    //let disabled = takenSeats.map
-    //const seats = seatsArray.map(seat=><label for={seat} className="seat-label"><input className="check-box" type="checkbox" id={seat}/>{seat}</label>);
     const keys = Object.keys(seatsLayout);
     const rows = keys.map(key=>{return <ul className="list"><li>row {key}</li></ul>})
-    this.seats = keys.map(row=>{
-      return seatsLayout[row].map(seat=>{
-      //let tester = seat;
-      //console.log("TESTER IS "+tester);
-        
+    this.seats = keys.map(row=>{return seatsLayout[row].map(seat=>{
       return <label for={seat} className="seat-label"><input className="check-box" id={row+""+seat} key={row+""+seat} type="checkbox" name="seat" value={row+""+seat}/>{seat}</label>
     })});
-  
     
     return(
       <div id="page">
@@ -68,7 +66,7 @@ class App extends React.Component{
           <div id="parent">
             <div id="seats-rows">{rows}</div>
             <div id="seats-parent">{this.seats}</div>
-            <input className="reserve" id="reserve-button" type="submit" value="Reserve"></input>
+            <input className="reserve" id="reserve-button" type="submit" value="Reserve" onMouseEnter={this.saveChosenSeats}></input>
           </div>
         </form>
         </div>
