@@ -50,7 +50,12 @@ app.post('/api/id',(req,res)=>{
   if(show==null){
     Seat.remove({ticketId:id},(err,c)=>{
       if(err) return console.log(err)
-      if(c.length==0){
+      console.log(c.n)
+      if(c.n==0){
+        res.send(`There is no reservation with such ticket ID`)
+        return
+      }
+      else if(c.length==0){
         res.send(`Please enter ID`)
         return
       }
