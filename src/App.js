@@ -49,11 +49,16 @@ class App extends React.Component{
   
   saveChosenSeats(){  //all new
     console.log('triggered')
+    let ttt=[]
     let chosenSeats = document.getElementsByClassName('check-box');
     console.log(chosenSeats.length, typeof chosenSeats)
-    let ttt = chosenSeats.map(st=>{return st.checked==true?st.value:null});
+    for(let z=0;z<chosenSeats.length;z++){
+      if(chosenSeats[z].checked==true){
+        ttt.push(chosenSeats[z].value)
+      }
+    }
     console.log(ttt)
-    //localStorage.setItem('chosen', chosenSeats)
+    localStorage.setItem('chosen', ttt)
   }
   
   render(){

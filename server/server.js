@@ -8,7 +8,7 @@ mongoose.connect(dataMongo, { useNewUrlParser: true, useUnifiedTopology: true, u
 var db = mongoose.connection;
 
 const app = express();
-
+var showId;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
@@ -72,7 +72,8 @@ app.post('/api/id',(req,res)=>{
         for(let m=0; m<s.length;m++){
           array.push(s[m].seatId)
         }
-        res.send(`You have reserved seat(s) `+array);
+        console.log()
+        //res.send(`You have reserved seat(s) `+array);
         return
       }
       else{
@@ -104,7 +105,8 @@ app.post("/api/reserve",(req,res)=>{
     })
     newSeat.save();
   }
-  res.send(`You have reserved seats `+checked +`, Your ticket id is `+ticket)
+  res.redirect("/return.html")  // newwww!!!!!!!!!
+  //res.send(`You have reserved seats `+checked +`, Your ticket id is `+ticket)
  })
 
 // Express port-switching logic
