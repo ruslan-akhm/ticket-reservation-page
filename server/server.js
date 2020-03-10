@@ -51,14 +51,15 @@ app.post('/api/id',(req,res)=>{
     Seat.remove({ticketId:id},(err,c)=>{
       if(err) return console.log(err)
       console.log(c.n)
-      if(c.n==0){
+      if(c.n==0){//if no documents to be removed were found
         res.send(`There is no reservation with such ticket ID`)
         return
       }
-      else if(c.length==0){
+      //Make id enter field required on front-end to prevent receiveng empty req
+      /*else if(c.length==0){
         res.send(`Please enter ID`)
         return
-      }
+      }*/ 
       console.log("Cancelling reservation")
       res.send(`Reservation under ticket ID `+id+` has been cancelled`)
       return;
@@ -72,8 +73,7 @@ app.post('/api/id',(req,res)=>{
         for(let m=0; m<s.length;m++){
           array.push(s[m].seatId)
         }
-        console.log()
-        //res.send(`You have reserved seat(s) `+array);
+        res.send(`You have reserved seat(s) `+array);
         return
       }
       else{
@@ -105,8 +105,8 @@ app.post("/api/reserve",(req,res)=>{
     })
     newSeat.save();
   }
-  res.redirect("/return.html")  // newwww!!!!!!!!!
-  //res.send(`You have reserved seats `+checked +`, Your ticket id is `+ticket)
+  //res.redirect("/return.html")  // to open new page and reflect 
+  res.send(`You have reserved seats `+checked +`, Your ticket id is `+ticket)
  })
 
 // Express port-switching logic

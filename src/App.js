@@ -18,11 +18,11 @@ class App extends React.Component{
       //taken:[]
     }
     this.updateSeats=this.updateSeats.bind(this);
-    this.saveChosenSeats=this.saveChosenSeats.bind(this)  //new
+   // this.saveChosenSeats=this.saveChosenSeats.bind(this)  //new!!!!  TRY WITH FETCH  
   }
   //Make initial request to GET all the taken seats and disable them for reservation
   componentDidMount(){
-    document.getElementById("reserve-button").addEventListener('mouseenter',this.saveChosenSeats)  //new
+   // document.getElementById("reserve-button").addEventListener('mouseenter',this.saveChosenSeats)  //new!!!!!
     window.addEventListener('pageshow',this.updateSeats)
   }
   updateSeats(){
@@ -47,7 +47,7 @@ class App extends React.Component{
     xmlhttp.send();},150) //TiemOut to let browser get response from database and then re-render seats 
   }
   
-  saveChosenSeats(){  //all new
+/*  saveChosenSeats(){  
     console.log('triggered')
     let ttt=[]
     let chosenSeats = document.getElementsByClassName('check-box');
@@ -59,7 +59,7 @@ class App extends React.Component{
     }
     console.log(ttt)
     localStorage.setItem('chosen', ttt)
-  }
+  } */
   
   render(){
     const takenSeats = this.state.taken;
@@ -83,7 +83,7 @@ class App extends React.Component{
         </div>
         <div id="have-id">Already made reservation? To check your seats enter your ticket ID
           <form action="api/id" method="POST">
-            <input className="text-field" type="text" name="id"></input>
+            <input className="text-field" type="text" name="id" required></input>
             <input className="show-id" type="submit" name="show" value="Show"></input>
             <br/>...or cancel reservation<input className="cancel" type="submit" name="cancel" value="Cancel"></input>
           </form>
