@@ -18,12 +18,12 @@ class App extends React.Component{
       //taken:[]
     }
     this.updateSeats=this.updateSeats.bind(this);
-    this.saveChosenSeats=this.saveChosenSeats.bind(this);
+   // this.saveChosenSeats=this.saveChosenSeats.bind(this);
   }
   //Make initial request to GET all the taken seats and disable them for reservation
   componentDidMount(){
     window.addEventListener('pageshow',this.updateSeats)
-    document.getElementById('reserve-button').addEventListener('click',this.saveChosenSeats)
+   // document.getElementById('form1').addEventListener('submit',this.saveChosenSeats)
   }
   
   updateSeats(){
@@ -35,8 +35,9 @@ class App extends React.Component{
     for(let m=0;m<disableTaken.length;m++){
       disableTaken[m].checked=false;
     }
-    setTimeout(function(){xmlhttp.open(method, url, true);
-    xmlhttp.onload = function () {
+    setTimeout(function(){
+      xmlhttp.open(method, url, true);
+      xmlhttp.onload = function () {
       var response = xmlhttp.response //Here we receive String of seat IDs
       var taken = JSON.parse(response) //And parse it to make it an Array
       for(let j=0;j<disableTaken.length;j++){
@@ -45,19 +46,20 @@ class App extends React.Component{
       })
       }
     };
-    xmlhttp.send();},150) //TiemOut to let browser get response from database and then re-render seats 
+    xmlhttp.send();},150) //TiemeOut to let browser get response from database and then re-render seats 
   }
   
- saveChosenSeats(){  
+ /*saveChosenSeats(){  
     console.log('triggered')
     var formData = new FormData( document.getElementById("form1") );
     var newSave = new XMLHttpRequest();
     newSave.open('POST','/api/reserve',true);
     newSave.onload = function(){
-      console.log(this.responseText)
+      var res = JSON.parse(this.responseText)
+      console.log(res)
     }
     newSave.send(formData);
-  } 
+  } */
   
   render(){
     const takenSeats = this.state.taken;
@@ -71,7 +73,7 @@ class App extends React.Component{
       <div id="page">
         <div id="stage">STAGE/SCREEN</div>
         <div>
-        <form id="form1"> {/* action="/api/reserve" method="POST" */}
+        <form id="form1" > {/* action="/api/reserve" method="POST" */}
           <div id="parent"> 
             <div id="seats-rows">{rows}</div>
             <div id="seats-parent">{this.seats}</div>
