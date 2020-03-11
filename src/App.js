@@ -51,7 +51,11 @@ class App extends React.Component{
  saveChosenSeats(){  
     console.log('triggered')
     var newSave = new XMLHttpRequest();
-      newSave.open('POST','/api/reserve',true);
+    newSave.open('POST','/api/reserve',true);
+    newSave.onload = function(){
+      console.log(newSave.response)
+    }
+    newSave.send();
   } 
   
   render(){
@@ -66,7 +70,7 @@ class App extends React.Component{
       <div id="page">
         <div id="stage">STAGE/SCREEN</div>
         <div>
-        <form action="/api/reserve" method="POST">
+        <form /*action="/api/reserve" method="POST"*/>
           <div id="parent">
             <div id="seats-rows">{rows}</div>
             <div id="seats-parent">{this.seats}</div>
