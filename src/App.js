@@ -18,13 +18,12 @@ class App extends React.Component{
       //taken:[]
     }
     this.updateSeats=this.updateSeats.bind(this);
-   // this.saveChosenSeats=this.saveChosenSeats.bind(this)  //new!!!!  TRY WITH FETCH  
   }
   //Make initial request to GET all the taken seats and disable them for reservation
   componentDidMount(){
-   // document.getElementById("reserve-button").addEventListener('mouseenter',this.saveChosenSeats)  //new!!!!!
     window.addEventListener('pageshow',this.updateSeats)
   }
+  
   updateSeats(){
     console.log("Triggering seats update")//If returning from response page via browser 'back' button - re-render seats to reflect ones just reserved
     var xmlhttp = new XMLHttpRequest(),
