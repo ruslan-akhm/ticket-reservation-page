@@ -73,7 +73,7 @@ class App extends React.Component{
       <div id="page">
         <div id="stage">STAGE/SCREEN</div>
         <div>
-        <form id="form1" > {/* action="/api/reserve" method="POST" */}
+        <form action="/api/reserve" method="POST"> {/*  id="form1" */}
           <div id="parent"> 
             <div id="seats-rows">{rows}</div>
             <div id="seats-parent">{this.seats}</div>
