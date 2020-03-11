@@ -23,7 +23,7 @@ class App extends React.Component{
   //Make initial request to GET all the taken seats and disable them for reservation
   componentDidMount(){
     window.addEventListener('pageshow',this.updateSeats)
-    document.getElementById('form1').addEventListener('submit',this.saveChosenSeats)
+    document.getElementById('reserve-button').addEventListener('click',this.saveChosenSeats)
   }
   
   updateSeats(){
@@ -50,28 +50,29 @@ class App extends React.Component{
   
  saveChosenSeats(){  
     console.log('triggered')
+    var formData = new FormData( document.getElementById("form1") );
     var newSave = new XMLHttpRequest();
     newSave.open('POST','/api/reserve',true);
     newSave.onload = function(){
       console.log(this.responseText)
     }
-    newSave.send();
+    newSave.send(formData);
   } 
   
   render(){
     const takenSeats = this.state.taken;
     const keys = Object.keys(seatsLayout);
-    const rows = keys.map(key=>{return <ul className="list"><li>row {key}</li></ul>})
+    const rows = keys.map(key=>{return <ul className="list" key={key}><li>row {key}</li></ul>})
     this.seats = keys.map(row=>{return seatsLayout[row].map(seat=>{
-      return <label for={seat} className="seat-label"><input className="check-box" id={row+""+seat} key={row+""+seat} type="checkbox" name="seat" value={row+""+seat}/>{seat}</label>
+      return <label for={seat} key={row+''+seat} className="seat-label"><input className="check-box" id={row+""+seat} key={row+""+seat} type="checkbox" name="seat" value={row+""+seat}/>{seat}</label>
     })});
     
     return(
       <div id="page">
         <div id="stage">STAGE/SCREEN</div>
         <div>
-        <form id="form1"/*action="/api/reserve" method="POST"*/ >
-          <div id="parent">
+        <form id="form1"> {/* action="/api/reserve" method="POST" */}
+          <div id="parent"> 
             <div id="seats-rows">{rows}</div>
             <div id="seats-parent">{this.seats}</div>
             <input className="reserve" id="reserve-button" type="submit" value="Reserve"></input>
