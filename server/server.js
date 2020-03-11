@@ -92,7 +92,8 @@ app.post("/api/reserve",(req,res)=>{
   console.log("POSTING TICKETS")
   if(seat==null){
     console.log("seat is null")
-    res.send("Please, choose seats to reserve") 
+    res.send(seat)
+    //res.send("Please, choose seats to reserve") 
     return
   }
   const checked = array.concat(seat)
