@@ -18,10 +18,12 @@ class App extends React.Component{
       //taken:[]
     }
     this.updateSeats=this.updateSeats.bind(this);
+    this.saveChosenSeats=this.saveChosenSeats.bind(this);
   }
   //Make initial request to GET all the taken seats and disable them for reservation
   componentDidMount(){
     window.addEventListener('pageshow',this.updateSeats)
+    document.getElementById('reserve-button').addEventListener('click',this.saveChosenSeats)
   }
   
   updateSeats(){
@@ -46,19 +48,11 @@ class App extends React.Component{
     xmlhttp.send();},150) //TiemOut to let browser get response from database and then re-render seats 
   }
   
-/*  saveChosenSeats(){  
+ saveChosenSeats(){  
     console.log('triggered')
-    let ttt=[]
-    let chosenSeats = document.getElementsByClassName('check-box');
-    console.log(chosenSeats.length, typeof chosenSeats)
-    for(let z=0;z<chosenSeats.length;z++){
-      if(chosenSeats[z].checked==true){
-        ttt.push(chosenSeats[z].value)
-      }
-    }
-    console.log(ttt)
-    localStorage.setItem('chosen', ttt)
-  } */
+    var newSave = new XMLHttpRequest();
+      newSave.open('POST','/api/reserve',true);
+  } 
   
   render(){
     const takenSeats = this.state.taken;
