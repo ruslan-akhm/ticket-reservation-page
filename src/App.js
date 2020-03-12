@@ -51,11 +51,14 @@ class App extends React.Component{
   
  saveChosenSeats(e){
    e.preventDefault();
-   console.log(this.seats, typeof this.seats)
-   var seatP = this.seats//.forEach((s)=>{return s.checked==true?s.value:null});
-    console.log('seatP' + seatP)
+   var allSeats = document.getElementsByClassName('check-box')
+   var seatP = [];
+   for(let x=0;x<allSeats.length;x++){
+     if(allSeats[x].checked==true){
+     seatP.push(allSeats[x].value)
+     }
+   }
    var params = 'seat='+seatP
-    //var formData = new FormData( document.getElementById("form1") );
     var newSave = new XMLHttpRequest();
     newSave.open('POST', '/api/reserve', true);
    newSave.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');

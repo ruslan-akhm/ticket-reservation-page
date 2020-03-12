@@ -108,7 +108,7 @@ app.post("/api/reserve",(req,res)=>{
     newSeat.save();
   }
   //res.redirect("/return.html")  // to open new page and reflect 
-  //res.status(201).send({'seatsId':checked, 'ticketId':ticket})
+  res.send({'seatsId':checked, 'ticketId':ticket})
  // res.send(`You have reserved seats `+checked +`, Your ticket id is `+ticket)
  })
 
