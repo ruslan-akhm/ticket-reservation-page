@@ -94,8 +94,8 @@ class App extends React.Component{
     showSeats.open('POST', '/api/id', true);
     showSeats.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     showSeats.onload = function(){
-      var resp = this.response //JSON.parse
-      console.log(resp)
+      var resp = JSON.parse(this.response )//
+      console.log(resp, typeof resp)
       document.getElementById('top-line').innerHTML = ''
       document.getElementById('bottom-line').innerHTML = resp
     }

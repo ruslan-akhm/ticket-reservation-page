@@ -47,11 +47,11 @@ app.post('/api/id',(req,res)=>{
   const id = req.body.id;
   console.log(id)
   var array = [];
-  const show = JSON.parse(req.body.show);
+  const show = req.body.show;
   console.log("show is "+show, typeof show)
-  const cancel = JSON.parse(req.body.cancel);
+  const cancel = req.body.cancel;
   console.log("cancel is "+cancel, typeof cancel)
-  if(show==null){
+  if(show=='null'){
     console.log("show==null, it is a cancel req")
     Seat.remove({ticketId:id},(err,c)=>{
       if(err) return console.log(err)
@@ -66,7 +66,7 @@ app.post('/api/id',(req,res)=>{
       return;
     })
   }
-  else if(cancel==null){
+  else if(cancel=='null'){
     console.log("Checking reservation")
     console.log("cancel==null, it is a show req")
     Seat.find({ticketId:id}).sort({seatId:'asc'}).exec((err,s)=>{
@@ -77,7 +77,7 @@ app.post('/api/id',(req,res)=>{
         }
         //res.send(`You have reserved seat(s) `+array);
         console.log('we sending this array '+array)
-        res.send(array)
+        res.send(array)  //({'text':Yoy resrvred, 'seat':array})
         return
       }
       else{
