@@ -64,11 +64,13 @@ class App extends React.Component{
    newSave.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
    
     newSave.onload = function(){
-      var res = JSON.parse(this.responseText)
+      //var res = JSON.parse(this.responseText)
       console.log(this.responseText)
-      console.log(res)
+      //console.log(res)
+      document.getElementById('modal').innerHTML = this.responseText
     }
     newSave.send(params);
+    
   } 
   
   render(){
@@ -98,7 +100,8 @@ class App extends React.Component{
             <br/>...or cancel reservation<input className="cancel" type="submit" name="cancel" value="Cancel"></input>
           </form>
         </div>
-          
+        <div id='modal'>
+        </div>
       </div>
     )
   }

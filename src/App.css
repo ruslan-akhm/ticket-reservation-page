@@ -162,6 +162,11 @@ header{
   outline:none;
   margin-bottom:20px;
 }
+#modal{
+  width:200px;
+  height:200px;
+  background-color:yellow;
+}
 ul.list li{
   list-style-type:none;
   margin-left:-60px;
