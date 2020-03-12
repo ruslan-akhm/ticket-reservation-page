@@ -58,14 +58,16 @@ class App extends React.Component{
      seatP.push(allSeats[x].value)
      }
    }
-   var params = 'seat='+seatP
+   console.log(seatP, seatP.length, typeof seatP)
+   var params = 'seat='+JSON.stringify(seatP) // We have to stringify to send to server and there we Parse to properly read the seats
+   console.log(params)
     var newSave = new XMLHttpRequest();
     newSave.open('POST', '/api/reserve', true);
    newSave.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
    
     newSave.onload = function(){
       //var res = JSON.parse(this.responseText)
-      console.log(this.responseText)
+      console.log(typeothis.responseText)
       //console.log(res)
       document.getElementById('modal').innerHTML = this.responseText
     }

@@ -88,7 +88,7 @@ app.post('/api/id',(req,res)=>{
 //Make new reservation
 app.post("/api/reserve",(req,res)=>{  
   const array = []; 
-  const seat = req.body.seat
+  const seat = JSON.parse(req.body.seat) //We need to parse received seats to represent them as array properly
   console.log("POSTING TICKETS")
   if(seat==null){
     console.log("seat is null")
