@@ -20,12 +20,14 @@ class App extends React.Component{
     this.updateSeats=this.updateSeats.bind(this);
     this.closeModal=this.closeModal.bind(this);
     this.saveChosenSeats=this.saveChosenSeats.bind(this);
+    this.showOrCancelSeats=this.showOrCancelSeats.bind(this)
   }
   //Make initial request to GET all the taken seats and disable them for reservation
   componentDidMount(){
     document.addEventListener('click', this.closeModal)
     window.addEventListener('pageshow',this.updateSeats)
     document.getElementById('form1').addEventListener('submit',this.saveChosenSeats)
+    document.getElementById('form2').addEventListener('submit',this.showOrCancelSeats)
   }
   
   updateSeats(){
@@ -54,7 +56,6 @@ class App extends React.Component{
  saveChosenSeats(e){
    e.preventDefault();
    document.getElementById('modal').style.display="block"
-   
    var allSeats = document.getElementsByClassName('check-box')
    var seatP = [];
    for(let x=0;x<allSeats.length;x++){
@@ -76,6 +77,24 @@ class App extends React.Component{
     }
     newSave.send(params);
   } 
+  
+  showOrCancelSeats(evt){
+    evt.preventDefault();
+    console.log('showing ... ')
+    document.getElementById('modal').style.display="block";
+    var id = document.getElementById('text-field').value
+    var pars = "id="+id
+    var showSeats = new XMLHttpRequest();
+    showSeats.open('POST', '/api/id', true);
+    showSeats.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    showSeats.onload = function(){
+      var resp = JSON.parse(this.response)
+      console.log(resp)
+      document.getElementById('top-line').innerHTML = ''
+      document.getElementById('bottom-line').innerHTML = resp
+    }
+    showSeats.send(pars);
+  }
   
   closeModal(event){
     const modal = document.getElementById('modal');
@@ -107,10 +126,10 @@ class App extends React.Component{
         </form>
         </div>
         <div id="have-id">Already made reservation? To check your seats enter your ticket ID
-          <form action="api/id" method="POST">
-            <input className="text-field" type="text" name="id" required></input>
-            <input className="show-id" type="submit" name="show" value="Show"></input>
-            <br/>...or cancel reservation<input className="cancel" type="submit" name="cancel" value="Cancel"></input>
+          <form id="form2"> {/* action="api/id" method="POST" */}
+            <input id="text-field" type="text" name="id" required></input>
+            <input id="show-id" type="submit" name="show" value="Show"></input>
+            <br/>...or cancel reservation<input id="cancel" type="submit" name="cancel" value="Cancel"></input>
           </form>
         </div>
         <div id='modal'>

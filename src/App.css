@@ -122,13 +122,13 @@ header{
   text-align:center;
   font-family: 'Spartan', sans-serif;
 }
-.text-field{
+#text-field{
   height:25px;
   border-top-left-radius:5px;
   border-bottom-left-radius:5px;
   border:2px solid white;
 }
-.show-id{
+#show-id{
   width:100px;
   height:30px;
   color:white;
@@ -149,7 +149,7 @@ header{
   background-color:white;
   transition:0.2s;
 }
-.cancel{
+#cancel{
   width:auto;
   height:auto;
   color:red;

@@ -73,7 +73,8 @@ app.post('/api/id',(req,res)=>{
         for(let m=0; m<s.length;m++){
           array.push(s[m].seatId)
         }
-        res.send(`You have reserved seat(s) `+array);
+        //res.send(`You have reserved seat(s) `+array);
+        res.send(array)
         return
       }
       else{
