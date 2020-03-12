@@ -18,7 +18,8 @@ class App extends React.Component{
       //taken:[]
     }
     this.updateSeats=this.updateSeats.bind(this);
-   // this.saveChosenSeats=this.saveChosenSeats.bind(this);
+    this.closeModal=this.closeModal.bind(this);
+    this.saveChosenSeats=this.saveChosenSeats.bind(this);
   }
   //Make initial request to GET all the taken seats and disable them for reservation
   componentDidMount(){
@@ -75,6 +76,15 @@ class App extends React.Component{
     }
     newSave.send(params);
   } 
+  
+  closeModal(event){
+    const modal = document.getElementById('modal');
+    const close = document.getElementById('close-modal');
+    if (event.target == modal||event.target == close) {
+      modal.style.display="none"
+      this.updateSeats();
+  }
+  }
   
   render(){
     const takenSeats = this.state.taken;
