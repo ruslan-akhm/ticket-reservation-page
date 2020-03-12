@@ -57,7 +57,7 @@ app.post('/api/id',(req,res)=>{
       if(err) return console.log(err)
       console.log(c.n)
       if(c.n==0){//if no documents to be removed were found
-        res.send({'text':`There is no reservation with such ticket ID`})
+        res.send({'text':`There is no reservation with such ticket ID`,'seat':' '})
         return
       }
       console.log("There is such ticket and we..")
@@ -82,7 +82,7 @@ app.post('/api/id',(req,res)=>{
       }
       else{
         console.log("no ticket wi this id")
-        res.send({'text':`There is no reservation under this ID`});
+        res.send({'text':`There is no reservation under this ID`,'seat':' '});
         return
       }
     })
@@ -94,11 +94,11 @@ app.post('/api/id',(req,res)=>{
 app.post("/api/reserve",(req,res)=>{  
   const array = []; 
   const seat = JSON.parse(req.body.seat) //We need to parse received seats to represent them as array properly
-  console.log("POSTING TICKETS")
-  if(seat==null){
+  console.log("seat", seat.length)
+  if(seat.length==0){
     console.log("seat is null")
     //res.send(seat)
-    res.send("Please, choose seats to reserve") 
+    res.send({'text':"Please, choose seats to reserve", 'ticketId':' '}) 
     return
   }
   const checked = array.concat(seat)
@@ -113,7 +113,7 @@ app.post("/api/reserve",(req,res)=>{
     newSeat.save();
   }
   //res.redirect("/return.html")  // to open new page and reflect 
-  res.send({'seatsId':checked, 'ticketId':ticket})
+  res.send({'text':'You have reserved seat(s):'+checked, 'ticketId':ticket})
  // res.send(`You have reserved seats `+checked +`, Your ticket id is `+ticket)
  })
 

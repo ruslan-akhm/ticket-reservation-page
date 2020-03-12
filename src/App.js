@@ -72,7 +72,7 @@ class App extends React.Component{
    
     newSave.onload = function(){
       var res = JSON.parse(this.response)
-      document.getElementById('top-line').innerHTML = res.seatsId
+      document.getElementById('top-line').innerHTML = res.text
       document.getElementById('bottom-line').innerHTML = res.ticketId
     }
     newSave.send(params);
@@ -142,7 +142,7 @@ class App extends React.Component{
           <div id="modal-content">
             <div id='top-line'></div>
             <div id='bottom-line'></div>
-            <button id='close-modal'></button>
+            <button id='close-modal'>CLOSE</button>
           </div>
         </div>
       </div>
