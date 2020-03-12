@@ -201,9 +201,16 @@ header{
   font-size:48px;
 }
 #close-modal{
-  width:200px;
+  width:80px;
   height:9%;
   margin:auto;
+  color:white;
+  font-family: 'Spartan', sans-serif;
+  font-size:14px;
+  border:none;
+  cursor:pointer;
+  background-color:transparent;
+  outline:none;
 }
 ul.list li{
   list-style-type:none;
