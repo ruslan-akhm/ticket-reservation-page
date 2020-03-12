@@ -50,7 +50,7 @@ class App extends React.Component{
       })
       }
     };
-    xmlhttp.send();},150) //TiemeOut to let browser get response from database and then re-render seats 
+    xmlhttp.send();},200) //TiemeOut to let browser get response from database and then re-render seats 
   }
   
  saveChosenSeats(e){
@@ -96,8 +96,8 @@ class App extends React.Component{
     showSeats.onload = function(){
       var resp = JSON.parse(this.response )//
       console.log(resp, typeof resp)
-      document.getElementById('top-line').innerHTML = ''
-      document.getElementById('bottom-line').innerHTML = resp
+      document.getElementById('top-line').innerHTML = resp.text
+      document.getElementById('bottom-line').innerHTML = resp.seat
     }
     showSeats.send(pars);
   }

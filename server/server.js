@@ -57,12 +57,12 @@ app.post('/api/id',(req,res)=>{
       if(err) return console.log(err)
       console.log(c.n)
       if(c.n==0){//if no documents to be removed were found
-        res.send(`There is no reservation with such ticket ID`)
+        res.send({'text':`There is no reservation with such ticket ID`})
         return
       }
       console.log("There is such ticket and we..")
       console.log("Cancelling reservation")
-      res.send(`Reservation under ticket ID `+id+` has been cancelled`)
+      res.send({'text':`Reservation has been cancelled for ticket ID `,'seat':id})
       return;
     })
   }
@@ -77,12 +77,12 @@ app.post('/api/id',(req,res)=>{
         }
         //res.send(`You have reserved seat(s) `+array);
         console.log('we sending this array '+array)
-        res.send(array)  //({'text':Yoy resrvred, 'seat':array})
+        res.send({'text':'You have reservation on seats:', 'seat':array})
         return
       }
       else{
         console.log("no ticket wi this id")
-        res.send(`There is no reservation under this ID`);
+        res.send({'text':`There is no reservation under this ID`});
         return
       }
     })
