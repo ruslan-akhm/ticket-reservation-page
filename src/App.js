@@ -22,6 +22,7 @@ class App extends React.Component{
   }
   //Make initial request to GET all the taken seats and disable them for reservation
   componentDidMount(){
+    document.addEventListener('click', this.closeModal)
     window.addEventListener('pageshow',this.updateSeats)
     document.getElementById('form1').addEventListener('submit',this.saveChosenSeats)
   }
@@ -51,6 +52,8 @@ class App extends React.Component{
   
  saveChosenSeats(e){
    e.preventDefault();
+   document.getElementById('modal').style.display="block"
+   
    var allSeats = document.getElementsByClassName('check-box')
    var seatP = [];
    for(let x=0;x<allSeats.length;x++){
@@ -66,13 +69,11 @@ class App extends React.Component{
    newSave.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
    
     newSave.onload = function(){
-      //var res = JSON.parse(this.responseText)
-      console.log(typeothis.responseText)
-      //console.log(res)
-      document.getElementById('modal').innerHTML = this.responseText
+      var res = JSON.parse(this.response)
+      document.getElementById('top-line').innerHTML = res.seatsId
+      document.getElementById('bottom-line').innerHTML = res.ticketId
     }
     newSave.send(params);
-    
   } 
   
   render(){
@@ -103,6 +104,11 @@ class App extends React.Component{
           </form>
         </div>
         <div id='modal'>
+          <div id="modal-content">
+            <div id='top-line'></div>
+            <div id='bottom-line'></div>
+            <button id='close-modal'></button>
+          </div>
         </div>
       </div>
     )
