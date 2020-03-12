@@ -91,7 +91,7 @@ app.post("/api/reserve",(req,res)=>{
   const seat = req.body.seat
   console.log("POSTING TICKETS")
   if(seat==null){
-    //console.log("seat is null")
+    console.log("seat is null")
     //res.send(seat)
     res.send("Please, choose seats to reserve") 
     return
@@ -109,7 +109,7 @@ app.post("/api/reserve",(req,res)=>{
   }
   //res.redirect("/return.html")  // to open new page and reflect 
   //res.status(201).send({'seatsId':checked, 'ticketId':ticket})
-  res.send(`You have reserved seats `+checked +`, Your ticket id is `+ticket)
+ // res.send(`You have reserved seats `+checked +`, Your ticket id is `+ticket)
  })
 
 // Express port-switching logic

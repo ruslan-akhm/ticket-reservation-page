@@ -23,7 +23,7 @@ class App extends React.Component{
   //Make initial request to GET all the taken seats and disable them for reservation
   componentDidMount(){
     window.addEventListener('pageshow',this.updateSeats)
-   // document.getElementById('form1').addEventListener('submit',this.saveChosenSeats)
+    document.getElementById('form1').addEventListener('submit',this.saveChosenSeats)
   }
   
   updateSeats(){
@@ -49,17 +49,24 @@ class App extends React.Component{
     xmlhttp.send();},150) //TiemeOut to let browser get response from database and then re-render seats 
   }
   
- /*saveChosenSeats(){  
-    console.log('triggered')
-    var formData = new FormData( document.getElementById("form1") );
+ saveChosenSeats(e){
+   e.preventDefault();
+   console.log(this.seats, typeof this.seats)
+   var seatP = this.seats//.forEach((s)=>{return s.checked==true?s.value:null});
+    console.log('seatP' + seatP)
+   var params = 'seat='+seatP
+    //var formData = new FormData( document.getElementById("form1") );
     var newSave = new XMLHttpRequest();
-    newSave.open('POST','/api/reserve',true);
+    newSave.open('POST', '/api/reserve', true);
+   newSave.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+   
     newSave.onload = function(){
       var res = JSON.parse(this.responseText)
+      console.log(this.responseText)
       console.log(res)
     }
-    newSave.send(formData);
-  } */
+    newSave.send(params);
+  } 
   
   render(){
     const takenSeats = this.state.taken;
@@ -73,7 +80,7 @@ class App extends React.Component{
       <div id="page">
         <div id="stage">STAGE/SCREEN</div>
         <div>
-        <form action="/api/reserve" method="POST"> {/*  id="form1" */}
+        <form id="form1" > {/* action="/api/reserve" method="POST"  */}
           <div id="parent"> 
             <div id="seats-rows">{rows}</div>
             <div id="seats-parent">{this.seats}</div>
