@@ -88,7 +88,7 @@ class App extends React.Component{
     document.activeElement.name=='show'?cancel=null:showId=null; 
     //console.log(document.activeElement, document.getElementById('show-id').clicked, document.getElementById('cancel').clicked)
     console.log(id)
-    var pars={'id':id,'cancel':cancel,'show':showId};
+    var pars='id='+id+'&cancel='+cancel+'&show='+showId;
     console.log(pars)
     var showSeats = new XMLHttpRequest();
     showSeats.open('POST', '/api/id', true);

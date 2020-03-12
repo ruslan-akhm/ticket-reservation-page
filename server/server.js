@@ -47,10 +47,10 @@ app.post('/api/id',(req,res)=>{
   const id = req.body.id;
   console.log(id)
   var array = [];
-  const show = req.body.show;
-  console.log("show is "+show)
-  const cancel = req.body.cancel;
-  console.log("cancel is "+cancel)
+  const show = JSON.parse(req.body.show);
+  console.log("show is "+show, typeof show)
+  const cancel = JSON.parse(req.body.cancel);
+  console.log("cancel is "+cancel, typeof cancel)
   if(show==null){
     console.log("show==null, it is a cancel req")
     Seat.remove({ticketId:id},(err,c)=>{
