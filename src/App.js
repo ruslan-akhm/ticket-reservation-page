@@ -83,12 +83,14 @@ class App extends React.Component{
     console.log('showing ... ')
     document.getElementById('modal').style.display="block";
     var id = document.getElementById('text-field').value
-    var pars = "id="+id
+    console.log(id)
+    var pars = "id="+JSON.stringify(id)
+    console.log(pars)
     var showSeats = new XMLHttpRequest();
     showSeats.open('POST', '/api/id', true);
     showSeats.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     showSeats.onload = function(){
-      var resp = JSON.parse(this.response)
+      var resp = this.response //JSON.parse
       console.log(resp)
       document.getElementById('top-line').innerHTML = ''
       document.getElementById('bottom-line').innerHTML = resp

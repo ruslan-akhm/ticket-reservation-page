@@ -42,12 +42,16 @@ app.get('/api',(req,res)=>{
 })
 //Check for existing reservation / Or cancel it 
 app.post('/api/id',(req,res)=>{ 
-  console.log('HERE');
+  console.log('SHOW OR CANCEL BY ID');
   const id = req.body.id;
+  console.log(id)
   var array = [];
   const show = req.body.show;
+  console.log("show is "+show)
   const cancel = req.body.cancel;
+  console.log("cancel is "+cancel)
   if(show==null){
+    console.log("show==null, it is a cancel req")
     Seat.remove({ticketId:id},(err,c)=>{
       if(err) return console.log(err)
       console.log(c.n)
@@ -55,11 +59,7 @@ app.post('/api/id',(req,res)=>{
         res.send(`There is no reservation with such ticket ID`)
         return
       }
-      //Make id enter field required on front-end to prevent receiveng empty req
-      /*else if(c.length==0){
-        res.send(`Please enter ID`)
-        return
-      }*/ 
+      console.log("There is such ticket and we..")
       console.log("Cancelling reservation")
       res.send(`Reservation under ticket ID `+id+` has been cancelled`)
       return;
@@ -67,6 +67,7 @@ app.post('/api/id',(req,res)=>{
   }
   else if(cancel==null){
     console.log("Checking reservation")
+    console.log("cancel==null, it is a show req")
     Seat.find({ticketId:id}).sort({seatId:'asc'}).exec((err,s)=>{
       if(err) return console.log(err)
       if(s.length>0){
@@ -74,10 +75,12 @@ app.post('/api/id',(req,res)=>{
           array.push(s[m].seatId)
         }
         //res.send(`You have reserved seat(s) `+array);
+        console.log('we sending this array '+array)
         res.send(array)
         return
       }
       else{
+        console.log("no ticket wi this id")
         res.send(`There is no reservation under this ID`);
         return
       }
