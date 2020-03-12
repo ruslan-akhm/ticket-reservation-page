@@ -51,6 +51,8 @@ class App extends React.Component{
       }
     };
     xmlhttp.send();},200) //TiemeOut to let browser get response from database and then re-render seats 
+    document.getElementById('top-line').innerHTML = ' '
+    document.getElementById('bottom-line').innerHTML = ' '
   }
   
  saveChosenSeats(e){
