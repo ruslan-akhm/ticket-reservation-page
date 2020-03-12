@@ -83,8 +83,12 @@ class App extends React.Component{
     console.log('showing ... ')
     document.getElementById('modal').style.display="block";
     var id = document.getElementById('text-field').value
+    var cancel='cancel';
+    var showId='show';
+    document.activeElement.name=='show-id'?cancel=null:showId=null; 
+    console.log(document.activeElement, document.getElementById('show-id').clicked, document.getElementById('cancel').clicked)
     console.log(id)
-    var pars = "id="+JSON.stringify(id)
+    var pars = "id="+JSON.stringify(id)+'cancel='+cancel+'show='+showId;
     console.log(pars)
     var showSeats = new XMLHttpRequest();
     showSeats.open('POST', '/api/id', true);

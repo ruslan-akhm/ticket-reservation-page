@@ -43,6 +43,7 @@ app.get('/api',(req,res)=>{
 //Check for existing reservation / Or cancel it 
 app.post('/api/id',(req,res)=>{ 
   console.log('SHOW OR CANCEL BY ID');
+  console.log(req.body)
   const id = req.body.id;
   console.log(id)
   var array = [];
