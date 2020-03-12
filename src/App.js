@@ -85,10 +85,10 @@ class App extends React.Component{
     var id = document.getElementById('text-field').value
     var cancel='cancel';
     var showId='show';
-    document.activeElement.name=='show-id'?cancel=null:showId=null; 
-    console.log(document.activeElement, document.getElementById('show-id').clicked, document.getElementById('cancel').clicked)
+    document.activeElement.name=='show'?cancel=null:showId=null; 
+    //console.log(document.activeElement, document.getElementById('show-id').clicked, document.getElementById('cancel').clicked)
     console.log(id)
-    var pars = "id="+JSON.stringify(id)+'cancel='+cancel+'show='+showId;
+    var pars={'id':id,'cancel':cancel,'show':showId};
     console.log(pars)
     var showSeats = new XMLHttpRequest();
     showSeats.open('POST', '/api/id', true);
