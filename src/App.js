@@ -114,7 +114,7 @@ class App extends React.Component{
   }
   
   render(){
-    const takenSeats = this.state.taken;
+    //const takenSeats = this.state.taken;
     const keys = Object.keys(seatsLayout);
     const rows = keys.map(key=>{return <ul className="list" key={key}><li>row {key}</li></ul>})
     this.seats = keys.map(row=>{return seatsLayout[row].map(seat=>{
@@ -135,7 +135,7 @@ class App extends React.Component{
         </div>
         <div id="have-id">Already made reservation? To check your seats enter your ticket ID
           <form id="form2"> {/* action="api/id" method="POST" */}
-            <input id="text-field" type="text" name="id" required></input>
+            <input id="text-field" type="text" name="id" placeholder="enter your ticket ID" required></input>
             <input id="show-id" type="submit" name="show" value="Show"></input>
             <br/>...or cancel reservation<input id="cancel" type="submit" name="cancel" value="Cancel"></input>
           </form>

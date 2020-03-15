@@ -82,7 +82,7 @@ app.post('/api/id',(req,res)=>{
       }
       else{
         console.log("no ticket wi this id")
-        res.send({'text':`There is no reservation under this ID`,'seat':' '});
+        res.send({'text':`There is no reservation with such ticket ID`,'seat':' '});
         return
       }
     })
