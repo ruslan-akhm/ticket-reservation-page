@@ -137,7 +137,7 @@ class App extends React.Component{
           <form id="form2"> {/* action="api/id" method="POST" */}
             <input id="text-field" type="text" name="id" placeholder="enter your ticket ID" required></input>
             <input id="show-id" type="submit" name="show" value="Show"></input>
-            <br/>...or cancel reservation<input id="cancel" type="submit" name="cancel" value="Cancel"></input>
+            <br/>...or<input id="cancel" type="submit" name="cancel" value="cancel"></input>reservation
           </form>
         </div>
         <div id='modal'>
