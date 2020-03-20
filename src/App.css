@@ -46,6 +46,7 @@ header{
   margin-left:-550px;
   padding-top:20px;
   background-color:#222831;
+  pointer-events:none;
 }
 #parent{
   position:relative;
@@ -115,11 +116,11 @@ header{
 }
 #have-id{
   color:white;
-  position:absolute;
+  /*position:absolute;*/
   top:630px;
   width:100%;
   height:50px;
-  margin:auto;
+  margin:580px auto;
   text-align:center;
   font-family: 'Spartan', sans-serif;
 }
