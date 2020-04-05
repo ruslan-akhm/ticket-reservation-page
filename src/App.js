@@ -50,7 +50,7 @@ class App extends React.Component{
       })
       }
     };
-    xmlhttp.send();},200) //TimeOut to let browser get response from database and then re-render seats 
+    xmlhttp.send();},400) //TimeOut to let browser get response from database and then re-render seats 
     document.getElementById('top-line').innerHTML = ' '
     document.getElementById('bottom-line').innerHTML = ' '
   }
@@ -70,7 +70,7 @@ class App extends React.Component{
    console.log(params)
     var newSave = new XMLHttpRequest();
     newSave.open('POST', '/api/reserve', true);
-   newSave.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    newSave.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
    
     newSave.onload = function(){
       var res = JSON.parse(this.response)
