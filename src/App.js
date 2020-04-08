@@ -102,6 +102,7 @@ class App extends React.Component{
       document.getElementById('bottom-line').innerHTML = resp.seat
     }
     showSeats.send(pars);
+    
   }
   
   closeModal(event){
