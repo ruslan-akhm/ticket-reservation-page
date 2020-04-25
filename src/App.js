@@ -54,16 +54,29 @@ class App extends React.Component{
     // document.getElementById('top-line').innerHTML = ' '
     // document.getElementById('bottom-line').innerHTML = ' '
     async function update(){
+      console.log("HERE W ARE")
+      // var disableTaken = document.getElementsByClassName('check-box');
+      // for(let m=0;m<disableTaken.length;m++){
+      //   disableTaken[m].checked=false;
+      //}
       try {
-        let response = fetch('/api');
-        let resp = awa
+        let response = await fetch("/api");
+        console.log(response)
+        let resp = await response//.json();
+        console.log("resp is")
+        console.log(resp)
+        // for(let j=0;j<disableTaken.length;j++){
+        //   resp.map(t=>{
+        //     return t==disableTaken[j].value?disableTaken[j].disabled=true:null;
+        //   })
+        // }
       }
-      catch {
-        
+      catch (err){
+        console.log(err);
       }
+      document.getElementById('top-line').innerHTML = ' '
+      document.getElementById('bottom-line').innerHTML = ' '
     }
-    document.getElementById('top-line').innerHTML = ' '
-    document.getElementById('bottom-line').innerHTML = ' '
     update();
   }
   

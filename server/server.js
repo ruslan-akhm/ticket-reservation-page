@@ -26,7 +26,8 @@ app.get('/api',(req,res)=>{
     for(let i = 0;i<data.length;i++){
       seatsArray.push(data[i].seatId)
     }
-    res.send(seatsArray);
+    console.log(seatsArray)
+    return res.json({seats: seatsArray});
   });
 })
 //Check for existing reservation / Or cancel it 
