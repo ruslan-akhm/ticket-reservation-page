@@ -31,28 +31,40 @@ class App extends React.Component{
   }
   
   updateSeats(){
-    console.log("Triggering seats update")//If returning from response page via browser 'back' button - re-render seats to reflect ones just reserved
-    var xmlhttp = new XMLHttpRequest(),
-    method = 'GET',
-    url = '/api/';
-    var disableTaken = document.getElementsByClassName('check-box'); //make all checkboxes unchecked to load and see if they are disabled
-    for(let m=0;m<disableTaken.length;m++){
-      disableTaken[m].checked=false;
-    }
-    setTimeout(function(){
-      xmlhttp.open(method, url, true);
-      xmlhttp.onload = function () {
-      var response = xmlhttp.response //Here we receive String of seat IDs
-      var taken = JSON.parse(response) //And parse it to make it an Array
-      for(let j=0;j<disableTaken.length;j++){
-      taken.map(t=>{
-        return t==disableTaken[j].value?disableTaken[j].disabled=true:null;
-      })
+    // console.log("Triggering seats update")//If returning from response page via browser 'back' button - re-render seats to reflect ones just reserved
+    // var xmlhttp = new XMLHttpRequest(),
+    // method = 'GET',
+    // url = '/api';
+    // var disableTaken = document.getElementsByClassName('check-box'); //make all checkboxes unchecked to load and see if they are disabled
+    // for(let m=0;m<disableTaken.length;m++){
+    //   disableTaken[m].checked=false;
+    // }
+    // setTimeout(function(){
+    //   xmlhttp.open(method, url, true);
+    //   xmlhttp.onload = function () {
+    //   var response = xmlhttp.response //Here we receive String of seat IDs
+    //   var taken = JSON.parse(response) //And parse it to make it an Array
+    //   for(let j=0;j<disableTaken.length;j++){
+    //   taken.map(t=>{
+    //     return t==disableTaken[j].value?disableTaken[j].disabled=true:null;
+    //   })
+    //   }
+    // };
+    // xmlhttp.send();},400) //TimeOut to let browser get response from database and then re-render seats 
+    // document.getElementById('top-line').innerHTML = ' '
+    // document.getElementById('bottom-line').innerHTML = ' '
+    async function update(){
+      try {
+        let response = fetch('/api');
+        let resp = awa
       }
-    };
-    xmlhttp.send();},400) //TimeOut to let browser get response from database and then re-render seats 
+      catch {
+        
+      }
+    }
     document.getElementById('top-line').innerHTML = ' '
     document.getElementById('bottom-line').innerHTML = ' '
+    update();
   }
   
  saveChosenSeats(e){
@@ -102,7 +114,6 @@ class App extends React.Component{
       document.getElementById('bottom-line').innerHTML = resp.seat
     }
     showSeats.send(pars);
-    
   }
   
   closeModal(event){

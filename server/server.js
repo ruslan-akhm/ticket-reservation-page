@@ -17,17 +17,6 @@ app.get("/", (request, response) => {
   response.sendFile(__dirname + "/public/index.html");
 });
 
-// PWAs want HTTPS!
-/* function checkHttps(request, response, next) {
-  // Check the protocol — if http, redirect to https.
-  if (request.get("X-Forwarded-Proto").indexOf("https") != -1) {
-    return next();
-  } else {
-    response.redirect("https://" + request.hostname + request.url);
-  }
-}
-app.all("*", checkHttps);   */
-
 //Render seats page according to database
 app.get('/api',(req,res)=>{
   console.log("RECEIVED REQ");
@@ -51,8 +40,8 @@ app.post('/api/id',(req,res)=>{
   console.log("show is "+show, typeof show)
   const cancel = req.body.cancel;
   console.log("cancel is "+cancel, typeof cancel)
+  //cancelling 
   if(show=='null'){
-    console.log("show==null, it is a cancel req")
     Seat.remove({ticketId:id},(err,c)=>{
       if(err) return console.log(err)
       console.log(c.n)
@@ -66,16 +55,14 @@ app.post('/api/id',(req,res)=>{
       return;
     })
   }
+  //showing
   else if(cancel=='null'){
-    console.log("Checking reservation")
-    console.log("cancel==null, it is a show req")
     Seat.find({ticketId:id}).sort({seatId:'asc'}).exec((err,s)=>{
       if(err) return console.log(err)
       if(s.length>0){
         for(let m=0; m<s.length;m++){
           array.push(s[m].seatId)
         }
-        //res.send(`You have reserved seat(s) `+array);
         console.log('we sending this array '+array)
         res.send({'text':'You have reservation on seats:', 'seat':array})
         return
@@ -112,9 +99,7 @@ app.post("/api/reserve",(req,res)=>{
     })
     newSeat.save();
   }
-  //res.redirect("/return.html")  // to open new page and reflect 
   res.send({'text':'You have reserved seat(s):'+checked+'. Your ticket ID is:', 'ticketId':ticket});
- // res.send(`You have reserved seats `+checked +`, Your ticket id is `+ticket)
  })
 
 // Express port-switching logic
