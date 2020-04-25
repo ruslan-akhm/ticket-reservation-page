@@ -15,19 +15,16 @@ class App extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      //taken:[]
+    
     }
     this.updateSeats=this.updateSeats.bind(this);
     this.closeModal=this.closeModal.bind(this);
     this.saveChosenSeats=this.saveChosenSeats.bind(this);
     this.showOrCancelSeats=this.showOrCancelSeats.bind(this)
   }
-  //Make initial request to GET all the taken seats and disable them for reservation
+  
   componentDidMount(){
-    document.addEventListener('click', this.closeModal)
-    window.addEventListener('pageshow',this.updateSeats)
-    document.getElementById('form1').addEventListener('submit',this.saveChosenSeats)
-    document.getElementById('form2').addEventListener('submit',this.showOrCancelSeats)
+    this.updateSeats();
   }
   
   updateSeats(){
@@ -122,7 +119,7 @@ class App extends React.Component{
       <div id="page">
         <div id="stage">STAGE/SCREEN</div>
         <div>
-        <form id="form1" > {/* action="/api/reserve" method="POST"  */}
+        <form id="form1" onSubmit={this.saveChosenSeats}>
           <div id="parent"> 
             <div id="seats-rows">{rows}</div>
             <div id="seats-parent">{this.seats}</div>
@@ -131,13 +128,13 @@ class App extends React.Component{
         </form>
         </div>
         <div id="have-id">Already made reservation? To check your seats enter your ticket ID
-          <form id="form2"> {/* action="api/id" method="POST" */}
+          <form id="form2" onSubmit={this.showOrCancelSeats}>
             <input id="text-field" type="text" name="id" placeholder="enter your ticket ID" required></input>
             <input id="show-id" type="submit" name="show" value="Show"></input>
             <br/>...or<input id="cancel" type="submit" name="cancel" value="cancel"></input>reservation
           </form>
         </div>
-        <div id='modal'>
+        <div id='modal' onClick={this.closeModal}>
           <div id="modal-content">
             <div id='top-line'></div>
             <div id='bottom-line'></div>
