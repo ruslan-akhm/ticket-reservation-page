@@ -27,9 +27,11 @@ app.get('/api',(req,res)=>{
       seatsArray.push(data[i].seatId)
     }
     console.log(seatsArray)
+    //res.send("Hello")
     return res.json({seats: seatsArray});
   });
 })
+
 //Check for existing reservation / Or cancel it 
 app.post('/api/id',(req,res)=>{ 
   console.log('SHOW OR CANCEL BY ID');
