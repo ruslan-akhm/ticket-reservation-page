@@ -14,16 +14,20 @@ const seatsLayout = {
 
 function Seats(){
   
-  const saveChosenSeats=(e)=>{
+  const reserveSeats=(e)=>{
    e.preventDefault();
+    
    document.getElementById('modal').style.display="block"
-   var allSeats = document.getElementsByClassName('check-box')
-   var seatP = [];
-   for(let x=0;x<allSeats.length;x++){
-     if(allSeats[x].checked==true){
-     seatP.push(allSeats[x].value)
-     }
-   }
+    
+   let allSeats = document.getElementsByClassName('check-box')
+   // console.log(allSeats);
+   // let seatP = [];
+   // for(let x=0;x<allSeats.length;x++){
+   //   if(allSeats[x].checked==true){
+   //   seatP.push(allSeats[x].value)
+   //   }
+   // }
+   let seatsChosen = allSeats.filter(seat=>{return seat.checked==true})
    console.log(seatP, seatP.length, typeof seatP)
    var params = 'seat='+JSON.stringify(seatP) // We have to stringify to send to server and there we Parse to properly read the seats
    console.log(params)
@@ -40,14 +44,14 @@ function Seats(){
   } 
   
   const keys = Object.keys(seatsLayout);
-  const rows = keys.map(key=>{return <ul className="list" key={key}><li>row {key}</li></ul>})
+  const rows = keys.map(item=>{return <ul className="list" key={item}><li>row {item}</li></ul>})
   const seats = keys.map(row=>{return seatsLayout[row].map(seat=>{
       return <label for={seat} key={row+''+seat} className="seat-label"><input className="check-box" id={row+""+seat} key={row+""+seat} type="checkbox" name="seat" value={row+""+seat}/>{seat}</label>
     })});
   
   return(
     <div>
-      <form id="form1" onSubmit={saveChosenSeats}>
+      <form id="form1" onSubmit={reserveSeats}>
         <div id="parent"> 
           <div id="seats-rows">{rows}</div>
           <div id="seats-parent">{seats}</div>

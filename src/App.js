@@ -21,7 +21,7 @@ class App extends React.Component{
     }
     this.updateSeats=this.updateSeats.bind(this);
     this.closeModal=this.closeModal.bind(this);
-    this.saveChosenSeats=this.saveChosenSeats.bind(this);
+    //this.saveChosenSeats=this.saveChosenSeats.bind(this);
     this.showOrCancelSeats=this.showOrCancelSeats.bind(this)
   }
   
