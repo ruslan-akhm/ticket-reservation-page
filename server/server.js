@@ -34,47 +34,41 @@ app.get('/api',(req,res)=>{
 
 //Check for existing reservation / Or cancel it 
 app.post('/api/modify',(req,res)=>{ 
-  console.log('SHOW OR CANCEL BY ID');
-  console.log(req.body)
   const id = req.body.id;
-  //console.log(id)
-  var array = [];
-  // const show = req.body.show;
-  // console.log("show is "+show, typeof show)
-  // const cancel = req.body.cancel;
-  // console.log("cancel is "+cancel, typeof cancel)
+  let array = [];
   let action = req.body.action;
   //cancelling 
   if(action=='cancel'){
-    Seat.remove({ticketId:id},(err,c)=>{
+    
+    //TRY DELETEMANY ???
+    
+    Seat.remove({ticketId:id},(err,data)=>{
       if(err) return console.log(err)
-      console.log(c.n)
-      if(c.n==0){//if no documents to be removed were found
-        res.send({'text':`There is no reservation with such ticket ID`,'seat':' '})
-        return
+      //if no documents to be removed were found
+      if(data.n==0){
+        return res.json({'text':`There is no reservation with such ticket ID`,'seat':' '})
+        //return
       }
-      console.log("There is such ticket and we..")
-      console.log("Cancelling reservation")
-      res.send({'text':`Reservation has been cancelled for ticket ID `,'seat':id})
-      return;
+      return res.json({'text':`Reservation has been cancelled for ticket ID `,'seat':id})
+      //return;
     })
   }
   //showing
   else if(action=='show'){
-    Seat.find({ticketId:id}).sort({seatId:'asc'}).exec((err,s)=>{
+    Seat.find({ticketId:id}).sort({seatId:'asc'}).exec((err,data)=>{
       if(err) return console.log(err)
-      if(s.length>0){
-        for(let m=0; m<s.length;m++){
-          array.push(s[m].seatId)
+      if(data.length>0){
+        for(let m=0; m<data.length;m++){
+          array.push(data[m].seatId)
         }
-        console.log('we sending this array '+array)
-        res.send({'text':'You have reservation on seats:', 'seat':array})
-        return
+        //console.log('we sending this array '+array)
+        return res.json({'text':'You have reservation on seats:', 'seat':array})
+        //return
       }
       else{
         console.log("no ticket wi this id")
-        res.send({'text':`There is no reservation with such ticket ID`,'seat':' '});
-        return
+        return res.json({'text':`There is no reservation with such ticket ID`,'seat':' '});
+        //return
       }
     })
     return
