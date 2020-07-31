@@ -49,9 +49,7 @@ app.post('/api/modify',(req,res)=>{
   }
   //showing
   else if(action=='show'){
-    
-  
-  
+    let array = [];
     Seat.find({ticketId:id}).sort({seatId:'asc'}).exec((err,data)=>{
       if(err) return console.log(err)
       if(data.length>0){

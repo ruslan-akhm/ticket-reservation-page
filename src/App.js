@@ -2,6 +2,7 @@ import React from 'react';
 import ticketService from './services/ticketService'
 import Seats from './components/seats'
 import Checker from './components/checker'
+import Message from './components/message'
 import './App.css';
 
 class App extends React.Component{
@@ -11,7 +12,7 @@ class App extends React.Component{
     
     }
     this.updateSeats=this.updateSeats.bind(this);
-    this.closeModal=this.closeModal.bind(this);
+    //this.closeModal=this.closeModal.bind(this);
     //this.saveChosenSeats=this.saveChosenSeats.bind(this);
     //this.showOrCancelSeats=this.showOrCancelSeats.bind(this)
   }
@@ -62,43 +63,29 @@ class App extends React.Component{
   //   showSeats.send(pars);
   // }
   
-  closeModal(event){
-    const modal = document.getElementById('modal');
-    const close = document.getElementById('close-modal');
-    if (event.target == modal||event.target == close) {
-      modal.style.display="none"
-      this.updateSeats();
-  }
-  }
+  // closeModal(event){
+  //   const modal = document.getElementById('modal');
+  //   const close = document.getElementById('close-modal');
+  //   if (event.target == modal||event.target == close) {
+  //     modal.style.display="none"
+  //     this.updateSeats();
+  // }
+  //}
   
   render(){
-    //const takenSeats = this.state.taken;
-    
-    // const keys = Object.keys(seatsLayout);
-    // const rows = keys.map(key=>{return <ul className="list" key={key}><li>row {key}</li></ul>})
-    // this.seats = keys.map(row=>{return seatsLayout[row].map(seat=>{
-    //   return <label for={seat} key={row+''+seat} className="seat-label"><input className="check-box" id={row+""+seat} key={row+""+seat} type="checkbox" name="seat" value={row+""+seat}/>{seat}</label>
-    // })});
     
     return(
       <div id="page">
         <div id="stage">STAGE/SCREEN</div>
         <Seats />
         <Checker />
-        {/* <!--         <div id="have-id">Already made reservation? To check your seats enter your ticket ID
-          <form id="form2" onSubmit={this.showOrCancelSeats}>
-            <input id="text-field" type="text" name="id" placeholder="enter your ticket ID" required></input>
-            <input id="show-id" type="submit" name="show" value="Show"></input>
-            <br/>...or<input id="cancel" type="submit" name="cancel" value="cancel"></input>reservation
-          </form>
-        </div> --> */}
-        <div id='modal' onClick={this.closeModal}>
+        {/*<!--         <div id='modal' onClick={this.closeModal}>
           <div id="modal-content">
             <div id='top-line'></div>
             <div id='bottom-line'></div>
             <button id='close-modal'>CLOSE</button>
           </div>
-        </div>
+        </div> -->*/}
       </div>
     )
   }

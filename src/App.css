@@ -193,6 +193,21 @@ header{
   display:flex;
   flex-direction:column;
 }
+#message{
+  width:100%;
+  height:200px;
+  background-color: red;
+}
+#message-content{
+  width:100%;
+  height:100%;
+  background-color:#222831;
+  text-align:center;
+  padding-top:10px;
+  border-radius:10px;
+  display:flex;
+  flex-direction:column;
+}
 #top-line{
   width:100%;
   height:50%;

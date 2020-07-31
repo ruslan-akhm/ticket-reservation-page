@@ -1,43 +1,20 @@
 import React from 'react'
 import ticketService from '../services/ticketService'
 
-
 function Checker(){
   
   const showOrCancelSeats=(evt)=>{
     evt.preventDefault();
-    //console.log('showing ... ')
-    document.getElementById('modal').style.display="block";
+    
+    //document.getElementById('modal').style.display="block";
     
     let id = document.getElementById('text-field').value
-    
-    //let cancel='cancel';
-    //let showId='show';
-    //document.activeElement.name=='show'?cancel=null:showId=null; 
-    
     let action = document.activeElement.name;
-    //console.log(document.activeElement, document.getElementById('show-id').clicked, document.getElementById('cancel').clicked)
-    console.log(id)
-    //var pars='id='+id+'&cancel='+cancel+'&show='+showId;
     let params = {id:id, action:action}
-    console.log(params)
-    
     ticketService.modify(params).then(data=>{
       document.getElementById('top-line').innerHTML = data.text
       document.getElementById('bottom-line').innerHTML = data.seat
     })
-    
-    // var showSeats = new XMLHttpRequest();
-    // showSeats.open('POST', '/api/id', true);
-    // showSeats.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    // showSeats.onload = function(){
-    //   var resp = JSON.parse(this.response )//
-    //   console.log(resp, typeof resp)
-    //   document.getElementById('top-line').innerHTML = resp.text
-    //   document.getElementById('bottom-line').innerHTML = resp.seat
-    // }
-    // showSeats.send(pars);
-    
   }
   
   return(

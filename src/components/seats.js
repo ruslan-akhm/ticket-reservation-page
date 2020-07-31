@@ -1,7 +1,6 @@
 import React from 'react'
 import ticketService from '../services/ticketService'
 
-
 const seatsLayout = {
   A:["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],
   B:["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],
@@ -18,7 +17,7 @@ function Seats(){
   const reserveSeats=(e)=>{
      e.preventDefault();
 
-     document.getElementById('modal').style.display="block"
+     //document.getElementById('modal').style.display="block"
 
      let allSeats = document.getElementsByClassName('check-box')
      let chosenSeats = [];
