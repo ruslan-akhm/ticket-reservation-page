@@ -30,14 +30,20 @@ class App extends React.Component{
   
   updateSeats(){
     let seats = document.getElementsByClassName('check-box');
-    for(let m in seats){
+    for(let m=0; m<seats.length; m++){
       seats[m].checked=false;
       seats[m].disabled=false;
     }
     ticketService.update().then(data=>{
-      console.log(data);
-      //
+      let taken = data.seats;
+      for(let j=0;j<seats.length;j++){
+        taken.map(t=>{
+          return t==seats[j].value?seats[j].disabled=true:null;
+        })
+      }
     })
+    document.getElementById('top-line').innerHTML = ' '
+    document.getElementById('bottom-line').innerHTML = ' '
     
     // async function update(){
     //   // var disableTaken = document.getElementsByClassName('check-box');
@@ -49,9 +55,9 @@ class App extends React.Component{
     //   let resp = await response.json();
     //   console.log("resp is")
     //   console.log(resp.seats)
-    //   for(let j=0;j<seats.length;j++){
+    //   for(let j=0;j<disableTaken.length;j++){
     //     resp.seats.map(t=>{
-    //       return t==seats[j].value?seats[j].disabled=true:null;
+    //       return t==disableTaken[j].value?disableTaken[j].disabled=true:null;
     //     })
     //   }
     //   document.getElementById('top-line').innerHTML = ' '
