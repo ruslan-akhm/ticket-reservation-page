@@ -19,14 +19,14 @@ app.get("/", (request, response) => {
 
 //Render seats page according to database
 app.get('/api',(req,res)=>{
-  console.log("RECEIVED REQ");
+  //console.log("RECEIVED REQ");
   var seatsArray = []
   Seat.find({isTaken:true},(err,data)=>{
     if(err) return console.log(err)
     for(let i = 0;i<data.length;i++){
       seatsArray.push(data[i].seatId)
     }
-    console.log(seatsArray)
+    //console.log(seatsArray)
     //res.send("Hello")
     return res.json({seats: seatsArray});
   });
@@ -82,6 +82,7 @@ app.post('/api/id',(req,res)=>{
 
 //Make new reservation
 app.post("/api/reserve",(req,res)=>{  
+  console.log(req.body)
   const array = []; 
   const seat = JSON.parse(req.body.seat) //We need to parse received seats to represent them as array properly
   console.log("seat", seat.length)
