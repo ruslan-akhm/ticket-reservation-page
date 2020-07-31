@@ -1,4 +1,5 @@
 import React from 'react';
+import ticketService from './services/ticketService'
 import './App.css';
 
 const seatsLayout = {
@@ -28,25 +29,35 @@ class App extends React.Component{
   }
   
   updateSeats(){
-    async function update(){
-      var disableTaken = document.getElementsByClassName('check-box');
-      for(let m=0;m<disableTaken.length;m++){
-        disableTaken[m].checked=false;
-        disableTaken[m].disabled=false;
-      }
-      let response = await fetch("/api");
-      let resp = await response.json();
-      console.log("resp is")
-      console.log(resp.seats)
-      for(let j=0;j<disableTaken.length;j++){
-        resp.seats.map(t=>{
-          return t==disableTaken[j].value?disableTaken[j].disabled=true:null;
-        })
-      }
-      document.getElementById('top-line').innerHTML = ' '
-      document.getElementById('bottom-line').innerHTML = ' '
+    let seats = document.getElementsByClassName('check-box');
+    for(let m in seats){
+      seats[m].checked=false;
+      seats[m].disabled=false;
     }
-    update();
+    ticketService.update().then(data=>{
+      console.log(data);
+      //
+    })
+    
+    // async function update(){
+    //   // var disableTaken = document.getElementsByClassName('check-box');
+    //   // for(let m=0;m<disableTaken.length;m++){
+    //   //   disableTaken[m].checked=false;
+    //   //   disableTaken[m].disabled=false;
+    //   // }
+    //   let response = await fetch("/api");
+    //   let resp = await response.json();
+    //   console.log("resp is")
+    //   console.log(resp.seats)
+    //   for(let j=0;j<seats.length;j++){
+    //     resp.seats.map(t=>{
+    //       return t==seats[j].value?seats[j].disabled=true:null;
+    //     })
+    //   }
+    //   document.getElementById('top-line').innerHTML = ' '
+    //   document.getElementById('bottom-line').innerHTML = ' '
+    // }
+    // update();
   }
   
  saveChosenSeats(e){
