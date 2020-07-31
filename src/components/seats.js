@@ -21,10 +21,15 @@ function Seats(){
    document.getElementById('modal').style.display="block"
     
    let allSeats = document.getElementsByClassName('check-box')
+   
    let seatsChosen = [];
    for(let x=0;x<allSeats.length;x++){
      if(allSeats[x].checked==true)
        seatsChosen.push(allSeats[x].value)
+   }
+   if(seatsChosen.length==0||!seatsChosen){
+      document.getElementById('top-line').innerHTML="PLEASE CHOOSE SEATS"
+      return
    }
    let params = {seat:seatsChosen};//'+JSON.stringify(seatsChosen) // We have to stringify to send to server and there we Parse to properly read the seats
    console.log(params)

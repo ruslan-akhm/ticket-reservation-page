@@ -82,28 +82,30 @@ app.post('/api/id',(req,res)=>{
 
 //Make new reservation
 app.post("/api/reserve",(req,res)=>{  
-  console.log(req.body)
+  //console.log(req.body)
   const array = []; 
-  const seat = JSON.parse(req.body.seat) //We need to parse received seats to represent them as array properly
-  console.log("seat", seat.length)
-  if(seat.length==0){
-    console.log("seat is null")
-    //res.send(seat)
-    res.send({'text':"Please, choose seats to reserve", 'ticketId':' '}) 
-    return
-  }
+  const seat = req.body.seat;
+  //console.log("seat", seat.length)
+  // if(seat.length==0){
+  //   console.log("seat is null")
+  //   //res.send(seat)
+  //   res.send({'text':"Please, choose seats to reserve", 'ticketId':' '}) 
+  //   return
+  // }
   const checked = array.concat(seat)
+  // console.log(seat);
+  // console.log(checked);
   var ticket = shortid.generate();
-  console.log(checked, typeof checked)
-  for(let i=0; i<checked.length;i++){
+  //console.log(checked, typeof checked)
+  for(let i=0; i<seat.length;i++){//checked
     var newSeat = new Seat({
-       seatId:checked[i],
+       seatId:seat[i],//checked
        isTaken:true,
        ticketId:ticket
     })
     newSeat.save();
   }
-  res.send({'text':'You have reserved seat(s):'+checked+'. Your ticket ID is:', 'ticketId':ticket});
+  res.send({'text':'You have reserved seat(s):'+seat+'. Your ticket ID is:', 'ticketId':ticket}); //checked
  })
 
 // Express port-switching logic
