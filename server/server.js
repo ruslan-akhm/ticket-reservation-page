@@ -35,43 +35,35 @@ app.get('/api',(req,res)=>{
 //Check for existing reservation / Or cancel it 
 app.post('/api/modify',(req,res)=>{ 
   const id = req.body.id;
-  let array = [];
   let action = req.body.action;
   //cancelling 
   if(action=='cancel'){
-    
-    //TRY DELETEMANY ???
-    
-    Seat.remove({ticketId:id},(err,data)=>{
+    Seat.deleteMany({ticketId:id},(err,data)=>{
       if(err) return console.log(err)
       //if no documents to be removed were found
       if(data.n==0){
         return res.json({'text':`There is no reservation with such ticket ID`,'seat':' '})
-        //return
       }
       return res.json({'text':`Reservation has been cancelled for ticket ID `,'seat':id})
-      //return;
     })
   }
   //showing
   else if(action=='show'){
+    
+  
+  
     Seat.find({ticketId:id}).sort({seatId:'asc'}).exec((err,data)=>{
       if(err) return console.log(err)
       if(data.length>0){
         for(let m=0; m<data.length;m++){
           array.push(data[m].seatId)
         }
-        //console.log('we sending this array '+array)
         return res.json({'text':'You have reservation on seats:', 'seat':array})
-        //return
       }
       else{
-        console.log("no ticket wi this id")
         return res.json({'text':`There is no reservation with such ticket ID`,'seat':' '});
-        //return
       }
     })
-    return
   }
 })
 
