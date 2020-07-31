@@ -1,16 +1,13 @@
 body{
   margin:0;
   background-color:#222831;
-/*   background-color:green; */
   min-width:1200px;
-/*   padding-bottom:-600px; */
 }
 header{
   margin:0;
 }
 #page{
   background-color:#222831;
-/*   background-color:red; */
   height:90vh;
 }
 #stage{

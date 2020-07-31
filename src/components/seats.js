@@ -16,39 +16,26 @@ const seatsLayout = {
 function Seats(){
   
   const reserveSeats=(e)=>{
-   e.preventDefault();
-    
-   document.getElementById('modal').style.display="block"
-    
-   let allSeats = document.getElementsByClassName('check-box')
-   
-   let seatsChosen = [];
-   for(let x=0;x<allSeats.length;x++){
-     if(allSeats[x].checked==true)
-       seatsChosen.push(allSeats[x].value)
-   }
-   if(seatsChosen.length==0||!seatsChosen){
-      document.getElementById('top-line').innerHTML="PLEASE CHOOSE SEATS"
-      return
-   }
-   let params = {seat:seatsChosen};//'+JSON.stringify(seatsChosen) // We have to stringify to send to server and there we Parse to properly read the seats
-   console.log(params)
-    //we stringify in ticketservice
-   ticketService.reserve(params).then(data=>{
-     console.log(data);
-     document.getElementById('top-line').innerHTML = data.text
-     document.getElementById('bottom-line').innerHTML = data.ticketId
-   })
-//     var newSave = new XMLHttpRequest();
-//     newSave.open('POST', '/api/reserve', true);
-//     newSave.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-   
-//     newSave.onload = function(){
-//       var res = JSON.parse(this.response)
-//       document.getElementById('top-line').innerHTML = res.text
-//       document.getElementById('bottom-line').innerHTML = res.ticketId
-//     }
-//     newSave.send(params);
+     e.preventDefault();
+
+     document.getElementById('modal').style.display="block"
+
+     let allSeats = document.getElementsByClassName('check-box')
+     let chosenSeats = [];
+     for(let x=0;x<allSeats.length;x++){
+       if(allSeats[x].checked==true)
+         chosenSeats.push(allSeats[x].value)
+     }
+     if(chosenSeats.length==0||!chosenSeats){
+        document.getElementById('top-line').innerHTML="PLEASE CHOOSE SEATS"
+        return
+     }
+     let seats = {seat:chosenSeats};
+     ticketService.reserve(seats).then(data=>{
+       console.log(data);
+       document.getElementById('top-line').innerHTML = data.text
+       document.getElementById('bottom-line').innerHTML = data.ticketId
+     })
   } 
   
   const keys = Object.keys(seatsLayout);

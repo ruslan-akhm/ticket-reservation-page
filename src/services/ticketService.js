@@ -13,5 +13,16 @@ export default {
             }
         }).then(res =>res.json())
           .then(data=>data)
+  },
+  modify : (params)=>{
+    return fetch('/api/modify',{
+            method: "POST",
+            body: JSON.stringify(params),
+            headers: {
+                'Content-Type' : 'application/json'
+            }
+        }).then(res =>res.json())
+          .then(data=>data)
   }
+  
 }

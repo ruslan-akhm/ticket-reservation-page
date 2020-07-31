@@ -33,18 +33,19 @@ app.get('/api',(req,res)=>{
 })
 
 //Check for existing reservation / Or cancel it 
-app.post('/api/id',(req,res)=>{ 
+app.post('/api/modify',(req,res)=>{ 
   console.log('SHOW OR CANCEL BY ID');
   console.log(req.body)
   const id = req.body.id;
-  console.log(id)
+  //console.log(id)
   var array = [];
-  const show = req.body.show;
-  console.log("show is "+show, typeof show)
-  const cancel = req.body.cancel;
-  console.log("cancel is "+cancel, typeof cancel)
+  // const show = req.body.show;
+  // console.log("show is "+show, typeof show)
+  // const cancel = req.body.cancel;
+  // console.log("cancel is "+cancel, typeof cancel)
+  let action = req.body.action;
   //cancelling 
-  if(show=='null'){
+  if(action=='cancel'){
     Seat.remove({ticketId:id},(err,c)=>{
       if(err) return console.log(err)
       console.log(c.n)
@@ -59,7 +60,7 @@ app.post('/api/id',(req,res)=>{
     })
   }
   //showing
-  else if(cancel=='null'){
+  else if(action=='show'){
     Seat.find({ticketId:id}).sort({seatId:'asc'}).exec((err,s)=>{
       if(err) return console.log(err)
       if(s.length>0){
@@ -82,30 +83,17 @@ app.post('/api/id',(req,res)=>{
 
 //Make new reservation
 app.post("/api/reserve",(req,res)=>{  
-  //console.log(req.body)
-  const array = []; 
   const seat = req.body.seat;
-  //console.log("seat", seat.length)
-  // if(seat.length==0){
-  //   console.log("seat is null")
-  //   //res.send(seat)
-  //   res.send({'text':"Please, choose seats to reserve", 'ticketId':' '}) 
-  //   return
-  // }
-  const checked = array.concat(seat)
-  // console.log(seat);
-  // console.log(checked);
-  var ticket = shortid.generate();
-  //console.log(checked, typeof checked)
-  for(let i=0; i<seat.length;i++){//checked
-    var newSeat = new Seat({
-       seatId:seat[i],//checked
+  const ticket = shortid.generate();
+  for(let i=0; i<seat.length;i++){
+    let newSeat = new Seat({
+       seatId:seat[i],
        isTaken:true,
        ticketId:ticket
     })
     newSeat.save();
   }
-  res.send({'text':'You have reserved seat(s):'+seat+'. Your ticket ID is:', 'ticketId':ticket}); //checked
+  res.json({'text':'You have reserved seat(s):'+seat+'. Your ticket ID is:', 'ticketId':ticket}); 
  })
 
 // Express port-switching logic
