@@ -8,15 +8,11 @@ function Checker(){
   
   const showOrCancelSeats=(evt)=>{
     evt.preventDefault();
-    
-    //document.getElementById('modal').style.display="block";
-    
     let id = document.getElementById('text-field').value
     let action = document.activeElement.name;
     let params = {id:id, action:action}
     ticketService.modify(params).then(data=>{
-      //document.getElementById('top-line').innerHTML = data.text
-      //document.getElementById('bottom-line').innerHTML = data.seat
+      setMessage(`${data.text} ${data.seat}`)
     })
   }
   

@@ -36,7 +36,7 @@ function Seats(){
      let seats = {seat:chosenSeats};
      ticketService.reserve(seats).then(data=>{
        console.log(data);
-       setMessage(`${data.text} ${data.ticketId}`)
+       setMessage(`${data.text} ${data.ticketId}`)  
        //document.getElementById('top-line').innerHTML = data.text
        //document.getElementById('bottom-line').innerHTML = data.ticketId
      })
