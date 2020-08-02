@@ -19,9 +19,6 @@ function Seats(){
   
   const reserveSeats=(e)=>{
      e.preventDefault();
-
-     //document.getElementById('modal').style.display="block"
-
      let allSeats = document.getElementsByClassName('check-box')
      let chosenSeats = [];
      for(let x=0;x<allSeats.length;x++){
@@ -30,15 +27,12 @@ function Seats(){
      }
      if(chosenSeats.length==0||!chosenSeats){
        setMessage("Please, choose seats to reserve")
-        //document.getElementById('top-line').innerHTML="PLEASE CHOOSE SEATS"
         return
      }
      let seats = {seat:chosenSeats};
      ticketService.reserve(seats).then(data=>{
        console.log(data);
        setMessage(`${data.text} ${data.ticketId}`)  
-       //document.getElementById('top-line').innerHTML = data.text
-       //document.getElementById('bottom-line').innerHTML = data.ticketId
      })
   } 
   

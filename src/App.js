@@ -1,22 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ticketService from './services/ticketService'
 import Seats from './components/seats'
 import Checker from './components/checker'
 import Message from './components/message'
+import { MessageContext } from './context/messageContext'
 import './App.css';
 
 function App(){
+  const [message,setMessage] = useContext(MessageContext);
 
   useEffect(()=>{
     updateSeats();
-  },[])
+  },[message])
   
   const updateSeats=()=>{
     let seats = document.getElementsByClassName('check-box');
-    for(let m=0; m<seats.length; m++){
-      seats[m].checked=false;
-      seats[m].disabled=false;
-    }
     ticketService.update().then(data=>{
       let taken = data.seats;
       for(let j=0;j<seats.length;j++){
