@@ -110,6 +110,7 @@ header{
   color:white;
   width:100%;
   height:50px;
+  margin-top:30px;
   text-align:center;
   font-family: 'Spartan', sans-serif;
 }
@@ -155,12 +156,10 @@ header{
   cursor:pointer;
   border:none;
   background-color:transparent;
-  outline:none;
+/*   outline:none; */
   margin-bottom:20px;
 }
-#cancel:hover{
-  
-}
+
 /* #modal{
   display:none;
   position:fixed;
@@ -184,16 +183,10 @@ header{
 } */
 #message{
   width:900px;
-  height:100px;
-  background-color: red;
-}
-#message:before, #message:after{
-  content:"";
+  height:60px;
+  margin-top:20px;
   display:block;
-  width:100px;
-  height:2px;
-  margin:0 auto;
-  background-color:white;
+/*   background-color: red; */
 }
 #message-content{
   width:100%;

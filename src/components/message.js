@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import ticketService from '../services/ticketService'
+import { MessageContext } from '../context/messageContext'
 //import '../App.css';
 
 
 function Message(){
+  
+  const message = useContext(MessageContext);
   
   const closeModal=(event)=>{
     const modal = document.getElementById('modal');
@@ -27,7 +30,7 @@ function Message(){
     
     <div id="message">
       <div id="message-content">
-       
+         <h1>{message}</h1>
         
       </div>
     </div>

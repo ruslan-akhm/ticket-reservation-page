@@ -19,7 +19,7 @@ export const MessageProvider=({ children })=>{
     return( 
         
         <div>
-            <MessageContext.Provider value={{message,setMessage}}>
+            <MessageContext.Provider value={{message}}>
                 { children }
             </MessageContext.Provider>
         </div>
