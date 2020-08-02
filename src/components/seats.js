@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import ticketService from '../services/ticketService'
+import { MessageContext } from '../context/messageContext'
 
 const seatsLayout = {
   A:["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],
@@ -14,6 +15,8 @@ const seatsLayout = {
 
 function Seats(){
   
+  const [message,setMessage] = useContext(MessageContext);
+  
   const reserveSeats=(e)=>{
      e.preventDefault();
 
@@ -26,12 +29,14 @@ function Seats(){
          chosenSeats.push(allSeats[x].value)
      }
      if(chosenSeats.length==0||!chosenSeats){
+       setMessage("Please, choose seats to reserve")
         //document.getElementById('top-line').innerHTML="PLEASE CHOOSE SEATS"
         return
      }
      let seats = {seat:chosenSeats};
      ticketService.reserve(seats).then(data=>{
        console.log(data);
+       setMessage(`${data.text} ${data.ticketId}`)
        //document.getElementById('top-line').innerHTML = data.text
        //document.getElementById('bottom-line').innerHTML = data.ticketId
      })

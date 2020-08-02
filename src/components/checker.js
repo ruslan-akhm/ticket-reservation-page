@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import ticketService from '../services/ticketService'
+import { MessageContext } from '../context/messageContext'
 
 function Checker(){
+  
+  const [message,setMessage] = useContext(MessageContext);
   
   const showOrCancelSeats=(evt)=>{
     evt.preventDefault();

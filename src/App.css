@@ -185,8 +185,8 @@ header{
   width:900px;
   height:60px;
   margin-top:20px;
-  display:block;
-/*   background-color: red; */
+  display:none;
+  background-color: red;
 }
 #message-content{
   width:100%;
