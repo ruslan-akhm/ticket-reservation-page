@@ -15,6 +15,10 @@ function App(){
   
   const updateSeats=()=>{
     let seats = document.getElementsByClassName('check-box');
+    //prevent double reservation of the same seats if "Reserve" clicked more than once in a row
+    for(let m=0;m<seats.length;m++){
+        seats[m].checked=false;
+    }
     ticketService.update().then(data=>{
       let taken = data.seats;
       for(let j=0;j<seats.length;j++){
