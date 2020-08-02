@@ -38,8 +38,7 @@ function Message(){
     
     <div id="message">
       <div id="message-content">
-         <h1>{message}</h1>
-        
+         <h3>{message}</h3>
       </div>
     </div>
   )
