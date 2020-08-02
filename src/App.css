@@ -9,6 +9,8 @@ header{
 #page{
   background-color:#222831;
   height:90vh;
+  display:flex;
+  flex-direction:column;
 }
 #stage{
   width:1200px;
@@ -21,6 +23,7 @@ header{
   text-align:center;
   padding:15px 0;
 }
+
 #seats-parent{
   position:absolute;
   width:1000px;
@@ -34,6 +37,7 @@ header{
   grid-template-columns: repeat(20, auto [col-start]);
   grid-column-gap:10px;
   grid-row-gap:10px;
+  background-color:green;
 }
 #seats-rows{
   font-family: 'Spartan', sans-serif;
@@ -172,7 +176,7 @@ header{
 #cancel:hover{
   
 }
-#modal{
+/* #modal{
   display:none;
   position:fixed;
   z-index:999;
@@ -192,23 +196,22 @@ header{
   border-radius:10px;
   display:flex;
   flex-direction:column;
-}
+} */
 #message{
-  width:100%;
+  width:900px;
   height:200px;
   background-color: red;
 }
 #message-content{
   width:100%;
   height:100%;
-  background-color:#222831;
   text-align:center;
   padding-top:10px;
   border-radius:10px;
   display:flex;
   flex-direction:column;
 }
-#top-line{
+/* #top-line{
   width:100%;
   height:50%;
   background-color:transparent;
@@ -236,7 +239,7 @@ header{
   cursor:pointer;
   background-color:transparent;
   outline:none;
-}
+} */
 ul.list li{
   list-style-type:none;
   margin-left:-60px;

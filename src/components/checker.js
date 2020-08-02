@@ -12,8 +12,8 @@ function Checker(){
     let action = document.activeElement.name;
     let params = {id:id, action:action}
     ticketService.modify(params).then(data=>{
-      document.getElementById('top-line').innerHTML = data.text
-      document.getElementById('bottom-line').innerHTML = data.seat
+      //document.getElementById('top-line').innerHTML = data.text
+      //document.getElementById('bottom-line').innerHTML = data.seat
     })
   }
   

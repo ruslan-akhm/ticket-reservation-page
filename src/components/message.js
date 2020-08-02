@@ -1,5 +1,7 @@
 import React from 'react'
 import ticketService from '../services/ticketService'
+//import '../App.css';
+
 
 function Message(){
   
@@ -25,8 +27,7 @@ function Message(){
     
     <div id="message">
       <div id="message-content">
-        <div id='top-line'></div>
-        <div id='bottom-line'></div>
+       
         
       </div>
     </div>

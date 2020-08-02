@@ -3,7 +3,7 @@ import React, {createContext, useState} from 'react';
 export const MessageContext = createContext();
 
 export const MessageProvider=({ children })=>{
-    const [message,setMessage] = useState("");
+    const [message,setMessage] = useState("HELLO");
 //     const [isAuthenticated,setIsAuthenticated] = useState(false);
 //     const [isLoaded,setIsLoaded] = useState(false);
     
@@ -19,9 +19,9 @@ export const MessageProvider=({ children })=>{
     return( 
         
         <div>
-            <messageContext.Provider value={{message,setMessage}}>
+            <MessageContext.Provider value={{message,setMessage}}>
                 { children }
-            </messageContext.Provider>
+            </MessageContext.Provider>
         </div>
     )
 }

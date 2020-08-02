@@ -35,8 +35,8 @@ class App extends React.Component{
         })
       }
     })
-    document.getElementById('top-line').innerHTML = ' '
-    document.getElementById('bottom-line').innerHTML = ' '
+    //document.getElementById('top-line').innerHTML = ' '
+    //document.getElementById('bottom-line').innerHTML = ' '
   }
   
   // showOrCancelSeats(evt){
@@ -78,6 +78,7 @@ class App extends React.Component{
       <div id="page">
         <div id="stage">STAGE/SCREEN</div>
         <Seats />
+        <Message />
         <Checker />
         {/*<!--         <div id='modal' onClick={this.closeModal}>
           <div id="modal-content">
@@ -86,6 +87,7 @@ class App extends React.Component{
             <button id='close-modal'>CLOSE</button>
           </div>
         </div> -->*/}
+        
       </div>
     )
   }

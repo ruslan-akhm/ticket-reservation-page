@@ -26,14 +26,14 @@ function Seats(){
          chosenSeats.push(allSeats[x].value)
      }
      if(chosenSeats.length==0||!chosenSeats){
-        document.getElementById('top-line').innerHTML="PLEASE CHOOSE SEATS"
+        //document.getElementById('top-line').innerHTML="PLEASE CHOOSE SEATS"
         return
      }
      let seats = {seat:chosenSeats};
      ticketService.reserve(seats).then(data=>{
        console.log(data);
-       document.getElementById('top-line').innerHTML = data.text
-       document.getElementById('bottom-line').innerHTML = data.ticketId
+       //document.getElementById('top-line').innerHTML = data.text
+       //document.getElementById('bottom-line').innerHTML = data.ticketId
      })
   } 
   
@@ -44,7 +44,7 @@ function Seats(){
     })});
   
   return(
-    <div>
+    <div className="seats-box">
       <form id="form1" onSubmit={reserveSeats}>
         <div id="parent"> 
           <div id="seats-rows">{rows}</div>
