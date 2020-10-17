@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Poster from "../poster/poster";
 import ticketService from "../../services/ticketService";
 import { SeatsContext } from "../../context/seatsContext";
@@ -84,30 +84,22 @@ import "./seats.scss";
 
 function Seats() {
   const [chosen, setChosen] = useContext(SeatsContext);
+  
+  useEffect(()=>{
+    console.log(chosen)
+  },[chosen])
 
   const toCart = e => {
     const allSeats = document.getElementsByClassName("check-box");
     let chosenSeats = [];
     for (let x = 0; x < allSeats.length; x++) {
-      if (allSeats[x].checked == true) chosenSeats.push({seat:allSeats[x].value, price:});
+      if (allSeats[x].checked == true)
+        chosenSeats.push({
+          seat: allSeats[x].value,
+          price: allSeats[x].dataset.price
+        });
     }
-    console.log(chosenSeats)
-    //console.log(e.target.checked);
-    // if (e.target.checked) {
-    //   const seat = {
-    //     seat: e.target.id,
-    //     price: e.target.dataset.price
-    //   };
-    //   const seats = chosen.concat(seat);
-    //   setChosen(seats);
-    // }
-    // else {
-    //   let filteredChosen = chosen.filter(item => {
-    //     return item.seat != e.target.id;
-    //   });
-    //   setChosen(filteredChosen);
-    // }
-    //console.log(chosen);
+    setChosen(chosenSeats);
   };
 
   const rows = seatsData.seatsRows.map(row => {
@@ -126,7 +118,6 @@ function Seats() {
             name="seat"
             value={row + "" + num}
             data-price={rowIndex > 1 ? (rowIndex > 6 ? "150" : "250") : "500"}
-            onClick={toCart}
           />
           {num}
         </label>
@@ -135,14 +126,17 @@ function Seats() {
   });
 
   return (
-    <div id="seats-box">
-      <div id="rows">
-        <ul>{rows}</ul>
+    <div>
+      <div id="seats-box">
+        <div id="rows">
+          <ul>{rows}</ul>
+        </div>
+        <div id="seats">{seatsLayout}</div>
+        <div id="show">
+          <Poster />
+        </div>
       </div>
-      <div id="seats">{seatsLayout}</div>
-      <div id="show">
-        <Poster />
-      </div>
+      <button onClick={toCart}>Add to cart</button>
     </div>
   );
 }
