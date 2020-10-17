@@ -85,11 +85,11 @@ import "./seats.scss";
 function Seats() {
   const [chosen, setChosen] = useContext(SeatsContext);
 
-  useEffect(() => {
-    console.log(chosen);
-    let x = JSON.parse(localStorage.getItem("chosenSeats")) || [];
-    console.log(x);
-  }, [chosen]);
+  // useEffect(() => {
+  //   console.log(chosen);
+  //   let x = JSON.parse(localStorage.getItem("chosenSeats")) || [];
+  //   console.log(x);
+  // }, [chosen]);
 
   useEffect(() => {
     const allSeats = document.getElementsByClassName("check-box");
@@ -99,7 +99,11 @@ function Seats() {
     for(let x = 0; x < allSeats.length; x++){
       chosenSeats.map(chosen=>{
         if(allSeats[x].id==chosen.seat){
-          document.getElementById(allSeats[x].id).checked=true;
+          //console.log(typeof document.getElementById(allSeats[x].id).id)
+          console.log(typeof chosen.seat)
+          //setTimeout(()=>{
+          document.getElementById(chosen.seat).checked=true;
+          //},500)
         }
       })
     }
@@ -109,6 +113,7 @@ function Seats() {
 
   
   const changeBox = () =>{
+    console.log("HERE")
     const allSeats = document.getElementsByClassName("check-box");
     let chosenSeats = [];
     for (let x = 0; x < allSeats.length; x++) {
@@ -151,6 +156,7 @@ function Seats() {
             name="seat"
             value={row + "" + num}
             data-price={rowIndex > 1 ? (rowIndex > 6 ? "150" : "250") : "500"}
+            onChange={changeBox}
           />
           {num}
         </label>
