@@ -86,8 +86,27 @@ function Seats() {
   const [chosen, setChosen] = useContext(SeatsContext);
 
   const toCart = e => {
-    console.log(e.target);
-    //setChosen(...chosen, e.target.price)
+    const allSeats = document.getElementsByClassName("check-box");
+    let chosenSeats = [];
+    for (let x = 0; x < allSeats.length; x++) {
+      if (allSeats[x].checked == true) chosenSeats.push({seat:allSeats[x].value, price:});
+    }
+    console.log(chosenSeats)
+    //console.log(e.target.checked);
+    // if (e.target.checked) {
+    //   const seat = {
+    //     seat: e.target.id,
+    //     price: e.target.dataset.price
+    //   };
+    //   const seats = chosen.concat(seat);
+    //   setChosen(seats);
+    // }
+    // else {
+    //   let filteredChosen = chosen.filter(item => {
+    //     return item.seat != e.target.id;
+    //   });
+    //   setChosen(filteredChosen);
+    // }
     //console.log(chosen);
   };
 
@@ -95,8 +114,8 @@ function Seats() {
     return <li>row {row}</li>;
   });
 
-  const seatsLayout = seatsData.seatsRows.map(row => {
-    return seatsData.seatsNums.map(num => {
+  const seatsLayout = seatsData.seatsRows.map((row, rowIndex) => {
+    return seatsData.seatsNums.map((num, numIndex) => {
       return (
         <label for={row + "" + num} key={row + "" + num} className="seat-label">
           <input
@@ -106,7 +125,7 @@ function Seats() {
             type="checkbox"
             name="seat"
             value={row + "" + num}
-            data="{price:'500'}"
+            data-price={rowIndex > 1 ? (rowIndex > 6 ? "150" : "250") : "500"}
             onClick={toCart}
           />
           {num}
