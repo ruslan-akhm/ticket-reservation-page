@@ -83,14 +83,14 @@ import "./seats.scss";
 // const seatsRows = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
 function Seats() {
-  
-  const [message,setMessage] = useContext(SeatsContext);
-  
-  const toCart=(e)=>{
-    console.log(e.target)
-  }
-  
-  
+  const [chosen, setChosen] = useContext(SeatsContext);
+
+  const toCart = e => {
+    console.log(e.target);
+    //setChosen(...chosen, e.target.price)
+    //console.log(chosen);
+  };
+
   const rows = seatsData.seatsRows.map(row => {
     return <li>row {row}</li>;
   });
@@ -106,6 +106,7 @@ function Seats() {
             type="checkbox"
             name="seat"
             value={row + "" + num}
+            data="{price:'500'}"
             onClick={toCart}
           />
           {num}
