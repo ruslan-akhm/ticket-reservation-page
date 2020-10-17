@@ -84,10 +84,10 @@ import "./seats.scss";
 
 function Seats() {
   const [chosen, setChosen] = useContext(SeatsContext);
-  
-  useEffect(()=>{
-    console.log(chosen)
-  },[chosen])
+
+  useEffect(() => {
+    console.log(chosen);
+  }, [chosen]);
 
   const toCart = e => {
     const allSeats = document.getElementsByClassName("check-box");
