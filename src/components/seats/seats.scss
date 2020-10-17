@@ -1,3 +1,16 @@
-#test{
-  color:red;
+#seats-box{
+  display:flex;
+  justify-content:flex-start;
+  border:2px solid green;
+}
+#rows{
+  border:2px solid white;
+  width:100px;
+}
+#seats{
+  width:1000px;
+  display:grid;
+  border:2px solid red;
+  grid-template-rows: repeat(16, 35px [row-start]);
+  grid-template-columns: repeat(20, auto [col-start]);
 }

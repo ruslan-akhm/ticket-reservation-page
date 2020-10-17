@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react'
-import ticketService from '../../services/ticketService'
-import { MessageContext } from '../../context/messageContext'
-import './seats.scss'
+import React, { useState, useContext } from "react";
+import ticketService from "../../services/ticketService";
+import { MessageContext } from "../../context/messageContext";
+import "./seats.scss";
 
 // const seatsLayout = {
 //   A:["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],
@@ -15,9 +15,9 @@ import './seats.scss'
 // };
 
 // function Seats(){
-  
+
 //   const [message,setMessage] = useContext(MessageContext);
-  
+
 //   const reserveSeats=(e)=>{
 //      e.preventDefault();
 //      let allSeats = document.getElementsByClassName('check-box')
@@ -33,20 +33,20 @@ import './seats.scss'
 //      let seats = {seat:chosenSeats};
 //      ticketService.reserve(seats).then(data=>{
 //        console.log(data);
-//        setMessage(`${data.text} ${data.ticketId}`)  
+//        setMessage(`${data.text} ${data.ticketId}`)
 //      })
-//   } 
-  
+//   }
+
 //   const keys = Object.keys(seatsLayout);
 //   const rows = keys.map(item=>{return <ul className="list" key={item}><li>row {item}</li></ul>})
 //   const seats = keys.map(row=>{return seatsLayout[row].map(seat=>{
 //       return <label for={seat} key={row+''+seat} className="seat-label"><input className="check-box" id={row+""+seat} key={row+""+seat} type="checkbox" name="seat" value={row+""+seat}/>{seat}</label>
 //     })});
-  
+
 //   return(
 //     <div className="seats-box">
 //       <form id="form1" onSubmit={reserveSeats}>
-//         <div id="parent"> 
+//         <div id="parent">
 //           <div id="seats-rows">{rows}</div>
 //           <div id="seats-parent">{seats}</div>
 //           <input className="reserve" id="reserve-button" type="submit" value="Reserve"></input>
@@ -56,24 +56,61 @@ import './seats.scss'
 //   )
 // }
 
-const seatsNums = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"];
-const seatsRows = ["A","B","C","D","E","F","G","H"]
+const seatsNums = [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+  "11",
+  "12",
+  "13",
+  "14",
+  "15",
+  "16",
+  "17",
+  "18",
+  "19",
+  "20"
+];
+const seatsRows = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
-function Seats(){
-  
-  const seatsLayout = seatsRows.map(row=>{
-    return seatsNums.map(num=>{
-      return {
-        <label for={seat} key={row+''+seat} className="seat-label"><input className="check-box" id={row+""+seat} key={row+""+seat} type="checkbox" name="seat" value={row+""+seat}/>{seat}</label>
-      }
-    })
-  })
-  
-  return(
-    <div>
-      <h1 id="test">OKAY</h1>
+function Seats() {
+  const rows = seatsRows.map(row => {
+    return <li>row {row}</li>;
+  });
+
+  const seatsLayout = seatsRows.map(row => {
+    return seatsNums.map(num => {
+      return (
+        <label for={row + "" + num} key={row + "" + num} className="seat-label">
+          <input
+            className="check-box"
+            id={row + "" + num}
+            key={row + "" + num}
+            type="checkbox"
+            name="seat"
+            value={row + "" + num}
+          />
+          {num}
+        </label>
+      );
+    });
+  });
+
+  return (
+    <div id="seats-box">
+      <div id="rows">
+        <ul>{rows}</ul>
+      </div>
+      <div id="seats">{seatsLayout}</div>
     </div>
-  )
+  );
 }
 
-export default Seats
+export default Seats;
