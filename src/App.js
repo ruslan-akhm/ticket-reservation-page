@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import ticketService from './services/ticketService'
-import Seats from './components/seats'
+import Seats from './components/seats/seats'
 import Checker from './components/checker'
 import Message from './components/message'
 import { MessageContext } from './context/messageContext'

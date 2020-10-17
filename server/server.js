@@ -7,15 +7,24 @@ var database = "mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/te
 mongoose.connect(database,{useNewUrlParser: true, useUnifiedTopology: true},()=>{
     console.log('database connected')
 })
+const sassMiddleware = require("node-sass-middleware");
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static("public"));
+app.use(express.static('/tmp'));
 app.get("/", (request, response) => {
   response.sendFile(__dirname + "/public/index.html");
 });
+
+app.use(sassMiddleware({
+  src: __dirname + '/public',
+  dest: '/tmp',
+  //debug: true,
+  //outputStyle: 'compressed',
+}));
 
 app.use('/api',apiRouter);
 

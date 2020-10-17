@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
-import ticketService from '../services/ticketService'
-import { MessageContext } from '../context/messageContext'
+import ticketService from '../../services/ticketService'
+import { MessageContext } from '../../context/messageContext'
+import './seats.scss'
 
 // const seatsLayout = {
 //   A:["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],
@@ -55,11 +56,22 @@ import { MessageContext } from '../context/messageContext'
 //   )
 // }
 
+const seatsNums = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"];
+const seatsRows = ["A","B","C","D","E","F","G","H"]
 
 function Seats(){
+  
+  const seatsLayout = seatsRows.map(row=>{
+    return seatsNums.map(num=>{
+      return {
+        <label for={seat} key={row+''+seat} className="seat-label"><input className="check-box" id={row+""+seat} key={row+""+seat} type="checkbox" name="seat" value={row+""+seat}/>{seat}</label>
+      }
+    })
+  })
+  
   return(
     <div>
-    
+      <h1 id="test">OKAY</h1>
     </div>
   )
 }
