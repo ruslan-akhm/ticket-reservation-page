@@ -4,7 +4,7 @@ export const SeatsContext = createContext();
 
 export const SeatsProvider = ({ children }) => {
   const [message, setMessage] = useState(""); //delete later
-  const [chosen, setChosen] = useState();
+  const [chosen, setChosen] = useState(JSON.parse(localStorage.getItem("chosenSeats")) || []);
 
   return (
     <div>

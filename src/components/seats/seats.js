@@ -95,12 +95,16 @@ function Seats() {
           //WHICH COMPONENT IT DEPENDS ON?????????????
           setTimeout(()=>{
           document.getElementById(chosenSeat.seat).checked=true;
-          },200)
+           
+         },50)
         }
       })
     }
+      //setChosen(chosenSeats);
     }
   }, [chosen]);
+  
+ 
 
  
 
@@ -120,12 +124,13 @@ function Seats() {
   const changeBox = () =>{
     let chosenSeats = showChosenSeats();
     localStorage.setItem("chosenSeats", JSON.stringify(chosenSeats && chosenSeats));
+    setChosen(chosenSeats && chosenSeats);
   }
   
-  const toCart = e => {
-    let chosenSeats = showChosenSeats();
-    setChosen(chosenSeats && chosenSeats);
-  };
+  // const toCart = e => {
+  //   let chosenSeats = showChosenSeats();
+  //   setChosen(chosenSeats && chosenSeats);
+  // };
 
   const rows = seatsData.seatsRows.map(row => {
     return <li>row {row}</li>;
@@ -162,7 +167,7 @@ function Seats() {
           <Poster />
         </div>
       </div>
-      <button onClick={toCart}>Add to cart</button>
+      {/*<button onClick={toCart}>Add to cart</button>*/}
     </div>
   );
 }
