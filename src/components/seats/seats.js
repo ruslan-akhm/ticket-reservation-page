@@ -85,22 +85,13 @@ import "./seats.scss";
 function Seats() {
   const [chosen, setChosen] = useContext(SeatsContext);
 
-  // useEffect(() => {
-  //   console.log(chosen);
-  //   let x = JSON.parse(localStorage.getItem("chosenSeats")) || [];
-  //   console.log(x);
-  // }, [chosen]);
-
   useEffect(() => {
     const allSeats = document.getElementsByClassName("check-box");
     let chosenSeats = JSON.parse(localStorage.getItem("chosenSeats")) || [];
-    console.log(chosenSeats)
     if(chosenSeats.length>0){
     for(let x = 0; x < allSeats.length; x++){
       chosenSeats.map(chosenSeat=>{
         if(allSeats[x].id==chosenSeat.seat){
-          //console.log(typeof document.getElementById(allSeats[x].id).id)
-          //console.log(typeof chosen.seat)
           //WHICH COMPONENT IT DEPENDS ON?????????????
           setTimeout(()=>{
           document.getElementById(chosenSeat.seat).checked=true;
@@ -109,12 +100,11 @@ function Seats() {
       })
     }
     }
-      
-  }, []);
+  }, [chosen]);
 
-  
-  const changeBox = () =>{
-    //console.log("HERE")
+ 
+
+  function showChosenSeats(){
     const allSeats = document.getElementsByClassName("check-box");
     let chosenSeats = [];
     for (let x = 0; x < allSeats.length; x++) {
@@ -124,21 +114,17 @@ function Seats() {
           price: allSeats[x].dataset.price
         });
     }
-    localStorage.setItem("chosenSeats", JSON.stringify(chosenSeats));
+    return chosenSeats;
+  }
+  
+  const changeBox = () =>{
+    let chosenSeats = showChosenSeats();
+    localStorage.setItem("chosenSeats", JSON.stringify(chosenSeats && chosenSeats));
   }
   
   const toCart = e => {
-    const allSeats = document.getElementsByClassName("check-box");
-    let chosenSeats = [];
-    for (let x = 0; x < allSeats.length; x++) {
-      if (allSeats[x].checked == true)
-        chosenSeats.push({
-          seat: allSeats[x].value,
-          price: allSeats[x].dataset.price
-        });
-    }
-    localStorage.setItem("chosenSeats", JSON.stringify(chosenSeats));
-    setChosen(chosenSeats);
+    let chosenSeats = showChosenSeats();
+    setChosen(chosenSeats && chosenSeats);
   };
 
   const rows = seatsData.seatsRows.map(row => {
