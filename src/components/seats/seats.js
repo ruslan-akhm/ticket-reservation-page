@@ -97,13 +97,14 @@ function Seats() {
     console.log(chosenSeats)
     if(chosenSeats.length>0){
     for(let x = 0; x < allSeats.length; x++){
-      chosenSeats.map(chosen=>{
-        if(allSeats[x].id==chosen.seat){
+      chosenSeats.map(chosenSeat=>{
+        if(allSeats[x].id==chosenSeat.seat){
           //console.log(typeof document.getElementById(allSeats[x].id).id)
-          console.log(typeof chosen.seat)
-          //setTimeout(()=>{
-          document.getElementById(chosen.seat).checked=true;
-          //},500)
+          //console.log(typeof chosen.seat)
+          //WHICH COMPONENT IT DEPENDS ON?????????????
+          setTimeout(()=>{
+          document.getElementById(chosenSeat.seat).checked=true;
+          },200)
         }
       })
     }
@@ -113,7 +114,7 @@ function Seats() {
 
   
   const changeBox = () =>{
-    console.log("HERE")
+    //console.log("HERE")
     const allSeats = document.getElementsByClassName("check-box");
     let chosenSeats = [];
     for (let x = 0; x < allSeats.length; x++) {
