@@ -93,10 +93,11 @@ function Seats() {
       chosenSeats.map(chosenSeat=>{
         if(allSeats[x].id==chosenSeat.seat){
           //WHICH COMPONENT IT DEPENDS ON?????????????
+          //CHECKBOXED FLASH WHEN CLICKED 
           setTimeout(()=>{
           document.getElementById(chosenSeat.seat).checked=true;
-           
-         },50)
+           console.log("FLASH")
+         },10)
         }
       })
     }
@@ -104,7 +105,9 @@ function Seats() {
     }
   }, [chosen]);
   
- 
+ useEffect(()=>{
+   setChosen(JSON.parse(localStorage.getItem("chosenSeats")) || [])
+ },[])
 
  
 
