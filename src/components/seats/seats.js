@@ -87,8 +87,40 @@ function Seats() {
 
   useEffect(() => {
     console.log(chosen);
+    let x = JSON.parse(localStorage.getItem("chosenSeats")) || [];
+    console.log(x);
   }, [chosen]);
 
+  useEffect(() => {
+    const allSeats = document.getElementsByClassName("check-box");
+    let chosenSeats = JSON.parse(localStorage.getItem("chosenSeats")) || [];
+    console.log(chosenSeats)
+    if(chosenSeats.length>0){
+    for(let x = 0; x < allSeats.length; x++){
+      chosenSeats.map(chosen=>{
+        if(allSeats[x].id==chosen.seat){
+          document.getElementById(allSeats[x].id).checked=true;
+        }
+      })
+    }
+    }
+      
+  }, []);
+
+  
+  const changeBox = () =>{
+    const allSeats = document.getElementsByClassName("check-box");
+    let chosenSeats = [];
+    for (let x = 0; x < allSeats.length; x++) {
+      if (allSeats[x].checked == true)
+        chosenSeats.push({
+          seat: allSeats[x].value,
+          price: allSeats[x].dataset.price
+        });
+    }
+    localStorage.setItem("chosenSeats", JSON.stringify(chosenSeats));
+  }
+  
   const toCart = e => {
     const allSeats = document.getElementsByClassName("check-box");
     let chosenSeats = [];
@@ -99,6 +131,7 @@ function Seats() {
           price: allSeats[x].dataset.price
         });
     }
+    localStorage.setItem("chosenSeats", JSON.stringify(chosenSeats));
     setChosen(chosenSeats);
   };
 
