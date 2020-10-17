@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
+import Show from "../show/show"
 import ticketService from "../../services/ticketService";
 import { MessageContext } from "../../context/messageContext";
+import seatsData from "../../data/seatsData"
 import "./seats.scss";
 
 // const seatsLayout = {
@@ -56,37 +58,37 @@ import "./seats.scss";
 //   )
 // }
 
-const seatsNums = [
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "10",
-  "11",
-  "12",
-  "13",
-  "14",
-  "15",
-  "16",
-  "17",
-  "18",
-  "19",
-  "20"
-];
-const seatsRows = ["A", "B", "C", "D", "E", "F", "G", "H"];
+// const seatsNums = [
+//   "1",
+//   "2",
+//   "3",
+//   "4",
+//   "5",
+//   "6",
+//   "7",
+//   "8",
+//   "9",
+//   "10",
+//   "11",
+//   "12",
+//   "13",
+//   "14",
+//   "15",
+//   "16",
+//   "17",
+//   "18",
+//   "19",
+//   "20"
+// ];
+// const seatsRows = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
 function Seats() {
-  const rows = seatsRows.map(row => {
+  const rows = seatsData.seatsRows.map(row => {
     return <li>row {row}</li>;
   });
 
-  const seatsLayout = seatsRows.map(row => {
-    return seatsNums.map(num => {
+  const seatsLayout = seatsData.seatsRows.map(row => {
+    return seatsData.seatsNums.map(num => {
       return (
         <label for={row + "" + num} key={row + "" + num} className="seat-label">
           <input
@@ -109,6 +111,7 @@ function Seats() {
         <ul>{rows}</ul>
       </div>
       <div id="seats">{seatsLayout}</div>
+      <Show />
       <div id="show"></div>
     </div>
   );
