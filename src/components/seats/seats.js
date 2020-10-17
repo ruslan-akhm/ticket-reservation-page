@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
-import Show from "../show/show"
+import Poster from "../poster/poster";
 import ticketService from "../../services/ticketService";
 import { MessageContext } from "../../context/messageContext";
-import seatsData from "../../data/seatsData"
+import seatsData from "../../data/seatsData";
 import "./seats.scss";
 
 // const seatsLayout = {
@@ -111,8 +111,9 @@ function Seats() {
         <ul>{rows}</ul>
       </div>
       <div id="seats">{seatsLayout}</div>
-      <Show />
-      <div id="show"></div>
+      <div id="show">
+        <Poster />
+      </div>
     </div>
   );
 }
