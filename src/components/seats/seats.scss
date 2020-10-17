@@ -14,7 +14,7 @@ $sides-width: calc((100%-1000px)/2);;
 }
 #rows{
   border:2px solid white;
-  min-width:100px;
+  min-width:150px;
   width: $sides-width;
   display:flex;
   justify-content:flex-end;
@@ -37,6 +37,6 @@ $sides-width: calc((100%-1000px)/2);;
 }
 #show{
   border:2px solid white;
-  min-width:100px;
+  min-width:150px;
   width: $sides-width;
 }

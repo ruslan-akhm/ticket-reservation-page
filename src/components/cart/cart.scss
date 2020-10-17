@@ -1,7 +1,18 @@
-.cart-box{
-  position:filed;
+.cart-icon{
+  position:fixed;
   top:30px;
   right:30px;
-  height:30px;
-  width:30px;
+  height:60px;
+  width:60px;
+  border:2px solid blue;
+  cursor:pointer;
+}
+
+.cart-icon-popup{
+  width:20px;
+  height:20px;
+  position:absolute;
+  bottom:-5px;
+  right:-5px;
+  background-color:red;
 }

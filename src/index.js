@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {MessageProvider} from './context/messageContext'
+import {SeatsProvider} from './context/seatsContext'
 import App from './App';
 
 ReactDOM.render(
-  <MessageProvider>
+  <SeatsProvider>
     <App />
-  </MessageProvider>,
+  </SeatsProvider>,
   document.getElementById('root')
 );
 

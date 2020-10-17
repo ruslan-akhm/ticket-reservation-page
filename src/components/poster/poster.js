@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import ticketService from "../../services/ticketService";
-import { MessageContext } from "../../context/messageContext";
+import { SeatsContext } from "../../context/seatsContext";
 import "./poster.scss";
 
 function Poster(){

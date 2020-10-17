@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import Poster from "../poster/poster";
 import ticketService from "../../services/ticketService";
-import { MessageContext } from "../../context/messageContext";
+import { SeatsContext } from "../../context/seatsContext";
 import seatsData from "../../data/seatsData";
 import "./seats.scss";
 
@@ -83,6 +83,14 @@ import "./seats.scss";
 // const seatsRows = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
 function Seats() {
+  
+  const [message,setMessage] = useContext(SeatsContext);
+  
+  const toCart=(e)=>{
+    console.log(e.target)
+  }
+  
+  
   const rows = seatsData.seatsRows.map(row => {
     return <li>row {row}</li>;
   });
@@ -98,6 +106,7 @@ function Seats() {
             type="checkbox"
             name="seat"
             value={row + "" + num}
+            onClick={toCart}
           />
           {num}
         </label>

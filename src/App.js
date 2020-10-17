@@ -4,11 +4,11 @@ import Seats from "./components/seats/seats";
 import Cart from "./components/cart/cart";
 //import Checker from './components/checker'
 //import Message from './components/message'
-import { MessageContext } from "./context/messageContext";
+import { SeatsContext } from "./context/seatsContext";
 import "./App.css";
 
 function App() {
-  const [message, setMessage] = useContext(MessageContext);
+  const [message, setMessage] = useContext(SeatsContext);
 
   useEffect(() => {
     updateSeats();
