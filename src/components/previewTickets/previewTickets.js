@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import Loading from "./loading/loading"
+import Loading from "../loading/loading";
 import ticketService from "../../services/ticketService";
 import { SeatsContext } from "../../context/seatsContext";
 import "./previewTickets.scss";
@@ -8,8 +8,15 @@ function PreviewTickets() {
   const { chosen, setChosen, secured, setSecured } = useContext(SeatsContext);
   const [loading, setLoading] = useState(false);
 
-  const secureTickets = () => {
+  const secureTickets = e => {
+    e.preventDefault();
     setSecured(chosen);
+    setLoading(true);
+    let seats = { seats: chosen };
+    ticketService.secure(seats).then(data => {
+      console.log(data);
+      setLoading(false);
+    });
   };
 
   let preview =
@@ -27,11 +34,11 @@ function PreviewTickets() {
     <div className="preview-box">
       <ul>{preview}</ul>
       {chosen.length > 0 ? (
-        <a href="/cart" onClick={secureTickets}>
+        <a href="" onClick={secureTickets}>
           Next
         </a>
       ) : null}
-      <Loadng isLoading={loading} />
+      <Loading isLoading={loading} />
     </div>
   );
 }
