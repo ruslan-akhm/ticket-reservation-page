@@ -15,7 +15,7 @@ function Cart(){
   <div className="cart-icon">
      <a href="#"></a>
       
-        {chosen && chosen.length>0?(<div className="cart-icon-popup">{chosen.length}</div>):null}
+      {/* {chosen && chosen.length>0?(<div className="cart-icon-popup">{chosen.length}</div>):null}  */}
       
   </div>
   )

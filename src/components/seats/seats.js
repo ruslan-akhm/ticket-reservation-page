@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import Poster from "../poster/poster";
+import PreviewTickets from "../previewTickets/previewTickets"
 import ticketService from "../../services/ticketService";
 import { SeatsContext } from "../../context/seatsContext";
 import seatsData from "../../data/seatsData";
@@ -113,18 +114,18 @@ function Seats() {
   //   setChosen(JSON.parse(localStorage.getItem("chosenSeats")) || [])
   // },[])
 
-  function showChosenSeats() {
-    const allSeats = document.getElementsByClassName("check-box");
-    let chosenSeats = [];
-    for (let x = 0; x < allSeats.length; x++) {
-      if (allSeats[x].checked == true)
-        chosenSeats.push({
-          seat: allSeats[x].value,
-          price: allSeats[x].dataset.price
-        });
-    }
-    return chosenSeats;
-  }
+  // function showChosenSeats() {
+  //   const allSeats = document.getElementsByClassName("check-box");
+  //   let chosenSeats = [];
+  //   for (let x = 0; x < allSeats.length; x++) {
+  //     if (allSeats[x].checked == true)
+  //       chosenSeats.push({
+  //         seat: allSeats[x].value,
+  //         price: allSeats[x].dataset.price
+  //       });
+  //   }
+  //   return chosenSeats;
+  // }
 
   const changeBox = (e) => {
     let seat = {
@@ -172,6 +173,7 @@ function Seats() {
         <div id="seats">{seatsLayout}</div>
         <div id="show">
           <Poster />
+          <PreviewTickets />
         </div>
       </div>
       
