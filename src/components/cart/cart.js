@@ -5,7 +5,7 @@ import "./cart.scss";
 
 function Cart(){
   
-  const [chosen, setChosen] = useContext(SeatsContext);
+  const {chosen, setChosen} = useContext(SeatsContext);
   
   useEffect(()=>{
     console.log(chosen.length)

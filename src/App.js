@@ -8,7 +8,7 @@ import { SeatsContext } from "./context/seatsContext";
 import "./App.css";
 
 function App() {
-  const [message, setMessage] = useContext(SeatsContext);
+  const { message, setMessage } = useContext(SeatsContext);
 
   useEffect(() => {
     updateSeats();
@@ -32,11 +32,12 @@ function App() {
 
   return (
     <div id="page">
-      <div id="stage">STAGE/SCREEN</div>
+      <div id="stage">
+        <h1>STAGE/SCREEN</h1>
+      </div>
       <Seats />
       <Cart />
-      {/*  <Message />
-       <Checker /> */}
+      
     </div>
   );
 }

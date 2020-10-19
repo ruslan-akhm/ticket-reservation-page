@@ -83,11 +83,11 @@ import "./seats.scss";
 // const seatsRows = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
 function Seats() {
-  const [chosen, setChosen] = useContext(SeatsContext);
+  const {chosen, setChosen} = useContext(SeatsContext);
   
   useEffect(()=>{
     console.log(chosen);
-  },[])
+  },[chosen])
 
   // useEffect(() => {
   //   const allSeats = document.getElementsByClassName("check-box");
@@ -127,17 +127,11 @@ function Seats() {
   }
 
   const changeBox = (e) => {
-    //let chosenSeats = showChosenSeats();
-    //localStorage.setItem("chosenSeats", JSON.stringify(chosenSeats && chosenSeats));
-    //setChosen(chosenSeats && chosenSeats);
-    let chosenSeats = chosen;
-    console.log(chosenSeats)
-    chosenSeats.concat({
+    let seat = {
       seat: e.target.value,
       price: e.target.dataset.price
-    })
-    setChosen(chosenSeats);
-    console.log(chosen);
+    }
+    setChosen(chosen.concat(seat));
   };
 
   // const toCart = e => {
@@ -170,7 +164,7 @@ function Seats() {
   });
 
   return (
-    <div>
+    
       <div id="seats-box">
         <div id="rows">
           <ul>{rows}</ul>
@@ -180,8 +174,7 @@ function Seats() {
           <Poster />
         </div>
       </div>
-      {/*<button onClick={toCart}>Add to cart</button>*/}
-    </div>
+      
   );
 }
 
