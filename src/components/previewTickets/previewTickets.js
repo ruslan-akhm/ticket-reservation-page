@@ -13,6 +13,7 @@ function PreviewTickets() {
     setSecured(chosen);
     setLoading(true);
     let seats = { seats: chosen };
+    console.log(seats);
     ticketService.secure(seats).then(data => {
       console.log(data);
       setLoading(false);
@@ -25,7 +26,7 @@ function PreviewTickets() {
       return (
         <div className="preview">
           <h2>Seat: {ticket.seat}</h2>
-          <p>Price: {ticket.price}</p>
+          <p>Price: ${ticket.price}</p>
         </div>
       );
     });

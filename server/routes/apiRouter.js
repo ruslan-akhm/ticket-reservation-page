@@ -83,16 +83,20 @@ apiRouter.post("/reserve", (req, res) => {
 apiRouter.post("/secure", (req, res) => {
   const seats = req.body.seats;
   const ticket = shortid.generate();
-  console.log(seats);
+  console.log(req.body);
   for (let i = 0; i < seats.length; i++) {
     let newSeat = new Seat({
-      seatId: seats[i],
+      seatId: seats[i].seat,
       ticketId: ticket,
       isSecured: true,
-      isTaken: false
+      isTaken: false,
+      price: seats[i].price
     });
     newSeat.save();
   }
+  res.json({
+    text: `You have secured ${seats.length} seat(s). Your reservation Id: ${ticket}`
+  });
 });
 
 module.exports = apiRouter;
