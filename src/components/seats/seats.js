@@ -84,11 +84,11 @@ import "./seats.scss";
 // const seatsRows = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
 function Seats() {
-  const {chosen, setChosen} = useContext(SeatsContext);
-  
-  useEffect(()=>{
+  const { chosen, setChosen } = useContext(SeatsContext);
+
+  useEffect(() => {
     console.log(chosen);
-  },[chosen])
+  }, [chosen]);
 
   // useEffect(() => {
   //   const allSeats = document.getElementsByClassName("check-box");
@@ -127,12 +127,23 @@ function Seats() {
   //   return chosenSeats;
   // }
 
-  const changeBox = (e) => {
-    let seat = {
-      seat: e.target.value,
-      price: e.target.dataset.price
+  const changeBox = e => {
+    console.log(e.target.checked)
+    if (e.target.checked == false) {
+      console.log("UNCHECK");
+      let filteredChosen = chosen.filter(seat => {
+        return seat.seat != e.target.value;
+      });
+      setChosen(filteredChosen);
+      return;
+    } else {
+      console.log("CHECK");
+      let seat = {
+        seat: e.target.value,
+        price: e.target.dataset.price
+      };
+      setChosen(chosen.concat(seat));
     }
-    setChosen(chosen.concat(seat));
   };
 
   // const toCart = e => {
@@ -165,18 +176,16 @@ function Seats() {
   });
 
   return (
-    
-      <div id="seats-box">
-        <div id="rows">
-          <ul>{rows}</ul>
-        </div>
-        <div id="seats">{seatsLayout}</div>
-        <div id="show">
-          <Poster />
-          <PreviewTickets />
-        </div>
+    <div id="seats-box">
+      <div id="rows">
+        <ul>{rows}</ul>
       </div>
-      
+      <div id="seats">{seatsLayout}</div>
+      <div id="show">
+        <Poster />
+        <PreviewTickets />
+      </div>
+    </div>
   );
 }
 

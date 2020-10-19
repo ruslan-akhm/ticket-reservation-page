@@ -24,6 +24,7 @@ function PreviewTickets() {
   return (
     <div className="preview-box">
       <ul>{preview}</ul>
+      {chosen.length>0?<a href="*">Next</a>:null}
     </div>
   );
 }
