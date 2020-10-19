@@ -5,7 +5,8 @@ var Schema = mongoose.Schema
 var seatSchema = new Schema({
   seatId:String,
   isTaken:Boolean,
-  ticketId:String
+  ticketId:String,
+  isSecured:Boolean
 })
 
 var Seat = mongoose.model("Seat", seatSchema)

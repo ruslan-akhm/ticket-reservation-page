@@ -36,7 +36,7 @@ function Mainpage() {
         <h1>STAGE/SCREEN</h1>
       </div>
       <Seats />
-      <Cart />
+     {/* <Cart /> */}
       
     </div>
   );
