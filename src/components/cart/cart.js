@@ -10,7 +10,9 @@ function Cart() {
   useEffect(() => {
     console.log(chosen.length);
   }, []);
-
+  
+  let ticket = [];
+      
   return (
     <div id="cart">
       <div>HELLO</div>

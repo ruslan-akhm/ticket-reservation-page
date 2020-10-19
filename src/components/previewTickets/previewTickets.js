@@ -1,14 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
+import Loading from "./loading/loading"
 import ticketService from "../../services/ticketService";
 import { SeatsContext } from "../../context/seatsContext";
 import "./previewTickets.scss";
 
 function PreviewTickets() {
-  const { chosen, setChosen } = useContext(SeatsContext);
+  const { chosen, setChosen, secured, setSecured } = useContext(SeatsContext);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    console.log('OKAY');
-  }, []);
+  const secureTickets = () => {
+    setSecured(chosen);
+  };
 
   let preview =
     chosen &&
@@ -24,7 +26,12 @@ function PreviewTickets() {
   return (
     <div className="preview-box">
       <ul>{preview}</ul>
-      {chosen.length>0?<a href="/cart">Next</a>:null}
+      {chosen.length > 0 ? (
+        <a href="/cart" onClick={secureTickets}>
+          Next
+        </a>
+      ) : null}
+      <Loadng isLoading={loading} />
     </div>
   );
 }

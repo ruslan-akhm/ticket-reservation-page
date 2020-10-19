@@ -1,0 +1,12 @@
+#loading-modal{
+  display:none;
+  position:fixed;
+  background-color:rgba(0,0,0,0.6);
+}
+#loading-box{
+  width:60vw;
+  height:60vh;
+  h1{
+    color:green;
+  }
+}
