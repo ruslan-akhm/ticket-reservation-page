@@ -84,34 +84,36 @@ import "./seats.scss";
 
 function Seats() {
   const [chosen, setChosen] = useContext(SeatsContext);
-
-  useEffect(() => {
-    const allSeats = document.getElementsByClassName("check-box");
-    let chosenSeats = JSON.parse(localStorage.getItem("chosenSeats")) || [];
-    if(chosenSeats.length>0){
-    for(let x = 0; x < allSeats.length; x++){
-      chosenSeats.map(chosenSeat=>{
-        if(allSeats[x].id==chosenSeat.seat){
-          //WHICH COMPONENT IT DEPENDS ON?????????????
-          //CHECKBOXED FLASH WHEN CLICKED 
-          setTimeout(()=>{
-          document.getElementById(chosenSeat.seat).checked=true;
-           console.log("FLASH")
-         },10)
-        }
-      })
-    }
-      //setChosen(chosenSeats);
-    }
-  }, [chosen]);
   
- // useEffect(()=>{
- //   setChosen(JSON.parse(localStorage.getItem("chosenSeats")) || [])
- // },[])
+  useEffect(()=>{
+    console.log(chosen);
+  },[])
 
- 
+  // useEffect(() => {
+  //   const allSeats = document.getElementsByClassName("check-box");
+  //   let chosenSeats = JSON.parse(localStorage.getItem("chosenSeats")) || [];
+  //   if (chosenSeats.length > 0) {
+  //     for (let x = 0; x < allSeats.length; x++) {
+  //       chosenSeats.map(chosenSeat => {
+  //         if (allSeats[x].id == chosenSeat.seat) {
+  //           //WHICH COMPONENT IT DEPENDS ON?????????????
+  //           //CHECKBOXED FLASH WHEN CLICKED
+  //           setTimeout(() => {
+  //             document.getElementById(chosenSeat.seat).checked = true;
+  //             console.log("FLASH");
+  //           }, 10);
+  //         }
+  //       });
+  //     }
+  //     //setChosen(chosenSeats);
+  //   }
+  // }, [chosen]);
 
-  function showChosenSeats(){
+  // useEffect(()=>{
+  //   setChosen(JSON.parse(localStorage.getItem("chosenSeats")) || [])
+  // },[])
+
+  function showChosenSeats() {
     const allSeats = document.getElementsByClassName("check-box");
     let chosenSeats = [];
     for (let x = 0; x < allSeats.length; x++) {
@@ -123,13 +125,21 @@ function Seats() {
     }
     return chosenSeats;
   }
-  
-  const changeBox = () =>{
-    let chosenSeats = showChosenSeats();
-    localStorage.setItem("chosenSeats", JSON.stringify(chosenSeats && chosenSeats));
-    setChosen(chosenSeats && chosenSeats);
-  }
-  
+
+  const changeBox = (e) => {
+    //let chosenSeats = showChosenSeats();
+    //localStorage.setItem("chosenSeats", JSON.stringify(chosenSeats && chosenSeats));
+    //setChosen(chosenSeats && chosenSeats);
+    let chosenSeats = chosen;
+    console.log(chosenSeats)
+    chosenSeats.concat({
+      seat: e.target.value,
+      price: e.target.dataset.price
+    })
+    setChosen(chosenSeats);
+    console.log(chosen);
+  };
+
   // const toCart = e => {
   //   let chosenSeats = showChosenSeats();
   //   setChosen(chosenSeats && chosenSeats);
