@@ -105,9 +105,9 @@ function Seats() {
     }
   }, [chosen]);
   
- useEffect(()=>{
-   setChosen(JSON.parse(localStorage.getItem("chosenSeats")) || [])
- },[])
+ // useEffect(()=>{
+ //   setChosen(JSON.parse(localStorage.getItem("chosenSeats")) || [])
+ // },[])
 
  
 
