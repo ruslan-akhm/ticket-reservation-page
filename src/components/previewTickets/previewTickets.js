@@ -8,9 +8,24 @@ function Cart() {
 
   useEffect(() => {
     console.log(chosen.length);
-  }, []);
+  }, [chosen]);
 
-  return <div className="show-box"></div>;
+  let preview =
+    chosen &&
+    chosen.map(ticket => {
+      return (
+        <div className="preview">
+          <h2>{ticket.seat}</h2>
+          <p>{ticket.price}</p>
+        </div>
+      );
+    });
+
+  return (
+    <div className="show-box">
+      <ul>{preview}</ul>
+    </div>
+  );
 }
 
 export default Cart;

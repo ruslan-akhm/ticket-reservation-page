@@ -4,11 +4,14 @@ import { SeatsContext } from "../../context/seatsContext";
 import "./poster.scss";
 
 function Poster(){
+  
+  const {show, setShow} = useContext(SeatsContext);
+  
   return(
   <div className="show-box">
-      <p>Show: Cirque Du Soleil</p>
-      <p>Location: Sony Centre, Toronto, ON</p>
-      <p>Date: Sep, 20, 2021, 6.30pm</p>
+      <p>Show: {show.performer}</p>
+      <p>Location: {show.stage}, {show.location}</p>
+      <p>Date: {show.date}, {show.time}</p>
   </div>
   )
 }
