@@ -3,22 +3,19 @@ import ticketService from "../../services/ticketService";
 import { SeatsContext } from "../../context/seatsContext";
 import "./cart.scss";
 
-function Cart(){
-  
-  const {chosen, setChosen} = useContext(SeatsContext);
-  
-  useEffect(()=>{
-    console.log(chosen.length)
-  },[])
-  
-  return(
-  <div className="cart-icon">
-     <a href="#"></a>
-      
-      {/* {chosen && chosen.length>0?(<div className="cart-icon-popup">{chosen.length}</div>):null}  */}
-      
-  </div>
-  )
+function Cart() {
+  const { chosen, setChosen, secured, setSecured } = useContext(SeatsContext);
+  //const {secured, setSecured} =
+
+  useEffect(() => {
+    console.log(chosen.length);
+  }, []);
+
+  return (
+    <div id="cart">
+      <div>HELLO</div>
+    </div>
+  );
 }
 
 export default Cart;

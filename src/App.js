@@ -47,6 +47,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Mainpage from "./components/mainpage/mainpage";
+import Cart from "./components/cart/cart";
 import "./App.css";
 
 function App(){
@@ -54,6 +55,7 @@ function App(){
     <Router>
       <Switch>
         <Route path="/" exact component={Mainpage} />
+        <Route path="/cart" exact component={Cart} />
       {/*  <Route path="*" exact component={PageNotFound} /> */}
       </Switch>
     </Router>

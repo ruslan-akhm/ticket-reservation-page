@@ -7,7 +7,7 @@ const apiRouter = express.Router()
 //Render seats page according to database
 apiRouter.get('/',(req,res)=>{
   var seatsArray = []
-  Seat.find({isTaken:true},(err,data)=>{
+  Seat.find({isTaken:true},(err,data)=>{//isSecured true!!!!!!!!!!!!!!!!!!!!!!!!!!
     if(err) return console.log(err)
     for(let i = 0;i<data.length;i++){
       seatsArray.push(data[i].seatId)
