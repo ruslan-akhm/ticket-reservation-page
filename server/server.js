@@ -2,8 +2,8 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const shortid = require('shortid');
-const apiRouter = require('./routes/apiRouter')
-var database = "mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
+const apiRouter = require('./routes/apiRouter');
+var database = process.env.SECRET;//"mongodb+srv://ruslan-akhm:zuaGc0VJ@cluster0-y5h11.mongodb.net/test?retryWrites=true&w=majority"
 mongoose.connect(database,{useNewUrlParser: true, useUnifiedTopology: true},()=>{
     console.log('database connected')
 })

@@ -3,29 +3,29 @@ import ticketService from "../../services/ticketService";
 import { SeatsContext } from "../../context/seatsContext";
 import "./previewTickets.scss";
 
-function Cart() {
+function PreviewTickets() {
   const { chosen, setChosen } = useContext(SeatsContext);
 
   useEffect(() => {
-    console.log(chosen.length);
-  }, [chosen]);
+    console.log('OKAY');
+  }, []);
 
   let preview =
     chosen &&
     chosen.map(ticket => {
       return (
         <div className="preview">
-          <h2>{ticket.seat}</h2>
-          <p>{ticket.price}</p>
+          <h2>Seat: {ticket.seat}</h2>
+          <p>Price: {ticket.price}</p>
         </div>
       );
     });
 
   return (
-    <div className="show-box">
+    <div className="preview-box">
       <ul>{preview}</ul>
     </div>
   );
 }
 
-export default Cart;
+export default PreviewTickets;
