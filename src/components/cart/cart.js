@@ -3,6 +3,11 @@ import ticketService from "../../services/ticketService";
 import { SeatsContext } from "../../context/seatsContext";
 import "./cart.scss";
 
+//timer to be 5 min. if not purchased || tab closed -> componentwillunmount -> remove timer and send API call to unsecure tickets
+//if all removed (re - setChosen when remove tickets) and length==0 -> redirect to mainpage
+//cancel button to make same API call as in 1st step (unsecure tickets)
+//isPaid, setIsPaid -> is being set on payment page -> API call to make isTaken true
+
 function Cart() {
   const { chosen, setChosen, secured, setSecured, show, setShow } = useContext(
     SeatsContext
@@ -18,6 +23,7 @@ function Cart() {
     secured.map(ticket => {
       return (
         <li>
+          <div className="ticket">
           <h2>{ticket.seat}</h2>
           <p>{ticket.price}</p>
           <p>Show: {show.performer}</p>
@@ -27,6 +33,8 @@ function Cart() {
           <p>
             Date: {show.date}, {show.time}
           </p>
+          </div>
+          <button className="btn-remove"></button>
         </li>
       );
     });

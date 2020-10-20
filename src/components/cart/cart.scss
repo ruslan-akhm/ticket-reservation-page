@@ -1,4 +1,4 @@
-{
+@mixin flex-colu{
   display:flex;
   flex-direction:column;
 }
@@ -13,8 +13,13 @@
 }
 .ticket-box{
   
-  ul, ul li{
+  ul, li{
     margin:0;
     padding:0;
+  }
+  li{
+    width:100%;
+    display:flex;
+    justify-content:flex-start;
   }
 }
