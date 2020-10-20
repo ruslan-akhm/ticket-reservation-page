@@ -10,21 +10,25 @@ function PreviewTickets() {
 
   const secureTickets = e => {
     e.preventDefault();
-    setSecured(chosen);
+    //setSecured(chosen);
     setLoading(true);
     let seats = { seats: chosen };
     console.log(seats);
     ticketService.secure(seats).then(data => {
       console.log(data);
-      setLoading(false);
+      if(data.secured){
+        setLoading(false);
+        setSecured(chosen);
+        //redirect to cart
+      }
     });
   };
 
   let preview =
     chosen &&
-    chosen.map(ticket => {
+    chosen.map((ticket,index) => {
       return (
-        <div className="preview">
+        <div key={index} className="preview">
           <h2>Seat: {ticket.seat}</h2>
           <p>Price: ${ticket.price}</p>
         </div>

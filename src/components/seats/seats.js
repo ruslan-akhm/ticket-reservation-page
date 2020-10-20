@@ -128,7 +128,7 @@ function Seats() {
   // }
 
   const changeBox = e => {
-    console.log(e.target.checked)
+    //console.log(e.target.checked)
     if (e.target.checked == false) {
       console.log("UNCHECK");
       let filteredChosen = chosen.filter(seat => {
@@ -151,8 +151,8 @@ function Seats() {
   //   setChosen(chosenSeats && chosenSeats);
   // };
 
-  const rows = seatsData.seatsRows.map(row => {
-    return <li>row {row}</li>;
+  const rows = seatsData.seatsRows.map((row,index) => {
+    return <li key={index}>row {row}</li>;
   });
 
   const seatsLayout = seatsData.seatsRows.map((row, rowIndex) => {
