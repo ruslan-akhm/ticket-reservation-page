@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom"
 import Loading from "../loading/loading";
 import ticketService from "../../services/ticketService";
 import { SeatsContext } from "../../context/seatsContext";
@@ -7,6 +8,7 @@ import "./previewTickets.scss";
 function PreviewTickets() {
   const { chosen, setChosen, secured, setSecured } = useContext(SeatsContext);
   const [loading, setLoading] = useState(false);
+  let history = useHistory();
 
   const secureTickets = e => {
     e.preventDefault();
@@ -19,6 +21,8 @@ function PreviewTickets() {
       if(data.secured){
         setLoading(false);
         setSecured(chosen);
+        console.log(chosen);
+        history.push("/cart")
         //redirect to cart
       }
     });
