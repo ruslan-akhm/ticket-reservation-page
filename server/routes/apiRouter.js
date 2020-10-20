@@ -95,7 +95,7 @@ apiRouter.post("/secure", (req, res) => {
     newSeat.save();
   }
   res.json({
-    text: `You have secured ${seats.length} seat(s). Your reservation Id: ${ticket}`, secured:true
+    text: `You have secured ${seats.length} seat(s). Your reservation Id: ${ticket}`, secured:true, ticketId:ticket
   });
 });
 

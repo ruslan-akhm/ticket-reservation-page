@@ -12,12 +12,16 @@ function Cart() {
   const { chosen, setChosen, secured, setSecured, show, setShow } = useContext(
     SeatsContext
   );
-  //const {secured, setSecured} =
 
   useEffect(() => {
     console.log(chosen.length);
-  }, []);
-
+    if(!secured || secured.length==0){
+      //API call with ticket id "/secured???"  "/update"
+      //ALSO transfer tickets <Tickets /> into separate component from cart
+      return //so far just this
+    }
+  }, [secured]);
+  
   let tickets =
     secured &&
     secured.map(ticket => {
