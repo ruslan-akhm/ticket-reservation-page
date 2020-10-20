@@ -24,17 +24,21 @@ function Cart() {
       return (
         <li>
           <div className="ticket">
-          <h2>{ticket.seat}</h2>
-          <p>{ticket.price}</p>
-          <p>Show: {show.performer}</p>
-          <p>
-            Location: {show.stage}, {show.location}
-          </p>
-          <p>
-            Date: {show.date}, {show.time}
-          </p>
+            <p>{show.performer}</p>
+            <p>
+              {show.stage}, {show.location}
+            </p>
+            <p>
+              {show.date}, {show.time}
+            </p>
+            <h2>{ticket.seat}</h2>
+            <p>{ticket.price}</p>
           </div>
-          <button className="btn-remove"></button>
+          <div className="ticket-side">
+            <p>{show.performer}</p>
+            <h2>{ticket.seat}</h2>
+          </div>
+          <button className="btn-remove">- REMOVE</button>
         </li>
       );
     });
