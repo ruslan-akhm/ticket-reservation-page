@@ -48,8 +48,8 @@ function Cart() {
     secured.map(ticket => {
       return (
         <li>
-          <div className="ticket-wrap">
-            <div className="ticket">
+          <div className="ticket">
+            <div className="ticket-main">
               <p>{show.performer}</p>
               <p>
                 {show.stage}, {show.location}
