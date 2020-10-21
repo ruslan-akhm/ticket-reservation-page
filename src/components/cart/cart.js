@@ -72,12 +72,13 @@ function Cart() {
             >
               REMOVE
             </button>
-            
           </div>
         </li>
       );
     });
 
+  const totalCost = secured && secured.map(item=>{return parseInt(item.price)}).reduce((acc, val)=>{return acc+val})
+  
   return (
     <div id="cart">
       <Timer />
@@ -85,7 +86,7 @@ function Cart() {
         <ul>{tickets}</ul>
         {!secured || secured.length < 1 ? (
           <span>No tickets chosen...</span>
-        ) : null}
+        ) : <h3 style={{marginLeft:"85%"}}>Your total is ${totalCost}</h3>}
       </div>
     </div>
   );
