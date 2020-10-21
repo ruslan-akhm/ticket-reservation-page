@@ -86,7 +86,7 @@ function Cart() {
         <ul>{tickets}</ul>
         {!secured || secured.length < 1 ? (
           <span>No tickets chosen...</span>
-        ) : <h3 style={{marginLeft:"85%"}}>Your total is ${totalCost}</h3>}
+        ) : <h3>Your total is ${totalCost}</h3>}
       </div>
     </div>
   );
