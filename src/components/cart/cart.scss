@@ -8,6 +8,7 @@
 $ticket-height: 220px;
 $color1: #45969b;
 $shadow: 0px 0px 16px -3px rgba(0,0,0,0.75);
+$line-width:30px;
 
 #cart {
   background-color:#f8f8f8; 
@@ -55,19 +56,36 @@ $shadow: 0px 0px 16px -3px rgba(0,0,0,0.75);
   justify-content:center;
   align-items:center;
   box-shadow:$shadow;
+  border:2px solid black;
+  position:relative;
+  overflow:hidden;
 }
 .ticket-main{
-  border:2px solid black;
   border-right:none;
   width:450px;
   height:$ticket-height;
   padding:5px;
+  height:fit
 /*   box-shadow:$shadow; */
+  &::after{
+    content:"";
+    width:365px;
+    height:$line-width;
+    background-color:#45969b;
+    border-top:#f96d15 $line-width solid;
+    border-bottom:#50b6bb $line-width solid;
+    opacity:0.8;
+    display:block;
+    transform: rotate(110deg);
+    position:absolute;
+    top:50%;
+    right:-15px;
+  }
 }
 .ticket-side{
   width:$ticket-height;
   height:150px;
-  border:2px solid black;
+
   border-top:dashed 2px black;
   transform: rotate(270deg);
   @include flex-column;

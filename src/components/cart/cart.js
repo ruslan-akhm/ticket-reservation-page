@@ -50,7 +50,7 @@ function Cart() {
         <li>
           <div className="ticket">
             <div className="ticket-main">
-              <p>{show.performer}</p>
+              <h2>{show.performer}</h2>
               <p>
                 {show.stage}, {show.location}
               </p>
