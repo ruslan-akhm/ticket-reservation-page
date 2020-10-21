@@ -95,19 +95,24 @@ apiRouter.post("/secure", (req, res) => {
     newSeat.save();
   }
   res.json({
-    text: `You have secured ${seats.length} seat(s). Your reservation Id: ${ticket}`, secured:true, ticketId:ticket
+    text: `You have secured ${seats.length} seat(s). Your reservation Id: ${ticket}`,
+    secured: true,
+    ticketId: ticket
   });
 });
 
-apiRouter.post("/unsecure", (req,res)=>{
+apiRouter.post("/unsecure", (req, res) => {
+  console.log(req.body);
   const seat = req.body.ticket;
-  Seat.remove({seatId:seat},(err,item)=>{
-    if(err) return console.log(err)
-    if(!item) res.json({message:"Secure was not found", error:true})//if "remove" btn clicked after timer ran off
-    else{
-      res.json({message:"Seat was removed", error:false})
+  console.log(seat, typeof seat);
+  Seat.remove({ seatId: seat }, (err, item) => {
+    if (err) return console.log(err);
+    if (!item) res.json({ message: "Secure was not found", error: true });
+    //if "remove" btn clicked after timer ran off
+    else {
+      res.json({ message: "Seat was removed", error: false });
     }
-  })
-})
+  });
+});
 
 module.exports = apiRouter;
