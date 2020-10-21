@@ -12,6 +12,10 @@ function Cart() {
   const { chosen, setChosen, secured, setSecured, show, setShow } = useContext(
     SeatsContext
   );
+  
+  useEffect(()=>{
+    console.log(chosen)
+  },[])
 
   useEffect(() => {
     console.log(chosen.length);
