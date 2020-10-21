@@ -15,11 +15,11 @@ export default {
       .then(res => res.json())
       .then(data => data);
   },
-  unSecure: ticket => {
-    console.log(ticket, typeof ticket);
+  unSecure: seat => {
+    //console.log(ticket, typeof ticket);
     return fetch("/api/unsecure", {
       method: "POST",
-      body: ticket,
+      body: JSON.stringify(seat),
       headers: {
         "Content-Type": "application/json"
       }

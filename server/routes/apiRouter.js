@@ -105,7 +105,7 @@ apiRouter.post("/unsecure", (req, res) => {
   console.log(req.body);
   const seat = req.body.ticket;
   console.log(seat, typeof seat);
-  Seat.remove({ seatId: seat }, (err, item) => {
+  Seat.deleteOne({ seatId: seat }, (err, item) => {
     if (err) return console.log(err);
     if (!item) res.json({ message: "Secure was not found", error: true });
     //if "remove" btn clicked after timer ran off
