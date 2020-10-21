@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import ticketService from "../../services/ticketService";
 import Seats from "../seats/seats";
-import Cart from "../cart/cart";
-//import Checker from './components/checker'
-//import Message from './components/message'
 import { SeatsContext } from "../../context/seatsContext";
 import "./mainpage.scss";
 
@@ -36,8 +33,6 @@ function Mainpage() {
         <h1>STAGE/SCREEN</h1>
       </div>
       <Seats />
-     {/* <Cart /> */}
-      
     </div>
   );
 }

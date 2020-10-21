@@ -12,20 +12,26 @@ function Cart() {
   const { chosen, setChosen, secured, setSecured, show, setShow } = useContext(
     SeatsContext
   );
-  
-  useEffect(()=>{
-    console.log(chosen)
-  },[])
 
   useEffect(() => {
     console.log(chosen.length);
-    if(!secured || secured.length==0){
-      //API call with ticket id "/secured???"  "/update"
-      //ALSO transfer tickets <Tickets /> into separate component from cart
-      return //so far just this
+     console.log(secured)
+    if (!secured || secured.length == 0) {
+      console.log("NO SECURED - REFERSH HAPPENED")
+      setSecured(JSON.parse(localStorage.getItem("tickets")))
+      return; 
     }
   }, [secured]);
   
+  const removeTicket = (ticket)=>{
+    console.log(ticket);
+    let filteredTickets = secured.filter(seat=>{
+      return seat.seat!=ticket
+    })
+    setSecured(filteredTickets)
+   
+  }
+
   let tickets =
     secured &&
     secured.map(ticket => {
@@ -46,7 +52,7 @@ function Cart() {
             <p>{show.performer}</p>
             <h2>{ticket.seat}</h2>
           </div>
-          <button className="btn-remove">- REMOVE</button>
+          <button className="btn-remove" onClick={e=>removeTicket(ticket.seat)}>- REMOVE</button>
         </li>
       );
     });
