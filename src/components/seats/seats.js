@@ -168,6 +168,7 @@ function Seats() {
             value={row + "" + num}
             data-price={rowIndex > 1 ? (rowIndex > 6 ? "150" : "250") : "500"}
             onChange={changeBox}
+            {chosen.includes()?}
           />
           {num}
         </label>

@@ -14,23 +14,20 @@ function Cart() {
   );
 
   useEffect(() => {
-    console.log(chosen.length);
-     console.log(secured)
     if (!secured || secured.length == 0) {
-      console.log("NO SECURED - REFERSH HAPPENED")
-      setSecured(JSON.parse(localStorage.getItem("tickets")))
-      return; 
+      setSecured(JSON.parse(localStorage.getItem("tickets")));
+      return;
     }
-  }, [secured]);
-  
-  const removeTicket = (ticket)=>{
-    console.log(ticket);
-    let filteredTickets = secured.filter(seat=>{
-      return seat.seat!=ticket
-    })
-    setSecured(filteredTickets)
-   
-  }
+  }, []);
+
+  const removeTicket = ticket => {
+    let filteredTickets = secured.filter(seat => {
+      return seat.seat != ticket;
+    });
+    setSecured(filteredTickets);
+    setChosen(filteredTickets);
+    localStorage.setItem("tickets", JSON.stringify(filteredTickets));
+  };
 
   let tickets =
     secured &&
@@ -52,7 +49,12 @@ function Cart() {
             <p>{show.performer}</p>
             <h2>{ticket.seat}</h2>
           </div>
-          <button className="btn-remove" onClick={e=>removeTicket(ticket.seat)}>- REMOVE</button>
+          <button
+            className="btn-remove"
+            onClick={e => removeTicket(ticket.seat)}
+          >
+            REMOVE
+          </button>
         </li>
       );
     });
@@ -62,6 +64,9 @@ function Cart() {
       <div id="timer"></div>
       <div className="ticket-box">
         <ul>{tickets}</ul>
+        {!secured || secured.length < 1 ? (
+          <span>No tickets chosen...</span>
+        ) : null}
       </div>
     </div>
   );
