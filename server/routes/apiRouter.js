@@ -101,7 +101,13 @@ apiRouter.post("/secure", (req, res) => {
 
 apiRouter.post("/unsecure", (req,res)=>{
   const seat = req.body.ticket;
-  Seat.find
+  Seat.remove({seatId:seat},(err,item)=>{
+    if(err) return console.log(err)
+    if(!item) res.json({message:"Secure was not found", error:true})//if "remove" btn clicked after timer ran off
+    else{
+      res.json({message:"Seat was removed", error:false})
+    }
+  })
 })
 
 module.exports = apiRouter;

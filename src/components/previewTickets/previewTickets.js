@@ -12,8 +12,12 @@ function PreviewTickets() {
 
   const secureTickets = e => {
     e.preventDefault();
-    //setSecured(chosen);
     setLoading(true);
+    let allSeats = document.getElementsByClassName("check-box");
+    for (let m = 0; m < allSeats.length; m++) {
+      //seats[m].checked = false;
+      chosen.some(x=>x.seat==allSeats[m].id)?allSeats[m].check=t
+    }
     let seats = { seats: chosen };
     console.log(seats);
     ticketService.secure(seats).then(data => {
