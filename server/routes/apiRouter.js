@@ -6,7 +6,7 @@ const apiRouter = express.Router();
 //Render seats page according to database
 apiRouter.get("/", (req, res) => {
   var seatsArray = [];
-  Seat.find({ isTaken: true }, (err, data) => {
+  Seat.find({ isSecured: true }, (err, data) => {
     //isSecured true!!!!!!!!!!!!!!!!!!!!!!!!!!
     if (err) return console.log(err);
     for (let i = 0; i < data.length; i++) {
@@ -98,5 +98,10 @@ apiRouter.post("/secure", (req, res) => {
     text: `You have secured ${seats.length} seat(s). Your reservation Id: ${ticket}`, secured:true, ticketId:ticket
   });
 });
+
+apiRouter.post("/unsecure", (req,res)=>{
+  const seat = req.body.ticket;
+  Seat.find
+})
 
 module.exports = apiRouter;

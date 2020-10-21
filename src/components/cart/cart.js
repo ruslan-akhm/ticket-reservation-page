@@ -3,10 +3,11 @@ import ticketService from "../../services/ticketService";
 import { SeatsContext } from "../../context/seatsContext";
 import "./cart.scss";
 
-//timer to be 5 min. if not purchased || tab closed -> componentwillunmount -> remove timer and send API call to unsecure tickets
+//timer to be 5 min. if not purchased || tab closed -> componentwillunmount -> remove timer and send API call to unsecure tickets!
 //if all removed (re - setChosen when remove tickets) and length==0 -> redirect to mainpage
 //cancel button to make same API call as in 1st step (unsecure tickets)
 //isPaid, setIsPaid -> is being set on payment page -> API call to make isTaken true
+//
 
 function Cart() {
   const { chosen, setChosen, secured, setSecured, show, setShow } = useContext(
@@ -24,6 +25,9 @@ function Cart() {
     let filteredTickets = secured.filter(seat => {
       return seat.seat != ticket;
     });
+    ticketService.unSecure(ticket).then(data=>{
+      
+    })
     setSecured(filteredTickets);
     setChosen(filteredTickets);
     localStorage.setItem("tickets", JSON.stringify(filteredTickets));
