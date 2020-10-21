@@ -65,13 +65,14 @@ function Cart() {
             </div>
           </div>
           <div className="remove">
+            <h2>${ticket.price}</h2>
             <button
               className="btn-remove"
               onClick={e => removeTicket(ticket.seat)}
             >
               REMOVE
             </button>
-            <p>${ticket.price}</p>
+            
           </div>
         </li>
       );
