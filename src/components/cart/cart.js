@@ -58,10 +58,10 @@ function Cart() {
                 {show.date}, {show.time}
               </p>
               <h2>{ticket.seat}</h2>
-              <p>{ticket.price}</p>
+              <p>${ticket.price}</p>
             </div>
             <div className="ticket-side">
-              <p>{show.performer}</p>
+              <h2>{show.performer}</h2>
               <h2>{ticket.seat}</h2>
             </div>
           </div>
