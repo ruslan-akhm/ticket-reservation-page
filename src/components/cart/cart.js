@@ -57,20 +57,22 @@ function Cart() {
               <p>
                 {show.date}, {show.time}
               </p>
-              <h2>{ticket.seat}</h2>
-              <p>${ticket.price}</p>
+              <h1>SEAT: {ticket.seat}</h1>
             </div>
             <div className="ticket-side">
               <h2>{show.performer}</h2>
-              <h2>{ticket.seat}</h2>
+              <h1>{ticket.seat}</h1>
             </div>
           </div>
-          <button
-            className="btn-remove"
-            onClick={e => removeTicket(ticket.seat)}
-          >
-            REMOVE
-          </button>
+          <div className="remove">
+            <button
+              className="btn-remove"
+              onClick={e => removeTicket(ticket.seat)}
+            >
+              REMOVE
+            </button>
+            <p>${ticket.price}</p>
+          </div>
         </li>
       );
     });
