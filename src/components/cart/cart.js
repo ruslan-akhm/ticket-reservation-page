@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import Timer from "../timer/timer";
 import ticketService from "../../services/ticketService";
 import { SeatsContext } from "../../context/seatsContext";
 import "./cart.scss";
@@ -47,20 +48,22 @@ function Cart() {
     secured.map(ticket => {
       return (
         <li>
-          <div className="ticket">
-            <p>{show.performer}</p>
-            <p>
-              {show.stage}, {show.location}
-            </p>
-            <p>
-              {show.date}, {show.time}
-            </p>
-            <h2>{ticket.seat}</h2>
-            <p>{ticket.price}</p>
-          </div>
-          <div className="ticket-side">
-            <p>{show.performer}</p>
-            <h2>{ticket.seat}</h2>
+          <div className="ticket-wrap">
+            <div className="ticket">
+              <p>{show.performer}</p>
+              <p>
+                {show.stage}, {show.location}
+              </p>
+              <p>
+                {show.date}, {show.time}
+              </p>
+              <h2>{ticket.seat}</h2>
+              <p>{ticket.price}</p>
+            </div>
+            <div className="ticket-side">
+              <p>{show.performer}</p>
+              <h2>{ticket.seat}</h2>
+            </div>
           </div>
           <button
             className="btn-remove"

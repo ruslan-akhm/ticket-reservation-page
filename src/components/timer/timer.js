@@ -8,7 +8,7 @@ function Timer(){
   //const {show, setShow} = useContext(SeatsContext);
   
   return(
-  <div id="timer"></div>
+  <div id="timer"><h1>Timer 05:00</h1></div>
   )
 }
 
