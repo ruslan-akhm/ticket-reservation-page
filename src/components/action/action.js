@@ -4,12 +4,23 @@ import { SeatsContext } from "../../context/seatsContext";
 import "./action.scss";
 
 function Action() {
-  //const {show, setShow} = useContext(SeatsContext);
+ const { chosen, setChosen, secured, setSecured, show, setShow } = useContext(
+    SeatsContext
+  );
 
+  const cancel = () =>{
+    //api call to remove th
+    //remove everything from chosen, secured, localstorage
+  }
+  
+  const proceed=()=>{
+    
+  }
+  
   return (
-    <div>
-      <button>Cancel</button>
-      <button>Purchase</button>
+    <div id="action-btns">
+      <button onClick={cancel}>&#8592; Cancel</button>
+      <button onClick={proceed}>Purchase &#8594;</button>
     </div>
   );
 }
