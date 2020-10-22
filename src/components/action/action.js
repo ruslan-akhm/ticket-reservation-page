@@ -9,12 +9,15 @@ function Action() {
   );
 
   const cancel = () =>{
-    //api call to remove th
+    //api call to remove these tickets from isSecured
+    //when data received back : 
     //remove everything from chosen, secured, localstorage
+    //history.push("/")  
   }
   
   const proceed=()=>{
-    
+    //basically can use <a> - 
+    //href user to "/purchase"
   }
   
   return (
