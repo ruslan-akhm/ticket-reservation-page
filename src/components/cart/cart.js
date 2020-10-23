@@ -84,6 +84,7 @@ function Cart() {
     <div id="cart">
       <Timer />
       <div className="ticket-box">
+        <h1>Verify your tickets</h1>
         <ul>{tickets}</ul>
         {!secured || secured.length < 1 ? (
           <span>No tickets chosen...</span>

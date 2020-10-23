@@ -46,7 +46,7 @@ function PreviewTickets() {
       return (
         <div key={index} className="preview">
           <h2>Seat: {ticket.seat}</h2>
-          <p>Price: ${ticket.price}</p>
+          <h5>Price: ${ticket.price}</h5>
         </div>
       );
     });

@@ -35,14 +35,14 @@ $btn-color:#f96d15;
 .preview{
   border:2px solid $text-color;
   margin:5px;
-  p, h2{
+  h2,h5{
     color:$text-color;
     width:fit-content;
   }
   h2{
     margin:10px 0 0 10px;
   }
-  p{
+  h5{
     margin:0 15px 15px auto;
   }
   

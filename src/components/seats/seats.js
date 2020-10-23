@@ -154,13 +154,13 @@ function Seats() {
   const rows = seatsData.seatsRows.map((row,index) => {
     return <li key={index}>row {row}</li>;
   });
-
+//{/*<label for={row + "" + num} key={row + "" + num} className="seat-label">*/}
+//{/*{num}</label>*/}
   const seatsLayout = seatsData.seatsRows.map((row, rowIndex) => {
     return seatsData.seatsNums.map((num, numIndex) => {
       return (
-        <label for={row + "" + num} key={row + "" + num} className="seat-label">
           <input
-            className={(rowIndex > 1 ? (rowIndex > 6 ? "check-price3" : "check-price2") : "check-price1")+" check-box"}
+            className="check-box"
             id={row + "" + num}
             key={row + "" + num}
             type="checkbox"
@@ -169,8 +169,6 @@ function Seats() {
             data-price={rowIndex > 1 ? (rowIndex > 6 ? "150" : "250") : "500"}
             onChange={changeBox}
           />
-          {num}
-        </label>
       );
     });
   });

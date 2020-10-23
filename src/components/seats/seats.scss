@@ -10,12 +10,13 @@ $price3:#2802bf;
 }
 
 #seats-box{
+  margin-top:60px;
   display:grid;
   grid-template-columns:16vw 65vw 16vw;
   grid-column-gap:1vw;
 }
 #rows{
-  margin-top:30px;
+/*   margin-top:30px; */
   display:flex;
   justify-content:flex-end;
   ul {
@@ -36,13 +37,14 @@ $price3:#2802bf;
   }
 }
 #seats{
+/*   margin-top:30px; */
   display:grid;
   grid-template-rows: $set-rows;
   grid-template-columns: repeat(20, auto [col-start]);
   grid-row-gap:10px;
 }
 #show{
-  margin-top:20px;
+/*   margin-top:20px; */
 }
 .check-box{
   align-self:center;
@@ -58,12 +60,18 @@ $price3:#2802bf;
   cursor:pointer;
   outline:none;
   -webkit-appearance: none;
+  &:hover {
+    border-color:green;
+  }
+  &:checked {
+    background-color:green;
+  }
+  &:disabled {
+    background-color:gray;
+    pointer-events:none;
+  }
 }
-.check-box:disabled{
-  background-color:gray;
-  pointer-events:none;
-}
-.check-price1:hover{
+/* .check-price1:hover{
   border-color:$price1;
 }
 .check-price2:hover{
@@ -71,7 +79,7 @@ $price3:#2802bf;
 }
 .check-price3:hover{
   border-color:$price3;
-}
+} */
 .seat-label{
   font-size:14px;
   margin-left:0px;
