@@ -1,6 +1,9 @@
 $set-rows: repeat(8, 35px [row-start]);
 $seats-width:900px;
-$sides-width: calc((100%-$seats-width)/2);;
+$sides-width: calc((100%-$seats-width)/2);
+$price1:#d60f00;
+$price2:#00c965;
+$price3:#2802bf;
 
 *{
   box-sizing:border-box;
@@ -8,9 +11,11 @@ $sides-width: calc((100%-$seats-width)/2);;
 
 #seats-box{
   display:grid;
-  grid-template-columns:17vw 65vw 17vw;
+  grid-template-columns:16vw 65vw 16vw;
+  grid-column-gap:1vw;
 }
 #rows{
+  margin-top:30px;
   display:flex;
   justify-content:flex-end;
   ul {
@@ -20,7 +25,10 @@ $sides-width: calc((100%-$seats-width)/2);;
     padding:0 10px 0 10px;
     display:grid;
     grid-template-rows: $set-rows;
+    grid-row-gap:10px;
     li{
+      
+      align-self:center;
       list-style-type:none;
       font-size:18px;
       font-weight:600;
@@ -32,18 +40,40 @@ $sides-width: calc((100%-$seats-width)/2);;
   display:grid;
   grid-template-rows: $set-rows;
   grid-template-columns: repeat(20, auto [col-start]);
-  grid
+  grid-row-gap:10px;
+}
+#show{
+  margin-top:20px;
 }
 .check-box{
-/*   position:relative;
+  position:relative;
   left:-11px;
-  top:34px; */
-  background-color:red;
+  top:29px;
+  background-color:transparent;
   width:30px;
   height:30px;
-  border-bottom:1px ridge green;
+  border:2px solid gray;
   border-radius:5px;
   cursor:pointer;
   outline:none;
   -webkit-appearance: none;
+}
+.check-box:disabled{
+  background-color:gray;
+}
+.check-price1:hover{
+  border-color:$price1;
+}
+.check-price2:hover{
+  border-color:$price2;
+}
+.check-price3:hover{
+  border-color:$price3;
+}
+.seat-label{
+  font-size:14px;
+  margin-left:0px;
+  width:25px;
+  height:24px;
+  font-weight:bold;
 }
