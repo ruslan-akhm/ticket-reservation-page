@@ -84,20 +84,20 @@ apiRouter.post("/secure", (req, res) => {
   const seats = req.body.seats;
   const ticket = shortid.generate();
   //check if any of the chosen seats were secured in the meanwhile;
-  for (let i = 0; i < seats.length; i++) {
-    Seat.find({ seatId: seats[i].seat }, (err, seat) => {
-      if (err) return console.log(err);
-      if (seat) {
-        console.log("taken already")
-        return res.json({
-          message:
-            "We are sorry. Seats you've chosen are already taken. Please choose another seats",
-          error: true
-        });
-      }
-      //return
-    });
-  }
+  // for (let i = 0; i < seats.length; i++) {
+  //   Seat.find({ seatId: seats[i].seat }, (err, seat) => {
+  //     if (err) return console.log(err);
+  //     if (seat) {
+  //       console.log("taken already")
+  //       return res.json({
+  //         message:
+  //           "We are sorry. Seats you've chosen are already taken. Please choose another seats",
+  //         error: true
+  //       });
+  //     }
+  //     
+  //   });
+  // }
   for (let j = 0; j < seats.length; j++) {
     let newSeat = new Seat({
       seatId: seats[j].seat,
