@@ -1,5 +1,5 @@
-$text-color:white;
-$btn-color:green;
+$text-color:#50b6bb;
+$btn-color:#f96d15;
 
 .preview-box{
   border:2px solid #50b6bb;
@@ -13,18 +13,28 @@ $btn-color:green;
     padding:0;
   }
   a{
-    width:60px;
-    height:25px;
+    width:100px;
+    height:35px;
     margin:20px auto;
     text-align:center;
     border:$btn-color 2px solid;
     text-decoration:none;
     color:$btn-color;
+    font-size:18px;
+    font-weight:600;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    &:hover{
+      background-color:$btn-color;
+      color:white;
+    }
   }
 }
 
 .preview{
   border:2px solid $text-color;
+  margin:5px;
   p, h2{
     color:$text-color;
     width:fit-content;

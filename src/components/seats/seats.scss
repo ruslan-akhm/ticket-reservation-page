@@ -1,4 +1,4 @@
-$set-rows: repeat(16, 35px [row-start]);
+$set-rows: repeat(8, 35px [row-start]);
 $sides-width: calc((100%-1000px)/2);;
 
 *{
@@ -17,14 +17,17 @@ $sides-width: calc((100%-1000px)/2);;
   display:flex;
   justify-content:flex-end;
   ul {
-    height:100%;
-    background-color:#50b6bb;
+    height:fit-content;
+    background-color:#45969b;
     margin:0 20px 0 0;
-    padding:0;
+    padding:0 10px 0 10px;
     display:grid;
     grid-template-rows: $set-rows;
     li{
       list-style-type:none;
+      font-size:18px;
+      font-weight:600;
+      color:white;
     }
   }
 }
@@ -35,10 +38,9 @@ $sides-width: calc((100%-1000px)/2);;
   grid-template-columns: repeat(20, auto [col-start]);
 }
 #show{
-  border:2px solid white;
-  min-width:150px;
+ min-width:150px;
   width: $sides-width;
 }
 .check-box{
-  
+  border:1px solid red;
 }
