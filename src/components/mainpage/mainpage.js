@@ -30,7 +30,7 @@ function Mainpage() {
   return (
     <div id="page">
       <div id="stage">
-        <h2>STAGE/SCREEN</h2>
+        <h2>STAGE</h2>
       </div>
       <Seats />
     </div>

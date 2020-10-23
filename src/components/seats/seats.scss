@@ -11,7 +11,7 @@ $price3:#2802bf;
 
 #seats-box{
 /*   height:fit-content; */
-   border:2px solid blue;
+/*    border:2px solid blue; */
   margin-top:60px;
   display:grid;
   width:100%;
@@ -20,7 +20,7 @@ $price3:#2802bf;
   grid-column-gap:1vw;
 }
 #rows{
-  border:2px solid red;
+/*   border:2px solid red; */
 /*   margin-top:30px; */
   display:flex;
   justify-content:flex-end;
@@ -42,7 +42,7 @@ $price3:#2802bf;
   }
 }
 #seats{
-  border:2px solid red;
+/*   border:2px solid red; */
 /*   margin-top:30px; */
   display:grid;
   grid-template-rows: $set-rows;
@@ -50,8 +50,9 @@ $price3:#2802bf;
   grid-row-gap:10px;
 }
 #show{
-  border:2px solid red;
+/*   border:2px solid red; */
 /*   margin-top:20px; */
+  padding:10px;
 }
 .check-box{
   align-self:center;
