@@ -7,20 +7,12 @@ $sides-width: calc((100%-$seats-width)/2);;
 }
 
 #seats-box{
-/*   display:flex;
-  justify-content:space-evenly;
-  width:100%;
-  min-width:1200px;
-  margin-top:30px; */
   display:grid;
-  grid-template-columns:250px minmax(900px, 1fr) 250px;
+  grid-template-columns:17vw 65vw 17vw;
 }
 #rows{
-/*   min-width:200px; */
-/*   width: $sides-width; */
   display:flex;
   justify-content:flex-end;
-  margin-left:100px;
   ul {
     height:fit-content;
     background-color:#45969b;
@@ -37,16 +29,21 @@ $sides-width: calc((100%-$seats-width)/2);;
   }
 }
 #seats{
-  min-width:$seats-width;
   display:grid;
   grid-template-rows: $set-rows;
   grid-template-columns: repeat(20, auto [col-start]);
-}
-#show{
-  width:100%;
-  margin-right:20px;
-/*   width: $sides-width; */
+  grid
 }
 .check-box{
-  border:1px solid red;
+/*   position:relative;
+  left:-11px;
+  top:34px; */
+  background-color:red;
+  width:30px;
+  height:30px;
+  border-bottom:1px ridge green;
+  border-radius:5px;
+  cursor:pointer;
+  outline:none;
+  -webkit-appearance: none;
 }

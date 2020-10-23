@@ -160,7 +160,7 @@ function Seats() {
       return (
         <label for={row + "" + num} key={row + "" + num} className="seat-label">
           <input
-            className={"check-box "+ rowIndex > 1 ? (rowIndex > 6 ? "check-price3" : "check-price2") : "check-price1"}
+            className={(rowIndex > 1 ? (rowIndex > 6 ? "check-price3" : "check-price2") : "check-price1")+" check-box"}
             id={row + "" + num}
             key={row + "" + num}
             type="checkbox"
