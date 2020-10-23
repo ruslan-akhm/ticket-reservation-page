@@ -4,8 +4,7 @@
 body{
   margin:0;
   background-color:red;
-/*   min-width:1400px; */
-  width:100vw;
+  width:100%;
 }
 /* header{
   margin:0;

@@ -17,12 +17,18 @@ $line-width:30px;
   min-height:100vh;
   width:100%;
   @include flex-column;
+  border:2px solid red;
 }
 
 .ticket-box {
-  margin-top:50px;
+  margin-top:20px;
   width:100%;
   padding:40px;
+  h1 {
+    width:fit-content;
+    margin:30px 0 50px 30px;
+    padding:0;
+  }
   ul, li {
     padding:0;
     margin:0;
@@ -46,10 +52,12 @@ $line-width:30px;
     display:flex;
     justify-content:space-between;
     align-items:center;
+    flex-wrap:wrap;
   }
   span {
    margin-left:45%;
   }
+  
 }
 .ticket{
   display:flex;
