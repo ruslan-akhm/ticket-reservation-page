@@ -1,21 +1,26 @@
 $set-rows: repeat(8, 35px [row-start]);
-$sides-width: calc((100%-1000px)/2);;
+$seats-width:900px;
+$sides-width: calc((100%-$seats-width)/2);;
 
 *{
   box-sizing:border-box;
 }
 
 #seats-box{
-  display:flex;
+/*   display:flex;
   justify-content:space-evenly;
   width:100%;
-  margin-top:30px;
+  min-width:1200px;
+  margin-top:30px; */
+  display:grid;
+  grid-template-columns:250px minmax(900px, 1fr) 250px;
 }
 #rows{
-  min-width:150px;
-  width: $sides-width;
+/*   min-width:200px; */
+/*   width: $sides-width; */
   display:flex;
   justify-content:flex-end;
+  margin-left:100px;
   ul {
     height:fit-content;
     background-color:#45969b;
@@ -32,14 +37,15 @@ $sides-width: calc((100%-1000px)/2);;
   }
 }
 #seats{
-  min-width:1000px;
+  min-width:$seats-width;
   display:grid;
   grid-template-rows: $set-rows;
   grid-template-columns: repeat(20, auto [col-start]);
 }
 #show{
- min-width:150px;
-  width: $sides-width;
+  width:100%;
+  margin-right:20px;
+/*   width: $sides-width; */
 }
 .check-box{
   border:1px solid red;
