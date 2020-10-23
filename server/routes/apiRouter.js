@@ -83,14 +83,20 @@ apiRouter.post("/reserve", (req, res) => {
 apiRouter.post("/secure", (req, res) => {
   const seats = req.body.seats;
   const ticket = shortid.generate();
+  let newSeat;
   console.log(req.body);
   for (let i = 0; i < seats.length; i++) {
-    let newSeat = new Seat({
-      seatId: seats[i].seat,
-      ticketId: ticket,
-      isSecured: true,
-      isTaken: false,
-      price: seats[i].price
+    Seat.find({ seatId: seats[i] }, (err, seat) => {
+      if (err) return console.log(err);
+      if (!seat) {
+        newSeat = new Seat({
+          seatId: seats[i].seat,
+          ticketId: ticket,
+          isSecured: true,
+          isTaken: false,
+          price: seats[i].price
+        });
+      } else return res.json({ message: "We are sorry. Seats you've chosen are already taken. Please choose another seats", error:true });
     });
     newSeat.save();
   }

@@ -25,6 +25,9 @@ function PreviewTickets() {
     console.log(seats);
     ticketService.secure(seats).then(data => {
       console.log(data);
+      if(data.error){
+        
+      }
       if(data.secured){
         setLoading(false);
         setSecured(chosen);
