@@ -1,4 +1,4 @@
-$set-rows: repeat(8, 35px [row-start]);
+$set-rows: repeat(16, 30px [row-start]);
 $seats-width:900px;
 $sides-width: calc((100%-$seats-width)/2);
 $price1:#d60f00;
@@ -27,7 +27,6 @@ $price3:#2802bf;
     grid-template-rows: $set-rows;
     grid-row-gap:10px;
     li{
-      
       align-self:center;
       list-style-type:none;
       font-size:18px;
@@ -46,9 +45,11 @@ $price3:#2802bf;
   margin-top:20px;
 }
 .check-box{
-  position:relative;
-  left:-11px;
-  top:29px;
+  align-self:center;
+      
+/*   position:relative; */
+/*   left:-11px;
+  top:29px; */
   background-color:transparent;
   width:30px;
   height:30px;
@@ -60,6 +61,7 @@ $price3:#2802bf;
 }
 .check-box:disabled{
   background-color:gray;
+  pointer-events:none;
 }
 .check-price1:hover{
   border-color:$price1;
@@ -74,6 +76,6 @@ $price3:#2802bf;
   font-size:14px;
   margin-left:0px;
   width:25px;
-  height:24px;
+  height:22px;
   font-weight:bold;
 }
