@@ -6,6 +6,9 @@ function Loading(props) {
   useEffect(() => {
     if (props.isLoading) {
       document.getElementById("loading-modal").style.display = "flex";
+      if(props.message){
+        console.log(props.message)
+      }
     } else {
       document.getElementById("loading-modal").style.display = "none";
     }
