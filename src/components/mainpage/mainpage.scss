@@ -11,11 +11,10 @@
   background-color:#45969b;
   margin:30px auto;
   border-radius:10px;
-  font-family: 'Spartan', sans-serif;
-  
-  text-align:center;
-/*   padding:15px 0; */
-  h1 {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  h2 {
     color:white;
   }
 }
