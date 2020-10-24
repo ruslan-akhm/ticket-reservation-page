@@ -10,6 +10,11 @@ function PreviewTickets() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState();
   let history = useHistory();
+  
+  useEffect(()=>{
+    document.getElementById("preview-box").scrollTop = document.getElementById("preview-box").scrollHeight || 0;
+    console.log(chosen)
+  },[chosen])
 
   const secureTickets = e => {
     e.preventDefault();
@@ -43,7 +48,6 @@ function PreviewTickets() {
   let preview =
     chosen &&
     chosen.map((ticket, index) => {
-      document.getElementById("preview-box").scrollTop = document.getElementById("preview-box").scrollHeight;
       return (
         <div key={index} className="preview">
           <h2>Seat: {ticket.seat}</h2>

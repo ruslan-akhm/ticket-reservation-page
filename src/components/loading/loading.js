@@ -17,8 +17,10 @@ function Loading(props) {
   return (
     <div id="loading-modal">
       <div id="loading-box">
+        <div id="loading-animation">
+          <div className="spinner-1"></div>
+        </div>
         <h1>We are securing your tickets...</h1>
-        
       </div>
     </div>
   );

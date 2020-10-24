@@ -100,21 +100,21 @@ apiRouter.post("/secure", (req, res) => {
   //   });
   // }
   
-//   for (let j = 0; j < seats.length; j++) {
-//     let newSeat = new Seat({
-//       seatId: seats[j].seat,
-//       ticketId: ticket,
-//       isSecured: true,
-//       isTaken: false,
-//       price: seats[j].price
-//     });
-//     newSeat.save();
-//   }
-//   res.json({
-//     text: `You have secured ${seats.length} seat(s). Your reservation Id: ${ticket}`,
-//     secured: true,
-//     ticketId: ticket
-//   });
+  for (let j = 0; j < seats.length; j++) {
+    let newSeat = new Seat({
+      seatId: seats[j].seat,
+      ticketId: ticket,
+      isSecured: true,
+      isTaken: false,
+      price: seats[j].price
+    });
+    newSeat.save();
+  }
+  res.json({
+    text: `You have secured ${seats.length} seat(s). Your reservation Id: ${ticket}`,
+    secured: true,
+    ticketId: ticket
+  });
 });
 
 apiRouter.post("/unsecure", (req, res) => {
