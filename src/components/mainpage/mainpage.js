@@ -14,10 +14,9 @@ function Mainpage() {
     updateSeats();
   },[])
   
-  // useEffect(() => {
-  //   updateSeats();
-  // }, [message]);
 
+
+  //this should probably be in seats.js
   const updateSeats = () => {
     let seats = document.getElementsByClassName("check-box");
     //prevent double reservation of the same seats if "Reserve" clicked more than once in a row

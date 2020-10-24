@@ -19,6 +19,8 @@ function Cart() {
   );
   let history = useHistory();
 
+  //if navigated back from browser - call remove ticket in componentWillUnmount
+  
   useEffect(() => {
     if (!secured || secured.length == 0) {
       setSecured(JSON.parse(localStorage.getItem("tickets")));
