@@ -16,8 +16,18 @@ export default {
       .then(data => data);
   },
   unSecure: seat => {
-    //console.log(ticket, typeof ticket);
     return fetch("/api/unsecure", {
+      method: "POST",
+      body: JSON.stringify(seat),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(data => data);
+  },
+  cancel: seat => {
+    return fetch("/api/cancel", {
       method: "POST",
       body: JSON.stringify(seat),
       headers: {

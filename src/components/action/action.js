@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-//import ticketService from "../../services/ticketService";
+import ticketService from "../../services/ticketService";
 import { SeatsContext } from "../../context/seatsContext";
 import "./action.scss";
 
@@ -9,6 +9,9 @@ function Action() {
   );
 
   const cancel = () =>{
+    ticketService.unSecure().then(data=>{
+      console.log(data);
+    })
     //api call to remove these tickets from isSecured
     //when data received back : 
     //remove everything from chosen, secured, localstorage
