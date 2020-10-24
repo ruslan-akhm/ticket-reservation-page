@@ -1,9 +1,9 @@
 $set-rows: repeat(8, 30px [row-start]);
 $seats-width:900px;
 $sides-width: calc((100%-$seats-width)/2);
-$price1:#d60f00;
+/* $price1:#d60f00;
 $price2:#00c965;
-$price3:#2802bf;
+$price3:#2802bf; */
 
 *{
   box-sizing:border-box;
@@ -26,7 +26,7 @@ $price3:#2802bf;
   justify-content:flex-end;
   ul {
     height:fit-content;
-    background-color:#45969b;
+/*     background-color:#45969b; */
     margin:0 20px 0 0;
     padding:0 10px 0 10px;
     display:grid;
@@ -37,7 +37,7 @@ $price3:#2802bf;
       list-style-type:none;
       font-size:18px;
       font-weight:600;
-      color:white;
+      color:#45969b;
     }
   }
 }
@@ -60,22 +60,24 @@ $price3:#2802bf;
 /*   position:relative; */
 /*   left:-11px;
   top:29px; */
-  background-color:transparent;
+  background-color:#50b6bb;
   width:30px;
   height:30px;
-  border:2px solid gray;
+/*   border:2px solid gray; */
   border-radius:5px;
   cursor:pointer;
   outline:none;
   -webkit-appearance: none;
   &:hover {
-    border-color:green;
+    background-color:#45969b;
   }
   &:checked {
-    background-color:green;
+    background-color:#303740;
+    
   }
   &:disabled {
-    background-color:gray;
+    background-color:transparent;
+    
     pointer-events:none;
   }
 }
