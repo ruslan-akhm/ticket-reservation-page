@@ -3,7 +3,7 @@ import React, { createContext, useState } from "react";
 export const SeatsContext = createContext();
 
 export const SeatsProvider = ({ children }) => {
-  const [message, setMessage] = useState(""); //delete later
+  //const [message, setMessage] = useState(""); //delete later
   const [show, setShow] = useState({
     performer:"Cirque Du Soleil",
     stage: "Sony Centre for the Performing Arts",
@@ -17,7 +17,7 @@ export const SeatsProvider = ({ children }) => {
 
   return (
     <div>
-      <SeatsContext.Provider value={{message, setMessage, show, setShow, chosen, setChosen, secured, setSecured, timer, setTimer}}>
+      <SeatsContext.Provider value={{ show, setShow, chosen, setChosen, secured, setSecured, timer, setTimer}}>
         {children}
       </SeatsContext.Provider>
     </div>

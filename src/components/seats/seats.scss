@@ -56,14 +56,9 @@ $price3:#2802bf; */
 }
 .check-box{
   align-self:center;
-      
-/*   position:relative; */
-/*   left:-11px;
-  top:29px; */
   background-color:#50b6bb;
   width:30px;
   height:30px;
-/*   border:2px solid gray; */
   border-radius:5px;
   cursor:pointer;
   outline:none;
@@ -73,27 +68,17 @@ $price3:#2802bf; */
   }
   &:checked {
     background-color:#303740;
-    
   }
   &:disabled {
     background-color:transparent;
-    
     pointer-events:none;
   }
 }
-/* .check-price1:hover{
-  border-color:$price1;
-}
-.check-price2:hover{
-  border-color:$price2;
-}
-.check-price3:hover{
-  border-color:$price3;
-} */
-.seat-label{
+
+/* .seat-label{
   font-size:14px;
   margin-left:0px;
   width:25px;
   height:22px;
   font-weight:bold;
-}
+} */

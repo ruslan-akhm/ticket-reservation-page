@@ -5,11 +5,14 @@ import { SeatsContext } from "../../context/seatsContext";
 import "./mainpage.scss";
 
 function Mainpage() {
-  const { message, setMessage, timer, setTimer } = useContext(SeatsContext);
+  const { chosen, setChosen, secured, setSecured, timer, setTimer } = useContext(SeatsContext);
 
   useEffect(()=>{
     setTimer(10);
-  })
+    setChosen([]);
+    setSecured();
+    updateSeats();
+  },[])
   
   // useEffect(() => {
   //   updateSeats();
