@@ -13,7 +13,6 @@ function PreviewTickets() {
   
   useEffect(()=>{
     document.getElementById("preview-box").scrollTop = document.getElementById("preview-box").scrollHeight || 0;
-    console.log(chosen)
   },[chosen])
 
   const secureTickets = e => {
