@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import Poster from "../poster/poster";
 import PreviewTickets from "../previewTickets/previewTickets";
-import ticketService from "../../services/ticketService";
+//import ticketService from "../../services/ticketService";
 import { SeatsContext } from "../../context/seatsContext";
 import seatsData from "../../data/seatsData";
 import "./seats.scss";

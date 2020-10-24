@@ -9,7 +9,7 @@ function Poster(){
   
   return(
   <div className="show-box">
-      <p>Show: {show.performer}</p>
+      <p><span>Show: </span>{show.performer}</p>
       <p>Location: {show.stage}, {show.location}</p>
       <p>Date: {show.date}, {show.time}</p>
   </div>
