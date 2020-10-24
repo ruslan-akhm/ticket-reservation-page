@@ -1,30 +1,37 @@
 import React, { useState, useContext, useEffect } from "react";
+
 //import ticketService from "../../services/ticketService";
 import { SeatsContext } from "../../context/seatsContext";
 import "./timer.scss";
 
-function Timer(){
-  
-  const {timer, setTimer} = useContext(SeatsContext);
-  const [minutes, setMinutes] = useState();
-  const [seconds, setSeconds] = useState();
-  
-  useEffect(()=>{
-    console.log(timer%60);
-    setMinutes(Math.floor(timer/60));
-    setSeconds(timer%60);
-    const interval = setInterval(() => {
-    // console.log('This will run every second!');
-      setTimer(timer=>timer-1);
+function Timer() {
+  const { timer, setTimer } = useContext(SeatsContext);
+  // const [minutes, setMinutes] = useState();
+  // const [seconds, setSeconds] = useState();
+
+  useEffect(() => {
+    window.myInterval = setInterval(() => {
+      setTimer(timer => timer - 1);
     }, 1000);
-    return () => clearInterval(interval);
-  },[])//[timer] ??
-  
-  //let time;
-  
-  return(
-  <div id="timer"><h1>{minutes}, {seconds}</h1></div>
-  )
+    return () => clearInterval(window.myInterval);
+  }, []);
+
+  useEffect(() => {
+    if (timer < 1) {
+      window.clearInterval(window.myInterval);
+      console.log("API CALL HERE");
+    }
+  }, [timer]);
+
+  return (
+    <div id="timer">
+      <h2>Please, finish your purchase within given time. You will have to start over otherwise</h2>
+      <h1>
+        0{Math.floor(timer / 60)}:{timer % 60 < 10 ? "0" : null}
+        {timer % 60}
+      </h1>
+    </div>
+  );
 }
 
 export default Timer;
