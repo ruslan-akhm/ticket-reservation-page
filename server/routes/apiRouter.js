@@ -119,14 +119,17 @@ apiRouter.post("/unsecure", (req, res) => {
   console.log(req.body);
   const seat = req.body.ticket;
   console.log(seat, typeof seat);
-  Seat.deleteOne({ seatId: seat }, (err, item) => {
+  for(let i=0;i<seat.length;i++){
+  Seat.deleteOne({ seatId: seat[i] }, (err, item) => {
     if (err) return console.log(err);
     if (!item) res.json({ message: "Secure was not found", error: true });
     //if "remove" btn clicked after timer ran off
-    else {
-      res.json({ message: "Seat was removed", error: false });
-    }
+    // else {
+    //   res.json({ message: "Seats were removed", error: false });
+    // }
   });
+  }
+  res.json({ message: "Seats were removed", error: false });
 });
 
 module.exports = apiRouter;

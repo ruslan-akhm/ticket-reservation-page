@@ -30,7 +30,7 @@ function Cart() {
     let filteredTickets = secured.filter(seat => {
       return seat.seat != ticket;
     });
-    let seat = { ticket: ticket };
+    let seat = { ticket: [ticket] };
     ticketService.unSecure(seat).then(data => {
       console.log(data);
       if (!data.error) {
@@ -78,7 +78,7 @@ function Cart() {
       );
     });
 
-  const totalCost = secured && secured.map(item=>{return parseInt(item.price)}).reduce((acc, val)=>{return acc+val})
+  const totalCost = secured && (secured.map(item=>{return parseInt(item.price)}).reduce((acc, val)=>{return acc+val},0))
   
   return (
     <div id="cart">

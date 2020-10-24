@@ -9,10 +9,20 @@ function Action() {
   );
 
   const cancel = () =>{
-    ticketService.unSecure().then(data=>{
+    const allSeats = secured.map(seat=>{return seat.seat})
+    let seat = { ticket: [].concat(allSeats) };
+    ticketService.unSecure(seat).then(data=>{
       console.log(data);
+      if (!data.error) {
+        setSecured(null);
+        setChosen([]);
+        localStorage.setItem("tickets", JSON.stringify(null));
+        if (!filteredTickets || filteredTickets.length < 1) {
+          history.push("/");
+        }
+      }
     })
-    //api call to remove these tickets from isSecured
+    //api call to remove these tickets from isSecured +
     //when data received back : 
     //remove everything from chosen, secured, localstorage
     //history.push("/")  
