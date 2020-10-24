@@ -143,6 +143,7 @@ function Seats() {
         price: e.target.dataset.price
       };
       setChosen(chosen.concat(seat));
+      
     }
   };
 

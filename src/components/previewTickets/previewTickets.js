@@ -43,6 +43,7 @@ function PreviewTickets() {
   let preview =
     chosen &&
     chosen.map((ticket, index) => {
+      document.getElementById("preview-box").scrollTop = document.getElementById("preview-box").scrollHeight;
       return (
         <div key={index} className="preview">
           <h2>Seat: {ticket.seat}</h2>
@@ -52,7 +53,7 @@ function PreviewTickets() {
     });
 
   return (
-    <div className="preview-box">
+    <div id="preview-box">
       <ul>{preview}</ul>
       {chosen.length > 0 ? (
         <a href="" onClick={secureTickets}>
