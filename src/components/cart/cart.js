@@ -6,10 +6,10 @@ import ticketService from "../../services/ticketService";
 import { SeatsContext } from "../../context/seatsContext";
 import "./cart.scss";
 
-//when seat is secured - disable it
-//timer to be 5 min. if not purchased || tab closed -> componentwillunmount -> remove timer and send API call to unsecure tickets!
-//if all removed (re - setChosen when remove tickets) and length==0 -> redirect to mainpage
-//cancel button to make same API call as in 1st step (unsecure tickets)
+//when seat is secured - disable it+
+//timer to be 5 min. if not purchased || tab closed -> componentwillunmount -> remove timer and send API call to unsecure tickets!+
+//if all removed (re - setChosen when remove tickets) and length==0 -> redirect to mainpage+
+//cancel button to make same API call as in 1st step (unsecure tickets)+
 //isPaid, setIsPaid -> is being set on payment page -> API call to make isTaken true
 //
 
@@ -19,15 +19,15 @@ function Cart() {
   );
   let history = useHistory();
 
-  //if navigated back from browser - call remove ticket in componentWillUnmount
-  
   useEffect(() => {
     if (!secured || secured.length == 0) {
       setSecured(JSON.parse(localStorage.getItem("tickets")));
       return;
     }
   }, []);
-
+  
+  
+  //we want to use localstorage to save tickets if refresh of Cart page occured
   const removeTicket = ticket => {
     let filteredTickets = secured.filter(seat => {
       return seat.seat != ticket;

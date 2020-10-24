@@ -36,10 +36,8 @@ function PreviewTickets() {
         setLoading(false);
         setSecured(chosen);
         console.log(chosen);
-        //localStorage.setItem("ticketId",data.ticketId)
         localStorage.setItem("tickets", JSON.stringify(chosen));
         history.push("/cart");
-        //redirect to cart
       }
     });
   };
