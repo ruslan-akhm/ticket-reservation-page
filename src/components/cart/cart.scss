@@ -26,14 +26,12 @@ $line-width:30px;
   padding:40px;
   h1 {
     width:fit-content;
-    margin:30px 0 50px 30px;
+    margin:10px 0 50px 30px;
     padding:0;
-  }
-  ul, li {
-    padding:0;
-    margin:0;
   }
   ul {
+    padding:0;
+    margin:0 0 30px 0;
     width:100%;
     @include flex-column;
     &::after{

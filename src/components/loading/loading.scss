@@ -12,14 +12,16 @@
 #loading-box{
   width:60vw;
   height:60vh;
-  
-  background-color:white;
+  background-color:#f8f8f8;
   h1{
-    color:green;
+    color:#45969b;
+    border:1px solid red;
+    width:fit-content;
+    margin:20px auto;
   }
 }
 #loading-animation {
-  display: none;
+  display: block;
   position: relative;
   height: 80px;
   margin-bottom: 50px;

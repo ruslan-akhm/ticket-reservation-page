@@ -10,15 +10,6 @@ $height:35px;
   
 }
 #stage{
-/*   width:70vw;
-  min-width:900px;
-  height:35px;
-  background-color:#45969b;
-  margin:30px auto;
-  border-radius:10px;
-  display:flex;
-  align-items:center;
-  justify-content:center; */
   display:grid;
   width:100%;
   grid-template-columns:minmax(100px, 1fr) minmax(900px, 1fr) minmax(280px, 1fr);
