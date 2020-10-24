@@ -5,11 +5,15 @@ import { SeatsContext } from "../../context/seatsContext";
 import "./mainpage.scss";
 
 function Mainpage() {
-  const { message, setMessage } = useContext(SeatsContext);
+  const { message, setMessage, timer, setTimer } = useContext(SeatsContext);
 
-  useEffect(() => {
-    updateSeats();
-  }, [message]);
+  useEffect(()=>{
+    setTimer(10);
+  })
+  
+  // useEffect(() => {
+  //   updateSeats();
+  // }, [message]);
 
   const updateSeats = () => {
     let seats = document.getElementsByClassName("check-box");
