@@ -58,6 +58,7 @@ function App() {
   useEffect(() => {
     return () => {
       console.log("CLOSED PAGE BASICALLY");
+      localStorage.setItem("userId", JSON.stringify(null));
       //has to clear [timer] and localstorage for "timer-count"
       //clear();
     };

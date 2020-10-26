@@ -28,13 +28,14 @@ function Mainpage() {
     //   seats[m].checked = false;
     // }
     ticketService.update().then(data => {
+      
       let taken = data.seats;
       for (let j = 0; j < seats.length; j++) {
         taken.map(t => {
           return t == seats[j].value ? (seats[j].disabled = true) : null;
         });
       }
-      //if we return back 
+      //if we return back via browser "back" button - show us out seats chosen (they are still secured)
       for (let m = 0; m < seats.length; m++) {
         let includes = chosen.some(x => x.seat == seats[m].id);
         if (includes == true) {

@@ -7,12 +7,11 @@ const apiRouter = express.Router();
 apiRouter.get("/", (req, res) => {
   var seatsArray = [];
   Seat.find({ isSecured: true }, (err, data) => {
-    //isSecured true!!!!!!!!!!!!!!!!!!!!!!!!!!
     if (err) return console.log(err);
     for (let i = 0; i < data.length; i++) {
       seatsArray.push(data[i].seatId);
     }
-    return res.json({ seats: seatsArray });
+    return res.json({ seats: seatsArray, userId: shortid.generate() });
   });
 });
 
