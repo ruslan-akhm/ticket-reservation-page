@@ -31,10 +31,10 @@ function Mainpage() {
     //   seats[m].checked = false;
     // }
     ticketService.update().then(data => {
-      console.log(localStorage.getItem("userId"));
-      if (localStorage.getItem("userId") == null) {
+      console.log(sessionStorage.getItem("userId"));
+      if (sessionStorage.getItem("userId") == null) {
         console.log("GETTING ID")
-        localStorage.setItem("userId", data.userId); //set user id to manipulate their tickets
+        sessionStorage.setItem("userId", data.userId); //set user id to manipulate their tickets
       }
       let taken = data.seats;
       for (let j = 0; j < seats.length; j++) {

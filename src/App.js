@@ -58,7 +58,7 @@ function App() {
   useEffect(() => {
     return () => {
       console.log("CLOSED PAGE BASICALLY");
-      //localStorage.clear()//removeItem("userId");
+      
       //has to clear [timer] and localstorage for "timer-count"
       //clear();
     };

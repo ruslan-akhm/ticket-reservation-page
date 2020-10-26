@@ -11,7 +11,8 @@ import "./cart.scss";
 //if all removed (re - setChosen when remove tickets) and length==0 -> redirect to mainpage+
 //cancel button to make same API call as in 1st step (unsecure tickets)+
 //isPaid, setIsPaid -> is being set on payment page -> API call to make isTaken true
-//
+
+//tickets have to be unsecured if not paid and page is closed
 
 function Cart() {
   const { chosen, setChosen, secured, setSecured, show, setShow } = useContext(
@@ -20,6 +21,7 @@ function Cart() {
   let history = useHistory();
 
   useEffect(() => {
+    console.log(sessionStorage.getItem("userId"));
     if (!secured || secured.length == 0) {
       setSecured(JSON.parse(localStorage.getItem("tickets")));
       return;

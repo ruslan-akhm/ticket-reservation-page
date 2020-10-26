@@ -26,7 +26,7 @@ function PreviewTickets() {
     //     allSeats[m].checked = true;
     //   }
     // }
-    let userId = localStorage.getItem("userId")
+    let userId = sessionStorage.getItem("userId")
     let seats = { seats: chosen, userId: userId };
     console.log(seats);
     ticketService.secure(seats).then(data => {
