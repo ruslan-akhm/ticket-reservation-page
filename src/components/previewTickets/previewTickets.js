@@ -6,18 +6,20 @@ import { SeatsContext } from "../../context/seatsContext";
 import "./previewTickets.scss";
 
 function PreviewTickets() {
-  const { chosen, setChosen, secured, setSecured } = useContext(SeatsContext);
+  const { chosen, setChosen, secured, setSecured, timer, setTimer } = useContext(SeatsContext);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState();
   let history = useHistory();
-  
-  useEffect(()=>{
-    document.getElementById("preview-box").scrollTop = document.getElementById("preview-box").scrollHeight || 0;
-  },[chosen])
+
+  useEffect(() => {
+    document.getElementById("preview-box").scrollTop =
+      document.getElementById("preview-box").scrollHeight || 0;
+  }, [chosen]);
 
   const secureTickets = e => {
     e.preventDefault();
     setLoading(true);
+    setTimer(25);//sessionStorage || 25
     let allSeats = document.getElementsByClassName("check-box");
     // for (let m = 0; m < allSeats.length; m++) {
     //   let includes = chosen.some(x => x.seat == allSeats[m].id);
@@ -26,7 +28,7 @@ function PreviewTickets() {
     //     allSeats[m].checked = true;
     //   }
     // }
-    let userId = sessionStorage.getItem("userId")
+    let userId = sessionStorage.getItem("userId");
     let seats = { seats: chosen, userId: userId };
     console.log(seats);
     ticketService.secure(seats).then(data => {

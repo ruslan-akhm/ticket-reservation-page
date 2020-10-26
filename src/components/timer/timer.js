@@ -20,10 +20,10 @@ function Timer() {
   //setTimer initially - if returned to this page, then from localstorage
   //if visiting 1st time - initial value
   useEffect(() => {
-    if (secured && secured.length > 0) {
-      console.log("SOME TICKETS AND WE SET THE TIMER");
-      setTimer(parseInt(localStorage.getItem("timer-count")) || 25);
-    }
+    // if (secured && secured.length > 0) {
+    //   console.log("SOME TICKETS AND WE SET THE TIMER");
+    //   setTimer(parseInt(localStorage.getItem("timer-count")) || 25);
+    // }
     //  SO FAR THIS TO PREVENT INFINTE LOOP!!!!!!!!!!!!!!!!!!!!!!
     return()=>{
       setTimer(null)
@@ -45,9 +45,10 @@ function Timer() {
   useEffect(() => {
     // localStorage.setItem("timer-count", JSON.stringify(timer));
     if (timer < 1) {
-      localStorage.setItem("timer-count", JSON.stringify(null));
-      //clear();
-    }
+      window.clearInterval(window.myInterval);
+    //   localStorage.setItem("timer-count", JSON.stringify(null));
+    //   //clear();
+     }
   }, [timer]);
 
   useEffect(() => {
