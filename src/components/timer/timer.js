@@ -4,9 +4,7 @@ import ticketService from "../../services/ticketService";
 import { SeatsContext } from "../../context/seatsContext";
 import "./timer.scss";
 
-
 //TIMER RESETS AND STOPS ON REFRESH
-
 
 function Timer() {
   const {
@@ -18,16 +16,16 @@ function Timer() {
     setTimer
   } = useContext(SeatsContext);
   let history = useHistory();
-  
+
   //setTimer initially - if returned to this page, then from localstorage
   //if visiting 1st time - initial value
-  useEffect(()=>{
-    if(secured && secured.length>0){
-      console.log("SOME TICKETS AND WE SET THE TIMER")
-      setTimer(parseInt(localStorage.getItem("timer-count"))||25);
+  useEffect(() => {
+    if (secured && secured.length > 0) {
+      console.log("SOME TICKETS AND WE SET THE TIMER");
+      setTimer(parseInt(localStorage.getItem("timer-count")) || 25);
     }
-  },[])
-  
+  }, []);
+
   //set timer to decrease every 1000ms
   // useEffect(() => {
   //   window.myInterval = setInterval(() => {
@@ -47,13 +45,13 @@ function Timer() {
       //clear();
     }
   }, [timer]);
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     if (!secured || secured.length < 0) {
       console.log("REMOVED ALL TICKETS");
       window.clearInterval(window.myInterval);
     }
-  },[secured])
+  }, [secured]);
 
   //if timer reaches 00:00 or page is closed -> clear states and localstorage, unsecure tickets on back-end
   const clear = () => {
@@ -79,10 +77,12 @@ function Timer() {
         Please, finish your purchase within given time. You will have to start
         over otherwise
       </h3>
-      <h1>
-        0{Math.floor(timer / 60)}:{timer % 60 < 10 ? "0" : null}
-        {timer % 60}
-      </h1>
+      {secured ? (
+        <h1>
+          0{Math.floor(timer / 60)}:{timer % 60 < 10 ? "0" : null}
+          {timer % 60}
+        </h1>
+      ) : null}
     </div>
   );
 }
