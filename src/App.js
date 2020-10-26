@@ -47,17 +47,35 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { SeatsContext } from "./context/seatsContext";
+import ticketService from "./services/ticketService";
 import Mainpage from "./components/mainpage/mainpage";
 import Cart from "./components/cart/cart";
 import "./App.css";
 
 function App() {
-  const { timer, setTimer } = useContext(SeatsContext);
+  const { secured, timer, setTimer } = useContext(SeatsContext);
   const isInitialMount = useRef(true);
 
   useEffect(() => {
     return () => {
-      console.log("CLOSED PAGE BASICALLY");
+      console.log("ON CLOSE PAGE BASICALLY");
+      //unsecure tickets if were not purchased
+      if (secured && secured.length > 0) {
+        const allSeats = secured.map(seat => {
+          return seat.seat;
+        });
+        let userId = sessionStorage.getItem("userId");
+        let seat = { ticket: [].concat(allSeats), userId: userId };
+        ticketService.unSecure(seat).then(data => {
+          console.log(data);
+          //if (!data.error) {
+            //setSecured(null);
+            //setChosen([]);
+            //localStorage.setItem("tickets", JSON.stringify(null));
+            //history.push("/");
+          //}
+        });
+      }
       
       //has to clear [timer] and localstorage for "timer-count"
       //clear();
