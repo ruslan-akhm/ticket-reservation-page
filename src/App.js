@@ -87,12 +87,14 @@ function App() {
     console.log(timer)
     if (isInitialMount.current) {
       isInitialMount.current = false;
+      return
     } else {
       //sessionStorage.setItem("timer-count", JSON.stringify(timer));
       window.myInterval = setInterval(() => {
         setTimer(timer => timer - 1);
       }, 1000);
     }
+    return()=>{clearInterval(window.myInterval)}
   }, [timer]);
 
   return (

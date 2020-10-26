@@ -51,6 +51,7 @@ function Timer() {
     }
   }, [timer]);
 
+  //tie timer to secured 
   useEffect(() => {
     if (!secured || secured.length < 0) {
       console.log("REMOVED ALL TICKETS");

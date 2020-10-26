@@ -15,7 +15,7 @@ import "./cart.scss";
 //tickets have to be unsecured if not paid and page is closed
 
 function Cart() {
-  const { chosen, setChosen, secured, setSecured, show, setShow } = useContext(
+  const { chosen, setChosen, secured, setSecured, show, setShow, timer, setTimer } = useContext(
     SeatsContext
   );
   let history = useHistory();
@@ -42,6 +42,7 @@ function Cart() {
         setChosen(filteredTickets);
         localStorage.setItem("tickets", JSON.stringify(filteredTickets));
         if (!filteredTickets || filteredTickets.length < 1) {
+          setSecured(null);
           history.push("/");
         }
       }
