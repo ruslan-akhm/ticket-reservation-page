@@ -24,6 +24,10 @@ function Timer() {
       console.log("SOME TICKETS AND WE SET THE TIMER");
       setTimer(parseInt(localStorage.getItem("timer-count")) || 25);
     }
+    //  SO FAR THIS TO PREVENT INFINTE LOOP!!!!!!!!!!!!!!!!!!!!!!
+    return()=>{
+      setTimer(null)
+    }
   }, []);
 
   //set timer to decrease every 1000ms

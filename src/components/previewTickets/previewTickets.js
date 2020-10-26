@@ -23,7 +23,7 @@ function PreviewTickets() {
       let includes = chosen.some(x => x.seat == allSeats[m].id);
       if (includes == true) {
         console.log(allSeats[m]);
-        allSeats[m].check = true;
+        allSeats[m].checked = true;
       }
     }
     let seats = { seats: chosen };
