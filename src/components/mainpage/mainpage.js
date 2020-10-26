@@ -19,7 +19,9 @@ function Mainpage() {
     // setSecured();
     updateSeats();
     return()=>{
-      localStorage.clear()
+      //localStorage.clear()
+      //RESET SECURED HERE 
+      //TRY WITH CONSOLING ON BACK END FIRST
     }
   }, []);
 

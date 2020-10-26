@@ -20,10 +20,12 @@ function Cart() {
   );
   let history = useHistory();
 
-  //if refresh page
+  
+  //if refresh page - reset states from sessionstorage
   useEffect(() => {
     if (!secured || secured.length == 0) {
       setSecured(JSON.parse(sessionStorage.getItem("tickets")));
+      setChosen(JSON.parse(sessionStorage.getItem("tickets")))
     }
     if(!timer){
       setTimer(JSON.parse(sessionStorage.getItem("timer")))
