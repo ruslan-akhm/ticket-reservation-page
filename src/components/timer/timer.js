@@ -25,9 +25,9 @@ function Timer() {
     //   setTimer(parseInt(localStorage.getItem("timer-count")) || 25);
     // }
     //  SO FAR THIS TO PREVENT INFINTE LOOP!!!!!!!!!!!!!!!!!!!!!!
-    return()=>{
-      setTimer(null)
-    }
+    // return () => {
+    //   setTimer(null);
+    // };
   }, []);
 
   //set timer to decrease every 1000ms
@@ -43,12 +43,12 @@ function Timer() {
   // }, []);
 
   useEffect(() => {
-    // localStorage.setItem("timer-count", JSON.stringify(timer));
+    // sessionStorage.setItem("timer-count", JSON.stringify(timer));
     if (timer < 1) {
-      window.clearInterval(window.myInterval);
-    //   localStorage.setItem("timer-count", JSON.stringify(null));
-    //   //clear();
-     }
+      //window.clearInterval(window.myInterval);
+      //   sessionStorage.setItem("timer-count", JSON.stringify(null));
+      clear();
+    }
   }, [timer]);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ function Timer() {
   //if timer reaches 00:00 or page is closed -> clear states and localstorage, unsecure tickets on back-end
   const clear = () => {
     window.clearInterval(window.myInterval);
-    const allSeats = secured.map(seat => {
+    const allSeats = secured && secured.map(seat => {
       return seat.seat;
     });
     let seat = { ticket: [].concat(allSeats) };
@@ -69,8 +69,8 @@ function Timer() {
       if (!data.error) {
         setSecured(null);
         setChosen([]);
-        localStorage.setItem("tickets", JSON.stringify(null));
-        //localStorage.setItem("timer-count", JSON.stringify(null));
+        localStorage.setItem("tickets", "");
+        //sessionStorage.setItem("timer-count", JSON.stringify(null));
         history.push("/");
       }
     });

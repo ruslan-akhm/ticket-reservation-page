@@ -84,10 +84,11 @@ function App() {
 
   //not trigger interval on initial mount
   useEffect(() => {
+    console.log(timer)
     if (isInitialMount.current) {
       isInitialMount.current = false;
     } else {
-      localStorage.setItem("timer-count", JSON.stringify(timer));
+      //sessionStorage.setItem("timer-count", JSON.stringify(timer));
       window.myInterval = setInterval(() => {
         setTimer(timer => timer - 1);
       }, 1000);
