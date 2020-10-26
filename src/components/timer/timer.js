@@ -27,15 +27,12 @@ function Timer() {
   
   //set timer to decrease every 1000ms
   useEffect(() => {
-    if (!secured || secured.length < 0) {
-      window.clearInterval(window.myInterval);
-      return;
-    }
     window.myInterval = setInterval(() => {
       console.log(timer);
       setTimer(timer => timer - 1);
     }, 1000);
     return () => {
+      console.log("CLOSED PAGE BASICALLY")
       clear();
     };
   }, []);
@@ -47,6 +44,13 @@ function Timer() {
       clear();
     }
   }, [timer]);
+  
+  useEffect(()=>{
+    if (!secured || secured.length < 0) {
+      console.log("REMOVED ALL TICKETS");
+      window.clearInterval(window.myInterval);
+    }
+  },[secured])
 
   //if timer reaches 00:00 or page is closed -> clear states and localstorage, unsecure tickets on back-end
   const clear = () => {
