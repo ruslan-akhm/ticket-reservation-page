@@ -28,7 +28,11 @@ function Mainpage() {
     //   seats[m].checked = false;
     // }
     ticketService.update().then(data => {
-      localStorage.setItem("userId", JSON.stringify(data.userId));//set user id to manipulate their tickets
+      console.log(localStorage.getItem("userId"));
+      if (localStorage.getItem("userId") == null) {
+        console.log("GETTING ID")
+        localStorage.setItem("userId", data.userId); //set user id to manipulate their tickets
+      }
       let taken = data.seats;
       for (let j = 0; j < seats.length; j++) {
         taken.map(t => {

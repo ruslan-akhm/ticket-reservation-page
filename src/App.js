@@ -58,23 +58,23 @@ function App() {
   useEffect(() => {
     return () => {
       console.log("CLOSED PAGE BASICALLY");
-      localStorage.setItem("userId", JSON.stringify(null));
+      localStorage.setItem("userId", null);
       //has to clear [timer] and localstorage for "timer-count"
       //clear();
     };
   }, []);
 
   //not trigger interval on initial mount
-  useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-    } else {
-      localStorage.setItem("timer-count", JSON.stringify(timer));
-      window.myInterval = setInterval(() => {
-        setTimer(timer => timer - 1);
-      }, 1000);
-    }
-  }, [timer]);
+  // useEffect(() => {
+  //   if (isInitialMount.current) {
+  //     isInitialMount.current = false;
+  //   } else {
+  //     localStorage.setItem("timer-count", JSON.stringify(timer));
+  //     window.myInterval = setInterval(() => {
+  //       setTimer(timer => timer - 1);
+  //     }, 1000);
+  //   }
+  // }, [timer]);
 
   return (
     <Router>
