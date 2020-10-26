@@ -17,7 +17,8 @@ function Action() {
     const allSeats = secured.map(seat => {
       return seat.seat;
     });
-    let seat = { ticket: [].concat(allSeats) };
+    let userId = localStorage.getItem("userId")
+    let seat = { ticket: [].concat(allSeats), userId: userId };
     ticketService.unSecure(seat).then(data => {
       console.log(data);
       if (!data.error) {

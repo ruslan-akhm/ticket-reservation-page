@@ -125,7 +125,9 @@ apiRouter.post("/secure", (req, res) => {
 apiRouter.post("/unsecure", (req, res) => {
   console.log(req.body);
   const seat = req.body.ticket;
-  console.log(seat, typeof seat);
+  const userId = req.body.userId;
+  
+  //unsecure by seat and not userId for the purpose of deleting particular tickets and not necesseraly all
   for (let i = 0; i < seat.length; i++) {
     Seat.deleteOne({ seatId: seat[i] }, (err, item) => {
       if (err) return console.log(err);
