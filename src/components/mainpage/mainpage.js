@@ -18,6 +18,9 @@ function Mainpage() {
     // setChosen([]);
     // setSecured();
     updateSeats();
+    return()=>{
+      localStorage.clear()
+    }
   }, []);
 
   //this should probably be in seats.js
