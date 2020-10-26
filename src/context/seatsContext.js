@@ -13,7 +13,7 @@ export const SeatsProvider = ({ children }) => {
   })
   const [chosen, setChosen] = useState([]);//seats chosen an seatmap
   const [secured, setSecured] = useState();//seats secured when user proceeds to cart and payment
-  const [timer, setTimer] = useState(10);
+  const [timer, setTimer] = useState();
 
   return (
     <div>

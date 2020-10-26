@@ -37,7 +37,7 @@
 //       </div>
 //       <Seats />
 //       <Cart />
-      
+
 //     </div>
 //   );
 // }
@@ -46,17 +46,34 @@
 
 import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { SeatsContext } from "/context/seatsContext";
 import Mainpage from "./components/mainpage/mainpage";
 import Cart from "./components/cart/cart";
 import "./App.css";
 
-function App(){
+function App() {
+  
+  const { timer, setTimer } = useContext(SeatsContext);
+
+  useEffect(() => {
+    localStorage.setItem("timer-count", JSON.stringify(timer));
+    window.myInterval = setInterval(() => {
+      setTimer(timer => timer - 1);
+    }, 1000);
+    
+    return () => {
+      console.log("CLOSED PAGE BASICALLY");
+      //has to clear [timer] and localstorage for "timer-count"
+      //clear();
+    };
+  }, [timer]);
+
   return (
     <Router>
       <Switch>
         <Route path="/" exact component={Mainpage} />
         <Route path="/cart" exact component={Cart} />
-      {/*  <Route path="*" exact component={PageNotFound} /> */}
+        {/*  <Route path="*" exact component={PageNotFound} /> */}
       </Switch>
     </Router>
   );

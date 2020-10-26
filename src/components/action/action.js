@@ -5,7 +5,7 @@ import { SeatsContext } from "../../context/seatsContext";
 import "./action.scss";
 
 function Action() {
-  const { chosen, setChosen, secured, setSecured, show, setShow } = useContext(
+  const { chosen, setChosen, secured, setSecured, show, setShow, timer, setTimer } = useContext(
     SeatsContext
   );
   let history = useHistory();

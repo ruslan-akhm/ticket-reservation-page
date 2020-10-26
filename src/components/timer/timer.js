@@ -22,26 +22,29 @@ function Timer() {
   //setTimer initially - if returned to this page, then from localstorage
   //if visiting 1st time - initial value
   useEffect(()=>{
-    setTimer(parseInt(localStorage.getItem("timer-count"))||25);
+    if(secured && secured.length>0){
+      console.log("SOME TICKETS AND WE SET THE TIMER")
+      setTimer(parseInt(localStorage.getItem("timer-count"))||25);
+    }
   },[])
   
   //set timer to decrease every 1000ms
-  useEffect(() => {
-    window.myInterval = setInterval(() => {
-      console.log(timer);
-      setTimer(timer => timer - 1);
-    }, 1000);
-    return () => {
-      console.log("CLOSED PAGE BASICALLY")
-      clear();
-    };
-  }, []);
+  // useEffect(() => {
+  //   window.myInterval = setInterval(() => {
+  //     console.log(timer);
+  //     setTimer(timer => timer - 1);
+  //   }, 1000);
+  //   return () => {
+  //     console.log("CLOSED PAGE BASICALLY")
+  //     clear();
+  //   };
+  // }, []);
 
   useEffect(() => {
-    localStorage.setItem("timer-count", JSON.stringify(timer));
+    // localStorage.setItem("timer-count", JSON.stringify(timer));
     if (timer < 1) {
       localStorage.setItem("timer-count", JSON.stringify(null));
-      clear();
+      //clear();
     }
   }, [timer]);
   
