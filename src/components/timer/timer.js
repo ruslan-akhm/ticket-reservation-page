@@ -26,15 +26,15 @@ function Timer() {
 
   useEffect(() => {
    
-    if (timer < 1) {
+//     if (timer < 1) {
  
-      clear();
-    }
+//       clear();
+//     }
   }, [timer]);
 
   //tie timer to secured 
   useEffect(() => {
-    if (!secured || secured.length < 0) {
+    if ((!secured || secured.length < 0) && sessionStorage.getItem("tickets")==null) {
       console.log("REMOVED ALL TICKETS");
       window.clearInterval(window.myInterval);
     }

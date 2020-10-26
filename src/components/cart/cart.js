@@ -20,16 +20,17 @@ function Cart() {
   );
   let history = useHistory();
 
+  //if refresh page
   useEffect(() => {
-    console.log(localStorage.getItem("tickets"));
     if (!secured || secured.length == 0) {
-      setSecured(JSON.parse(localStorage.getItem("tickets")));
-      return;
+      setSecured(JSON.parse(sessionStorage.getItem("tickets")));
+    }
+    if(!timer){
+      setTimer(JSON.parse(sessionStorage.getItem("timer")))
     }
   }, []);
   
   
-  //we want to use localstorage to save tickets if refresh of Cart page occured
   const removeTicket = ticket => {
     let filteredTickets = secured.filter(seat => {
       return seat.seat != ticket;
@@ -40,7 +41,7 @@ function Cart() {
       if (!data.error) {
         setSecured(filteredTickets);
         setChosen(filteredTickets);
-        localStorage.setItem("tickets", JSON.stringify(filteredTickets));
+        sessionStorage.setItem("tickets", JSON.stringify(filteredTickets));
         if (!filteredTickets || filteredTickets.length < 1) {
           setSecured(null);
           history.push("/");

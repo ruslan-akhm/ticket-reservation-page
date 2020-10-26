@@ -19,7 +19,7 @@ function PreviewTickets() {
   const secureTickets = e => {
     e.preventDefault();
     setLoading(true);
-    setTimer(25);
+    setTimer(300);
     let allSeats = document.getElementsByClassName("check-box");
     let userId = sessionStorage.getItem("userId");
     let seats = { seats: chosen, userId: userId };
@@ -29,7 +29,9 @@ function PreviewTickets() {
       if (data.secured) {
         setLoading(false);
         setSecured(chosen);
-        localStorage.setItem("tickets", JSON.stringify(chosen));//sessionstor?
+        console.log(chosen)
+        sessionStorage.setItem("tickets", JSON.stringify(chosen));//sessionstor?
+        console.log(sessionStorage.getItem("tickets"))
         history.push("/cart");
       }
     });
