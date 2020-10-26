@@ -81,28 +81,34 @@ apiRouter.post("/reserve", (req, res) => {
 
 apiRouter.post("/secure", (req, res) => {
   const seats = req.body.seats;
-  const ticket = shortid.generate();
-  
+  const userId = req.body.userId;
+
   //check if any of the chosen seats were secured in the meanwhile;
-//   for (let i = 0; i < seats.length; i++) {
-//     Seat.find({ seatId: seats[i].seat }, (err, seat) => {
-//       if (err) return console.log(err);
-//       if (seat) {
-//         console.log("taken already")
-//         return res.json({
-//           message:
-//             "We are sorry. Seats you've chosen are already taken. Please choose another seats",
-//           error: true
-//         });
-//       }
-      
-//     });
-//   }
-  
+  //   for (let i = 0; i < seats.length; i++) {
+  //     Seat.find({ seatId: seats[i].seat }, (err, seat) => {
+  //       if (err) return console.log(err);
+  //       if (seat) {
+  //         console.log("taken already")
+  //         return res.json({
+  //           message:
+  //             "We are sorry. Seats you've chosen are already taken. Please choose another seats",
+  //           error: true
+  //         });
+  //       }
+
+  //     });
+  //   }
+
+  //delete all previously secured tickets for the user, if any
+  Seat.deleteMany({ userId: userId }, (err, item) => {
+    if (err) return console.log(err);
+  });
+
+  //save new seats for user
   for (let j = 0; j < seats.length; j++) {
     let newSeat = new Seat({
       seatId: seats[j].seat,
-      ticketId: ticket,
+      userId: userId,
       isSecured: true,
       isTaken: false,
       price: seats[j].price
@@ -110,9 +116,9 @@ apiRouter.post("/secure", (req, res) => {
     newSeat.save();
   }
   res.json({
-    text: `You have secured ${seats.length} seat(s). Your reservation Id: ${ticket}`,
+    text: `You have secured ${seats.length} seat(s). Your reservation Id: ${userId}`,
     secured: true,
-    ticketId: ticket
+    userId: userId
   });
 });
 
@@ -120,15 +126,15 @@ apiRouter.post("/unsecure", (req, res) => {
   console.log(req.body);
   const seat = req.body.ticket;
   console.log(seat, typeof seat);
-  for(let i=0;i<seat.length;i++){
-  Seat.deleteOne({ seatId: seat[i] }, (err, item) => {
-    if (err) return console.log(err);
-    if (!item) res.json({ message: "Secure was not found", error: true });
-    //if "remove" btn clicked after timer ran off
-    // else {
-    //   res.json({ message: "Seats were removed", error: false });
-    // }
-  });
+  for (let i = 0; i < seat.length; i++) {
+    Seat.deleteOne({ seatId: seat[i] }, (err, item) => {
+      if (err) return console.log(err);
+      if (!item) res.json({ message: "Secure was not found", error: true });
+      //if "remove" btn clicked after timer ran off
+      // else {
+      //   res.json({ message: "Seats were removed", error: false });
+      // }
+    });
   }
   res.json({ message: "Seats were removed", error: false });
 });

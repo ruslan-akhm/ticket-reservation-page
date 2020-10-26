@@ -19,14 +19,15 @@ function PreviewTickets() {
     e.preventDefault();
     setLoading(true);
     let allSeats = document.getElementsByClassName("check-box");
-    for (let m = 0; m < allSeats.length; m++) {
-      let includes = chosen.some(x => x.seat == allSeats[m].id);
-      if (includes == true) {
-        console.log(allSeats[m]);
-        allSeats[m].checked = true;
-      }
-    }
-    let seats = { seats: chosen };
+    // for (let m = 0; m < allSeats.length; m++) {
+    //   let includes = chosen.some(x => x.seat == allSeats[m].id);
+    //   if (includes == true) {
+    //     console.log(allSeats[m]);
+    //     allSeats[m].checked = true;
+    //   }
+    // }
+    let userId = localStorage.getItem("userId")
+    let seats = { seats: chosen, userId: userId };
     console.log(seats);
     ticketService.secure(seats).then(data => {
       console.log(data);

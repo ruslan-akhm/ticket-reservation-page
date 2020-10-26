@@ -6,7 +6,7 @@ var seatSchema = new Schema({
   seatId:String,
   isTaken:Boolean,
   isSecured:Boolean,
-  ticketId:String,
+  userId:String,
   price:String
 })
 
