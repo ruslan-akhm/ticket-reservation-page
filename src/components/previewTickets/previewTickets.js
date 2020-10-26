@@ -19,27 +19,17 @@ function PreviewTickets() {
   const secureTickets = e => {
     e.preventDefault();
     setLoading(true);
-    setTimer(25);//sessionStorage || 25
+    setTimer(25);
     let allSeats = document.getElementsByClassName("check-box");
-    // for (let m = 0; m < allSeats.length; m++) {
-    //   let includes = chosen.some(x => x.seat == allSeats[m].id);
-    //   if (includes == true) {
-    //     console.log(allSeats[m]);
-    //     allSeats[m].checked = true;
-    //   }
-    // }
     let userId = sessionStorage.getItem("userId");
     let seats = { seats: chosen, userId: userId };
-    console.log(seats);
     ticketService.secure(seats).then(data => {
-      console.log(data);
       if (data.error) {
       }
       if (data.secured) {
         setLoading(false);
         setSecured(chosen);
-        console.log(chosen);
-        localStorage.setItem("tickets", JSON.stringify(chosen));
+        localStorage.setItem("tickets", JSON.stringify(chosen));//sessionstor?
         history.push("/cart");
       }
     });

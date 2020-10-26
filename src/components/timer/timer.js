@@ -20,33 +20,14 @@ function Timer() {
   //setTimer initially - if returned to this page, then from localstorage
   //if visiting 1st time - initial value
   useEffect(() => {
-    // if (secured && secured.length > 0) {
-    //   console.log("SOME TICKETS AND WE SET THE TIMER");
-    //   setTimer(parseInt(localStorage.getItem("timer-count")) || 25);
-    // }
-    //  SO FAR THIS TO PREVENT INFINTE LOOP!!!!!!!!!!!!!!!!!!!!!!
-    // return () => {
-    //   setTimer(null);
-    // };
+    
   }, []);
 
-  //set timer to decrease every 1000ms
-  // useEffect(() => {
-  //   window.myInterval = setInterval(() => {
-  //     console.log(timer);
-  //     setTimer(timer => timer - 1);
-  //   }, 1000);
-  //   return () => {
-  //     console.log("CLOSED PAGE BASICALLY")
-  //     clear();
-  //   };
-  // }, []);
 
   useEffect(() => {
-    // sessionStorage.setItem("timer-count", JSON.stringify(timer));
+   
     if (timer < 1) {
-      //window.clearInterval(window.myInterval);
-      //   sessionStorage.setItem("timer-count", JSON.stringify(null));
+ 
       clear();
     }
   }, [timer]);

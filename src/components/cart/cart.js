@@ -21,7 +21,7 @@ function Cart() {
   let history = useHistory();
 
   useEffect(() => {
-    console.log(sessionStorage.getItem("userId"));
+    console.log(localStorage.getItem("tickets"));
     if (!secured || secured.length == 0) {
       setSecured(JSON.parse(localStorage.getItem("tickets")));
       return;
