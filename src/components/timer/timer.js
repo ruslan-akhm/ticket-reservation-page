@@ -19,6 +19,12 @@ function Timer() {
   } = useContext(SeatsContext);
   let history = useHistory();
   
+  //setTimer initially - if returned to this page, then from localstorage
+  //if visiting 1st time - initial value
+  useEffect(()=>{
+    setTimer(parseInt(localStorage.getItem("timer-count"))||25);
+  },[])
+  
   //set timer to decrease every 1000ms
   useEffect(() => {
     if (!secured || secured.length < 0) {
@@ -26,6 +32,7 @@ function Timer() {
       return;
     }
     window.myInterval = setInterval(() => {
+      console.log(timer);
       setTimer(timer => timer - 1);
     }, 1000);
     return () => {
@@ -34,7 +41,9 @@ function Timer() {
   }, []);
 
   useEffect(() => {
+    localStorage.setItem("timer-count", JSON.stringify(timer));
     if (timer < 1) {
+      localStorage.setItem("timer-count", JSON.stringify(null));
       clear();
     }
   }, [timer]);
@@ -51,6 +60,7 @@ function Timer() {
         setSecured(null);
         setChosen([]);
         localStorage.setItem("tickets", JSON.stringify(null));
+        //localStorage.setItem("timer-count", JSON.stringify(null));
         history.push("/");
       }
     });
