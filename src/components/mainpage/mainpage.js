@@ -8,21 +8,17 @@ function Mainpage() {
   const { chosen, setChosen, secured, setSecured, timer, setTimer } = useContext(SeatsContext);
 
   useEffect(()=>{
-    setTimer(10);
-    setChosen([]);
-    setSecured();
+    // setChosen([]);
+    // setSecured();
     updateSeats();
   },[])
   
-
-
   //this should probably be in seats.js
   const updateSeats = () => {
     let seats = document.getElementsByClassName("check-box");
-    //prevent double reservation of the same seats if "Reserve" clicked more than once in a row
-    for (let m = 0; m < seats.length; m++) {
-      seats[m].checked = false;
-    }
+    // for (let m = 0; m < seats.length; m++) {
+    //   seats[m].checked = false;
+    // }
     ticketService.update().then(data => {
       let taken = data.seats;
       for (let j = 0; j < seats.length; j++) {

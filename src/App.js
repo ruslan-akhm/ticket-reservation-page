@@ -44,7 +44,7 @@
 
 // export default App;
 
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { SeatsContext } from "./context/seatsContext";
 import Mainpage from "./components/mainpage/mainpage";
@@ -52,24 +52,27 @@ import Cart from "./components/cart/cart";
 import "./App.css";
 
 function App() {
-  
   const { timer, setTimer } = useContext(SeatsContext);
-  
-  useEffect(()=>{
+  const isInitialMount = useRef(true);
+
+  useEffect(() => {
     return () => {
       console.log("CLOSED PAGE BASICALLY");
       //has to clear [timer] and localstorage for "timer-count"
       //clear();
     };
-  },[])
+  }, []);
 
+  //not trigger interval on initial mount
   useEffect(() => {
-    console.log("SHOULD ONLY TURN ON WHEN TIMER IS SET")
-    localStorage.setItem("timer-count", JSON.stringify(timer));
-    window.myInterval = setInterval(() => {
-      setTimer(timer => timer - 1);
-    }, 1000);
-    
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      localStorage.setItem("timer-count", JSON.stringify(timer));
+      window.myInterval = setInterval(() => {
+        setTimer(timer => timer - 1);
+      }, 1000);
+    }
   }, [timer]);
 
   return (
