@@ -11,6 +11,7 @@ function PreviewTickets() {
   const [message, setMessage] = useState();
   let history = useHistory();
 
+  //auto scroll down when choosing multiple tickets 
   useEffect(() => {
     document.getElementById("preview-box").scrollTop =
       document.getElementById("preview-box").scrollHeight || 0;
@@ -25,13 +26,17 @@ function PreviewTickets() {
     let seats = { seats: chosen, userId: userId };
     ticketService.secure(seats).then(data => {
       if (data.error) {
+        //if tickets chosen were secured by smb else in the meanwhile
+        //alert message
+        //setChosen([]);
+        //force refresh
       }
       if (data.secured) {
         setLoading(false);
         setSecured(chosen);
-        console.log(chosen)
+        //console.log(chosen)
         sessionStorage.setItem("tickets", JSON.stringify(chosen));//sessionstor?
-        console.log(sessionStorage.getItem("tickets"))
+        //console.log(sessionStorage.getItem("tickets"))
         history.push("/cart");
       }
     });
