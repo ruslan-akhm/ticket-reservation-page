@@ -46,7 +46,7 @@ function Mainpage() {
       }
       //if we return back via browser "back" button - show us our seats chosen (they are still secured)
       for (let m = 0; m < seats.length; m++) {
-        let includes = chosen.some(x => x.seat == seats[m].id);
+        let includes = chosen && chosen.some(x => x.seat == seats[m].id);
         if (includes == true) {
           console.log(seats[m]);
           seats[m].disabled = false;

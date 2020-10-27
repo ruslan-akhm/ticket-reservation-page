@@ -56,7 +56,7 @@ function PreviewTickets() {
   return (
     <div id="preview-box">
       <ul>{preview}</ul>
-      {chosen.length > 0 ? (
+      {chosen && chosen.length > 0 ? (
         <a href="" onClick={secureTickets}>
           Next
         </a>

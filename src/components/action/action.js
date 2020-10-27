@@ -24,7 +24,8 @@ function Action() {
       if (!data.error) {
         setSecured(null);
         setChosen([]);
-        localStorage.setItem("tickets", JSON.stringify(null));
+        sessionStorage.removeItem("timer")
+        sessionStorage.removeItem("tickets")//, JSON.stringify(null));
         history.push("/");
       }
     });

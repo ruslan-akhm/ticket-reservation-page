@@ -46,6 +46,9 @@ function Cart() {
         sessionStorage.setItem("tickets", JSON.stringify(filteredTickets));
         if (!filteredTickets || filteredTickets.length < 1) {
           setSecured(null);
+          setTimer(0);
+          sessionStorage.removeItem("tickets");
+          sessionStorage.removeItem("timer");
           history.push("/");
         }
       }
