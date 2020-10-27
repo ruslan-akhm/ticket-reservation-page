@@ -101,7 +101,7 @@ function Cart() {
           <span>No tickets chosen...</span>
         ) : <h1>Your total is ${totalCost}</h1>}
       </div>
-      <Action />
+      {!secured || secured.length < 1 ? null : <Action />}
     </div>
   );
 }
