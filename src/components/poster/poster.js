@@ -13,11 +13,11 @@ function Poster() {
       </div>
       <div className="show-description">
         <p>{show.performer}</p>
-        <p>{" "}
-          {show.stage}, {show.location}
+        <p>
+          &nbsp;{show.stage}, {show.location}
         </p>
         <p>
-          {show.date}, {show.time}
+          &nbsp;{show.date}, {show.time}
         </p>
       </div>
     </div>

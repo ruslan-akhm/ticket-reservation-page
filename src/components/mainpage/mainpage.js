@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import ticketService from "../../services/ticketService";
 import Poster from "../poster/poster";
 import Seats from "../seats/seats";
+import PreviewTickets from "../previewTickets/previewTickets";
 import { SeatsContext } from "../../context/seatsContext";
 import "./mainpage.scss";
 
@@ -19,11 +20,11 @@ function Mainpage() {
     // setChosen([]);
     // setSecured();
     updateSeats();
-    return()=>{
+    return () => {
       //localStorage.clear()
-      //RESET SECURED HERE 
+      //RESET SECURED HERE
       //TRY WITH CONSOLING ON BACK END FIRST
-    }
+    };
   }, []);
 
   //this should probably be in seats.js
@@ -36,7 +37,7 @@ function Mainpage() {
     ticketService.update().then(data => {
       console.log(sessionStorage.getItem("userId"));
       if (sessionStorage.getItem("userId") == null) {
-        console.log("GETTING ID")
+        console.log("GETTING ID");
         sessionStorage.setItem("userId", data.userId); //set user id to manipulate their tickets
       }
       let taken = data.seats;
@@ -59,11 +60,18 @@ function Mainpage() {
 
   return (
     <div id="page">
-      <Poster />
-      <div id="stage">
-        <h2>STAGE</h2>
+      <div id="poster">
+        <Poster />
       </div>
-      <Seats />
+      <div id="side-left">
+        <div id="stage">
+          <h2>STAGE</h2>
+        </div>
+        <Seats />
+      </div>
+      <div id="side-right">
+        <PreviewTickets />
+      </div>
     </div>
   );
 }

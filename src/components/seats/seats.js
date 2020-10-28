@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
-import Poster from "../poster/poster";
-import PreviewTickets from "../previewTickets/previewTickets";
+//import Poster from "../poster/poster";
+//import PreviewTickets from "../previewTickets/previewTickets";
 //import ticketService from "../../services/ticketService";
 import { SeatsContext } from "../../context/seatsContext";
 import seatsData from "../../data/seatsData";
@@ -64,7 +64,7 @@ function Seats() {
       <div id="seats">{seatsLayout}</div>
       <div id="show">
         {/* <Poster /> */}
-        <PreviewTickets />
+        {/*<PreviewTickets />*/}
       </div>
     </div>
   );

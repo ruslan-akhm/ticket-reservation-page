@@ -1,15 +1,11 @@
 .show-box{
   background-color:#50b6bb;
   width:100%;
-  min-height:15vh;
+/*   min-height:15vh; */
+  height:100%;
   display:flex;
   justify-content:flex-start;
   align-items:center;
-/*   p {
-    margin:10px 5px 5px 5px;
-    color:#303740;
-    font-weight:600;
-  } */
 }
 .show-image{
   width:100px;
@@ -28,7 +24,8 @@
   p{
     line-height:20px;
     margin:10px 5px 5px 5px;
-    color:#303740;
+/*     color:#303740; */
+    color:white;
     font-weight:600;
     font-size:18px;
     &:nth-child(n+2){
