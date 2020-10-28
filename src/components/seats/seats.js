@@ -63,7 +63,7 @@ function Seats() {
       </div>
       <div id="seats">{seatsLayout}</div>
       <div id="show">
-        <Poster />
+        {/* <Poster /> */}
         <PreviewTickets />
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import ticketService from "../../services/ticketService";
+import Poster from "../poster/poster";
 import Seats from "../seats/seats";
 import { SeatsContext } from "../../context/seatsContext";
 import "./mainpage.scss";
@@ -58,6 +59,7 @@ function Mainpage() {
 
   return (
     <div id="page">
+      <Poster />
       <div id="stage">
         <h2>STAGE</h2>
       </div>
