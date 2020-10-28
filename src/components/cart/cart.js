@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Timer from "../timer/timer";
+import Summary from "../summary/summary";
 import Action from "../action/action";
 import ticketService from "../../services/ticketService";
 import { SeatsContext } from "../../context/seatsContext";
@@ -99,7 +100,7 @@ function Cart() {
         <ul>{tickets}</ul>
         {!secured || secured.length < 1 ? (
           <span>No tickets chosen...</span>
-        ) : <h1>Your total is ${totalCost}</h1>}
+        ) : <Summary caller="cart"/>}
       </div>
       {!secured || secured.length < 1 ? null : <Action />}
     </div>

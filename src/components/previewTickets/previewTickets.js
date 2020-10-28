@@ -1,17 +1,25 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Loading from "../loading/loading";
+import Summary from "../summary/summary";
 import ticketService from "../../services/ticketService";
 import { SeatsContext } from "../../context/seatsContext";
 import "./previewTickets.scss";
 
 function PreviewTickets() {
-  const { chosen, setChosen, secured, setSecured, timer, setTimer } = useContext(SeatsContext);
+  const {
+    chosen,
+    setChosen,
+    secured,
+    setSecured,
+    timer,
+    setTimer
+  } = useContext(SeatsContext);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState();
   let history = useHistory();
 
-  //auto scroll down when choosing multiple tickets 
+  //auto scroll down when choosing multiple tickets
   useEffect(() => {
     document.getElementById("preview-box").scrollTop =
       document.getElementById("preview-box").scrollHeight || 0;
@@ -35,7 +43,7 @@ function PreviewTickets() {
         setLoading(false);
         setSecured(chosen);
         //console.log(chosen)
-        sessionStorage.setItem("tickets", JSON.stringify(chosen));//sessionstor?
+        sessionStorage.setItem("tickets", JSON.stringify(chosen)); //sessionstor?
         //console.log(sessionStorage.getItem("tickets"))
         history.push("/cart");
       }
@@ -48,9 +56,16 @@ function PreviewTickets() {
       return (
         <div key={index} className="preview">
           <h2>Seat: {ticket.seat}</h2>
-          <h4>{parseInt(ticket.price)>150?(parseInt(ticket.price)>250?"VIP":"Standard"):"Sale"} ticket</h4>
+          <h4>
+            {parseInt(ticket.price) > 150
+              ? parseInt(ticket.price) > 250
+                ? "VIP"
+                : "Standard"
+              : "Sale"}{" "}
+            Ticket
+          </h4>
           <h5>Price: ${ticket.price}</h5>
-          <span> + HST and service fees</span>
+          <span> + service fees, including taxes</span>
         </div>
       );
     });
@@ -59,9 +74,12 @@ function PreviewTickets() {
     <div id="preview-box">
       <ul>{preview}</ul>
       {chosen && chosen.length > 0 ? (
-        <a href="" onClick={secureTickets}>
-          Next
-        </a>
+        <>
+          <Summary caller="preview"/>
+          <a href="" onClick={secureTickets}>
+            Next
+          </a>
+        </>
       ) : null}
       <Loading isLoading={loading} message={message} />
     </div>
