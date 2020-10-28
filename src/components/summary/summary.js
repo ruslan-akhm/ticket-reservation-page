@@ -11,11 +11,12 @@ function Summary(props) {
     setStyles(props.caller)
   },[props])
   
-  const totalCost = chosen.map(ticket=>parseInt(ticket.price)).reduce((acc,val)=>acc+val) 
+  const totalCost = chosen && chosen.map(ticket=>parseInt(ticket.price)).reduce((acc,val)=>{return acc+val},0) 
 
   return (
     <div id="summary" className={"summary-"+styles}>
-      <p>{}</p>
+      <p>Tickets: ${totalCost}, plus Service Fee: $10</p>
+      <p>Your Subtotal: ${totalCost+10}</p>
     </div>
   );
 }

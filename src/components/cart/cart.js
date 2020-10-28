@@ -90,7 +90,7 @@ function Cart() {
       );
     });
 
-  const totalCost = secured && (secured.map(item=>{return parseInt(item.price)}).reduce((acc, val)=>{return acc+val},0))
+  //const totalCost = secured && (secured.map(item=>{return parseInt(item.price)}).reduce((acc, val)=>{return acc+val},0))
   
   return (
     <div id="cart">
