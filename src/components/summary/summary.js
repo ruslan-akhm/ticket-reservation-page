@@ -4,14 +4,21 @@ import { SeatsContext } from "../../context/seatsContext";
 import "./summary.scss";
 
 function Summary(props) {
-  const { chosen, setChosen } = useContext(SeatsContext);
+  const { chosen, setChosen, secured, setSecured } = useContext(SeatsContext);
   const [styles, setStyles] = useState();
+  const [tickets, setTickets] = useState();
   
   useEffect(()=>{
     setStyles(props.caller)
+    if(props.caller=="preview"){
+      setTickets(chosen)
+    }
+    else if(props.caller=="cart"){
+      setTickets(secured)
+    }
   },[props])
   
-  const totalCost = chosen && chosen.map(ticket=>parseInt(ticket.price)).reduce((acc,val)=>{return acc+val},0) 
+  const totalCost = tickets && tickets.map(ticket=>parseInt(ticket.price)).reduce((acc,val)=>{return acc+val},0) 
 
   return (
     <div id="summary" className={"summary-"+styles}>
