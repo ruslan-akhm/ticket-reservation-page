@@ -7,6 +7,7 @@ function Summary(props) {
   const { chosen, setChosen, secured, setSecured } = useContext(SeatsContext);
   const [styles, setStyles] = useState();
   const [tickets, setTickets] = useState();
+  let fee = 10;
   
   useEffect(()=>{
     setStyles(props.caller)
@@ -23,7 +24,7 @@ function Summary(props) {
   return (
     <div id="summary" className={"summary-"+styles}>
       <p>Tickets: ${totalCost}, plus Service Fee: $10</p>
-      <p>Your Subtotal: ${totalCost+10}, including taxes</p>
+      <p>Your Subtotal: ${totalCost+fee}, including taxes</p>
     </div>
   );
 }

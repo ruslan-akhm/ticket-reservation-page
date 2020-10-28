@@ -4,10 +4,8 @@ $height:35px;
   background-color:#f8f8f8; 
   height:100vh;
   display:grid;
-/*   grid-template-columns:repeat(4, minmax(300px, 1fr)); */
   grid-template-columns:repeat(4, 1fr);
   grid-template-rows: 15vh 85vh;  
-/*   min-width:1400px; */
   max-width:100vw;
 }
 #poster{
@@ -16,11 +14,7 @@ $height:35px;
 #stage{
   display:grid;
   width:100%;
-  border:1px solid red;
-/*   width:100vw; */
-/*   grid-template-columns:minmax(100px, 1fr) minmax(900px, 1fr) minmax(280px, 1fr); */
   grid-template-columns:120px 1fr 120px;
-/*   grid-column-gap:1vw; */
   h2 {
     grid-area:1/2/2/3;
     color:white;
@@ -29,31 +23,17 @@ $height:35px;
     line-height:$height;
     text-align:center;
     border-radius:10px;
-    width:100%;
+    min-width:750px;
   }
 }
 #side-left{
   overflow:auto;
-   width:100%;
+  width:100%;
   grid-area:2/1/3/4;
   
 }
 #side-right{
-/*   width:25vw; */
   grid-area:2/4/3/5;
    width:100%;
 }
 
-/* @media screen and (max-width:1400px){
-  #page{
-    grid-template-rows: 15vh 1fr 15vh;  
-  }
-  #side-left{
-    border:2px solid red;
-    grid-area:2/1/3/5;
-  }
-  #side-right{
-    border:2px solid blue;
-    grid-area:3/1/4/5;
-  }
-}  */
