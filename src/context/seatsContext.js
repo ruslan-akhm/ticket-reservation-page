@@ -14,10 +14,11 @@ export const SeatsProvider = ({ children }) => {
   const [chosen, setChosen] = useState([]);//seats chosen an seatmap
   const [secured, setSecured] = useState();//seats secured when user proceeds to cart and payment
   const [timer, setTimer] = useState(null);
+  const [total, setTotal] = useState(0);//total cost to pass into secure payment form
 
   return (
     <div>
-      <SeatsContext.Provider value={{ show, setShow, chosen, setChosen, secured, setSecured, timer, setTimer}}>
+      <SeatsContext.Provider value={{ show, setShow, chosen, setChosen, secured, setSecured, timer, setTimer, total, setTotal}}>
         {children}
       </SeatsContext.Provider>
     </div>

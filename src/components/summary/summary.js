@@ -4,9 +4,10 @@ import { SeatsContext } from "../../context/seatsContext";
 import "./summary.scss";
 
 function Summary(props) {
-  const { chosen, setChosen, secured, setSecured } = useContext(SeatsContext);
+  const { chosen, setChosen, secured, setSecured, total, setTotal } = useContext(SeatsContext);
   const [styles, setStyles] = useState();
   const [tickets, setTickets] = useState();
+  //const [total, setTotal] = useState();
   let fee = 10;
   
   useEffect(()=>{
@@ -18,6 +19,10 @@ function Summary(props) {
       setTickets(secured)
     }
   },[props])
+  
+  useEffect(()=>{
+    setTotal(totalCost && (totalCost+fee))
+  },[tickets])
   
   const totalCost = tickets && tickets.map(ticket=>parseInt(ticket.price)).reduce((acc,val)=>{return acc+val},0) 
 

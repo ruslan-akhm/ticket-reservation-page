@@ -5,7 +5,7 @@ import { SeatsContext } from "../../context/seatsContext";
 import "./action.scss";
 
 function Action() {
-  const { chosen, setChosen, secured, setSecured, show, setShow, timer, setTimer } = useContext(
+  const { chosen, setChosen, secured, setSecured, show, setShow, timer, setTimer, total, setTotal } = useContext(
     SeatsContext
   );
   let history = useHistory();
@@ -34,6 +34,7 @@ function Action() {
   const proceed = () => {
     //basically can use <a> -
     //href user to "/purchase"
+    console.log(total);
   };
 
   return (
