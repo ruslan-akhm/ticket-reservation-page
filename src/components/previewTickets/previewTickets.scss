@@ -36,22 +36,24 @@ $ticket-color:#303740;
 .preview{
   border:2px solid $ticket-color;
   margin:5px;
-  h2, h4, h5{
+  h2, h4, h5 {
     color:$ticket-color;
     width:fit-content;
   }
-  h2, h4{
+  h2, h4 {
     margin:10px 0 0 10px;
   }
-  h5{
-    margin:0 15px 15px auto;
-    span{
-      color:gray;
-      font-size:10px;
-    }
+  h5 {
+    margin:0 15px 0 auto;
   }
   h4 {
-     text-transform: uppercase;
+    text-transform: uppercase;
   }
-  
+  span {
+    color:gray;
+    font-size:10px;
+    display:block;
+    margin:0 15px 15px auto;
+    width:fit-content;
+  }
 }
