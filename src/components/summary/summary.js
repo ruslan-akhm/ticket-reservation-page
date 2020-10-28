@@ -23,7 +23,7 @@ function Summary(props) {
   return (
     <div id="summary" className={"summary-"+styles}>
       <p>Tickets: ${totalCost}, plus Service Fee: $10</p>
-      <p>Your Subtotal: ${totalCost+10}</p>
+      <p>Your Subtotal: ${totalCost+10}, including taxes</p>
     </div>
   );
 }
