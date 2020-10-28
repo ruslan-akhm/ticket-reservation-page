@@ -12,13 +12,13 @@ function Poster() {
         <img src="https://cdn.glitch.com/3eeb3b2b-1bb2-49a0-811f-d94dbc022a91%2FCircus-logo.jpg?v=1603851496387" />
       </div>
       <div className="show-description">
-        <p>{show.performer}</p>
-        <p>
-          &nbsp;{show.stage}, {show.location}
-        </p>
-        <p>
-          &nbsp;{show.date}, {show.time}
-        </p>
+        <h5>{show.performer}</h5>
+        <div className="show-details">
+          <p>&nbsp;{show.date}</p>
+          <p>&nbsp;{show.time}</p>
+          <p>&nbsp;{show.stage}</p>
+          <p>&nbsp;{show.location}</p>
+        </div>
       </div>
     </div>
   );

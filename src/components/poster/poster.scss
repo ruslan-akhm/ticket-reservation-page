@@ -1,5 +1,5 @@
 .show-box{
-  background-color:#50b6bb;
+  background-color:#303740;
   width:100%;
 /*   min-height:15vh; */
   height:100%;
@@ -20,14 +20,23 @@
 }
 .show-description{
   display:flex;
-  flex-wrap:wrap;
-  p{
+  flex-direction:column;
+  h5 {
+    color:white;
+    margin:10px 0 0 10px;
+    font-size:16px;
+  }
+  
+}
+.show-details{
+  display:flex;
+  p {
     line-height:20px;
     margin:10px 5px 5px 5px;
 /*     color:#303740; */
     color:white;
     font-weight:600;
-    font-size:18px;
+    font-size:12px;
     &:nth-child(n+2){
       &:before{
         content:"• ";
