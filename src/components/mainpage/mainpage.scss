@@ -9,7 +9,7 @@ $height:35px;
   display:grid;
   grid-template-columns:repeat(4, minmax(300px, 1fr));
   grid-template-rows: 15vh 1fr;  
-  min-width:1200px;
+  min-width:1400px;
 }
 #poster{
     grid-area:1/1/2/5;
@@ -30,10 +30,26 @@ $height:35px;
   }
 }
 #side-left{
-  border:2px solid red;
+  
   grid-area:2/1/3/4;
+  
 }
 #side-right{
-  border:2px solid blue;
+  
   grid-area:2/4/3/5;
+  
 }
+
+/* @media screen and (max-width:1400px){
+  #page{
+    grid-template-rows: 15vh 1fr 15vh;  
+  }
+  #side-left{
+    border:2px solid red;
+    grid-area:2/1/3/5;
+  }
+  #side-right{
+    border:2px solid blue;
+    grid-area:3/1/4/5;
+  }
+}  */

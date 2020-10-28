@@ -48,7 +48,9 @@ function PreviewTickets() {
       return (
         <div key={index} className="preview">
           <h2>Seat: {ticket.seat}</h2>
+          <h4>{parseInt(ticket.price)>150?(parseInt(ticket.price)>250?"VIP":"Standard"):"Sale"} ticket</h4>
           <h5>Price: ${ticket.price}</h5>
+          <span> + HST and service fees</span>
         </div>
       );
     });
