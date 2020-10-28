@@ -14,7 +14,7 @@ $price3:#2802bf; */
   display:grid;
   width:100%;
 /*   grid-template-columns:minmax(100px, 1fr) minmax(900px, 1fr) minmax(280px, 1fr); */
-  grid-template-columns:100px 1fr 100px;
+  grid-template-columns:120px 1fr 120px;
 /*   grid-column-gap:1vw; */
 }
 #rows{
@@ -37,14 +37,15 @@ $price3:#2802bf; */
   }
 }
 #seats{
+  border:1px solid red;
   display:grid;
   grid-template-rows: $set-rows;
   grid-template-columns: repeat(20, auto [col-start]);
   grid-row-gap:10px;
 }
-#show{
+/* #show{
   padding:10px;
-}
+} */
 .check-box{
   align-self:center;
   background-color:#50b6bb;

@@ -62,10 +62,10 @@ function Seats() {
         <ul>{rows}</ul>
       </div>
       <div id="seats">{seatsLayout}</div>
-      <div id="show">
-        {/* <Poster /> */}
-        {/*<PreviewTickets />*/}
-      </div>
+      {/* <div id="show">
+        <Poster /> */}
+        {/*<PreviewTickets />
+      </div>*/}
     </div>
   );
 }

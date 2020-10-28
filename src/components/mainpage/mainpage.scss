@@ -14,12 +14,12 @@ $height:35px;
     grid-area:1/1/2/5;
 }
 #stage{
-  
   display:grid;
   width:100%;
+  border:1px solid red;
 /*   width:100vw; */
 /*   grid-template-columns:minmax(100px, 1fr) minmax(900px, 1fr) minmax(280px, 1fr); */
-  grid-template-columns:100px 1fr 100px;
+  grid-template-columns:120px 1fr 120px;
 /*   grid-column-gap:1vw; */
   h2 {
     grid-area:1/2/2/3;
@@ -29,6 +29,7 @@ $height:35px;
     line-height:$height;
     text-align:center;
     border-radius:10px;
+    width:100%;
   }
 }
 #side-left{
