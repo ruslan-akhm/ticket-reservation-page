@@ -8,6 +8,7 @@
   align-items:center;
 }
 .show-image{
+  min-width:100px;
   width:100px;
   height:100%;
   margin:0 20px 0 20px;
@@ -19,6 +20,7 @@
   }
 }
 .show-description{
+  min-width:300px;
   display:flex;
   flex-direction:column;
   h5 {
@@ -30,7 +32,10 @@
 }
 .show-details{
   display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
   p {
+    text-align:center;
     line-height:20px;
     margin:10px 5px 5px 5px;
 /*     color:#303740; */
@@ -43,5 +48,11 @@
         display:inline;
       }
     }
+  }
+}
+
+@media screen and (max-width:800px){
+  .show-details{
+  
   }
 }
