@@ -19,22 +19,22 @@ function Timer() {
 
   //setTimer initially - if returned to this page, then from localstorage
   //if visiting 1st time - initial value
-  useEffect(() => {
-    
-  }, []);
-
+  useEffect(() => {}, []);
 
   useEffect(() => {
-   
     if (timer && timer < 1) {
- 
+      window.clearInterval(window.myInterval);
+      setTimer(0);
       clear();
     }
   }, [timer]);
 
-  //tie timer to secured 
+  //tie timer to secured
   useEffect(() => {
-    if ((!secured || secured.length < 0) && sessionStorage.getItem("tickets")==null) {
+    if (
+      (!secured || secured.length < 0) &&
+      sessionStorage.getItem("tickets") == null
+    ) {
       console.log("REMOVED ALL TICKETS");
       window.clearInterval(window.myInterval);
     }
@@ -43,9 +43,11 @@ function Timer() {
   //if timer reaches 00:00 or page is closed -> clear states and localstorage, unsecure tickets on back-end
   const clear = () => {
     window.clearInterval(window.myInterval);
-    const allSeats = secured && secured.map(seat => {
-      return seat.seat;
-    });
+    const allSeats =
+      secured &&
+      secured.map(seat => {
+        return seat.seat;
+      });
     let seat = { ticket: [].concat(allSeats) };
     ticketService.unSecure(seat).then(data => {
       if (!data.error) {

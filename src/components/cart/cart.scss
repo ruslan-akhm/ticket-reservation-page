@@ -15,14 +15,12 @@ $line-width:30px;
 #cart {
   background-color:#f8f8f8; 
   min-height:100vh;
-  width:100%;
+  max-width:100vw;
   min-width:500px;
   @include flex-column;
-/*   border:2px solid red; */
 }
 
 .ticket-box {
-  border:1px solid red;
   margin-top:20px;
   width:100%;
   padding:40px;
@@ -45,7 +43,6 @@ $line-width:30px;
     }
   }
   li {
-    border:1px solid red;
     margin:0 0 30px 0;
     padding:20px 20px 20px 20px;
     width:100%;
@@ -76,6 +73,9 @@ $line-width:30px;
   min-height:$ticket-height;
   padding:0px;
   display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:flex-start;
   &::after{
     content:"";
     width:$ticket-width-1;
@@ -91,8 +91,6 @@ $line-width:30px;
     right:-25px;
   }
   h1, h2, p{
-    text-align:left;
-    border:1px solid green;
     margin:10px 0 0 10px;
     position:relative;
     z-index:2;
@@ -146,7 +144,7 @@ $line-width:30px;
   .ticket-box{
     padding:10px;
     li {
-      padding:20px;
+      padding:10px;
     }
   }
   .ticket{
