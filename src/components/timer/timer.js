@@ -26,7 +26,7 @@ function Timer() {
 
   useEffect(() => {
    
-    if (timer < 1) {
+    if (timer && timer < 1) {
  
       clear();
     }
