@@ -16,6 +16,7 @@ $line-width:30px;
   background-color:#f8f8f8; 
   min-height:100vh;
   width:100%;
+  min-width:500px;
   @include flex-column;
 /*   border:2px solid red; */
 }
@@ -43,6 +44,7 @@ $line-width:30px;
     }
   }
   li {
+    border:1px solid red;
     margin:0 0 30px 0;
     padding:20px 20px 20px 20px;
     width:100%;
@@ -66,7 +68,6 @@ $line-width:30px;
   border:2px solid black;
   position:relative;
   overflow:hidden;
-  
 }
 .ticket-main{
   border-right:none;
@@ -118,5 +119,22 @@ $line-width:30px;
       &:hover {
         background-color:#50b6bb;
       }
+  }
+}
+
+@media screen and (max-width:800px){
+  .remove{
+    flex-direction:row;
+    justify-content:space-between;
+    width:100%;
+  }
+  .ticket-box{
+    li {
+      padding:0;
+    }
+  }
+  .ticket{
+    width:100%;
+    min-width:
   }
 }

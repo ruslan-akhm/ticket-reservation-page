@@ -1,10 +1,14 @@
 #timer{
-  height:15vh;
+  min-height:15vh;
   width:100%;
+  min-width:500px;
   background-color:#303740;
   h1, h3 {
     color:white;
     width:fit-content;
     margin:20px 0 0 20px;
+  }
+  h1 {
+    margin-bottom:15px;
   }
 }
