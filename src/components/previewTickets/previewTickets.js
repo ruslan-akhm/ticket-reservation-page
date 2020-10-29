@@ -58,7 +58,7 @@ function PreviewTickets() {
     chosen.map((ticket, index) => {
       return (
         <div key={index} className="preview">
-          <h2>Row:{ticket.row}</h2><h2>Seat:{ticket.seat}</h2></ul>
+          <h2>Seat:{ticket.id}</h2>
           <h4>{ticket.type} Ticket</h4>
           <h5>Price: ${ticket.price}</h5>
           <span> + service fees, including taxes</span>

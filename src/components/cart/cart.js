@@ -76,11 +76,12 @@ function Cart() {
                 {show.date}, {show.time}
               </p>
               <p>{ticket.type} Ticket</p>
+              <h1>ROW: {ticket.row}</h1>
               <h1>SEAT: {ticket.seat}</h1>
             </div>
             <div className="ticket-side">
               <h2>{show.performer}</h2>
-              <h1>{ticket.seat}</h1>
+              <h1>{ticket.id}</h1>
             </div>
           </div>
           <div className="remove">
