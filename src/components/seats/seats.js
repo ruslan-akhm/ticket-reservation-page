@@ -25,33 +25,38 @@ function Seats() {
     } else {
       console.log("CHECK");
       let seat = {
-        seat: e.target.value,
-        price: e.target.dataset.price
+        row: e.target.dataset.row,
+        seat: e.target.dataset.seat,
+        price: e.target.dataset.price,
+        type: e.target.dataset.type,
+        id: e.target.value
       };
       setChosen(chosen.concat(seat));
     }
   };
 
- 
-
-  const rows = seatsData.seatsRows.map((row,index) => {
+  const rows = seatsData.seatsRows.map((row, index) => {
     return <li key={index}>row {row}</li>;
   });
 
   const seatsLayout = seatsData.seatsRows.map((row, rowIndex) => {
     return seatsData.seatsNums.map((num, numIndex) => {
       return (
-          <input
-            className="check-box"
-            id={row + "" + num}
-            key={row + "" + num}
-            type="checkbox"
-            name="seat"
-            value={row + "" + num}
-            data-price={rowIndex > 1 ? (rowIndex > 6 ? "150" : "250") : "500"}
-            onChange={changeBox}
-            
-          />
+        <input
+          className="check-box"
+          id={row + "" + num}
+          key={row + "" + num}
+          type="checkbox"
+          name="seat"
+          value={row + "" + num}
+          data-price={rowIndex > 1 ? (rowIndex > 6 ? "150" : "250") : "500"}
+          data-type={
+            rowIndex > 1 ? (rowIndex > 6 ? "Sale" : "Standard") : "VIP"
+          }
+          data-row={row}
+          data-seat={num}
+          onChange={changeBox}
+        />
       );
     });
   });
@@ -64,7 +69,7 @@ function Seats() {
       <div id="seats">{seatsLayout}</div>
       {/* <div id="show">
         <Poster /> */}
-        {/*<PreviewTickets />
+      {/*<PreviewTickets />
       </div>*/}
     </div>
   );

@@ -22,9 +22,9 @@ function Timer() {
   useEffect(() => {}, []);
 
   useEffect(() => {
-    if (timer && timer < 1) {
-      window.clearInterval(window.myInterval);
+    if (timer && timer <= 1) {
       setTimer(0);
+      window.clearInterval(window.myInterval);
       clear();
     }
   }, [timer]);

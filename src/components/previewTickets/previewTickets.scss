@@ -36,6 +36,15 @@ $ticket-color:#303740;
 .preview{
   border:2px solid $ticket-color;
   margin:5px;
+  ul {
+    margin:0;
+    padding:0;
+    display:flex;
+    justify-content:flex-start;
+    h2 {
+      margin-right:20%;
+    }
+  }
   h2, h4, h5 {
     color:$ticket-color;
     width:fit-content;
@@ -46,6 +55,7 @@ $ticket-color:#303740;
   h5 {
     margin:0 15px 0 auto;
   }
+  
   span {
     color:gray;
     font-size:10px;

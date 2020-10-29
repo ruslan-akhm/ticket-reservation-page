@@ -21,7 +21,7 @@ function PreviewTickets() {
 
   //auto scroll down when choosing multiple tickets
   useEffect(() => {
-    if(window.innerWidth<=800){
+    if (window.innerWidth <= 800) {
       return;
     }
     document.getElementById("preview-box").scrollTop =
@@ -58,15 +58,8 @@ function PreviewTickets() {
     chosen.map((ticket, index) => {
       return (
         <div key={index} className="preview">
-          <h2>Seat: {ticket.seat}</h2>
-          <h4>
-            {parseInt(ticket.price) > 150
-              ? parseInt(ticket.price) > 250
-                ? "VIP"
-                : "Standard"
-              : "Sale"}{" "}
-            Ticket
-          </h4>
+          <h2>Row:{ticket.row}</h2><h2>Seat:{ticket.seat}</h2></ul>
+          <h4>{ticket.type} Ticket</h4>
           <h5>Price: ${ticket.price}</h5>
           <span> + service fees, including taxes</span>
         </div>
@@ -78,7 +71,7 @@ function PreviewTickets() {
       <ul>{preview}</ul>
       {chosen && chosen.length > 0 ? (
         <>
-          <Summary caller="preview"/>
+          <Summary caller="preview" />
           <a href="" onClick={secureTickets}>
             Next
           </a>

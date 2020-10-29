@@ -16,24 +16,29 @@ import "./cart.scss";
 //tickets have to be unsecured if not paid and page is closed
 
 function Cart() {
-  const { chosen, setChosen, secured, setSecured, show, setShow, timer, setTimer } = useContext(
-    SeatsContext
-  );
+  const {
+    chosen,
+    setChosen,
+    secured,
+    setSecured,
+    show,
+    setShow,
+    timer,
+    setTimer
+  } = useContext(SeatsContext);
   let history = useHistory();
 
-  
   //if refresh page - reset states from sessionstorage
   useEffect(() => {
     if (!secured || secured.length == 0) {
       setSecured(JSON.parse(sessionStorage.getItem("tickets")));
-      setChosen(JSON.parse(sessionStorage.getItem("tickets")))
+      setChosen(JSON.parse(sessionStorage.getItem("tickets")));
     }
-    if(!timer){
-      setTimer(JSON.parse(sessionStorage.getItem("timer")))
+    if (!timer) {
+      setTimer(JSON.parse(sessionStorage.getItem("timer")));
     }
   }, []);
-  
-  
+
   const removeTicket = ticket => {
     let filteredTickets = secured.filter(seat => {
       return seat.seat != ticket;
@@ -70,6 +75,7 @@ function Cart() {
               <p>
                 {show.date}, {show.time}
               </p>
+              <p>{ticket.type} Ticket</p>
               <h1>SEAT: {ticket.seat}</h1>
             </div>
             <div className="ticket-side">
@@ -91,7 +97,7 @@ function Cart() {
     });
 
   //const totalCost = secured && (secured.map(item=>{return parseInt(item.price)}).reduce((acc, val)=>{return acc+val},0))
-  
+
   return (
     <div id="cart">
       <Timer />
@@ -100,7 +106,9 @@ function Cart() {
         <ul>{tickets}</ul>
         {!secured || secured.length < 1 ? (
           <span>No tickets chosen...</span>
-        ) : <Summary caller="cart"/>}
+        ) : (
+          <Summary caller="cart" />
+        )}
       </div>
       {!secured || secured.length < 1 ? null : <Action />}
     </div>
