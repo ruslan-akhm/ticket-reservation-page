@@ -26,10 +26,10 @@ function Timer() {
 
   useEffect(() => {
    
-//     if (timer < 1) {
+    if (timer < 1) {
  
-//       clear();
-//     }
+      clear();
+    }
   }, [timer]);
 
   //tie timer to secured 
