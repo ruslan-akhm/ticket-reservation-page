@@ -57,3 +57,11 @@ $ticket-color:#303740;
     width:fit-content;
   }
 }
+
+@media screen and (max-width:800px){
+  #preview-box{
+    border-top:2px solid #50b6bb;
+    border-left:none;
+    height:20vh;
+  }
+}
