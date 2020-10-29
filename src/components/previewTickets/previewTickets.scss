@@ -46,9 +46,6 @@ $ticket-color:#303740;
   h5 {
     margin:0 15px 0 auto;
   }
-/*   h4 {
-    text-transform: uppercase;
-  } */
   span {
     color:gray;
     font-size:10px;
@@ -63,5 +60,22 @@ $ticket-color:#303740;
     border-top:2px solid #50b6bb;
     border-left:none;
     height:20vh;
+    flex-direction:row;
+    ul{
+      display:flex;
+      flex-direction:row;
+    }
+    a{
+      width:50px;
+      height:25px;
+      margin:50px 40px 0 20px;
+    }
+  }
+  .preview{
+    width:250px;
+    margin-left:15px;
+    h5 {
+      margin-top:20px;
+    }
   }
 }

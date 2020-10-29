@@ -21,6 +21,9 @@ function PreviewTickets() {
 
   //auto scroll down when choosing multiple tickets
   useEffect(() => {
+    if(window.innerWidth<=800){
+      return;
+    }
     document.getElementById("preview-box").scrollTop =
       document.getElementById("preview-box").scrollHeight || 0;
   }, [chosen]);
