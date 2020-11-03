@@ -71,12 +71,12 @@ function PreviewTickets() {
     <div id="preview-box">
       <ul>{preview}</ul>
       {chosen && chosen.length > 0 ? (
-        <>
+        <div className="preview-summary">
           <Summary caller="preview" />
           <a href="" onClick={secureTickets}>
             Next
           </a>
-        </>
+        </div>
       ) : null}
       <Loading isLoading={loading} message={message} />
     </div>
