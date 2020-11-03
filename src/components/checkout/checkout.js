@@ -14,9 +14,16 @@ function Checkout() {
   const handleToken = token => {
     const product = secured;
     console.log(secured);
-    checkoutService.makePayment({ token, product }).then(data => {
-      console.log(data);
-    });
+    checkoutService
+      .makePayment({
+        token,
+        product,
+        price: total,
+        user: sessionStorage.getItem("userId")
+      })
+      .then(data => {
+        console.log(data);
+      });
   };
 
   return (
@@ -25,7 +32,6 @@ function Checkout() {
         stripeKey="pk_test_51HggwPCG1w6N7hyjuemFJNqZrVfja0QxUWhsfH6S2h1i2WWYP6H78cBWPy6IlX34TiwMhPdg8AOy6zq06yMDMvKD00OBEsg0kT"
         token={handleToken}
         amount={total * 100}
-        name="TICKET_IDs"
       />
     </div>
   );

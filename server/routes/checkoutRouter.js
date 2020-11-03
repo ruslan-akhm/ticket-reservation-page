@@ -9,21 +9,26 @@ checkoutRouter.post("/", async (req, res) => {
   let error;
   let status;
   try {
-    const { product, token } = req.body;
+    const { product, token, price, user } = req.body;
+    let tickets = [];
+    for(let i = 0; i<product.length; i++){
+      tickets.push(product[i].id)
+    }
+    
 
     const customer = await stripe.customers.create({
       email: token.email,
       source: token.id
     });
 
-    const idempotency_key = shortid.generate();
+    const idempotencyKey = shortid.generate();
     const charge = await stripe.charges.create(
       {
-        amount: product.price * 100,
+        amount: price * 100,
         currency: "cad",
         customer: customer.id,
         receipt_email: token.email,
-        description: `Purchased the ${product.name}`
+        description: `Purchased ${tickets.length} ticket(s): ${tickets}. User: ${user}`
         // shipping: {
         //   name: token.card.name,
         //   address: {
@@ -36,7 +41,7 @@ checkoutRouter.post("/", async (req, res) => {
         // }
       },
       {
-        idempotency_key
+        idempotencyKey
       }
     );
     console.log("Charge:", { charge });
