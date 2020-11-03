@@ -50,6 +50,7 @@ function Seats() {
 
   const seatsLayout = seatsData.seatsRows.map((row, rowIndex) => {
     return seatsData.seatsNums.map((num, numIndex) => {
+      let ticketType = rowIndex > 1 ? (rowIndex > 6 ? "Sale" : "Standard") : "VIP";
       return (
         <div className="check-parent">
           <input
@@ -61,7 +62,7 @@ function Seats() {
             value={row + "" + num}
             data-price={rowIndex > 1 ? (rowIndex > 6 ? "150" : "250") : "500"}
             data-type={
-              rowIndex > 1 ? (rowIndex > 6 ? "Sale" : "Standard") : "VIP"
+              ticketType
             }
             data-row={row}
             data-seat={num}
@@ -72,6 +73,7 @@ function Seats() {
             Seat:{row + num}
             <br />
             {rowIndex > 1 ? (rowIndex > 6 ? "Sale" : "Standard") : "VIP"} Ticket
+            <div className="arrow"></div>
           </div>
         </div>
       );

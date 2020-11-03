@@ -1,6 +1,7 @@
 $set-rows: repeat(8, 30px [row-start]);
 $seat-width:30px;
 $number-of-seats:20;
+$pop-up-color:#303740;
 
 *{
   box-sizing:border-box;
@@ -64,16 +65,23 @@ $number-of-seats:20;
 .popup{
   pointer-events:none;
   position:absolute;
-  top:-40px;
+  top:-47px;
   left:-100px;
   display:none;
   min-width:fit-content;
   width:130px;
   height:40px;
   background-color:white;
-  background-color:#303740;
+  background-color:$pop-up-color;
   color:white;
   padding:0 4px 0 4px;
   border-radius:2px;
+}
+.arrow{
+  width:15px;
+  height:12px;
+  background-color:$pop-up-color;
+  margin:0 0 0 auto;
+  clip-path:polygon(0 0, 50% 100%, 50% 100%, 100% 0)
 }
 
