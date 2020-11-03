@@ -43,14 +43,16 @@ function Seats() {
     }
     document.getElementById("popup-" + row + "" + num).style.display = "block";
   };
-
+ 
   const rows = seatsData.seatsRows.map((row, index) => {
     return <li key={index}>row {row}</li>;
   });
 
   const seatsLayout = seatsData.seatsRows.map((row, rowIndex) => {
     return seatsData.seatsNums.map((num, numIndex) => {
-      let ticketType = rowIndex > 1 ? (rowIndex > 6 ? "Sale" : "Standard") : "VIP";
+      let ticketType =
+        rowIndex > 1 ? (rowIndex > 6 ? "Sale" : "Standard") : "VIP";
+      let ticketPrice = rowIndex > 1 ? (rowIndex > 6 ? "150" : "250") : "500";
       return (
         <div className="check-parent">
           <input
@@ -60,10 +62,8 @@ function Seats() {
             type="checkbox"
             name="seat"
             value={row + "" + num}
-            data-price={rowIndex > 1 ? (rowIndex > 6 ? "150" : "250") : "500"}
-            data-type={
-              ticketType
-            }
+            data-price={ticketPrice}
+            data-type={ticketType}
             data-row={row}
             data-seat={num}
             onChange={changeBox}
@@ -71,8 +71,10 @@ function Seats() {
           />
           <div id={"popup-" + row + "" + num} className="popup">
             Seat:{row + num}
+            <br/>
+            ${ticketPrice}
             <br />
-            {rowIndex > 1 ? (rowIndex > 6 ? "Sale" : "Standard") : "VIP"} Ticket
+            {ticketType} Ticket
             <div className="arrow"></div>
           </div>
         </div>
@@ -82,7 +84,7 @@ function Seats() {
 
   return (
     <div id="seats-box">
-      <div id="rows">
+      <div id="rows" >
         <ul>{rows}</ul>
       </div>
       <div id="seats">{seatsLayout}</div>

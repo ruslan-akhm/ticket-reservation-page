@@ -2,6 +2,7 @@ $set-rows: repeat(8, 30px [row-start]);
 $seat-width:30px;
 $number-of-seats:20;
 $pop-up-color:#303740;
+$row-gap:15px;
 
 *{
   box-sizing:border-box;
@@ -14,6 +15,7 @@ $pop-up-color:#303740;
   grid-template-columns:120px 1fr 120px;
 }
 #rows{
+  pointer-events:none;
   display:flex;
   justify-content:flex-end;
   ul {
@@ -22,7 +24,7 @@ $pop-up-color:#303740;
     padding:0 10px 0 10px;
     display:grid;
     grid-template-rows: $set-rows;
-    grid-row-gap:10px;
+    grid-row-gap:$row-gap;
     li {
       align-self:center;
       list-style-type:none;
@@ -36,7 +38,7 @@ $pop-up-color:#303740;
   display:grid;
   grid-template-rows: $set-rows;
   grid-template-columns: repeat($number-of-seats, auto [col-start]);
-  grid-row-gap:15px;
+  grid-row-gap:$row-gap;
 }
 .check-parent{
   position:relative;
@@ -65,23 +67,24 @@ $pop-up-color:#303740;
 .popup{
   pointer-events:none;
   position:absolute;
-  top:-47px;
-  left:-100px;
+  top:-72px;
+  left:-110px;
   display:none;
   min-width:fit-content;
-  width:130px;
-  height:40px;
+  width:140px;
+  height:63px;
   background-color:white;
   background-color:$pop-up-color;
   color:white;
-  padding:0 4px 0 4px;
+  padding:0 5px 0 5px;
   border-radius:2px;
+  box-shadow:0 0 10px green;
 }
 .arrow{
   width:15px;
-  height:12px;
+  height:15px;
   background-color:$pop-up-color;
-  margin:0 0 0 auto;
+  margin:5px 0 0 auto;
   clip-path:polygon(0 0, 50% 100%, 50% 100%, 100% 0)
 }
 

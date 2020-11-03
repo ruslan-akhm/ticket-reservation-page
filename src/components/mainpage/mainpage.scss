@@ -16,6 +16,7 @@ $height:35px;
     grid-area:1/1/2/5;
 }
 #stage{
+  pointer-events:none;
   display:grid;
   width:100%;
   grid-template-columns:120px 1fr 120px;
