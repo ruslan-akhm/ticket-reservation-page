@@ -7,19 +7,22 @@ import "./checkout.scss";
 function Checkout() {
   const { total, setTotal, secured, setSecured } = useContext(SeatsContext);
 
+  useEffect(() => {
+    console.log(secured);
+  }, []);
+
   const handleToken = token => {
-    
     const product = secured;
-    
-    checkoutService.makePayment({token, product}).then(data=>{
-      console.log(data)
-    })
+    console.log(secured);
+    checkoutService.makePayment({ token, product }).then(data => {
+      console.log(data);
+    });
   };
 
   return (
     <div>
       <StripeCheckout
-        stripeKey={process.env.STRIPE_KEY}
+        stripeKey="pk_test_51HggwPCG1w6N7hyjuemFJNqZrVfja0QxUWhsfH6S2h1i2WWYP6H78cBWPy6IlX34TiwMhPdg8AOy6zq06yMDMvKD00OBEsg0kT"
         token={handleToken}
         amount={total * 100}
         name="TICKET_IDs"

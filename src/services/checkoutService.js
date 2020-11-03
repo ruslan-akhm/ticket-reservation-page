@@ -1,8 +1,8 @@
 export default {
-  makePayment: seat => {
+  makePayment: data => {
     return fetch("/api/checkout", {
       method: "POST",
-      body: JSON.stringify(seat),
+      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json"
       }
