@@ -4,6 +4,8 @@ import { SeatsContext } from "./context/seatsContext";
 import ticketService from "./services/ticketService";
 import Mainpage from "./components/mainpage/mainpage";
 import Cart from "./components/cart/cart";
+import Payment from "./components/payment/payment";
+import PageNotFound from "./components/pageNotFound/pageNotFound";
 import "./App.css";
 
 function App() {
@@ -35,6 +37,8 @@ function App() {
         <Route path="/" exact component={Mainpage} />
         <Route path="/cart" exact component={Cart} />
         {/*  <Route path="*" exact component={PageNotFound} /> */}
+        <Route path="/payment" exact component={Payment} />
+        <Route path="*" exact component={PageNotFound} />
       </Switch>
     </Router>
   );
