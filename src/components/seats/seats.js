@@ -20,7 +20,7 @@ function Seats() {
       let filteredChosen = chosen.filter(seat => {
         return seat.id != e.target.value;
       });
-      console.log(filteredChosen)
+      console.log(filteredChosen);
       setChosen(filteredChosen);
       return;
     } else {
@@ -35,12 +35,14 @@ function Seats() {
       setChosen(chosen.concat(seat));
     }
   };
-  
-  const showPopUp = (row,num) => {
-    console.log(document.getElementsByClassName("popup"))
-    //document.getElementsByClassName("popup").style.display="none"
-    //document.getElementById("popup-"+row+""+num).style.display="block"
-  }
+
+  const showPopUp = (row, num) => {
+    let allSeats = document.getElementsByClassName("popup");
+    for (let i = 0; i < allSeats.length; i++) {
+      allSeats[i].style.display = "none";
+    }
+    document.getElementById("popup-" + row + "" + num).style.display = "block";
+  };
 
   const rows = seatsData.seatsRows.map((row, index) => {
     return <li key={index}>row {row}</li>;
@@ -50,23 +52,27 @@ function Seats() {
     return seatsData.seatsNums.map((num, numIndex) => {
       return (
         <div className="check-parent">
-        <input
-          className="check-box"
-          id={row + "" + num}
-          key={row + "" + num}
-          type="checkbox"
-          name="seat"
-          value={row + "" + num}
-          data-price={rowIndex > 1 ? (rowIndex > 6 ? "150" : "250") : "500"}
-          data-type={
-            rowIndex > 1 ? (rowIndex > 6 ? "Sale" : "Standard") : "VIP"
-          }
-          data-row={row}
-          data-seat={num}
-          onChange={changeBox}
-          onMouseEnter={(e,i)=>showPopUp(row, num)}
-        />
-          <div id={"popup-"+row+""+num} className="popup">Seat:{row+num}</div>
+          <input
+            className="check-box"
+            id={row + "" + num}
+            key={row + "" + num}
+            type="checkbox"
+            name="seat"
+            value={row + "" + num}
+            data-price={rowIndex > 1 ? (rowIndex > 6 ? "150" : "250") : "500"}
+            data-type={
+              rowIndex > 1 ? (rowIndex > 6 ? "Sale" : "Standard") : "VIP"
+            }
+            data-row={row}
+            data-seat={num}
+            onChange={changeBox}
+            onMouseEnter={(e, i) => showPopUp(row, num)}
+          />
+          <div id={"popup-" + row + "" + num} className="popup">
+            Seat:{row + num}
+            <br />
+            {rowIndex > 1 ? (rowIndex > 6 ? "Sale" : "Standard") : "VIP"} Ticket
+          </div>
         </div>
       );
     });

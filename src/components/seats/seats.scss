@@ -35,7 +35,7 @@ $number-of-seats:20;
   display:grid;
   grid-template-rows: $set-rows;
   grid-template-columns: repeat($number-of-seats, auto [col-start]);
-  grid-row-gap:10px;
+  grid-row-gap:15px;
 }
 .check-parent{
   position:relative;
@@ -62,12 +62,18 @@ $number-of-seats:20;
 }
 
 .popup{
+  pointer-events:none;
   position:absolute;
-  top:0;
-  left:0;
+  top:-40px;
+  left:-100px;
   display:none;
-  width:30px;
-  height:20px;
+  min-width:fit-content;
+  width:130px;
+  height:40px;
   background-color:white;
+  background-color:#303740;
+  color:white;
+  padding:0 4px 0 4px;
+  border-radius:2px;
 }
 
