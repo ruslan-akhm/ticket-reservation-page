@@ -4,7 +4,7 @@ import { SeatsContext } from "./context/seatsContext";
 import ticketService from "./services/ticketService";
 import Mainpage from "./components/mainpage/mainpage";
 import Cart from "./components/cart/cart";
-import Payment from "./components/payment/payment";
+import Checkout from "./components/checkout/checkout";
 import PageNotFound from "./components/pageNotFound/pageNotFound";
 import "./App.css";
 
@@ -37,7 +37,7 @@ function App() {
         <Route path="/" exact component={Mainpage} />
         <Route path="/cart" exact component={Cart} />
         {/*  <Route path="*" exact component={PageNotFound} /> */}
-        <Route path="/payment" exact component={Payment} />
+        <Route path="/checkout" exact component={Checkout} />
         <Route path="*" exact component={PageNotFound} />
       </Switch>
     </Router>

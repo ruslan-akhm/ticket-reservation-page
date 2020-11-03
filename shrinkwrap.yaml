@@ -12,6 +12,7 @@ dependencies:
   react-scripts: 3.4.3
   react-stripe-checkout: 2.6.3
   shortid: 2.2.15
+  stripe: 8.119.0
 packages:
   /@babel/code-frame/7.10.4:
     dependencies:
@@ -2447,6 +2448,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-KPcKqKm5UKDkaYPTuXSx8wEP7vE9GnuaXIZKijwRYcePpZFDVuy2a57LarFKiORbHOuTOOwYzxVxcUzsh2P2Pw==
+  /@types/node/14.14.6:
+    dev: false
+    resolution:
+      integrity: sha512-6QlRuqsQ/Ox/aJEQWBEJG7A9+u7oSYl3mem/K8IzxXG/kAGbV1YPD9Bg9Zw3vyxC/YP+zONKwy8hGkSt1jxFMw==
   /@types/parse-json/4.0.0:
     dev: false
     resolution:
@@ -10173,6 +10178,12 @@ packages:
       node: '>=0.6'
     resolution:
       integrity: sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
+  /qs/6.9.4:
+    dev: false
+    engines:
+      node: '>=0.6'
+    resolution:
+      integrity: sha512-A1kFqHekCTM7cz0udomYUoYNWjBebHm/5wzU/XqrBRBNWectVH0QIiN+NEcZ0Dte5hvzHwbr8+XQmguPhJ6WdQ==
   /query-string/4.3.4:
     dependencies:
       object-assign: 4.1.1
@@ -11717,6 +11728,15 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
+  /stripe/8.119.0:
+    dependencies:
+      '@types/node': 14.14.6
+      qs: 6.9.4
+    dev: false
+    engines:
+      node: ^8.1 || >=10.*
+    resolution:
+      integrity: sha512-XQvbF+TE/rnjhghisp65L29GdVFuxs+vid5EeZ11R+f+W7+owcKgjIpfDrUCs3OxrqwoWPZ6xeBpEKcfYOi4AA==
   /style-loader/0.23.1:
     dependencies:
       loader-utils: 1.4.0
@@ -12845,3 +12865,4 @@ specifiers:
   react-scripts: ^3.4.0
   react-stripe-checkout: ^2.6.3
   shortid: ^2.2.15
+  stripe: ^8.119.0

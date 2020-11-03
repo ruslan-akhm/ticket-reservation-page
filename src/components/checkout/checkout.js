@@ -1,12 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import { SeatsContext } from "../../context/seatsContext";
-import "./payment.scss";
+import "./checkout.scss";
 
-function Payment() {
+function Checkout() {
   const { total, setTotal } = useContext(SeatsContext);
-  
-  console.log(typeof total)
   
   const handleToken = (token) => {
     
@@ -14,9 +12,9 @@ function Payment() {
   
   return (
     <div>
-      <StripeCheckout stripeKey={process.env.STRIPE_KEY} token={handleToken} amount={total}/>
+      <StripeCheckout stripeKey={process.env.STRIPE_KEY} token={handleToken} amount={total * 100} name="TICKET_IDs"/>
     </div>
   );
 }
 
-export default Payment;
+export default Checkout;
