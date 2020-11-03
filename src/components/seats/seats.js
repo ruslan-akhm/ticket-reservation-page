@@ -18,8 +18,9 @@ function Seats() {
     if (e.target.checked == false) {
       console.log("UNCHECK");
       let filteredChosen = chosen.filter(seat => {
-        return seat.seat != e.target.value;
+        return seat.id != e.target.value;
       });
+      console.log(filteredChosen)
       setChosen(filteredChosen);
       return;
     } else {

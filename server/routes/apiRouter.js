@@ -107,7 +107,7 @@ apiRouter.post("/secure", (req, res) => {
   //save new seats for user
   for (let j = 0; j < seats.length; j++) {
     let newSeat = new Seat({
-      seatId: seats[j].seat,
+      seatId: seats[j].id,
       userId: userId,
       isSecured: true,
       isTaken: false,

@@ -15,7 +15,7 @@ function Action() {
       return history.push("/");
     }
     const allSeats = secured.map(seat => {
-      return seat.seat;
+      return seat.id;
     });
     let userId = sessionStorage.getItem("userId")
     let seat = { ticket: [].concat(allSeats), userId: userId };

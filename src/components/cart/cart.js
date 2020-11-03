@@ -41,7 +41,7 @@ function Cart() {
 
   const removeTicket = ticket => {
     let filteredTickets = secured.filter(seat => {
-      return seat.seat != ticket;
+      return seat.id != ticket;
     });
     let seat = { ticket: [ticket] };
     ticketService.unSecure(seat).then(data => {
@@ -88,7 +88,7 @@ function Cart() {
             <h2>${ticket.price}</h2>
             <button
               className="btn-remove"
-              onClick={e => removeTicket(ticket.seat)}
+              onClick={e => removeTicket(ticket.id)}
             >
               REMOVE
             </button>

@@ -21,6 +21,7 @@ function PreviewTickets() {
 
   //auto scroll down when choosing multiple tickets
   useEffect(() => {
+    console.log(chosen)
     if (window.innerWidth <= 800) {
       return;
     }
