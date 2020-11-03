@@ -10,6 +10,8 @@ $ticket-color:#303740;
   display:flex;
   flex-direction:column;
   ul{
+    display:flex;
+    flex-direction:column;
     margin:0;
     padding:0;
   }
@@ -46,7 +48,6 @@ $ticket-color:#303740;
   h5 {
     margin:0 15px 0 auto;
   }
-  
   span {
     color:gray;
     font-size:10px;
@@ -60,12 +61,17 @@ $ticket-color:#303740;
 
 @media screen and (max-width:800px){
   #preview-box{
+    box-sizing:border-box;
+    width:100%;
+    margin:0;
     border-top:2px solid #50b6bb;
+    border:2px solid #50b6bb;
     border-left:none;
     height:20vh;
     flex-direction:row;
-    overflow-y:none;
-    
+    ul  {
+    flex-direction:row;
+    }
     a{
       width:50px;
       height:95%;

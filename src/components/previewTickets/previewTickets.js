@@ -19,7 +19,7 @@ function PreviewTickets() {
   const [message, setMessage] = useState();
   let history = useHistory();
 
-  //auto scroll down when choosing multiple tickets
+  //auto scroll down when choosing multiple tickets (only on desktop version)
   useEffect(() => {
     console.log(chosen)
     if (window.innerWidth <= 800) {
