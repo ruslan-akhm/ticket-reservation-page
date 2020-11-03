@@ -37,6 +37,9 @@ $number-of-seats:20;
   grid-template-columns: repeat($number-of-seats, auto [col-start]);
   grid-row-gap:10px;
 }
+.check-parent{
+  position:relative;
+}
 .check-box{
   align-self:center;
   background-color:#50b6bb;
@@ -56,5 +59,15 @@ $number-of-seats:20;
     background-color:transparent;
     pointer-events:none;
   }
+}
+
+.popup{
+  position:absolute;
+  top:0;
+  left:0;
+  display:none;
+  width:30px;
+  height:20px;
+  background-color:white;
 }
 

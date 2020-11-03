@@ -35,6 +35,12 @@ function Seats() {
       setChosen(chosen.concat(seat));
     }
   };
+  
+  const showPopUp = (row,num) => {
+    console.log(document.getElementsByClassName("popup"))
+    //document.getElementsByClassName("popup").style.display="none"
+    //document.getElementById("popup-"+row+""+num).style.display="block"
+  }
 
   const rows = seatsData.seatsRows.map((row, index) => {
     return <li key={index}>row {row}</li>;
@@ -43,6 +49,7 @@ function Seats() {
   const seatsLayout = seatsData.seatsRows.map((row, rowIndex) => {
     return seatsData.seatsNums.map((num, numIndex) => {
       return (
+        <div className="check-parent">
         <input
           className="check-box"
           id={row + "" + num}
@@ -57,7 +64,10 @@ function Seats() {
           data-row={row}
           data-seat={num}
           onChange={changeBox}
+          onMouseEnter={(e,i)=>showPopUp(row, num)}
         />
+          <div id={"popup-"+row+""+num} className="popup">Seat:{row+num}</div>
+        </div>
       );
     });
   });
