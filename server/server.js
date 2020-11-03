@@ -34,7 +34,7 @@ app.use(
 );
 
 app.use("/api", apiRouter);
-app.use("/checkout", checkoutRouter);
+app.use("/api/checkout", checkoutRouter);
 
 // Express port-switching logic as this app was written in Glitch
 let port;
