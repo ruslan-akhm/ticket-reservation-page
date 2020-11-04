@@ -1,5 +1,6 @@
 const express = require("express");
 const shortid = require("shortid");
+const Seat = require("../models/Seat");
 const checkoutRouter = express.Router();
 const stripe = require("stripe")(process.env.SECRET_STRIPE_KEY)
 
@@ -50,6 +51,11 @@ checkoutRouter.post("/", async (req, res) => {
     console.error("Error:", error);
     status = "failure";
   }
+//   if(status = "success"){
+//     Seat.find({userId:user},(err, data)=>{
+      
+//     })
+//   }
 
   res.json({ error, status });
 });

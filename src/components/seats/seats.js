@@ -43,7 +43,7 @@ function Seats() {
     }
     document.getElementById("popup-" + row + "" + num).style.display = "block";
   };
- 
+
   const rows = seatsData.seatsRows.map((row, index) => {
     return <li key={index}>row {row}</li>;
   });
@@ -71,8 +71,7 @@ function Seats() {
           />
           <div id={"popup-" + row + "" + num} className="popup">
             Seat:{row + num}
-            <br/>
-            ${ticketPrice}
+            <br />${ticketPrice}
             <br />
             {ticketType} Ticket
             <div className="arrow"></div>
@@ -84,7 +83,7 @@ function Seats() {
 
   return (
     <div id="seats-box">
-      <div id="rows" >
+      <div id="rows">
         <ul>{rows}</ul>
       </div>
       <div id="seats">{seatsLayout}</div>
