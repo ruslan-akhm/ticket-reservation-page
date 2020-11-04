@@ -49,17 +49,28 @@ checkoutRouter.post("/", async (req, res) => {
     status = "success";
     console.log(tickets);
     for (let x = 0; x < tickets.length; x++) {
-      console.log(tickets[x], typeof tickets[x]);
-      Seat.update({ seatId: tickets[x], $set: isTaken:true }, (err, data) => {
-        if (err) return console.log(err);
-        if (!data) console.log("NO TICKET");
-        //return res.json({message:"No tickets found", error:true})
-        else {
-          console.log(data);
-         // data[0].isTaken = true;
+      Seat.updateOne(
+        { seatId: tickets[x] },
+        { $set: { isTaken: true } },
+        (err, data) => {
+          if (err) return console.log(err);
         }
-      });
+      );
     }
+    
+    //TO USE UPDATE MANY:
+    //have to clean userId on front-end whenever user presses CANCEL or PURCHASE and its success - have to anyway
+    
+    
+      // Seat.updateMany(
+      //   { userId: user },
+      //   { $set: { isTaken: true } },
+      //   (err, data) => {
+      //     if (err) return console.log(err);
+      //     if (!data) console.log("NO TICKET");
+      //   }
+      // );
+    
   } catch (error) {
     //console.error("Error:", error);
     status = "failure";
