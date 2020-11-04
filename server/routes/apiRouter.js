@@ -16,68 +16,68 @@ apiRouter.get("/", (req, res) => {
 });
 
 //Check for existing reservation / Or cancel it
-apiRouter.post("/modify", (req, res) => {
-  const id = req.body.id;
-  let action = req.body.action;
-  //cancelling
-  if (action == "cancel") {
-    Seat.deleteMany({ ticketId: id }, (err, data) => {
-      if (err) return console.log(err);
-      //if no documents to be removed were found
-      if (data.n == 0) {
-        return res.json({
-          text: `There is no reservation with such ticket ID`,
-          seat: " "
-        });
-      }
-      return res.json({
-        text: `Reservation has been cancelled for ticket ID `,
-        seat: id
-      });
-    });
-  }
-  //showing
-  else if (action == "show") {
-    let array = [];
-    Seat.find({ ticketId: id })
-      .sort({ seatId: "asc" })
-      .exec((err, data) => {
-        if (err) return console.log(err);
-        if (data.length > 0) {
-          for (let m = 0; m < data.length; m++) {
-            array.push(data[m].seatId);
-          }
-          return res.json({
-            text: "You have reservation on seats:",
-            seat: array
-          });
-        } else {
-          return res.json({
-            text: `There is no reservation with such ticket ID`,
-            seat: " "
-          });
-        }
-      });
-  }
-});
+// apiRouter.post("/modify", (req, res) => {
+//   const id = req.body.id;
+//   let action = req.body.action;
+//   //cancelling
+//   if (action == "cancel") {
+//     Seat.deleteMany({ ticketId: id }, (err, data) => {
+//       if (err) return console.log(err);
+//       //if no documents to be removed were found
+//       if (data.n == 0) {
+//         return res.json({
+//           text: `There is no reservation with such ticket ID`,
+//           seat: " "
+//         });
+//       }
+//       return res.json({
+//         text: `Reservation has been cancelled for ticket ID `,
+//         seat: id
+//       });
+//     });
+//   }
+//   //showing
+//   else if (action == "show") {
+//     let array = [];
+//     Seat.find({ ticketId: id })
+//       .sort({ seatId: "asc" })
+//       .exec((err, data) => {
+//         if (err) return console.log(err);
+//         if (data.length > 0) {
+//           for (let m = 0; m < data.length; m++) {
+//             array.push(data[m].seatId);
+//           }
+//           return res.json({
+//             text: "You have reservation on seats:",
+//             seat: array
+//           });
+//         } else {
+//           return res.json({
+//             text: `There is no reservation with such ticket ID`,
+//             seat: " "
+//           });
+//         }
+//       });
+//   }
+// });
 
 //Make new reservation
-apiRouter.post("/reserve", (req, res) => {
-  const seat = req.body.seat;
-  const ticket = shortid.generate();
-  for (let i = 0; i < seat.length; i++) {
-    let newSeat = new Seat({
-      seatId: seat[i],
-      isTaken: true,
-      ticketId: ticket
-    });
-    newSeat.save();
-  }
-  res.json({
-    text: "You have reserved seat(s):" + seat + ". Your ticket ID is:",
-    ticketId: ticket
-  });
-});
+// apiRouter.post("/reserve", (req, res) => {
+//   const seat = req.body.seat;
+//   const ticket = shortid.generate();
+//   for (let i = 0; i < seat.length; i++) {
+//     let newSeat = new Seat({
+//       seatId: seat[i],
+//       isTaken: true,
+//       ticketId: ticket
+//     });
+//     newSeat.save();
+//   }
+//   res.json({
+//     text: "You have reserved seat(s):" + seat + ". Your ticket ID is:",
+//     ticketId: ticket
+//   });
+// });
 
 apiRouter.post("/secure", (req, res) => {
   const seats = req.body.seats;
@@ -85,7 +85,7 @@ apiRouter.post("/secure", (req, res) => {
 
   //check if any of the chosen seats were secured in the meanwhile;
   //   for (let i = 0; i < seats.length; i++) {
-  //     Seat.find({ seatId: seats[i].seat }, (err, seat) => {
+  //     Seat.find({ seatId: seats[i].id }, (err, seat) => {
   //       if (err) return console.log(err);
   //       if (seat) {
   //         console.log("taken already")

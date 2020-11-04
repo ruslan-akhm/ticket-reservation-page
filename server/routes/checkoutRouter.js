@@ -2,7 +2,7 @@ const express = require("express");
 const shortid = require("shortid");
 const Seat = require("../models/Seat");
 const checkoutRouter = express.Router();
-const stripe = require("stripe")(process.env.SECRET_STRIPE_KEY)
+const stripe = require("stripe")(process.env.SECRET_STRIPE_KEY);
 
 checkoutRouter.post("/", async (req, res) => {
   //console.log("Request:", req.body);
@@ -12,10 +12,9 @@ checkoutRouter.post("/", async (req, res) => {
   try {
     const { product, token, price, user } = req.body;
     let tickets = [];
-    for(let i = 0; i<product.length; i++){
-      tickets.push(product[i].id)
+    for (let i = 0; i < product.length; i++) {
+      tickets.push(product[i].id);
     }
-    
 
     const customer = await stripe.customers.create({
       email: token.email,
@@ -46,23 +45,22 @@ checkoutRouter.post("/", async (req, res) => {
       }
     );
     //console.log("Charge:", { charge });
-    console.log("Charge:")
+    console.log("Charge:");
     status = "success";
-    Seat.updateMany({userId:user},(err, data)=>{
-      if(err) return console.log(err)
-      if(!data) return res.json({message:"No tickets found", error:true})
-      else{
-        console.log(data.n);
-        for(let i = 0; i<data.length; i++){
-          data[i].isTaken=true;
+    for (let x = 0; x < tickets.length; x++) {
+      Seat.findAndModify({ seatId: tickets[x] }, (err, data) => {
+        if (err) return console.log(err);
+        if (!data) console.log("NO TICKET");
+        //return res.json({message:"No tickets found", error:true})
+        else {
+          data.isTaken = true;
         }
-      }
-    })
+      });
+    }
   } catch (error) {
     //console.error("Error:", error);
     status = "failure";
   }
-
 
   res.json({ error, status });
 });
