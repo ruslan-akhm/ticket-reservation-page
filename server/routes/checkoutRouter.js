@@ -5,7 +5,7 @@ const checkoutRouter = express.Router();
 const stripe = require("stripe")(process.env.SECRET_STRIPE_KEY)
 
 checkoutRouter.post("/", async (req, res) => {
-  console.log("Request:", req.body);
+  //console.log("Request:", req.body);
 
   let error;
   let status;
@@ -45,20 +45,21 @@ checkoutRouter.post("/", async (req, res) => {
         idempotencyKey
       }
     );
-    console.log("Charge:", { charge });
+    //console.log("Charge:", { charge });
+    console.log("Charge:")
     status = "success";
-    Seat.find({userId:user},(err, data)=>{
+    Seat.updateMany({userId:user},(err, data)=>{
       if(err) return console.log(err)
       if(!data) return res.json({message:"No tickets found", error:true})
       else{
+        console.log(data.n);
         for(let i = 0; i<data.length; i++){
           data[i].isTaken=true;
         }
-        Seat.save();
       }
     })
   } catch (error) {
-    console.error("Error:", error);
+    //console.error("Error:", error);
     status = "failure";
   }
 

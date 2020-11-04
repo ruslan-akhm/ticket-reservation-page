@@ -53,8 +53,10 @@ function Timer() {
       if (!data.error) {
         setSecured(null);
         setChosen([]);
-        localStorage.setItem("tickets", "");
+        //localStorage.setItem("tickets", "");//CHANGE to SESSION?
         //sessionStorage.setItem("timer-count", JSON.stringify(null));
+        sessionStorage.removeItem("timer")
+        sessionStorage.removeItem("tickets")
         history.push("/");
       }
     });

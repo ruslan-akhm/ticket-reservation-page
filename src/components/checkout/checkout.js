@@ -4,6 +4,12 @@ import { SeatsContext } from "../../context/seatsContext";
 import checkoutService from "../../services/checkoutService";
 import "./checkout.scss";
 
+//if payment success - clean chosen and secured  +  sessionStorage (all) => redirect to mainpage and give new userId
+//if cancel - unsecure tickets, clean all states and stoarges -> redirect to "/"
+//if timer ran out -> same as cancel ()  CHECK in TIMER.JS
+//if closed page => unsecure tickets and clear all states and storages
+
+
 function Checkout() {
   const { total, setTotal, secured, setSecured } = useContext(SeatsContext);
 
