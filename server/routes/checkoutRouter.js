@@ -50,13 +50,13 @@ checkoutRouter.post("/", async (req, res) => {
     console.log(tickets);
     for (let x = 0; x < tickets.length; x++) {
       console.log(tickets[x], typeof tickets[x]);
-      Seat.findAndModify({ seatId: tickets[x] }, (err, data) => {
+      Seat.update({ seatId: tickets[x], $set: isTaken:true }, (err, data) => {
         if (err) return console.log(err);
         if (!data) console.log("NO TICKET");
         //return res.json({message:"No tickets found", error:true})
         else {
           console.log(data);
-          data[0].isTaken = true;
+         // data[0].isTaken = true;
         }
       });
     }
