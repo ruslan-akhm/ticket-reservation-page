@@ -47,15 +47,21 @@ checkoutRouter.post("/", async (req, res) => {
     );
     console.log("Charge:", { charge });
     status = "success";
+    Seat.find({userId:user},(err, data)=>{
+      if(err) return console.log(err)
+      if(!data) return res.json({message:"No tickets found", error:true})
+      else{
+        for(let i = 0; i<data.length; i++){
+          data[i].isTaken=true;
+        }
+        Seat.save();
+      }
+    })
   } catch (error) {
     console.error("Error:", error);
     status = "failure";
   }
-//   if(status = "success"){
-//     Seat.find({userId:user},(err, data)=>{
-      
-//     })
-//   }
+
 
   res.json({ error, status });
 });
