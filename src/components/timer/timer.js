@@ -21,10 +21,12 @@ function Timer() {
   //if visiting 1st time - initial value
   useEffect(() => {}, []);
 
+  //CHECK IF THIS CALLED TWICE 
   useEffect(() => {
     if (timer && timer <= 1) {
+      console.log("TIMER is 0")
       setTimer(0);
-      window.clearInterval(window.myInterval);
+      window.clearInterval(window.myInterval);//??
       clear();
     }
   }, [timer]);
@@ -42,7 +44,7 @@ function Timer() {
 
   //if timer reaches 00:00 or page is closed -> clear states and localstorage, unsecure tickets on back-end
   const clear = () => {
-    window.clearInterval(window.myInterval);
+    window.clearInterval(window.myInterval);//?? and here and in useeffect
     const allSeats =
       secured &&
       secured.map(seat => {

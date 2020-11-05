@@ -14,6 +14,8 @@ import "./cart.scss";
 //isPaid, setIsPaid -> is being set on payment page -> API call to make isTaken true
 
 //tickets have to be unsecured if not paid and page is closed
+//so on close - unsecure all
+//on payment -> remove sessionstor userId and tickets. clear all and redirect "/"
 
 function Cart() {
   const {

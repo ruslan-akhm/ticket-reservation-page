@@ -34,15 +34,18 @@ function App() {
   
   //unsecure all tickets if tab gets closed
   function keepOnPage(e) {
+    e.preventDefault();
+    var message =
+      "Warning!\n\nNavigating away from this page will delete your text if you haven't already saved it.";
+    e.returnValue = message;
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     const allSeats = secured.map(seat => {
       return seat.id;
     });
     let userId = sessionStorage.getItem("userId");
     let seat = { ticket: [].concat(allSeats), userId: userId };
     ticketService.unSecure(seat).then(data => {});
-    var message =
-      "Warning!\n\nNavigating away from this page will delete your text if you haven't already saved it.";
-    e.returnValue = message;
+    
     return message;
   }
 
