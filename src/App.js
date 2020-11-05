@@ -12,9 +12,13 @@ function App() {
   const { secured, timer, setTimer } = useContext(SeatsContext);
   const isInitialMount = useRef(true);
 
-//   useEffect(() => {
-
-//   }, []);
+  useEffect(() => {
+    return()=>{
+      ticketService.unSecure({hello:"WRLD"}).then(data=>{
+        
+      })
+    }
+  }, []);
 
   //not trigger interval on initial mount
   useEffect(() => {

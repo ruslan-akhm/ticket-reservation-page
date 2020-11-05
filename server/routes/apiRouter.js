@@ -123,6 +123,7 @@ apiRouter.post("/secure", (req, res) => {
 });
 
 apiRouter.post("/unsecure", (req, res) => {
+  console.log("UNSECURE");
   console.log(req.body);
   const seat = req.body.ticket;
   const userId = req.body.userId;
