@@ -40,9 +40,6 @@ function App() {
     let userId = sessionStorage.getItem("userId");
     let seat = { ticket: [].concat(allSeats), userId: userId };
     ticketService.unSecure(seat).then(data => {});
-    sessionStorage.removeItem("timer")
-    sessionStorage.removeItem("tickets")
-    sessionStorage.removeItem("userId")
     var message =
       "Warning!\n\nNavigating away from this page will delete your text if you haven't already saved it.";
     e.returnValue = message;
