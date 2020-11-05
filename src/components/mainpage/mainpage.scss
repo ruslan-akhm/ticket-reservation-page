@@ -7,7 +7,7 @@ $height:35px;
   height:100vh;
   display:grid;
   grid-template-columns:repeat(4, 1fr);
-  grid-template-rows: 15vh 85vh;  
+  grid-template-rows: minmax(15vh, 25vh) 85vh;  
   width:100%;
   min-width:500px;
 /*   overflow:hidden; */

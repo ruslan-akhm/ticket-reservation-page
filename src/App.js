@@ -13,11 +13,12 @@ function App() {
   const isInitialMount = useRef(true);
 
   useEffect(() => {
-    return()=>{
-      ticketService.unSecure({hello:"WRLD"}).then(data=>{
-        
-      })
-    }
+    window.addEventListener("beforeunload", ev => {
+      ev.preventDefault();
+      return () => {
+        ticketService.unSecure({ hello: "WRLD" }).then(data => {});
+      };
+    });
   }, []);
 
   //not trigger interval on initial mount
@@ -25,14 +26,16 @@ function App() {
     //console.log(timer)
     if (isInitialMount.current) {
       isInitialMount.current = false;
-      return
+      return;
     } else {
       sessionStorage.setItem("timer", JSON.stringify(timer));
       window.myInterval = setInterval(() => {
         setTimer(timer => timer - 1);
       }, 1000);
     }
-    return()=>{clearInterval(window.myInterval)}
+    return () => {
+      clearInterval(window.myInterval);
+    };
   }, [timer]);
 
   return (

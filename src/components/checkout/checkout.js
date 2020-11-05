@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
 import { SeatsContext } from "../../context/seatsContext";
+import ticketService from "../../services/ticketService";
 import checkoutService from "../../services/checkoutService";
 import "./checkout.scss";
 
@@ -11,7 +13,8 @@ import "./checkout.scss";
 
 
 function Checkout() {
-  const { total, setTotal, secured, setSecured } = useContext(SeatsContext);
+  const { total, setTotal, secured, setSecured, chosen, setChosen } = useContext(SeatsContext);
+  let history = useHistory();
 
   useEffect(() => {
     console.log(secured);
@@ -31,6 +34,24 @@ function Checkout() {
         console.log(data);
       });
   };
+  
+  const cancel = () => {
+    const allSeats = secured.map(seat => {
+      return seat.id;
+    });
+    let userId = sessionStorage.getItem("userId")
+    let seat = { ticket: [].concat(allSeats), userId: userId };
+    ticketService.unSecure(seat).then(data => {
+      console.log(data);
+      if (!data.error) {
+        setSecured(null);
+        setChosen([]);
+        sessionStorage.removeItem("timer")
+        sessionStorage.removeItem("tickets")//, JSON.stringify(null));
+        history.push("/");
+      }
+    });
+  }
 
   return (
     <div>
@@ -39,6 +60,7 @@ function Checkout() {
         token={handleToken}
         amount={total * 100}
       />
+      <button onClick={cancel}>Cancel</button>
     </div>
   );
 }
