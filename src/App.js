@@ -13,7 +13,7 @@ function App() {
   const isInitialMount = useRef(true);
 
   useEffect(() => {
-    window.addEventListener("beforeunload", keepOnPage);
+    window.addEventListener("beforeunload", e=>keepOnPage(e));
   }, []);
 
   //not trigger interval on initial mount
