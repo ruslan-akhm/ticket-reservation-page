@@ -13,17 +13,11 @@ function App() {
   const isInitialMount = useRef(true);
 
   useEffect(() => {
-    window.addEventListener("beforeunload", ev => {
-      ev.preventDefault();
-      return () => {
-        ticketService.unSecure({ hello: "WRLD" }).then(data => {});
-      };
-    });
+    window.addEventListener("beforeunload", keepOnPage);
   }, []);
 
   //not trigger interval on initial mount
   useEffect(() => {
-    //console.log(timer)
     if (isInitialMount.current) {
       isInitialMount.current = false;
       return;
@@ -37,6 +31,23 @@ function App() {
       clearInterval(window.myInterval);
     };
   }, [timer]);
+  
+  //unsecure all tickets if tab gets closed
+  function keepOnPage(e) {
+    const allSeats = secured.map(seat => {
+      return seat.id;
+    });
+    let userId = sessionStorage.getItem("userId");
+    let seat = { ticket: [].concat(allSeats), userId: userId };
+    ticketService.unSecure(seat).then(data => {});
+    sessionStorage.removeItem("timer")
+    sessionStorage.removeItem("tickets")
+    sessionStorage.removeItem("userId")
+    var message =
+      "Warning!\n\nNavigating away from this page will delete your text if you haven't already saved it.";
+    e.returnValue = message;
+    return message;
+  }
 
   return (
     <Router>
