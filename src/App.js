@@ -13,18 +13,9 @@ function App() {
   const isInitialMount = useRef(true);
 
   useEffect(() => {
-    document.addEventListener("visibilitychange", function() {
-      if (document.visibilityState === "visible") {
-        return;
-      } else {
-        if(!secured||secured.length<1) return
-        const allSeats = secured.map(seat => {
-          return seat.id;
-        });
-        let userId = sessionStorage.getItem("userId");
-        let seat = { ticket: [].concat(allSeats), userId: userId };
-        ticketService.unSecure(seat).then(data => {});
-      }
+    document.addEventListener("unload", function() {
+      ticketService.unSecure({seat:"PPP"}).then(data => {});
+      
     });
     //     window.addEventListener("unload", ()=>{
     //       //event.preventDefault();

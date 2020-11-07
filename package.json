@@ -16,7 +16,8 @@
     "node-sass-middleware": "^0.11.0",
     "react-router-dom": "^5.2.0",
     "react-stripe-checkout": "^2.6.3",
-    "stripe": "^8.119.0"
+    "stripe": "^8.119.0",
+    "navigator.sendbeacon": "^0.0.20"
   },
   "scripts": {
     "start": "npm run development",
