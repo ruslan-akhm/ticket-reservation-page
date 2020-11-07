@@ -16,7 +16,7 @@ function PreviewTickets() {
     setTimer
   } = useContext(SeatsContext);
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState();
+  //const [message, setMessage] = useState();
   let history = useHistory();
 
   //auto scroll down when choosing multiple tickets (only on desktop version)
@@ -78,7 +78,7 @@ function PreviewTickets() {
           </a>
         </div>
       ) : null}
-      <Loading isLoading={loading} message={message} />
+      <Loading isLoading={loading} />
     </div>
   );
 }

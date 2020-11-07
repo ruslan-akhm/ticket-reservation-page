@@ -15,7 +15,7 @@ function Mainpage() {
     timer,
     setTimer
   } = useContext(SeatsContext);
-  
+
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -28,14 +28,8 @@ function Mainpage() {
   //this should probably be in seats.js
   const updateSeats = () => {
     let seats = document.getElementsByClassName("check-box");
-
-    // for (let m = 0; m < seats.length; m++) {
-    //   seats[m].checked = false;
-    // }
     ticketService.update().then(data => {
-      console.log(sessionStorage.getItem("userId"));
       if (sessionStorage.getItem("userId") == null) {
-        console.log("GETTING ID");
         sessionStorage.setItem("userId", data.userId); //set user id to manipulate their tickets
       }
       let taken = data.seats;
@@ -66,7 +60,13 @@ function Mainpage() {
         <div id="stage">
           <h2>STAGE</h2>
         </div>
-        {isLoaded?<Seats />:<h1>LOADING</h1>}
+        <Seats />
+        {isLoaded ? null : (
+          <div>
+          <div id="loading-animation">
+            <div className="spinner-1"></div>
+          </div>
+        )}
       </div>
       <div id="side-right">
         <PreviewTickets />
