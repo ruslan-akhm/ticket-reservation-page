@@ -19,10 +19,10 @@ function App() {
   useEffect(() => {
     window.addEventListener("beforeunload", event=>{
       event.preventDefault();
-    var message =
-      "Warning!\n\nNavigating away from this page will delete your text if you haven't already saved it.";
-    event.returnValue = message;
-    console.log(event)
+    //var message =
+    //  "Warning!\n\nNavigating away from this page will delete your text if you haven't already saved it.";
+    //event.returnValue = message;
+    //console.log(event)
     const allSeats = secured.map(seat => {
       return seat.id;
     });
@@ -30,7 +30,7 @@ function App() {
     let seat = { ticket: [].concat(allSeats), userId: userId };
     ticketService.unSecure(seat).then(data => {});
     
-    return message;
+    //return message;
     });
   }, []);
 
