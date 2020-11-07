@@ -11,27 +11,36 @@ import "./App.css";
 function App() {
   const { secured, timer, setTimer } = useContext(SeatsContext);
   const isInitialMount = useRef(true);
-  
-  useEffect(()=>{
-    window.addEventListener("click",(e)=>{console.log(e.target)})
-  })
 
   useEffect(() => {
-    window.addEventListener("beforeunload", event=>{
-      event.preventDefault();
-    //var message =
-    //  "Warning!\n\nNavigating away from this page will delete your text if you haven't already saved it.";
-    //event.returnValue = message;
-    //console.log(event)
-    const allSeats = secured.map(seat => {
-      return seat.id;
+    document.addEventListener("visibilitychange", function() {
+      if (document.visibilityState === "visible") {
+        return;
+      } else {
+        if(!secured||secured.length<1) return
+        const allSeats = secured.map(seat => {
+          return seat.id;
+        });
+        let userId = sessionStorage.getItem("userId");
+        let seat = { ticket: [].concat(allSeats), userId: userId };
+        ticketService.unSecure(seat).then(data => {});
+      }
     });
-    let userId = sessionStorage.getItem("userId");
-    let seat = { ticket: [].concat(allSeats), userId: userId };
-    ticketService.unSecure(seat).then(data => {});
-    
-    //return message;
-    });
+    //     window.addEventListener("unload", ()=>{
+    //       //event.preventDefault();
+    //     //var message =
+    //     //  "Warning!\n\nNavigating away from this page will delete your text if you haven't already saved it.";
+    //     //event.returnValue = message;
+    //     //console.log(event)
+    //     const allSeats = secured.map(seat => {
+    //       return seat.id;
+    //     });
+    //     let userId = sessionStorage.getItem("userId");
+    //     let seat = { ticket: [].concat(allSeats), userId: userId };
+    //     ticketService.unSecure(seat).then(data => {});
+
+    //     //return message;
+    //     },false);
   }, []);
 
   //not trigger interval on initial mount
@@ -49,7 +58,7 @@ function App() {
       clearInterval(window.myInterval);
     };
   }, [timer]);
-  
+
   return (
     <Router>
       <Switch>
