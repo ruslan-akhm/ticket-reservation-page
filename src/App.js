@@ -11,9 +11,27 @@ import "./App.css";
 function App() {
   const { secured, timer, setTimer } = useContext(SeatsContext);
   const isInitialMount = useRef(true);
+  
+  useEffect(()=>{
+    window.addEventListener("click",(e)=>{console.log(e.target)})
+  })
 
   useEffect(() => {
-    window.addEventListener("beforeunload", e=>keepOnPage(e));
+    window.addEventListener("beforeunload", event=>{
+      event.preventDefault();
+    var message =
+      "Warning!\n\nNavigating away from this page will delete your text if you haven't already saved it.";
+    event.returnValue = message;
+    console.log(event)
+    const allSeats = secured.map(seat => {
+      return seat.id;
+    });
+    let userId = sessionStorage.getItem("userId");
+    let seat = { ticket: [].concat(allSeats), userId: userId };
+    ticketService.unSecure(seat).then(data => {});
+    
+    return message;
+    });
   }, []);
 
   //not trigger interval on initial mount
@@ -32,23 +50,6 @@ function App() {
     };
   }, [timer]);
   
-  //unsecure all tickets if tab gets closed
-  function keepOnPage(e) {
-    e.preventDefault();
-    var message =
-      "Warning!\n\nNavigating away from this page will delete your text if you haven't already saved it.";
-    e.returnValue = message;
-    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    const allSeats = secured.map(seat => {
-      return seat.id;
-    });
-    let userId = sessionStorage.getItem("userId");
-    let seat = { ticket: [].concat(allSeats), userId: userId };
-    //ticketService.unSecure(seat).then(data => {});
-    
-    return message;
-  }
-
   return (
     <Router>
       <Switch>
