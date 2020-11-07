@@ -13,8 +13,12 @@ function App() {
   const isInitialMount = useRef(true);
 
   useEffect(() => {
-    document.addEventListener("unload", function() {
-      ticketService.unSecure({seat:"PPP"}).then(data => {});
+    window.addEventListener("unload", function() {
+      console.log("!!!!!!!!!!!!!!")
+      let url = "/api/unsecure";
+      let dt = JSON.Stringify({seat:"PPP"})
+      navigator.sendBeacon(url, dt);
+      //ticketService.unSecure({seat:"PPP"}).then(data => {});
       
     });
     //     window.addEventListener("unload", ()=>{
