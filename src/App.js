@@ -44,7 +44,7 @@ function App() {
     });
     let userId = sessionStorage.getItem("userId");
     let seat = { ticket: [].concat(allSeats), userId: userId };
-    ticketService.unSecure(seat).then(data => {});
+    //ticketService.unSecure(seat).then(data => {});
     
     return message;
   }
