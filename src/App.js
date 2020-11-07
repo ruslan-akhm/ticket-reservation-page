@@ -12,33 +12,7 @@ function App() {
   const { secured, timer, setTimer } = useContext(SeatsContext);
   const isInitialMount = useRef(true);
 
-  useEffect(() => {
-    window.addEventListener("unload", function() {
-      console.log("!!!!!!!!!!!!!!")
-      let url = "/api/unsecure";
-      let dt = JSON.Stringify({seat:"PPP"})
-      navigator.sendBeacon(url, dt);
-      //ticketService.unSecure({seat:"PPP"}).then(data => {});
-      
-    });
-    //     window.addEventListener("unload", ()=>{
-    //       //event.preventDefault();
-    //     //var message =
-    //     //  "Warning!\n\nNavigating away from this page will delete your text if you haven't already saved it.";
-    //     //event.returnValue = message;
-    //     //console.log(event)
-    //     const allSeats = secured.map(seat => {
-    //       return seat.id;
-    //     });
-    //     let userId = sessionStorage.getItem("userId");
-    //     let seat = { ticket: [].concat(allSeats), userId: userId };
-    //     ticketService.unSecure(seat).then(data => {});
-
-    //     //return message;
-    //     },false);
-  }, []);
-
-  //not trigger interval on initial mount
+   //not trigger interval on initial mount
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
