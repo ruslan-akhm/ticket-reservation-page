@@ -19,13 +19,10 @@ function Mainpage() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    console.log(chosen);
     updateSeats();
-    // return () => {
-    // };
   }, []);
 
-  //this should probably be in seats.js
+  //update on render to see which seats were secured and chosen
   const updateSeats = () => {
     let seats = document.getElementsByClassName("check-box");
     ticketService.update().then(data => {
@@ -62,10 +59,11 @@ function Mainpage() {
         </div>
         <Seats />
         {isLoaded ? null : (
-          <div>
+          <div id="modal-loading">
           <div id="loading-animation">
             <div className="spinner-1"></div>
           </div>
+            </div>
         )}
       </div>
       <div id="side-right">

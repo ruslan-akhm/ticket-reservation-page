@@ -5,7 +5,7 @@ const apiRouter = express.Router();
 
 //Render seats page according to database
 apiRouter.get("/", (req, res) => {
-  console.log("LOOKING FOR UNTAKEN");
+  //delete seats that were secured, but were not purchased/user closed the page before 5 min passed
   Seat.deleteMany(
     {
       isSecured: true,
@@ -14,30 +14,16 @@ apiRouter.get("/", (req, res) => {
     },
     (err, data) => {
       if (err) return console.log(err);
-      
-      console.log("LOOKING FOR SECURED");
       var seatsArray = [];
       Seat.find({ isSecured: true }, (err, data) => {
         if (err) return console.log(err);
         for (let i = 0; i < data.length; i++) {
           seatsArray.push(data[i].seatId);
         }
-        console.log(data);
         return res.json({ seats: seatsArray, userId: shortid.generate() });
       });
-      
     }
   );
-  // console.log("LOOKING FOR SECURED")
-  //   var seatsArray = [];
-  //   Seat.find({ isSecured: true }, (err, data) => {
-  //     if (err) return console.log(err);
-  //     for (let i = 0; i < data.length; i++) {
-  //       seatsArray.push(data[i].seatId);
-  //     }
-  //     console.log(data);
-  //     return res.json({ seats: seatsArray, userId: shortid.generate() });
-  //   });
 });
 
 //Check for existing reservation / Or cancel it
