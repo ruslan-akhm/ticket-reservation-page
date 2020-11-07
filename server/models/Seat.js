@@ -8,7 +8,7 @@ var seatSchema = new Schema({
   isSecured:Boolean,
   userId:String,
   price:String,
-  dateSecured:String
+  dateSecured:Number
 })
 
 var Seat = mongoose.model("Seat", seatSchema)

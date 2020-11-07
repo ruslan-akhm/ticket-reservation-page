@@ -5,6 +5,19 @@ const apiRouter = express.Router();
 
 //Render seats page according to database
 apiRouter.get("/", (req, res) => {
+  
+  Seat.update(
+    {
+      isSecured: true,
+      isTaken: false,
+      dateSecured: { $lte: Date.now() - 3600 }
+    },
+    { $set: { isSecured: false } },
+    (err, data) => {
+      if (err) return console.log(err);
+    }
+  );
+
   var seatsArray = [];
   Seat.find({ isSecured: true }, (err, data) => {
     if (err) return console.log(err);
@@ -111,7 +124,8 @@ apiRouter.post("/secure", (req, res) => {
       userId: userId,
       isSecured: true,
       isTaken: false,
-      price: seats[j].price
+      price: seats[j].price,
+      dateSecured: Date.now()
     });
     newSeat.save();
   }
@@ -127,7 +141,7 @@ apiRouter.post("/unsecure", (req, res) => {
   console.log(req.body);
   const seat = req.body.ticket;
   const userId = req.body.userId;
-  
+
   //unsecure by seat and not userId for the purpose of deleting particular tickets and not necesseraly all
   for (let i = 0; i < seat.length; i++) {
     Seat.deleteOne({ seatId: seat[i] }, (err, item) => {
