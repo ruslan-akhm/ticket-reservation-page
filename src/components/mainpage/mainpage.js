@@ -15,16 +15,14 @@ function Mainpage() {
     timer,
     setTimer
   } = useContext(SeatsContext);
+  
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // setChosen([]);
-    // setSecured();
+    console.log(chosen);
     updateSeats();
-    return () => {
-      //localStorage.clear()
-      //RESET SECURED HERE
-      //TRY WITH CONSOLING ON BACK END FIRST
-    };
+    // return () => {
+    // };
   }, []);
 
   //this should probably be in seats.js
@@ -48,13 +46,14 @@ function Mainpage() {
       }
       //if we return back via browser "back" button - show us our seats chosen (they are still secured)
       for (let m = 0; m < seats.length; m++) {
-        let includes = chosen && chosen.some(x => x.seat == seats[m].id);
+        let includes = chosen && chosen.some(x => x.id == seats[m].id);
         if (includes == true) {
           console.log(seats[m]);
           seats[m].disabled = false;
           seats[m].checked = true;
         }
       }
+      setIsLoaded(true);
     });
   };
 
@@ -67,7 +66,7 @@ function Mainpage() {
         <div id="stage">
           <h2>STAGE</h2>
         </div>
-        <Seats />
+        {isLoaded?<Seats />:<h1>LOADING</h1>}
       </div>
       <div id="side-right">
         <PreviewTickets />

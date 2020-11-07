@@ -5,25 +5,25 @@ const apiRouter = express.Router();
 
 //Render seats page according to database
 apiRouter.get("/", (req, res) => {
-  
-  Seat.update(
+  console.log("LOOKING FOR UNTAKEN")
+  Seat.deleteMany(
     {
       isSecured: true,
       isTaken: false,
-      dateSecured: { $lte: Date.now() - 3600 }
+      dateSecured: { $lte: Date.now() - 360000 }
     },
-    { $set: { isSecured: false } },
     (err, data) => {
       if (err) return console.log(err);
     }
   );
-
+console.log("LOOKING FOR SECURED")
   var seatsArray = [];
   Seat.find({ isSecured: true }, (err, data) => {
     if (err) return console.log(err);
     for (let i = 0; i < data.length; i++) {
       seatsArray.push(data[i].seatId);
     }
+    console.log(data);
     return res.json({ seats: seatsArray, userId: shortid.generate() });
   });
 });
