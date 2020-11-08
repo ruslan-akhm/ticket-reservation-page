@@ -103,30 +103,23 @@ import ticketService from "../../services/ticketService";
 import checkoutService from "../../services/checkoutService";
 import { loadStripe } from "@stripe/stripe-js";
 import {
-  CardElement,
   Elements,
-  useElements,
-  useStripe
+  CardElement,
+  useStripe,
+  useElements
 } from "@stripe/react-stripe-js";
 import "./checkout.scss";
+const stripePromise = loadStripe(
+  "pk_test_51HggwPCG1w6N7hyjuemFJNqZrVfja0QxUWhsfH6S2h1i2WWYP6H78cBWPy6IlX34TiwMhPdg8AOy6zq06yMDMvKD00OBEsg0kT"
+);
 
-const CARD_ELEMENT_OPTIONS = {
-  style: {
-    base: {
-      color: '#32325d',
-      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-      fontSmoothing: 'antialiased',
-      fontSize: '16px',
-      '::placeholder': {
-        color: '#aab7c4'
-      }
-    },
-    invalid: {
-      color: '#fa755a',
-      iconColor: '#fa755a'
-    }
-  }
-};
+function Form() {
+  return (
+    <form>
+      <CardElement />
+    </form>
+  );
+}
 
 function Checkout() {
   const {
@@ -137,54 +130,13 @@ function Checkout() {
     chosen,
     setChosen
   } = useContext(SeatsContext);
-  const [error, setError] = useState(null);
-  const stripe = useStripe();
-  const elements = useElements();
+
   let history = useHistory();
 
-  const handleToken = token => {
-    //show loading
-    const product = secured;
-    console.log(secured);
-    checkoutService
-      .makePayment({
-        token,
-        product,
-        price: total,
-        user: sessionStorage.getItem("userId")
-      })
-      .then(data => {
-        if (!data.error) {
-          //stop loading
-          //show check mark
-          //clear all
-          //clear();
-          // setSecured(null);
-          // setChosen([]);
-          // sessionStorage.removeItem("timer");
-          // sessionStorage.removeItem("tickets"); //, JSON.stringify(null));
-          // history.push("/");
-        }
-      });
-  };
-  //onSubmit={handleSubmit}
-  //onChange={handleChange}
-
   return (
-    <form >
-      <div className="form-row">
-        <label for="card-element">Credit or debit card</label>
-        <CardElement
-          id="card-element"
-          options={CARD_ELEMENT_OPTIONS}
-          
-        />
-        <div className="card-errors" role="alert">
-          {error}
-        </div>
-      </div>
-      <button type="submit">Submit Payment</button>
-    </form>
+    <Elements stripe={stripePromise}>
+      <Form />
+    </Elements>
   );
 }
 
