@@ -160,12 +160,17 @@ function Form() {
     });
     if (!error) {
       const { id } = paymentMethod;
-    }
-    
-    try{
-      
-    } catch(error){
-      console.log(error)
+      const product = secured;
+      checkoutService
+        .makePayment({
+          id,
+          product,
+          price: total * 100,
+          user: sessionStorage.getItem("userId")
+        })
+        .then(data => {
+          console.log(data);
+        });
     }
   };
 
@@ -183,7 +188,6 @@ function Form() {
 }
 
 function Checkout() {
-
   return (
     <Elements stripe={stripePromise}>
       <Form />
