@@ -110,6 +110,24 @@ import {
 } from "@stripe/react-stripe-js";
 import "./checkout.scss";
 
+const CARD_ELEMENT_OPTIONS = {
+  style: {
+    base: {
+      color: '#32325d',
+      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+      fontSmoothing: 'antialiased',
+      fontSize: '16px',
+      '::placeholder': {
+        color: '#aab7c4'
+      }
+    },
+    invalid: {
+      color: '#fa755a',
+      iconColor: '#fa755a'
+    }
+  }
+};
+
 function Checkout() {
   const {
     total,
@@ -124,7 +142,50 @@ function Checkout() {
   const elements = useElements();
   let history = useHistory();
 
-  return <div id="checkout"></div>;
+  const handleToken = token => {
+    //show loading
+    const product = secured;
+    console.log(secured);
+    checkoutService
+      .makePayment({
+        token,
+        product,
+        price: total,
+        user: sessionStorage.getItem("userId")
+      })
+      .then(data => {
+        if (!data.error) {
+          //stop loading
+          //show check mark
+          //clear all
+          //clear();
+          // setSecured(null);
+          // setChosen([]);
+          // sessionStorage.removeItem("timer");
+          // sessionStorage.removeItem("tickets"); //, JSON.stringify(null));
+          // history.push("/");
+        }
+      });
+  };
+  //onSubmit={handleSubmit}
+  //onChange={handleChange}
+
+  return (
+    <form >
+      <div className="form-row">
+        <label for="card-element">Credit or debit card</label>
+        <CardElement
+          id="card-element"
+          options={CARD_ELEMENT_OPTIONS}
+          
+        />
+        <div className="card-errors" role="alert">
+          {error}
+        </div>
+      </div>
+      <button type="submit">Submit Payment</button>
+    </form>
+  );
 }
 
 export default Checkout;
