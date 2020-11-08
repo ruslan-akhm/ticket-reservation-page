@@ -114,9 +114,12 @@ const stripePromise = loadStripe(
 );
 
 function Form() {
+  const stripe = useStripe();
+  
   return (
-    <form>
+    <form style={{maxWidth:"400px", margin:"0 auto"}}>
       <CardElement />
+      <button type="submit" disabled={!stripe}>Pay</button>
     </form>
   );
 }
