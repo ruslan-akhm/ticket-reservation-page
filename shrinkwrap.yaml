@@ -1,4 +1,6 @@
 dependencies:
+  '@stripe/react-stripe-js': 1.1.2
+  '@stripe/stripe-js': 1.11.0
   body-parser: 1.19.0
   concurrently: 5.3.0
   express: 4.17.1
@@ -2256,6 +2258,20 @@ packages:
       node: '>= 6'
     resolution:
       integrity: sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
+  /@stripe/react-stripe-js/1.1.2:
+    dependencies:
+      prop-types: 15.7.2
+    dev: false
+    peerDependencies:
+      '@stripe/stripe-js': ^1.2.0
+      react: ^16.8.0
+      react-dom: ^16.8.0
+    resolution:
+      integrity: sha512-07hu8RJXwWKGbvdvd1yt1cYvGtDB8jFX+q10f7FQuItUt9rlSo0am3WIx845iMHANiYgxyRb1PS201Yle9xxPQ==
+  /@stripe/stripe-js/1.11.0:
+    dev: false
+    resolution:
+      integrity: sha512-SDNZKuETBEVkernd1tq8tL6wNfVKrl24Txs3p+4NYxoaIbNaEO7mrln/2Y/WRcQBWjagvhDIM5I6+X1rfK0qhQ==
   /@svgr/babel-plugin-add-jsx-attribute/4.2.0:
     dev: false
     engines:
@@ -12852,6 +12868,8 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
+  '@stripe/react-stripe-js': ^1.1.2
+  '@stripe/stripe-js': ^1.11.0
   body-parser: ^1.19.0
   concurrently: ^5.0.2
   express: ^4.17.1
