@@ -115,16 +115,7 @@ const stripePromise = loadStripe(
 
 function Form() {
   const stripe = useStripe();
-  
-  return (
-    <form style={{maxWidth:"400px", margin:"0 auto"}}>
-      <CardElement />
-      <button type="submit" disabled={!stripe}>Pay</button>
-    </form>
-  );
-}
-
-function Checkout() {
+  const elements = useElements();
   const {
     total,
     setTotal,
@@ -133,8 +124,65 @@ function Checkout() {
     chosen,
     setChosen
   } = useContext(SeatsContext);
-
   let history = useHistory();
+
+  //   const handleToken = token => {
+  //   //show loading
+  //   const product = secured;
+  //   console.log(secured);
+  //   checkoutService
+  //     .makePayment({
+  //       token,
+  //       product,
+  //       price: total,
+  //       user: sessionStorage.getItem("userId")
+  //     })
+  //     .then(data => {
+  //       if (!data.error) {
+  //         //stop loading
+  //         //show check mark
+  //         //clear all
+  //         clear();
+  //         // setSecured(null);
+  //         // setChosen([]);
+  //         // sessionStorage.removeItem("timer");
+  //         // sessionStorage.removeItem("tickets"); //, JSON.stringify(null));
+  //         // history.push("/");
+  //       }
+  //     });
+  // };
+
+  const handleSubmit = async event => {
+    event.preventDefault();
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card: elements.getElement(CardElement)
+    });
+    if (!error) {
+      const { id } = paymentMethod;
+    }
+    
+    try{
+      
+    } catch(error){
+      console.log(error)
+    }
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      style={{ maxWidth: "400px", margin: "0 auto" }}
+    >
+      <CardElement />
+      <button type="submit" disabled={!stripe}>
+        Pay ${total}
+      </button>
+    </form>
+  );
+}
+
+function Checkout() {
 
   return (
     <Elements stripe={stripePromise}>
