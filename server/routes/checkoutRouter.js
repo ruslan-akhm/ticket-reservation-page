@@ -47,6 +47,7 @@ checkoutRouter.post("/", async (req, res) => {
     //console.log("Charge:", { charge });
     console.log("Charge:");
     status = "success";
+    error=false
     console.log(tickets);
     for (let x = 0; x < tickets.length; x++) {
       Seat.updateOne(
@@ -74,9 +75,10 @@ checkoutRouter.post("/", async (req, res) => {
   } catch (error) {
     //console.error("Error:", error);
     status = "failure";
+    error=true;
   }
 
-  res.json({ error, status });
+  res.json({ error: error, status });
 });
 
 module.exports = checkoutRouter;
