@@ -125,7 +125,7 @@ function Form() {
     setChosen
   } = useContext(SeatsContext);
   let history = useHistory();
-  const [customer, setCustomer] = useState({email:"",name:"",id:})
+  const [customer, setCustomer] = useState({email:"",name:""})
   //   const handleToken = token => {
   //   //show loading
   //   const product = secured;
@@ -151,8 +151,8 @@ function Form() {
   //       }
   //     });
   // };
-  const inputChange=()=>{
-    
+  const inputChange=(e)=>{
+    setCustomer({...customer,[e.target.name]:e.target.value})
   }
 
   const handleSubmit = async event => {
@@ -169,7 +169,7 @@ function Form() {
           id,
           product,
           price: total * 100,
-          user: sessionStorage.getItem("userId")
+          user: customer
         })
         .then(data => {
           console.log(data);
@@ -182,8 +182,8 @@ function Form() {
       onSubmit={handleSubmit}
       style={{ maxWidth: "400px", margin: "0 auto" }}
     >
-      <input onChange={inputChange} type="email" placeholder="Send tickets to..." />
-      <input onChange={inputChange} type="text" id="card-name" placeholder="Cardholder name" />
+      <input onChange={inputChange} type="email" name="email" placeholder="Send tickets to..." required/>
+      <input onChange={inputChange} type="text" name="name" placeholder="Cardholder name" required/>
       <CardElement />
       <button type="submit" disabled={!stripe}>
         Pay ${total}

@@ -17,8 +17,8 @@ checkoutRouter.post("/", async (req, res) => {
     }
 
     const customer = await stripe.customers.create({
-      
-      email: email,
+      email: user.email,
+      name: user.name
       //source: token.id
     });
 
@@ -30,7 +30,7 @@ checkoutRouter.post("/", async (req, res) => {
         customer: customer.id,
         //customer: customer.id,
         //receipt_email: token.email,
-        description: `Purchased ${tickets.length} ticket(s): ${tickets}. User: ${user}`
+        description: `Purchased ${tickets.length} ticket(s): ${tickets}. Customer: ${customer.id}`
         // shipping: {
         //   name: token.card.name,
         //   address: {
