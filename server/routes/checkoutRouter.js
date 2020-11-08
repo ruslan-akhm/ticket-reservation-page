@@ -16,17 +16,18 @@ checkoutRouter.post("/", async (req, res) => {
       tickets.push(product[i].id);
     }
 
-    // const customer = await stripe.customers.create({
-    //   email: token.email,
-    //   source: token.id
-    // });
+    const customer = await stripe.customers.create({
+      
+      email: email,
+      //source: token.id
+    });
 
     const idempotencyKey = shortid.generate();
     const charge = await stripe.charges.create(
       {
         amount: price,
         currency: "cad",
-        customer: id,
+        customer: customer.id,
         //customer: customer.id,
         //receipt_email: token.email,
         description: `Purchased ${tickets.length} ticket(s): ${tickets}. User: ${user}`
@@ -74,7 +75,7 @@ checkoutRouter.post("/", async (req, res) => {
       // );
     
   } catch (error) {
-    //console.error("Error:", error);
+    console.error("Error:", error);
     status = "failure";
     error=true;
   }

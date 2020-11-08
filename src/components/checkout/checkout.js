@@ -125,7 +125,7 @@ function Form() {
     setChosen
   } = useContext(SeatsContext);
   let history = useHistory();
-
+  const [customer, setCustomer] = useState({email:"",name:"",id:})
   //   const handleToken = token => {
   //   //show loading
   //   const product = secured;
@@ -151,6 +151,9 @@ function Form() {
   //       }
   //     });
   // };
+  const inputChange=()=>{
+    
+  }
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -179,6 +182,8 @@ function Form() {
       onSubmit={handleSubmit}
       style={{ maxWidth: "400px", margin: "0 auto" }}
     >
+      <input onChange={inputChange} type="email" placeholder="Send tickets to..." />
+      <input onChange={inputChange} type="text" id="card-name" placeholder="Cardholder name" />
       <CardElement />
       <button type="submit" disabled={!stripe}>
         Pay ${total}
