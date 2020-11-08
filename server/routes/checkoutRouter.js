@@ -15,11 +15,10 @@ checkoutRouter.post("/", async (req, res) => {
     for (let i = 0; i < product.length; i++) {
       tickets.push(product[i].id);
     }
-
+//where to grab a token? 
     const customer = await stripe.customers.create({
       email: user.email,
       name: user.name
-      //source: token.id
     });
 
     const idempotencyKey = shortid.generate();
