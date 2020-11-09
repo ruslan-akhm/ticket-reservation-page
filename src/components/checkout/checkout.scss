@@ -1,13 +1,35 @@
+$pay-color:#45969b;
+
+#checkout-box{
+  border:2px solid red;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  form {
+    width:400px;
+    min-width:300px;
+    border:2px solid green;
+    display:flex;
+    flex-direction:column;
+    button {
+      cursor:pointer;
+      background-color:transparent;
+      color:$pay-color;
+      border:2px solid $pay-color;
+    }
+  }
+}
+
 input,
 .StripeElement {
   height: 32px;
   padding: 5px 6px;
-
   color: #32325d;
   background-color: white;
-  border: 1px solid transparent;
+  border: 2px solid grey;
   border-radius: 4px;
-
+  margin-bottom:20px;
   box-shadow: 0 1px 3px 0 #e6ebf1;
   -webkit-transition: box-shadow 150ms ease;
   transition: box-shadow 150ms ease;

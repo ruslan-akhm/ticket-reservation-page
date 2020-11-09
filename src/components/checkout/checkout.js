@@ -104,22 +104,27 @@ function Form() {
     <div id="checkout-box">
       <form
         onSubmit={handleSubmit}
-        style={{ maxWidth: "400px", margin: "0 auto" }}
+        
       >
+        <label for="email">Email</label>
         <input
           onChange={inputChange}
-          type="email"
+          id="email"
           name="email"
+          type="email"
           placeholder="Send tickets to..."
           required
         />
+        <label for="name">Name</label>
         <input
           onChange={inputChange}
-          type="text"
+          id="name"
           name="name"
-          placeholder="Cardholder name"
+          type="text"
+          placeholder="Name..."
           required
         />
+        <label>Card details</label>
         <CardElement options={stripeStyling}/>
         {isLoading || isPaid ? null : (
           <button type="submit" disabled={!stripe}>
