@@ -154,6 +154,7 @@ function Form() {
   const clear = () => {
     setSecured(null);
     setChosen([]);
+    setTimer(null);
     sessionStorage.removeItem("userId");
     sessionStorage.removeItem("timer");
     sessionStorage.removeItem("tickets"); //, JSON.stringify(null));

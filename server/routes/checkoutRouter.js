@@ -7,8 +7,8 @@ const stripe = require("stripe")(process.env.SECRET_STRIPE_KEY);
 checkoutRouter.post("/", async (req, res) => {
   console.log("Request:", req.body);
 
-  let error;
-  let status;
+  let isError;
+  let message;
   try {
     //     const { product, id, price, user } = req.body;
     //     let tickets = [];
@@ -61,8 +61,8 @@ checkoutRouter.post("/", async (req, res) => {
     });
 
     console.log(payment);
-    status = "success";
-    error = false;
+    message = "Payment received. Thank you!";
+    isError = false;
     console.log(tickets);
     for (let x = 0; x < tickets.length; x++) {
       Seat.updateOne(
@@ -73,6 +73,8 @@ checkoutRouter.post("/", async (req, res) => {
         }
       );
     }
+    
+    return res.status(200).json({ error: isError, message });
 
     //TO USE UPDATE MANY:
     //have to clean userId on front-end whenever user presses CANCEL or PURCHASE and its success - have to anyway
@@ -87,11 +89,12 @@ checkoutRouter.post("/", async (req, res) => {
     // );
   } catch (error) {
     console.log("Error:", error);
-    status = "failure";
-    error = true;
+    message = error.raw.message;
+    isError = true;
+    return res.status(400).json({ error: isError, message });
   }
 
-  res.json({ error: error, status });
+  // res.json({ error: error, status });
 });
 
 module.exports = checkoutRouter;

@@ -3,6 +3,7 @@ import ticketService from "../../services/ticketService";
 import Poster from "../poster/poster";
 import Seats from "../seats/seats";
 import PreviewTickets from "../previewTickets/previewTickets";
+import Spinner from "../loading/spinner";
 import { SeatsContext } from "../../context/seatsContext";
 import "./mainpage.scss";
 
@@ -60,10 +61,8 @@ function Mainpage() {
         <Seats />
         {isLoaded ? null : (
           <div id="modal-loading">
-          <div id="loading-animation">
-            <div className="spinner-1"></div>
+            <Spinner />
           </div>
-            </div>
         )}
       </div>
       <div id="side-right">

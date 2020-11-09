@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import Spinner from "./spinner"
 import "./loading.scss";
 
 function Loading(props) {
@@ -17,9 +18,10 @@ function Loading(props) {
   return (
     <div id="loading-modal">
       <div id="loading-box">
-        <div id="loading-animation">
+        <Spinner />
+      {/*   <div id="loading-animation">
           <div className="spinner-1"></div>
-        </div>
+        </div> */}
         <h1>We are securing your tickets...</h1>
       </div>
     </div>
