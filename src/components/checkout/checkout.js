@@ -80,7 +80,10 @@ function Form() {
     //failure -> remove loaading, show message
 
     event.preventDefault();
-    console.log(secured);
+    if(!secured || secured.length<1){
+      //setMessage("No tickets to purchase");
+      //return
+    }
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement)
@@ -99,8 +102,6 @@ function Form() {
         .then(data => {
           setIsLoading(false);
           setMessage(data.message);
-          console.log(timer);
-          console.log(data);
           if (!data.error) {
             setIsPaid(true);
             clear();
@@ -144,7 +145,7 @@ function Form() {
         )}
       </form>
       {isLoading ? (
-        <Spinner />
+        <Spinner caller="checkout"/>
       ) : (
         <button onClick={isPaid ? home : cancel}>
           {isPaid ? "Homepage" : "Cancel"}

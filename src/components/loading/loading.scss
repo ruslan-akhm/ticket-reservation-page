@@ -41,6 +41,10 @@
   border-top-color: #f96d15;
   animation: spinner 0.7s linear infinite;
 }
+.checkout-loading{
+  margin-top:0vh;
+  height:10px;
+}
 
 @keyframes spinner {
   to {
