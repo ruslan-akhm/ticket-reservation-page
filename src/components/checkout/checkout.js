@@ -71,14 +71,14 @@ function Form() {
     //set loading, hide pay btn, hide cancel btn
     //success -> remove loading, show message, show "home" btn
     //failure -> remove loaading, show message
+    
     event.preventDefault();
-    setIsLoading(true);
-
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement)
     });
     if (!error) {
+      setIsLoading(true);
       const { id } = paymentMethod;
       const product = secured;
       checkoutService
@@ -102,7 +102,8 @@ function Form() {
         });
     }
     else {
-      console.log(error)
+      // setIsLoading(true);
+      setMessage(error.message)
     }
   };
 
