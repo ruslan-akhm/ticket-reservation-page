@@ -8,6 +8,7 @@ $border-rounded:4px;
   flex-direction:column;
   justify-content:center;
   align-items:center;
+  position:relative;
   button {
     cursor:pointer;
     background-color:transparent;
@@ -57,4 +58,13 @@ $border-rounded:4px;
   box-shadow: 0 1px 3px 0 #e6ebf1;
   -webkit-transition: box-shadow 150ms ease;
   transition: box-shadow 150ms ease;
+}
+
+.checkout-timer{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  margin-top:-20px;
+  padding:0;
 }

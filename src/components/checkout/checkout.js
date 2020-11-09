@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import Timer from "../timer/timer"
+import Timer from "../timer/timer";
 import Spinner from "../loading/spinner";
 import { SeatsContext } from "../../context/seatsContext";
 import checkoutService from "../../services/checkoutService";
@@ -40,7 +40,10 @@ function Form() {
   //add some time to timer, so customer can finish payment
   //also if page is refreshed -> tickets and total amount are not lost
   useEffect(() => {
-    setTimer(200);
+    console.log(sessionStorage.getItem(JSON.parse("timer")))
+    // if (sessionStorage.getItem(JSON.parse("timer")) < 200){
+    //   setTimer(200);
+    // }
     if (!secured || secured.length < 1) {
       setSecured(JSON.parse(sessionStorage.getItem("tickets")));
     }
@@ -78,9 +81,9 @@ function Form() {
 
   const handleSubmit = async event => {
     event.preventDefault();
-    if(!secured || secured.length<1){
+    if (!secured || secured.length < 1) {
       setMessage("No tickets to purchase");
-      return
+      return;
     }
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
@@ -114,7 +117,9 @@ function Form() {
 
   return (
     <div id="checkout-box">
-      <Timer />
+      <div className="checkout-timer">
+        <Timer />
+      </div>
       <form onSubmit={handleSubmit}>
         <label for="email">Email</label>
         <input
@@ -143,7 +148,7 @@ function Form() {
         )}
       </form>
       {isLoading ? (
-        <Spinner caller="checkout"/>
+        <Spinner caller="checkout" />
       ) : (
         <button onClick={isPaid ? home : cancel}>
           {isPaid ? "Homepage" : "Cancel"}
@@ -157,7 +162,6 @@ function Form() {
 function Checkout() {
   return (
     <Elements stripe={stripePromise}>
-      
       <Form />
     </Elements>
   );
