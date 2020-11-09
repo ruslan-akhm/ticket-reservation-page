@@ -52,7 +52,7 @@ checkoutRouter.post("/", async (req, res) => {
       tickets.push(product[i].id);
     }
 
-    const payment = stripe.paymentIntents.create({
+    const payment = await stripe.paymentIntents.create({
       amount: price,
       currency: "CAD",
       description: `Purchased ${tickets.length} ticket(s): ${tickets}.`,
@@ -60,7 +60,7 @@ checkoutRouter.post("/", async (req, res) => {
       confirm: true
     });
 
-    console.log("Charge:", payment);
+    console.log(payment);
     status = "success";
     error = false;
     console.log(tickets);
@@ -86,7 +86,7 @@ checkoutRouter.post("/", async (req, res) => {
     //   }
     // );
   } catch (error) {
-    console.error("Error:", error);
+    console.log("Error:", error);
     status = "failure";
     error = true;
   }

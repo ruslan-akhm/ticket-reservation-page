@@ -77,7 +77,7 @@
 //     sessionStorage.removeItem("userId");
 //     sessionStorage.removeItem("timer");
 //     sessionStorage.removeItem("tickets"); //, JSON.stringify(null));
-//     history.push("/");
+//     //history.push("/");
 //   };
 
 //   return (
@@ -125,7 +125,7 @@ function Form() {
     setChosen
   } = useContext(SeatsContext);
   let history = useHistory();
-  const [customer, setCustomer] = useState({email:"",name:""})
+  const [customer, setCustomer] = useState({ email: "", name: "" });
   //   const handleToken = token => {
   //   //show loading
   //   const product = secured;
@@ -151,11 +151,23 @@ function Form() {
   //       }
   //     });
   // };
-  const inputChange=(e)=>{
-    setCustomer({...customer,[e.target.name]:e.target.value})
-  }
+  const clear = () => {
+    setSecured(null);
+    setChosen([]);
+    sessionStorage.removeItem("userId");
+    sessionStorage.removeItem("timer");
+    sessionStorage.removeItem("tickets"); //, JSON.stringify(null));
+    //history.push("/");
+  };
+
+  const inputChange = e => {
+    setCustomer({ ...customer, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async event => {
+    //set loading, hide pay btn, hide cancel btn
+    //success -> remove loading, show message, show "home" btn
+    //failure -> remove loaading, show message
     event.preventDefault();
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
@@ -172,7 +184,9 @@ function Form() {
           user: customer
         })
         .then(data => {
-          console.log(data);
+          if(!data.error){
+            clear();
+          }
         });
     }
   };
@@ -182,8 +196,20 @@ function Form() {
       onSubmit={handleSubmit}
       style={{ maxWidth: "400px", margin: "0 auto" }}
     >
-      <input onChange={inputChange} type="email" name="email" placeholder="Send tickets to..." required/>
-      <input onChange={inputChange} type="text" name="name" placeholder="Cardholder name" required/>
+      <input
+        onChange={inputChange}
+        type="email"
+        name="email"
+        placeholder="Send tickets to..."
+        required
+      />
+      <input
+        onChange={inputChange}
+        type="text"
+        name="name"
+        placeholder="Cardholder name"
+        required
+      />
       <CardElement />
       <button type="submit" disabled={!stripe}>
         Pay ${total}
