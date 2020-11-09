@@ -5,6 +5,7 @@ import { SeatsContext } from "../../context/seatsContext";
 //import ticketService from "../../services/ticketService";
 import checkoutService from "../../services/checkoutService";
 import stripeStyling from "./stripeStyling"
+import "./checkout.scss"
 import { loadStripe } from "@stripe/stripe-js";
 import {
   Elements,
