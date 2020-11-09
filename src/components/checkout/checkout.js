@@ -101,7 +101,7 @@ function Form() {
   };
 
   return (
-    <div>
+    <div id="checkout-box">
       <form
         onSubmit={handleSubmit}
         style={{ maxWidth: "400px", margin: "0 auto" }}
