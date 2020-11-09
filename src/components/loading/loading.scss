@@ -42,8 +42,7 @@
   animation: spinner 0.7s linear infinite;
 }
 .checkout-loading{
-  margin-top:0vh;
-  height:10px;
+  margin-top:0 !important;
 }
 
 @keyframes spinner {

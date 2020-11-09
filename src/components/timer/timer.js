@@ -23,6 +23,7 @@ function Timer() {
 
   //CHECK IF THIS CALLED TWICE
   useEffect(() => {
+    console.log(timer)
     if (timer && timer < 31) {
       document.getElementById("countdown").style.color = "red";
     }

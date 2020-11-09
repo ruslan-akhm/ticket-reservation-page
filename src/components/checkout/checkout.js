@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import Timer from "../timer/timer"
 import Spinner from "../loading/spinner";
 import { SeatsContext } from "../../context/seatsContext";
-//import ticketService from "../../services/ticketService";
 import checkoutService from "../../services/checkoutService";
 import stripeStyling from "./stripeStyling";
 import "./checkout.scss";
@@ -37,6 +37,8 @@ function Form() {
   const [isPaid, setIsPaid] = useState(false);
   const [message, setMessage] = useState("");
 
+  //add some time to timer, so customer can finish payment
+  //also if page is refreshed -> tickets and total amount are not lost
   useEffect(() => {
     setTimer(200);
     if (!secured || secured.length < 1) {
@@ -46,7 +48,7 @@ function Form() {
 
   useEffect(() => {
     if ((!total || total == 0) && secured) {
-      let cost = secured.map(ticket => parseInt(ticket.price)); //.reduce((acc,val)=>{return acc+val},0)
+      let cost = secured.map(ticket => parseInt(ticket.price));
       setTotal(parseInt(cost) + 10);
     }
   }, [secured]);
@@ -75,14 +77,10 @@ function Form() {
   };
 
   const handleSubmit = async event => {
-    //set loading, hide pay btn, hide cancel btn
-    //success -> remove loading, show message, show "home" btn
-    //failure -> remove loaading, show message
-
     event.preventDefault();
     if(!secured || secured.length<1){
-      //setMessage("No tickets to purchase");
-      //return
+      setMessage("No tickets to purchase");
+      return
     }
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
@@ -110,13 +108,13 @@ function Form() {
           }
         });
     } else {
-      // setIsLoading(true);
       setMessage(error.message);
     }
   };
 
   return (
     <div id="checkout-box">
+      <Timer />
       <form onSubmit={handleSubmit}>
         <label for="email">Email</label>
         <input
@@ -159,6 +157,7 @@ function Form() {
 function Checkout() {
   return (
     <Elements stripe={stripePromise}>
+      
       <Form />
     </Elements>
   );
