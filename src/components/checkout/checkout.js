@@ -130,6 +130,7 @@ function Form() {
   const [customer, setCustomer] = useState({ email: "", name: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [isPaid, setIsPaid] = useState(false);
+  const [message, setMessage] = useState("");
   //   const handleToken = token => {
   //   //show loading
   //   const product = secured;
@@ -155,9 +156,16 @@ function Form() {
   //       }
   //     });
   // };
+  useEffect(()=>{
+    setTimer(200);
+  }, [])
 
   const cancel = () => {
     clear();
+    history.push("/");
+  };
+
+  const home = () => {
     history.push("/");
   };
 
@@ -188,8 +196,6 @@ function Form() {
       card: elements.getElement(CardElement)
     });
     if (!error) {
-      setIsPaid(true);
-      setIsLoading(false);
       const { id } = paymentMethod;
       const product = secured;
       checkoutService
@@ -200,11 +206,17 @@ function Form() {
           user: customer
         })
         .then(data => {
+          setIsLoading(false);
+          setMessage(data.message);
+          console.log(timer);
+          console.log(data);
           if (!data.error) {
+            setIsPaid(true);
             clear();
-            console.log(timer);
-            console.log(data);
           }
+        else{
+          console.log(secured);
+        }
         });
     }
   };
@@ -236,7 +248,14 @@ function Form() {
           </button>
         )}
       </form>
-      {isLoading ? <Spinner /> : <button onClick={cancel}>Cancel</button>}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <button onClick={isPaid ? home : cancel}>
+          {isPaid ? "Homepage" : "Cancel"}
+        </button>
+      )}
+      {message ? <p>{message}</p> : null}
     </div>
   );
 }
