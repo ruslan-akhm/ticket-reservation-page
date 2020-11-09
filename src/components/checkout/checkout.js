@@ -4,8 +4,8 @@ import Spinner from "../loading/spinner";
 import { SeatsContext } from "../../context/seatsContext";
 //import ticketService from "../../services/ticketService";
 import checkoutService from "../../services/checkoutService";
-import stripeStyling from "./stripeStyling"
-import "./checkout.scss"
+import stripeStyling from "./stripeStyling";
+import "./checkout.scss";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   Elements,
@@ -39,20 +39,17 @@ function Form() {
 
   useEffect(() => {
     setTimer(200);
-    if(!secured || secured.length<1){
-      setSecured(JSON.parse(sessionStorage.getItem("tickets")))
+    if (!secured || secured.length < 1) {
+      setSecured(JSON.parse(sessionStorage.getItem("tickets")));
     }
-    
   }, []);
-  
-  useEffect(()=>{
-    
-    if((!total || total==0) && secured){
-      let cost = secured.map(ticket=>parseInt(ticket.price))//.reduce((acc,val)=>{return acc+val},0)
-      console.log(cost, typeof cost)
-      setTotal(parseInt(cost)+10)
+
+  useEffect(() => {
+    if ((!total || total == 0) && secured) {
+      let cost = secured.map(ticket => parseInt(ticket.price)); //.reduce((acc,val)=>{return acc+val},0)
+      setTotal(parseInt(cost) + 10);
     }
-  },[secured])
+  }, [secured]);
 
   const cancel = () => {
     clear();
@@ -81,7 +78,7 @@ function Form() {
     //set loading, hide pay btn, hide cancel btn
     //success -> remove loading, show message, show "home" btn
     //failure -> remove loaading, show message
-    
+
     event.preventDefault();
     console.log(secured);
     const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -111,19 +108,15 @@ function Form() {
             console.log(secured);
           }
         });
-    }
-    else {
+    } else {
       // setIsLoading(true);
-      setMessage(error.message)
+      setMessage(error.message);
     }
   };
 
   return (
     <div id="checkout-box">
-      <form
-        onSubmit={handleSubmit}
-        
-      >
+      <form onSubmit={handleSubmit}>
         <label for="email">Email</label>
         <input
           onChange={inputChange}
@@ -143,7 +136,7 @@ function Form() {
           required
         />
         <label>Card details</label>
-        <CardElement options={stripeStyling}/>
+        <CardElement options={stripeStyling} />
         {isLoading || isPaid ? null : (
           <button type="submit" disabled={!stripe}>
             Pay ${total}
