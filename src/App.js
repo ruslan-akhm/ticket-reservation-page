@@ -23,8 +23,11 @@ function App() {
         setTimer(timer => timer - 1);
       }, 1000);
     }
+    if(timer && timer <= 1){
+      window.clearInterval(window.myInterval);
+    }
     return () => {
-      clearInterval(window.myInterval);
+      window.clearInterval(window.myInterval);
     };
   }, [timer]);
 
