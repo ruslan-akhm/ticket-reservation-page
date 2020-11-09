@@ -97,7 +97,7 @@
 
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-//import StripeCheckout from "react-stripe-checkout";
+import Spinner from "../loading/spinner";
 import { SeatsContext } from "../../context/seatsContext";
 import ticketService from "../../services/ticketService";
 import checkoutService from "../../services/checkoutService";
@@ -122,10 +122,14 @@ function Form() {
     secured,
     setSecured,
     chosen,
-    setChosen
+    setChosen,
+    timer,
+    setTimer
   } = useContext(SeatsContext);
   let history = useHistory();
   const [customer, setCustomer] = useState({ email: "", name: "" });
+  const [isLoading, setIsLoading] = useState(false);
+  const [isPaid, setIsPaid] = useState(false);
   //   const handleToken = token => {
   //   //show loading
   //   const product = secured;
@@ -151,9 +155,16 @@ function Form() {
   //       }
   //     });
   // };
+
+  const cancel = () => {
+    clear();
+    history.push("/");
+  };
+
   const clear = () => {
     setSecured(null);
     setChosen([]);
+    window.clearInterval(window.myInterval);
     setTimer(null);
     sessionStorage.removeItem("userId");
     sessionStorage.removeItem("timer");
@@ -170,11 +181,15 @@ function Form() {
     //success -> remove loading, show message, show "home" btn
     //failure -> remove loaading, show message
     event.preventDefault();
+    setIsLoading(true);
+
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement)
     });
     if (!error) {
+      setIsPaid(true);
+      setIsLoading(false);
       const { id } = paymentMethod;
       const product = secured;
       checkoutService
@@ -185,37 +200,44 @@ function Form() {
           user: customer
         })
         .then(data => {
-          if(!data.error){
+          if (!data.error) {
             clear();
+            console.log(timer);
+            console.log(data);
           }
         });
     }
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{ maxWidth: "400px", margin: "0 auto" }}
-    >
-      <input
-        onChange={inputChange}
-        type="email"
-        name="email"
-        placeholder="Send tickets to..."
-        required
-      />
-      <input
-        onChange={inputChange}
-        type="text"
-        name="name"
-        placeholder="Cardholder name"
-        required
-      />
-      <CardElement />
-      <button type="submit" disabled={!stripe}>
-        Pay ${total}
-      </button>
-    </form>
+    <div>
+      <form
+        onSubmit={handleSubmit}
+        style={{ maxWidth: "400px", margin: "0 auto" }}
+      >
+        <input
+          onChange={inputChange}
+          type="email"
+          name="email"
+          placeholder="Send tickets to..."
+          required
+        />
+        <input
+          onChange={inputChange}
+          type="text"
+          name="name"
+          placeholder="Cardholder name"
+          required
+        />
+        <CardElement />
+        {isLoading || isPaid ? null : (
+          <button type="submit" disabled={!stripe}>
+            Pay ${total}
+          </button>
+        )}
+      </form>
+      {isLoading ? <Spinner /> : <button onClick={cancel}>Cancel</button>}
+    </div>
   );
 }
 
