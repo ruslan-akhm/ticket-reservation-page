@@ -39,6 +39,9 @@ function Form() {
 
   useEffect(() => {
     setTimer(200);
+    if(!secured || secured.length<1){
+      setSecured(JSON.parse(sessionStorage.getItem("tickets")))
+    }
   }, []);
 
   const cancel = () => {
@@ -97,6 +100,9 @@ function Form() {
             console.log(secured);
           }
         });
+    }
+    else {
+      console.log(error)
     }
   };
 
