@@ -42,7 +42,17 @@ function Form() {
     if(!secured || secured.length<1){
       setSecured(JSON.parse(sessionStorage.getItem("tickets")))
     }
+    
   }, []);
+  
+  useEffect(()=>{
+    
+    if((!total || total==0) && secured){
+      let cost = secured.map(ticket=>parseInt(ticket.price))//.reduce((acc,val)=>{return acc+val},0)
+      console.log(cost, typeof cost)
+      setTotal(parseInt(cost)+10)
+    }
+  },[secured])
 
   const cancel = () => {
     clear();
@@ -73,6 +83,7 @@ function Form() {
     //failure -> remove loaading, show message
     
     event.preventDefault();
+    console.log(secured);
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement)
