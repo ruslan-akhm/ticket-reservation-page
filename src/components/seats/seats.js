@@ -27,7 +27,7 @@ function Seats() {
     }
   };
 
-  //show small 
+  //show small box with info above hovered seat
   const showPopUp = (row, num) => {
     let allSeats = document.getElementsByClassName("popup");
     for (let i = 0; i < allSeats.length; i++) {
@@ -79,10 +79,6 @@ function Seats() {
         <ul>{rows}</ul>
       </div>
       <div id="seats">{seatsLayout}</div>
-      {/* <div id="show">
-        <Poster /> */}
-      {/*<PreviewTickets />
-      </div>*/}
     </div>
   );
 }

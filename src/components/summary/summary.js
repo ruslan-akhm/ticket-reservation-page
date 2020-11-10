@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-//import ticketService from "../../services/ticketService";
 import { SeatsContext } from "../../context/seatsContext";
 import "./summary.scss";
 
@@ -7,9 +6,9 @@ function Summary(props) {
   const { chosen, setChosen, secured, setSecured, total, setTotal } = useContext(SeatsContext);
   const [styles, setStyles] = useState();
   const [tickets, setTickets] = useState();
-  //const [total, setTotal] = useState();
   let fee = 10;
   
+  //show information based on component calling this function
   useEffect(()=>{
     setStyles(props.caller)
     if(props.caller=="preview"){

@@ -17,20 +17,16 @@ function Timer() {
   } = useContext(SeatsContext);
   let history = useHistory();
 
-  //setTimer initially - if returned to this page, then from localstorage
-  //if visiting 1st time - initial value
-  useEffect(() => {}, []);
-
-  //CHECK IF THIS CALLED TWICE
+  //handle timer reaching particular readings
   useEffect(() => {
-    console.log(timer)
+    console.log(timer);
     if (timer && timer < 31) {
       document.getElementById("countdown").style.color = "red";
     }
     if (timer && timer <= 1) {
       console.log("TIMER is 0");
       setTimer(0);
-      window.clearInterval(window.myInterval); //??
+      window.clearInterval(window.myInterval);
       clear();
     }
   }, [timer]);
@@ -46,9 +42,8 @@ function Timer() {
     }
   }, [secured]);
 
-  //if timer reaches 00:00 or page is closed -> clear states and localstorage, unsecure tickets on back-end
   const clear = () => {
-    window.clearInterval(window.myInterval); //?? and here and in useeffect
+    window.clearInterval(window.myInterval);
     const allSeats =
       secured &&
       secured.map(seat => {
@@ -59,8 +54,6 @@ function Timer() {
       if (!data.error) {
         setSecured(null);
         setChosen([]);
-        //localStorage.setItem("tickets", "");//CHANGE to SESSION?
-        //sessionStorage.setItem("timer-count", JSON.stringify(null));
         sessionStorage.removeItem("timer");
         sessionStorage.removeItem("tickets");
         history.push("/");
