@@ -12,7 +12,7 @@ function App() {
   const { secured, timer, setTimer } = useContext(SeatsContext);
   const isInitialMount = useRef(true);
 
-   //not trigger interval on initial mount
+  //not trigger interval on initial mount
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
@@ -23,7 +23,7 @@ function App() {
         setTimer(timer => timer - 1);
       }, 1000);
     }
-    if(timer && timer <= 1){
+    if (timer && timer <= 1) {
       window.clearInterval(window.myInterval);
     }
     return () => {
@@ -36,7 +36,6 @@ function App() {
       <Switch>
         <Route path="/" exact component={Mainpage} />
         <Route path="/cart" exact component={Cart} />
-        <Route path="*" exact component={PageNotFound} />
         <Route path="/checkout" exact component={Checkout} />
         <Route path="*" exact component={PageNotFound} />
       </Switch>

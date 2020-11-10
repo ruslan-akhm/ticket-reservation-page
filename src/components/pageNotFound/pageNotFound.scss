@@ -1,0 +1,20 @@
+#not-found{
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:center;
+  h1 {
+    color:white;
+    background-color:#f96d15;
+    margin-top:15vh;
+    width:fit-content;
+    padding:10px;
+  }
+  h2 {
+    color: #50b6bb;
+  }
+  a {
+    margin-top:20px;
+    font-size:20px;
+  }
+}

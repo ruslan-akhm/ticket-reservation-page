@@ -1,8 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-//import Poster from "../poster/poster";
-//import PreviewTickets from "../previewTickets/previewTickets";
-//import ticketService from "../../services/ticketService";
-
 import { SeatsContext } from "../../context/seatsContext";
 import seatsData from "../../data/seatsData";
 import "./seats.scss";
@@ -10,18 +6,12 @@ import "./seats.scss";
 function Seats() {
   const { chosen, setChosen } = useContext(SeatsContext);
 
-  // useEffect(() => {
-  //   console.log(chosen);
-  // }, [chosen]);
-
   const changeBox = e => {
-    //console.log(e.target.checked)
     if (e.target.checked == false) {
       console.log("UNCHECK");
       let filteredChosen = chosen.filter(seat => {
         return seat.id != e.target.value;
       });
-      console.log(filteredChosen);
       setChosen(filteredChosen);
       return;
     } else {
@@ -37,6 +27,7 @@ function Seats() {
     }
   };
 
+  //show small 
   const showPopUp = (row, num) => {
     let allSeats = document.getElementsByClassName("popup");
     for (let i = 0; i < allSeats.length; i++) {

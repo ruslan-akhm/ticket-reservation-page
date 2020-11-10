@@ -37,15 +37,8 @@ function Form() {
   const [isPaid, setIsPaid] = useState(false);
   const [message, setMessage] = useState("");
 
-  //add some time to timer, so customer can finish payment
-  //also if page is refreshed -> tickets and total amount are not lost
   useEffect(() => {
-    //if (JSON.parse(sessionStorage.getItem("timer")) < 200){
-    //  setTimer(200);
-    //}
-    //else{
-      setTimer(JSON.parse(sessionStorage.getItem("timer")));
-    //}
+    setTimer(JSON.parse(sessionStorage.getItem("timer")));
     if (!secured || secured.length < 1) {
       setSecured(JSON.parse(sessionStorage.getItem("tickets")));
     }
@@ -81,6 +74,7 @@ function Form() {
     setCustomer({ ...customer, [e.target.name]: e.target.value });
   };
 
+  //submit data to back end
   const handleSubmit = async event => {
     event.preventDefault();
     if (!secured || secured.length < 1) {

@@ -7,16 +7,6 @@ import ticketService from "../../services/ticketService";
 import { SeatsContext } from "../../context/seatsContext";
 import "./cart.scss";
 
-//when seat is secured - disable it+
-//timer to be 5 min. if not purchased || tab closed -> componentwillunmount -> remove timer and send API call to unsecure tickets!+
-//if all removed (re - setChosen when remove tickets) and length==0 -> redirect to mainpage+
-//cancel button to make same API call as in 1st step (unsecure tickets)+
-//isPaid, setIsPaid -> is being set on payment page -> API call to make isTaken true
-
-//tickets have to be unsecured if not paid and page is closed
-//so on close - unsecure all
-//on payment -> remove sessionstor userId and tickets. clear all and redirect "/"
-
 function Cart() {
   const {
     chosen,
@@ -41,6 +31,7 @@ function Cart() {
     }
   }, []);
 
+  //"Remove" clicked
   const removeTicket = ticket => {
     let filteredTickets = secured.filter(seat => {
       return seat.id != ticket;
@@ -98,8 +89,6 @@ function Cart() {
         </li>
       );
     });
-
-  //const totalCost = secured && (secured.map(item=>{return parseInt(item.price)}).reduce((acc, val)=>{return acc+val},0))
 
   return (
     <div id="cart">
