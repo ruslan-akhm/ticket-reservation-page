@@ -5,7 +5,7 @@ const apiRouter = express.Router();
 
 //Render seats page according to database
 apiRouter.get("/", (req, res) => {
-  //delete seats that were secured, but were not purchased/user closed the page before 5 min passed
+  //delete seats that were secured, but were not purchased or user closed the page before 5 min passed
   Seat.deleteMany(
     {
       isSecured: true,
@@ -26,75 +26,12 @@ apiRouter.get("/", (req, res) => {
   );
 });
 
-//Check for existing reservation / Or cancel it
-// apiRouter.post("/modify", (req, res) => {
-//   const id = req.body.id;
-//   let action = req.body.action;
-//   //cancelling
-//   if (action == "cancel") {
-//     Seat.deleteMany({ ticketId: id }, (err, data) => {
-//       if (err) return console.log(err);
-//       //if no documents to be removed were found
-//       if (data.n == 0) {
-//         return res.json({
-//           text: `There is no reservation with such ticket ID`,
-//           seat: " "
-//         });
-//       }
-//       return res.json({
-//         text: `Reservation has been cancelled for ticket ID `,
-//         seat: id
-//       });
-//     });
-//   }
-//   //showing
-//   else if (action == "show") {
-//     let array = [];
-//     Seat.find({ ticketId: id })
-//       .sort({ seatId: "asc" })
-//       .exec((err, data) => {
-//         if (err) return console.log(err);
-//         if (data.length > 0) {
-//           for (let m = 0; m < data.length; m++) {
-//             array.push(data[m].seatId);
-//           }
-//           return res.json({
-//             text: "You have reservation on seats:",
-//             seat: array
-//           });
-//         } else {
-//           return res.json({
-//             text: `There is no reservation with such ticket ID`,
-//             seat: " "
-//           });
-//         }
-//       });
-//   }
-// });
-
-//Make new reservation
-// apiRouter.post("/reserve", (req, res) => {
-//   const seat = req.body.seat;
-//   const ticket = shortid.generate();
-//   for (let i = 0; i < seat.length; i++) {
-//     let newSeat = new Seat({
-//       seatId: seat[i],
-//       isTaken: true,
-//       ticketId: ticket
-//     });
-//     newSeat.save();
-//   }
-//   res.json({
-//     text: "You have reserved seat(s):" + seat + ". Your ticket ID is:",
-//     ticketId: ticket
-//   });
-// });
-
 apiRouter.post("/secure", (req, res) => {
   const seats = req.body.seats;
   const userId = req.body.userId;
 
   //check if any of the chosen seats were secured in the meanwhile;
+
   //   for (let i = 0; i < seats.length; i++) {
   //     Seat.find({ seatId: seats[i].id }, (err, seat) => {
   //       if (err) return console.log(err);
@@ -110,7 +47,7 @@ apiRouter.post("/secure", (req, res) => {
   //     });
   //   }
 
-  //delete all previously secured tickets for the user, if any
+  //delete all previously secured tickets for the user, if any (if they navigate back in browser and secure some other seats)
   Seat.deleteMany({ userId: userId }, (err, item) => {
     if (err) return console.log(err);
   });
@@ -134,21 +71,18 @@ apiRouter.post("/secure", (req, res) => {
   });
 });
 
+//unsecure tickets (when "cancel" is clicked on front end)
 apiRouter.post("/unsecure", (req, res) => {
   console.log("UNSECURE");
   console.log(req.body);
   const seat = req.body.ticket;
   const userId = req.body.userId;
 
-  //unsecure by seat and not userId for the purpose of deleting particular tickets and not necesseraly all
+  //unsecure by seat and not by userId for the purpose of deleting particular tickets and not necesseraly all user's reservations
   for (let i = 0; i < seat.length; i++) {
     Seat.deleteOne({ seatId: seat[i] }, (err, item) => {
       if (err) return console.log(err);
       if (!item) res.json({ message: "Secure was not found", error: true });
-      //if "remove" btn clicked after timer ran off
-      // else {
-      //   res.json({ message: "Seats were removed", error: false });
-      // }
     });
   }
   res.json({ message: "Seats were removed", error: false });

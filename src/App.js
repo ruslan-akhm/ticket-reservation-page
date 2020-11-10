@@ -36,7 +36,7 @@ function App() {
       <Switch>
         <Route path="/" exact component={Mainpage} />
         <Route path="/cart" exact component={Cart} />
-        {/*  <Route path="*" exact component={PageNotFound} /> */}
+        <Route path="*" exact component={PageNotFound} />
         <Route path="/checkout" exact component={Checkout} />
         <Route path="*" exact component={PageNotFound} />
       </Switch>

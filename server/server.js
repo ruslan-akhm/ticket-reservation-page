@@ -24,19 +24,19 @@ app.get("/", (request, response) => {
   response.sendFile(__dirname + "/public/index.html");
 });
 
+//SASS
 app.use(
   sassMiddleware({
     src: __dirname + "/public",
     dest: "/tmp"
-    //debug: true,
-    //outputStyle: 'compressed',
   })
 );
 
+//Routes
 app.use("/api", apiRouter);
 app.use("/api/checkout", checkoutRouter);
 
-// Express port-switching logic as this app was written in Glitch
+// Express port-switching logic as this app was written in Glitch (for Glitch ONLY)
 let port;
 console.log("NODE_ENV is", process.env.NODE_ENV);
 if (process.env.NODE_ENV === "production") {
