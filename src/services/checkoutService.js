@@ -1,4 +1,4 @@
-export default {
+let checkoutService = {
   makePayment: data => {
     return fetch("/api/checkout", {
       method: "POST",
@@ -11,3 +11,5 @@ export default {
       .then(data => data);
   }
 };
+
+export default checkoutService

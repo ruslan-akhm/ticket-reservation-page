@@ -1,4 +1,4 @@
-export default {
+let seatsData = {
   seatsNums: [
     "1",
     "2",
@@ -23,3 +23,5 @@ export default {
   ],
   seatsRows: ["A", "B", "C", "D", "E", "F", "G", "H"]
 };
+
+export default seatsData
