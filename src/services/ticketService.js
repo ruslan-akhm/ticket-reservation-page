@@ -1,4 +1,4 @@
-export default {
+let ticketService = {
   update: () => {
     return fetch("/api")
       .then(res => res.json())
@@ -27,3 +27,5 @@ export default {
       .then(data => data);
   }
 };
+
+export default ticketService
