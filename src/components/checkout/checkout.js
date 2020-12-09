@@ -225,8 +225,15 @@ function Form() {
   };
 
   const home = () => {
+    clear();
     history.push("/");
   };
+  
+  // const approved = () => {
+  //   window.clearInterval(window.myInterval);
+  //   setTimer(null);
+  //   document.getElementById("return-home").style.display="block"
+  // }
 
   const clear = () => {
     setSecured(null);
@@ -269,7 +276,10 @@ function Form() {
           setMessage(data.message);
           if (!data.error) {
             setIsPaid(true);
-            clear();
+            
+            //setTimer(600);
+            window.clearInterval(window.myInterval);
+            //clear();
           } else {
             console.log(secured);
           }
