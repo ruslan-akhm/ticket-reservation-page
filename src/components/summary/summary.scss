@@ -1,4 +1,4 @@
-.summary-preview{
+/* .summary-preview{
   min-width:150px;
   margin:5px;
   p {
@@ -12,6 +12,30 @@
   
   margin-left:15px;
   p { 
+    font-size:20px;
+    font-weight:bold;
+  }
+} */
+
+.summary-preview{
+  min-width:150px;
+  margin:20px;
+  p {
+    margin:0;
+    font-size:18px;
+    font-weight:600;
+    color:#80828c;
+    &:nth-child(2){
+      color:white;
+      font-weight:bold;
+      font-size:24px;
+    }
+  }
+}
+.summary-cart{
+  margin-left:15px;
+  p { 
+    color:white;
     font-size:20px;
     font-weight:bold;
   }

@@ -1,8 +1,7 @@
-.show-box{
+/* .show-box{
   background-color:#303740;
   width:100%;
   min-height:15vh;
-/*   height:100%; */
   display:flex;
   justify-content:flex-start;
   align-items:center;
@@ -38,7 +37,6 @@
     text-align:center;
     line-height:20px;
     margin:10px 5px 5px 5px;
-/*     color:#303740; */
     color:white;
     font-weight:600;
     font-size:12px;
@@ -48,6 +46,38 @@
         display:inline;
       }
     }
+  }
+}
+
+ */
+
+$text-color:lightgray;
+
+#poster{
+  width:100%;
+  margin-top:30px;
+  & h3 {
+    text-align:center;
+    color:$text-color;
+    margin:0 auto;
+  }
+}
+
+.show-box{
+  width:100%;
+  height:fit-content;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  margin:20px 0;
+  padding:0;
+  & li {
+    color:$text-color;
+    text-align:center;
+    margin:15px 15px 0 15px;
+    list-style-type:none;
+
   }
 }
 

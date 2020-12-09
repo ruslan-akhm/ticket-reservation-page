@@ -1,4 +1,4 @@
-$height:35px;
+/* $height:35px;
 
 #page{
   background-color:#f8f8f8; 
@@ -64,4 +64,28 @@ $height:35px;
   }
   
 }
+
+ */
+
+$height:35px;
+
+#page{
+  background-color:#1d1f26; 
+  min-height:100vh;
+  width:100%;
+  padding-bottom:15vh;
+}
+
+#modal-loading{
+  position:absolute;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  background-color:#1d1f26;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
 

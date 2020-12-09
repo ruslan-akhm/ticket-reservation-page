@@ -1,4 +1,4 @@
-$cancel-color:#f96d15;
+/* $cancel-color:#f96d15;
 $pay-color:#45969b;
 $border-rounded:4px;
 
@@ -24,8 +24,7 @@ $border-rounded:4px;
     width:30vw;
     min-width:250px;
     margin:0 20px 30px 20px;
-    padding:10px 15px 15px 15px;
-/*     border:2px solid green; */
+    padding:10px 15px 15px 15px
     border-radius:$border-rounded;
     display:flex;
     flex-direction:column;
@@ -69,4 +68,83 @@ $border-rounded:4px;
   margin-top:-20px;
   padding-top:20px;
   min-height:15vh;
+} */
+
+$cancel-color:#f96d15;
+$pay-color:#45969b;
+$border-rounded:4px;
+
+#checkout-box{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:center;
+}
+
+.checkout-timer{
+  padding:0;
+  display:flex;
+  justify-content:flex-start;
+  width:100%;
+}
+
+#payment-box input,
+.StripeElement {
+  height: 32px;
+  padding: 5px 6px;
+  color: #32325d;
+  background-color: white;
+  border: 2px solid grey;
+  border-radius: $border-rounded;
+  margin-bottom:20px;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+#payment-box{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:10px;
+  form {
+    width:30vw;
+    min-width:250px;
+    margin:30px auto 30px;
+    padding:10px 15px 15px 15px;
+    border-radius:$border-rounded;
+    display:flex;
+    flex-direction:column;
+    box-shadow: 0 0 10px #303740;
+    label{
+      color:white;
+      margin-bottom:5px;
+    }
+    button {
+      color:$pay-color;
+      border:2px solid $pay-color;
+      height:28px;
+      margin:10px auto;
+      &:hover{
+        background-color:$pay-color;
+        color:white;
+      }
+    }
+  }
+  button {
+    width:120px;
+    margin-bottom:20px;
+    cursor:pointer;
+    background-color:transparent;
+    color:$cancel-color;
+    border:2px solid $cancel-color;
+    border-radius:$border-rounded;
+    &:hover{
+      background-color:$cancel-color;
+      color:white;
+    }
+  }
+  
 }
