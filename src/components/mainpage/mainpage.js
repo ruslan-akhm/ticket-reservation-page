@@ -84,26 +84,19 @@ import { SeatsContext } from "../../context/seatsContext";
 import "./mainpage.scss";
 
 function Mainpage() {
-  const {
-    chosen,
-    setChosen
-  } = useContext(SeatsContext);
+  const { chosen, setChosen } = useContext(SeatsContext);
 
   const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect(() => {
-    updateSeats();
-  }, []);
-
   //update on render to see which seats were secured and chosen
-  const updateSeats = () => {
+  useEffect(() => {
+    console.log("updating seats...");
     let seats = document.getElementsByClassName("check-box");
     ticketService.update().then(data => {
       if (sessionStorage.getItem("userId") == null) {
         sessionStorage.setItem("userId", data.userId); //set user id to manipulate their tickets
       }
       let taken = data.seats;
-      console.log(data);
       for (let j = 0; j < seats.length; j++) {
         taken.map(t => {
           return t == seats[j].value ? (seats[j].disabled = true) : null;
@@ -120,15 +113,16 @@ function Mainpage() {
       }
       setIsLoaded(true);
     });
-  };
+  }, []);
 
   return (
     <div id="page">
-        {isLoaded ? <Seats /> : (
-          <div id="modal-loading">
-            <Spinner />
-          </div>
-        )}
+      <Seats />
+      {isLoaded ? null : (
+        <div id="modal-loading">
+          <Spinner />
+        </div>
+      )}
       <Poster />
       <PreviewTickets />
     </div>
@@ -136,4 +130,3 @@ function Mainpage() {
 }
 
 export default Mainpage;
-
