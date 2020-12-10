@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import Timer from "../timer/timer";
 import Spinner from "../loading/spinner";
 import { SeatsContext } from "../../context/seatsContext";
+import ticketService from "../../services/ticketService";
 import checkoutService from "../../services/checkoutService";
 import stripeStyling from "./stripeStyling";
 import "./checkout.scss";
@@ -52,13 +53,28 @@ function Form() {
   }, [secured]);
 
   const cancel = () => {
-    clear();
-    history.push("/");
+    
+    if (!secured || secured.length < 1) {
+      return history.push("/");
+    }
+    const allSeats = secured.map(seat => {
+      return seat.id;
+    });
+    let userId = sessionStorage.getItem("userId");
+    let seat = { ticket: [].concat(allSeats), userId: userId };
+    ticketService.unSecure(seat).then(data => {
+      if (!data.error) {
+        clear();
+      }
+    });
+    
+    
+    //history.push("/");
   };
 
   const home = () => {
     clear();
-    history.push("/");
+    //history.push("/");
   };
  
   const clear = () => {
@@ -69,6 +85,7 @@ function Form() {
     sessionStorage.removeItem("userId");
     sessionStorage.removeItem("timer");
     sessionStorage.removeItem("tickets");
+    history.push("/");
   };
 
   const inputChange = e => {
