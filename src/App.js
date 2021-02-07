@@ -1,7 +1,6 @@
 import React, { useEffect, useContext, useRef } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { SeatsContext } from "./context/seatsContext";
-//import ticketService from "./services/ticketService";
 import Mainpage from "./components/mainpage/mainpage";
 import Cart from "./components/cart/cart";
 import Checkout from "./components/checkout/checkout";
@@ -9,7 +8,7 @@ import PageNotFound from "./components/pageNotFound/pageNotFound";
 import "./App.css";
 
 function App() {
-  const { secured, timer, setTimer } = useContext(SeatsContext);
+  const { timer, setTimer } = useContext(SeatsContext);
   const isInitialMount = useRef(true);
 
   //not trigger interval on initial mount
@@ -25,7 +24,7 @@ function App() {
     }
     if (timer && timer <= 1) {
       window.clearInterval(window.myInterval);
-      sessionStorage.setItem("timer", null)
+      sessionStorage.setItem("timer", null);
     }
     return () => {
       window.clearInterval(window.myInterval);
@@ -45,4 +44,3 @@ function App() {
 }
 
 export default App;
-

@@ -1,7 +1,7 @@
 const express = require("express");
+require("dotenv").config();
 const path = require("path");
 const mongoose = require("mongoose");
-const shortid = require("shortid");
 const apiRouter = require("./routes/apiRouter");
 const checkoutRouter = require("./routes/checkoutRouter");
 var database = process.env.SECRET;
@@ -28,7 +28,7 @@ app.get("/", (request, response) => {
 app.use(
   sassMiddleware({
     src: __dirname + "/public",
-    dest: "/tmp"
+    dest: "/tmp",
   })
 );
 

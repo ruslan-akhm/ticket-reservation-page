@@ -10,7 +10,7 @@ apiRouter.get("/", (req, res) => {
     {
       isSecured: true,
       isTaken: false,
-      dateSecured: { $lte: Date.now() - 360000 }
+      dateSecured: { $lte: Date.now() - 360000 },
     },
     (err, data) => {
       if (err) return console.log(err);
@@ -60,14 +60,14 @@ apiRouter.post("/secure", (req, res) => {
       isSecured: true,
       isTaken: false,
       price: seats[j].price,
-      dateSecured: Date.now()
+      dateSecured: Date.now(),
     });
     newSeat.save();
   }
   res.json({
     text: `You have secured ${seats.length} seat(s). Your reservation Id: ${userId}`,
     secured: true,
-    userId: userId
+    userId: userId,
   });
 });
 

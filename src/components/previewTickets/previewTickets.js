@@ -13,7 +13,7 @@ function PreviewTickets() {
     secured,
     setSecured,
     timer,
-    setTimer
+    setTimer,
   } = useContext(SeatsContext);
   const [loading, setLoading] = useState(false);
   let history = useHistory();
@@ -29,7 +29,7 @@ function PreviewTickets() {
       if (data.secured) {
         setLoading(false);
         setSecured(chosen);
-        sessionStorage.setItem("tickets", JSON.stringify(chosen)); //sessionstor?
+        sessionStorage.setItem("tickets", JSON.stringify(chosen));
         history.push("/cart");
       }
     });
@@ -51,4 +51,3 @@ function PreviewTickets() {
 }
 
 export default PreviewTickets;
-

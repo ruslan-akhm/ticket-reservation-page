@@ -12,7 +12,7 @@ import {
   Elements,
   CardElement,
   useStripe,
-  useElements
+  useElements,
 } from "@stripe/react-stripe-js";
 import "./checkout.scss";
 const stripePromise = loadStripe(
@@ -30,7 +30,7 @@ function Form() {
     chosen,
     setChosen,
     timer,
-    setTimer
+    setTimer,
   } = useContext(SeatsContext);
   let history = useHistory();
   const [customer, setCustomer] = useState({ email: "", name: "" });
@@ -47,13 +47,16 @@ function Form() {
 
   useEffect(() => {
     if ((!total || total == 0) && secured) {
-      let cost = secured.map(ticket => parseInt(ticket.price)).reduce((acc,val)=>{return acc+val},0);
+      let cost = secured
+        .map(ticket => parseInt(ticket.price))
+        .reduce((acc, val) => {
+          return acc + val;
+        }, 0);
       setTotal(parseInt(cost));
     }
   }, [secured]);
 
   const cancel = () => {
-    
     if (!secured || secured.length < 1) {
       return history.push("/");
     }
@@ -67,16 +70,12 @@ function Form() {
         clear();
       }
     });
-    
-    
-    //history.push("/");
   };
 
   const home = () => {
     clear();
-    //history.push("/");
   };
- 
+
   const clear = () => {
     setSecured(null);
     setChosen([]);
@@ -101,7 +100,7 @@ function Form() {
     }
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
-      card: elements.getElement(CardElement)
+      card: elements.getElement(CardElement),
     });
     if (!error) {
       setIsLoading(true);
@@ -112,19 +111,14 @@ function Form() {
           id,
           product,
           price: total * 100,
-          user: customer
+          user: customer,
         })
         .then(data => {
           setIsLoading(false);
           setMessage(data.message);
           if (!data.error) {
             setIsPaid(true);
-            
-            //setTimer(600);
             window.clearInterval(window.myInterval);
-            //clear();
-          } else {
-            console.log(secured);
           }
         });
     } else {
@@ -187,4 +181,3 @@ function Checkout() {
 }
 
 export default Checkout;
-

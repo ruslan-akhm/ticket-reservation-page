@@ -8,16 +8,9 @@ import { SeatsContext } from "../../context/seatsContext";
 import "./cart.scss";
 
 function Cart() {
-  const {
-    chosen,
-    setChosen,
-    secured,
-    setSecured,
-    show,
-    setShow,
-    timer,
-    setTimer
-  } = useContext(SeatsContext);
+  const { setChosen, secured, setSecured, show, timer, setTimer } = useContext(
+    SeatsContext
+  );
   let history = useHistory();
 
   //if refresh page - reset states from sessionstorage

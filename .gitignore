@@ -4,6 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
+/.config
+/.data
+/.npm
 
 # testing
 /coverage
@@ -21,3 +24,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.bash_history
+.eslintcache
+.glitch-assets
+.npmrc
+shrinkwrap.yaml
+watch.json
