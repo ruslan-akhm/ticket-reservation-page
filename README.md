@@ -30,7 +30,7 @@ $ npm start
 Server will set up on port 3001 and app will start on port 3000.
 
 Make sure to provide .env file in **root folder** with following variables:
- - SECRET (MongoDB database in format mongodb+srv://<username>:<password>@cluster...)
+ - SECRET (MongoDB database credentials in format mongodb+srv://<username>:<password>@cluster...)
  - STRIPE_KEY (stripe **public** key)
  - SECRET_STRIPE_KEY (stripe **secret** key)
 
