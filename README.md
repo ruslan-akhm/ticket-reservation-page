@@ -27,8 +27,9 @@ $ cd ticket-reservation-page
 $ npm install
 $ npm start
 ```
-Server will set up on port 3001 and app will start om port 3000
-Make sure to provide .env in **root folder** file with following variables:
+Server will set up on port 3001 and app will start on port 3000.
+
+Make sure to provide .env file in **root folder** with following variables:
  - SECRET (MongoDB database in format mongodb+srv://<username>:<password>@cluster...)
  - STRIPE_KEY (stripe **public** key)
  - SECRET_STRIPE_KEY (stripe **secret** key)
