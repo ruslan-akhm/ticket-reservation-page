@@ -1,10 +1,38 @@
-1.After user chooses tickets and clicks "Next", tickets are getting secured, so other users won't be able to choose them
-(an API call made to back-end to update database documents)
-2.User is given time to finish their purchase (5 min), if failed to do so, tickets get unsecured when timer reaches 00:00 and user would have to start over.
-(all the states, as well as window interval are cleared; API call unsecures tickets on back-end)
-3.If page refreshed at any point of time, all the necessary information is saved (like timer and secured tickets)
-(necessary information is stored in sessionStorage as well; it is being updated accordingly)
-4.If user leaves the page without purchasing the order their tickets will get unsecured after 5 minutes anyway
-(whenever some other user visits the page, the back-end checks for any secured tickets with expired time and updates the database correspondingly)
-5.User is directed to secure payment form to make their purchase.
-(secure payment is built with Stripe.js)
+# Ticket Reservation App
+---
+### About 
+This app allows users to make reservations for a movie by choosing seats, modifying/confirming corresponding tickets in cart and purchasing them via secure payment page.
+
+The app was originally built and is available Live [on Glitch](https://ticket-reservation-page.glitch.me/)
+
+---
+### Preview 
+
+![Mainpage](https://cdn.glitch.com/3eeb3b2b-1bb2-49a0-811f-d94dbc022a91%2FTicketsPage.jpg?v=1612730796195)
+
+---
+### Tech Stack
+  - React.js
+  - SaSS
+  - Node/Express
+  - MongoDB
+  - Stripe.js
+
+---
+
+### Run locally
+```sh
+$ git clone https://github.com/ruslan-akhm/ticket-reservation-page.git
+$ cd ticket-reservation-page
+$ npm install
+$ npm start
+```
+Server will set up on port 3001 and app will start om port 3000
+Make sure to provide .env in **root folder** file with following variables:
+ - SECRET (MongoDB database in format mongodb+srv://<username>:<password>@cluster...)
+ - STRIPE_KEY (stripe **public** key)
+ - SECRET_STRIPE_KEY (stripe **secret** key)
+
+---
+### Author
+Ruslan Akhmetshin
