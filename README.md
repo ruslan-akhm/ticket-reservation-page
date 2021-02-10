@@ -11,6 +11,13 @@ The app was originally built and is available Live [on Glitch](https://ticket-re
 ![Mainpage](https://cdn.glitch.com/3eeb3b2b-1bb2-49a0-811f-d94dbc022a91%2FTicketsPage.jpg?v=1612730796195)
 
 ---
+### Highlights
+  - Chosen seats get secured for 5 minutes, so user had time to purchase them
+  - If chosen tickets were not purchased, seats will unsecure automatically after short time
+  - Data transferred between components by using React Context
+  - Secure payment page built with Stripe
+
+---
 ### Tech Stack
   - React.js
   - SaSS
